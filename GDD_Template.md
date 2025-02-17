@@ -60,7 +60,7 @@ The game should be an atmospheric action-adventure with elements of exploration,
 
 What kind of mindset do you want to provoke in the player? Do you want them to feel powerful, or weak? Adventurous, or nervous? Hurried, or calm? How do you intend to provoke those emotions?
 
-We want to make the player feel scared, helpless and confused at the start of the game, in a mysterious mansion with some dark rooms that constantly change their order and has ghosts haunting through them. And the only way to defend himself is a plasma gun, but the player can't easily spot the enemies, increasing the confusion and nervousness from the player.
+We want to make the player feel scared, helpless and confused at the start of the game, in a mysterious mansion with some dark rooms that constantly change their order and has ghosts haunting through them. And the only way to defend himself is a plasma gun, but the player can't easily spot the enemies due to the darkness, increasing the confusion and nervousness from the player.
 
 ## _Technical_
 
