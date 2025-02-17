@@ -1,10 +1,14 @@
-# **Game Name Here**
+# **Nine-Shions**
 
 ## _Game Design Document_
 
 ---
 
 ##### **Copyright notice / author information / boring legal stuff nobody likes**
+
+-Santiago Arista Viramontes
+-Darío Peña Mariano
+-Rebeca Dávila Araiza
 
 ##
 ## _Index_
@@ -46,7 +50,7 @@
 
 ### **Summary**
 
-Sum up your game idea in 2 sentences. A kind of elevator pitch. Keep it simple!
+Explore a haunted house with nine rooms, collecting eight keys to unlock the final boss room—lose all keys if you die, but keep your lamp, helper, and double jump. With only three lives, every choice matters in this eerie challenge of survival and strategy!
 
 ### **Gameplay**
 
