@@ -54,7 +54,7 @@ Explore a haunted house with nine rooms, collecting eight keys to unlock the fin
 
 ### **Gameplay**
 
-What should the gameplay be like? What is the goal of the game, and what kind of obstacles are in the way? What tactics should the player use to overcome them?
+The game should be an atmospheric action-adventure with elements of exploration, survival, and platforming. Players navigate through nine haunted rooms, fighting enemies, and collecting eight keys to access the final boss room. The challenge comes from resource management (limited lives, losing keys upon death) and strategic movement (using the double jump and the helper).
 
 ### **Mindset**
 
