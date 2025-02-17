@@ -6,9 +6,9 @@
 
 ##### **Copyright notice / author information / boring legal stuff nobody likes**
 
--Santiago Arista Viramontes
--Darío Peña Mariano
--Rebeca Dávila Araiza
+* Santiago Arista Viramontes
+* Darío Peña Mariano
+* Rebeca Dávila Araiza
 
 ##
 ## _Index_
