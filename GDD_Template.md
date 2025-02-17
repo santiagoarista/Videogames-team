@@ -68,13 +68,16 @@ We want to make the player feel scared, helpless and confused at the start of th
 
 ### **Screens**
 
+
 1. Title Screen
-    1. Options
-2. Level Select
-3. Game
-    1. Inventory
-    2. Assessment / Next Level
-4. End Credits
+   Settings
+   Play buttom
+
+2. Gameplay Screen
+    1. Life section
+    2. Map
+    3. Game section
+3. End Credits
 
 _(example)_
 
