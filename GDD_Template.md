@@ -50,19 +50,18 @@
 
 ### **Summary**
 
-Explore a haunted house with nine rooms, collecting eight keys to unlock the final boss room—lose all keys if you die, but keep your lamp, helper, and double jump. With only three lives, every choice matters in this eerie challenge of survival and strategy!
+Nineshions is a spooky plataforming roguelite game where a monster hunter enters a mysterious mansion where monsters come out to haunt people every Halloween. There, the hunter must defeat all the monsters in the eight rooms of the mansion. It’ll be no easy task inside a dark, big, and dangerous mansion, so that’s why the he can receive ocassional help from an assistant do hurt some enemies, a flashlight to look in the dark and a powerup to double jump in the platforms. Through the explorations of the mansion, he must find eight keys to enter the ninth room, where the boss room is located, and finally defeat to stop his plans and save Halloween.
 
 ### **Gameplay**
 
-What should the gameplay be like? What is the goal of the game, and what kind of obstacles are in the way? What tactics should the player use to overcome them?
-
-The game should be an atmospheric action-adventure with elements of exploration, survival, and platforming. Players navigate through nine haunted rooms, fighting enemies, and collecting eight keys to access the final boss room. The challenge comes from resource management (limited lives, losing keys upon death) and strategic movement (using the double jump and the helper).
+The monster hunter can be controled by using the keys w,a,s,d to move left and right, jump and get down a platform.
+The player must navigate through eight rooms inside the mansion, fight different monsters, and collect eight keys to access the final boss room. The challenge comes from resource management (limited lives, losing keys upon death) and strategic movement (using the double jump and the helper).
 
 ### **Mindset**
 
 What kind of mindset do you want to provoke in the player? Do you want them to feel powerful, or weak? Adventurous, or nervous? Hurried, or calm? How do you intend to provoke those emotions?
 
-We want to make the player feel scared, helpless and confused at the start of the game, in a mysterious mansion with some dark rooms that constantly change their order and has ghosts haunting through them. And the only way to defend himself is a plasma gun, but the player can't easily spot the enemies due to the darkness, increasing the confusion and nervousness from the player.
+We want to make the player feel scared, helpless and confused at the start of the game, in a mysterious mansion with some dark rooms that change their order after death and has monsters haunting through them. However, as the player keeps defeating monsters, they can gain experience to increase their damage and deafeting the monster easier. The player must also be cautious because they can loose this experience and the keys collected through the rooms if they die, giving them more challenges and make them use their own skill, with the help of the items, to clear the mansion.
 
 ## _Technical_
 
