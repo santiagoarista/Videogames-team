@@ -59,8 +59,6 @@ The player must navigate through eight rooms inside the mansion, fight different
 
 ### **Mindset**
 
-What kind of mindset do you want to provoke in the player? Do you want them to feel powerful, or weak? Adventurous, or nervous? Hurried, or calm? How do you intend to provoke those emotions?
-
 We want to make the player feel scared, helpless and confused at the start of the game, in a mysterious mansion with some dark rooms that change their order after death and has monsters haunting through them. However, as the player keeps defeating monsters, they can gain experience to increase their damage and deafeting the monster easier. The player must also be cautious because they can loose this experience and the keys collected through the rooms if they die, giving them more challenges and make them use their own skill, with the help of the items, to clear the mansion.
 
 ## _Technical_
