@@ -94,18 +94,28 @@ We want to make the player feel scared, helpless and confused at the start of th
 
        
 ### **Controls**
-W-jump/Double Jump
-A-Move left
-D-Move right
-S-Bend
-
-M-Unfold map
-P-Pause Menu
-Left click -Fire
+- W-jump/Double Jump
+- A-Move left
+- D-Move right
+- S-Bend
+- M-Unfold map
+- P-Pause Menu
+- Left click -Fire
 
 ### **Mechanics**
 
-Are there any interesting mechanics? If so, how are you going to accomplish them? Physics, algorithms, etc.
+1. The player must explore all the eight rooms to get the keys and enter the boss’s room
+2. The player has three lives in total, and after he dyes, he must start the level from the begining
+3. The player can explore the rooms however they want through the different exits inside a room. Some of them can be accessed by jumping through platforms
+4. The player has a default weapon that allows him to shoot at the enemies and they can arrange its direction.
+5. After defeating an enemy, they will always gain experience level, which increases the damage the player can do withthe gun. This experience goes 0 after the player dyes.
+6. The last monster in each room will have a key. So the player must defeat all the monsters in each room until they get the key and get eight keys in total.
+7. A random monster can grant the player an item after defeating them:
+   - Flashlight: It allows you to get a wider range of sight inside a dark room, and it’ll still be active even in iluminated rooms. If the player doesn’t has the flashlight, their range of sight is shorter in darkr rooms.
+   - The assistant: It appears next to the player to shoot at some enemies. However, its range attack is shorter than the player and does less damage.
+   - Double Jump: it allows the player to make a second jump while they are in the air.
+8. These items can be gained once through all of the game and can be kept by the player even after dying.
+9. Once the player has all the keys, they must find the secret door that leads to the final boss.
 
 ## _Level Design_
 
