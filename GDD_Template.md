@@ -71,18 +71,37 @@ We want to make the player feel scared, helpless and confused at the start of th
 1. Title Screen
    Settings
    Play buttom
-
+   Logo Game
 2. Gameplay Screen
     1. Life section
-    2. Map
+    2. Key section
     3. Game section
-3. End Credits
+    4. Pause Container
+        Continue
+        Settings
+        Leave game
+    5. Map Container
+        Rooms
+        Boss Romm
+        Tittle
+        Actual Room
+        Rooms completed
+3.- Settings Screen
+      General volume
+      Restart progress
+4.- Credits Screen
+       Game Credits
 
-_(example)_
-
+       
 ### **Controls**
+W-jump/Double Jump
+A-Move left
+D-Move right
+S-Bend
 
-How will the player interact with the game? Will they be able to choose the controls? What kind of in-game events are they going to be able to trigger, and how? (e.g. pressing buttons, opening doors, etc.)
+M-Unfold map
+P-Pause Menu
+Left click -Fire
 
 ### **Mechanics**
 
