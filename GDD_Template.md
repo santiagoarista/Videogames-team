@@ -104,6 +104,12 @@ We want to make the player feel scared, helpless and confused at the start of th
 
 ### **Mechanics**
 
+# Scenarios mechanics:
+- The first room where the player respawns is the safe room, where there are no enemies around and you can find the weapons arsenal to unlock new weapons depending on your game score.
+- When you open the map, the game doesn't stop. So, the player must open it in special cases or in places with fewer enemies.
+- There are three weapons at the safe room, which have diferrent fire mechanics and you can unlock them as you progress through the game.
+
+# Rules:
 1. The player must explore all the eight rooms to get the keys and enter the boss’s room
 2. The player has three lives in total, and after he dyes, he must start the level from the begining
 3. The player can explore the rooms however they want through the different exits inside a room. Some of them can be accessed by jumping through platforms
