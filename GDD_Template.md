@@ -131,30 +131,20 @@ _(Note : These sections can safely be skipped if they&#39;re not relevant, or yo
 
 ### **Themes**
 
-1. Forest
+1. Haunted Mansion
     1. Mood
         1. Dark, calm, foreboding
     2. Objects
         1. _Ambient_
-            1. Fireflies
+            1. skeletons
             2. Beams of moonlight
-            3. Tall grass
+            3. tables
+            4. libraries
+            5. cabinets
         2. _Interactive_
             1. Wolves
             2. Goblins
             3. Rocks
-2. Castle
-    1. Mood
-        1. Dangerous, tense, active
-    2. Objects
-        1. _Ambient_
-            1. Rodents
-            2. Torches
-            3. Suits of armor
-        2. _Interactive_
-            1. Guards
-            2. Giant rats
-            3. Chests
 
 _(example)_
 
