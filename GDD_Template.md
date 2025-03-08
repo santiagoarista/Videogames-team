@@ -139,8 +139,9 @@ In the video game, we have assets inspired by monsters and the Halloween festivi
    1. Decorations (Complete assets list -> [Decoration](https://github.com/santiagoarista/Videogames-team/tree/main/assets/escenario/decoraciones) )
 
       | ![](assets/escenario/decoraciones/hallowen/Web1.png) | ![](assets/escenario/decoraciones/hallowen/Signboard3.png)| ![](assets/escenario/decoraciones/hallowen/Signboard4.png)|  
-      | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box1.png) | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box5.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Flag.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Locker4.png)| ![](assets/escenario/decoraciones/hallowen/mansion_demo/table.png)|
-
+      | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box1.png) | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box5.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Flag.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Locker4.png)| ![](assets/escenario/decoraciones/hallowen/mansion_demo/table.png)|  ![](assets/escenario/decoraciones/hallowen/library.png)|
+      ![](assets/escenario/decoraciones/hallowen/mansion_demo/cabinet.png)| 
+      
    1. Bullet (Complete assets list -> [Bullets](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/) )
 
       | ![](assets/bullets/Laser%20Sprites/01.png) | ![](assets/bullets/Laser%20Sprites/02.png)| ![](assets/bullets/Laser%20Sprites/03.png))|
