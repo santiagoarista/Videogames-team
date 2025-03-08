@@ -158,11 +158,18 @@ In the video game, we have assets inspired by monsters and the Halloween festivi
       ![](assets/character/main_character/Attack_1.png)
 
 2. Sketch of the levels
+
    1. Rooms sketches:
       -Final Boss
       ![](sketches/cuartos/cuarto_jefeFinal_skecth.png)
       -Spawn
       ![](sketches/cuartos/cuarto_spawn_sketch.png)
+
+   2. Another screens:
+      -Puse screen
+      ![](sketches/pantallas/pause_screen.png)
+      -Map Screen
+      ![](sketches/pantallas/map_screen.png)
 
 ### **Themes**
 
