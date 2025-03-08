@@ -136,9 +136,9 @@ In the video game, we have assets inspired by monsters and the Halloween festivi
 1. scenery
     1. Tiles (Complete assets list -> [Tiles](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/) )
 
-        | ![](assets/bullets/Laser%20Sprites/01.png) |  ![](assets/bullets/Laser%20Sprites/02.png)| ![](assets/bullets/Laser%20Sprites/03.png))| 
+        | ![](assets/escenario/tiles/Tile_01.png) |  ![](assets/escenario/tiles/Tile_03.png)| ![](assets/escenario/Tiles/Tile_12.png)|![](assets/escenario/Tiles/Tile_20.png)  ![](assets/escenario/tiles/Tile_023.png) |  ![](assets/escenario/tiles/Tile_25.png)| ![](assets/escenario/Tiles/Tile_30.png)|![](assets/escenario/Tiles/Tile_31.png) 
      
-        | ![](assets/bullets/Laser%20Sprites/15.png) | 
+
     1. Decorations (Complete assets list -> [Decoration](https://github.com/santiagoarista/Videogames-team/tree/main/assets/escenario/decoraciones) )
 
         | ![](assets/escenario/decoraciones/hallowen/Web1.png) |  ![](assets/escenario/decoraciones/hallowen/Signboard3.png)| ![](assets/escenario/decoraciones/hallowen/Signboard4.png)|  
