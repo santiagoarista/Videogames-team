@@ -130,7 +130,19 @@ We want to make the player feel scared, helpless and confused at the start of th
 _(Note : These sections can safely be skipped if they&#39;re not relevant, or you&#39;d rather go about it another way. For most games, at least one of them should be useful. But I&#39;ll understand if you don&#39;t want to use them. It&#39;ll only hurt my feelings a little bit.)_
 
 
-### **Themes**
+### **Assets**
+In the video game, we have assets inspired by monsters and the Halloween festivity. The assets are as follows:
+
+1. scenery
+    1. Decorations (Complete assets list -> [Decoration](https://github.com/santiagoarista/Videogames-team/tree/main/assets/escenario/decoraciones) )
+        | ![](assets/escenario/decoraciones/hallowen/Web1.png) |  ![](assets/escenario/decoraciones/hallowen/Signboard3.png)| ![](assets/escenario/decoraciones/hallowen/Signboard4.png)| 
+     
+        | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box1.png) | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box5.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Flag.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Locker4.png)| 
+    1. Bullet (Complete assets list -> [Bullets](https://github.com/santiagoarista/Videogames-team/tree/main/assets/escenario/decoraciones) )
+        | ![](assets/bullets/Laser%20Sprites/01.png) |  ![](assets/bullets/Laser%20Sprites/02.png)| ![](assets/bullets/Laser%20Sprites/03.png))| 
+     
+        | ![](assets/bullets/Laser%20Sprites/15.png) | 
+
 
 
 
