@@ -129,6 +129,11 @@ We want to make the player feel scared, helpless and confused at the start of th
 
 _(Note : These sections can safely be skipped if they&#39;re not relevant, or you&#39;d rather go about it another way. For most games, at least one of them should be useful. But I&#39;ll understand if you don&#39;t want to use them. It&#39;ll only hurt my feelings a little bit.)_
 
+
+### **Themes**
+
+
+
 ### **Themes**
 
 1. Haunted Mansion
