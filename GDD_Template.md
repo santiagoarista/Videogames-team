@@ -193,13 +193,15 @@ _(example)_
 
 ### **Game Flow**
 
-1. Player starts in forest
-2. Pond to the left, must move right
-3. To the right is a hill, player jumps to traverse it (&quot;jump&quot; taught)
-4. Player encounters castle - door&#39;s shut and locked
-5. There&#39;s a window within jump height, and a rock on the ground
-6. Player picks up rock and throws at glass (&quot;throw&quot; taught)
-7. … etc.
+1. Player starts in the respawn room,
+2. In that room, the player can find three weapons to use, but at the beginning or after respawning, he may only use the first one, (&quot;movement controls&quot; taught)
+3. There are four open exits in that room, the player can go to any direction they want.
+4. Wherever room the player decides to get in, a group of enemies inside will start attacking them.
+5. Player shoots at the enemies to eliminate them
+6. The last enemy the player defeats will let go of a key that the player must pick up.
+7. Then the player must continue to the next room they decide to go
+8. Some monsters will grant an item to the player to facilitate the gameplay, which can only be picked up once. The player can have the items permanently.
+9. The player eventually finds the door to the final boss, but it must collect the eight keys to get inside.
 
 _(example)_
 
