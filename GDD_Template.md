@@ -100,7 +100,7 @@ We want to make the player feel scared, helpless and confused at the start of th
 - S-Bend
 - M-Unfold map
 - P-Pause Menu
-- Left click -Fire
+- k-Fire
 
 ### **Mechanics**
 
@@ -134,14 +134,28 @@ _(Note : These sections can safely be skipped if they&#39;re not relevant, or yo
 In the video game, we have assets inspired by monsters and the Halloween festivity. The assets are as follows:
 
 1. scenery
-    1. Decorations (Complete assets list -> [Decoration](https://github.com/santiagoarista/Videogames-team/tree/main/assets/escenario/decoraciones) )
-        | ![](assets/escenario/decoraciones/hallowen/Web1.png) |  ![](assets/escenario/decoraciones/hallowen/Signboard3.png)| ![](assets/escenario/decoraciones/hallowen/Signboard4.png)| 
-     
-        | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box1.png) | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box5.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Flag.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Locker4.png)| 
-    1. Bullet (Complete assets list -> [Bullets](https://github.com/santiagoarista/Videogames-team/tree/main/assets/escenario/decoraciones) )
+    1. Tiles (Complete assets list -> [Tiles](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/) )
+
         | ![](assets/bullets/Laser%20Sprites/01.png) |  ![](assets/bullets/Laser%20Sprites/02.png)| ![](assets/bullets/Laser%20Sprites/03.png))| 
      
         | ![](assets/bullets/Laser%20Sprites/15.png) | 
+    1. Decorations (Complete assets list -> [Decoration](https://github.com/santiagoarista/Videogames-team/tree/main/assets/escenario/decoraciones) )
+
+        | ![](assets/escenario/decoraciones/hallowen/Web1.png) |  ![](assets/escenario/decoraciones/hallowen/Signboard3.png)| ![](assets/escenario/decoraciones/hallowen/Signboard4.png)|  
+        | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box1.png) | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box5.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Flag.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Locker4.png)| 
+    1. Bullet (Complete assets list -> [Bullets](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/) )
+
+        | ![](assets/bullets/Laser%20Sprites/01.png) |  ![](assets/bullets/Laser%20Sprites/02.png)| ![](assets/bullets/Laser%20Sprites/03.png))| 
+     
+        | ![](assets/bullets/Laser%20Sprites/15.png) | 
+        
+1. Characters
+    1. Main character (Complete assets list -> [Main Character](https://github.com/santiagoarista/Videogames-team/tree/main/assets/character/main_character) )
+
+         ![](assets/character/main_character/Run.png) 
+         ![](assets/character/main_character/Jump.png) 
+         ![](assets/character/main_character/Attack_1.png) 
+
 
 
 
