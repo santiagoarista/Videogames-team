@@ -147,6 +147,15 @@ In the video game, we have assets inspired by monsters and the Halloween festivi
       | ![](assets/bullets/Laser%20Sprites/01.png) | ![](assets/bullets/Laser%20Sprites/02.png)| ![](assets/bullets/Laser%20Sprites/03.png))|
 
       | ![](assets/bullets/Laser%20Sprites/15.png) |
+2. Sound Assets
+    1. Music assets we used three musical tracks, because in the video game there will be three musicalized moments, these moments are:
+        1. Title Screen: "Beetlejuice Beetlejuice Soundtrack | Main Title Theme - Danny Elfman "
+        [Title Screen Music](https://www.youtube.com/watch?v=C9vv3-AYxkw)
+        2. Regular rooms: "Goosebumps · Danny Elfman"
+        [Regular Rooms Music](https://www.youtube.com/watch?v=ztnifjaFDxQ)
+        3. Final Boss room: "Spooky, Scary Skeletons (Undead Tombstone Remix) · Andrew Gold"
+        [Final Boss room Music](https://www.youtube.com/watch?v=UWR4aTdMbzw)
+
 
 ## \_Graphics
 
