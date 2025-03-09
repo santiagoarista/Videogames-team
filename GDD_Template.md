@@ -185,20 +185,24 @@ In the video game, we have assets inspired by monsters and the Halloween festivi
 
 1. Haunted Mansion
    1. Mood
-      1. Dark, calm, foreboding
+      1. Dark, mysterious, unpredictable
    2. Objects
       1. _Ambient_
-         1. skeletons
-         2. Beams of moonlight
-         3. tables
-         4. libraries
-         5. cabinets
+         1. Neon lights
+         2. tileblock
+         3. coffins
+         4. tables
+         5. libraries
+         6. cabinets
+         7. cardboard boxes
       2. _Interactive_
-         1. Wolves
-         2. Goblins
-         3. Rocks
-
-_(example)_
+         1. skeletons
+         2. ghosts
+         3. bats
+         4. keys
+         5. flasklight
+         6. assistant
+         7. DoubleJumpJar
 
 ### **Game Flow**
 
@@ -212,8 +216,6 @@ _(example)_
 8. Some monsters will grant an item to the player to facilitate the gameplay, which can only be picked up once. The player can have the items permanently.
 9. The player eventually finds the door to the final boss, but it must collect the eight keys to get inside.
 
-_(example)_
-
 ## _Development_
 
 ---
@@ -222,8 +224,9 @@ _(example)_
 
 1. BasePhysics
    1. BasePlayer
-   2. BaseEnemy
-   3. BaseObject
+   2. BaseAsistant
+   3. BaseEnemy
+   4. BaseObject
 2. BaseObstacle
 3. BaseInteractable
 
@@ -233,20 +236,17 @@ _(example)_
 
 1. BasePlayer
    1. PlayerMain
-   2. PlayerUnlockable
 2. BaseEnemy
-   1. EnemyWolf
-   2. EnemyGoblin
-   3. EnemyGuard (may drop key)
-   4. EnemyGiantRat
-   5. EnemyPrisoner
+   1. EnemyGhost
+   2. EnemySkeleton (may drop key)
+   3. EnemyBats 
 3. BaseObject
-   1. ObjectRock (pick-up-able, throwable)
-   2. ObjectChest (pick-up-able, throwable, spits gold coins with key)
-   3. ObjectGoldCoin (cha-ching!)
-   4. ObjectKey (pick-up-able, throwable)
+   1. ObjectKey (pick-up-able, throwable)
+   2. ObjectFlasklight (pick-up-able)
+   3. ObjectAssistant (pick-up-able)
+   4. ObjectDoubleJumpJar (pick-up-able)
 4. BaseObstacle
-   1. ObstacleWindow (destroyed with rock)
+   1. ObstacleLibrary (destroyed with rock)
    2. ObstacleWall
    3. ObstacleGate (watches to see if certain buttons are pressed)
 5. BaseInteractable
