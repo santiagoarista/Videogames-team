@@ -237,9 +237,7 @@ _(example)_
 1. BasePlayer
    1. PlayerMain
 2. BaseEnemy
-   1. EnemyGhost
-   2. EnemySkeleton (may drop key)
-   3. EnemyBats 
+   1. Enemy (may drop key, always drops exp)
 3. BaseObject
    1. ObjectKey (pick-up-able, throwable)
    2. ObjectFlasklight (pick-up-able)
