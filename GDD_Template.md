@@ -130,43 +130,52 @@ _(Note : These sections can safely be skipped if they&#39;re not relevant, or yo
 
 In the video game, we have assets inspired by monsters and the Halloween festivity. The assets are as follows:
 
-1. scenery
+1.  scenery
 
-   1. Tiles (Complete assets list -> [Tiles](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/) )
+    1.  Tiles (Complete assets list -> [Tiles](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/) )
 
-      | ![](assets/escenario/tiles/Tile_01.png) | ![](assets/escenario/tiles/Tile_03.png)| ![](assets/escenario/Tiles/Tile_12.png)|![](assets/escenario/Tiles/Tile_20.png) ![](assets/escenario/tiles/Tile_023.png) | ![](assets/escenario/tiles/Tile_25.png)| ![](assets/escenario/Tiles/Tile_30.png)|![](assets/escenario/Tiles/Tile_31.png)
+        | ![](assets/escenario/tiles/Tile_01.png) | ![](assets/escenario/tiles/Tile_03.png)| ![](assets/escenario/Tiles/Tile_12.png)|![](assets/escenario/Tiles/Tile_20.png) ![](assets/escenario/tiles/Tile_023.png) | ![](assets/escenario/tiles/Tile_25.png)| ![](assets/escenario/Tiles/Tile_30.png)|![](assets/escenario/Tiles/Tile_31.png)
 
-   1. Decorations (Complete assets list -> [Decoration](https://github.com/santiagoarista/Videogames-team/tree/main/assets/escenario/decoraciones) )
+    1.  Decorations (Complete assets list -> [Decoration](https://github.com/santiagoarista/Videogames-team/tree/main/assets/escenario/decoraciones) )
 
-      | ![](assets/escenario/decoraciones/hallowen/Web1.png) | ![](assets/escenario/decoraciones/hallowen/Signboard3.png)| ![](assets/escenario/decoraciones/hallowen/Signboard4.png)|  
-      | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box1.png) | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box5.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Flag.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Locker4.png)|
-<img src="assets/escenario/decoraciones/hallowen/mesa.png" alt="Texto alternativo" width="100">|
-<img src="assets/escenario/decoraciones/hallowen/librarysprites2.png" alt="Texto alternativo" width="100"> |
-      
-   1. Bullet (Complete assets list -> [Bullets](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/) )
+              | ![](assets/escenario/decoraciones/hallowen/Web1.png) | ![](assets/escenario/decoraciones/hallowen/Signboard3.png)| ![](assets/escenario/decoraciones/hallowen/Signboard4.png)|
+              | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box1.png) | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box5.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Flag.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Locker4.png)|
 
-      | ![](assets/bullets/Laser%20Sprites/01.png) | ![](assets/bullets/Laser%20Sprites/02.png)| ![](assets/bullets/Laser%20Sprites/03.png))|
+        <img src="assets/escenario/decoraciones/hallowen/mesa.png" alt="Texto alternativo" width="100">|
+        <img src="assets/escenario/decoraciones/hallowen/librarysprites2.png" alt="Texto alternativo" width="100"> |
 
-      | ![](assets/bullets/Laser%20Sprites/15.png) |
-2. Sound Assets
+    1.  Bullet (Complete assets list -> [Bullets](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/) )
+
+        | ![](assets/bullets/Laser%20Sprites/01.png) | ![](assets/bullets/Laser%20Sprites/02.png)| ![](assets/bullets/Laser%20Sprites/03.png))|
+
+        | ![](assets/bullets/Laser%20Sprites/15.png) |
+
+2.  Sound Assets
     1. Music assets we used three musical tracks, because in the video game there will be three musicalized moments, these moments are:
-        1. Title Screen: "Beetlejuice Beetlejuice Soundtrack | Main Title Theme - Danny Elfman "
-        [Title Screen Music](https://www.youtube.com/watch?v=C9vv3-AYxkw)
-        2. Regular rooms: "Goosebumps · Danny Elfman"
-        [Regular Rooms Music](https://www.youtube.com/watch?v=ztnifjaFDxQ)
-        3. Final Boss room: "Spooky, Scary Skeletons (Undead Tombstone Remix) · Andrew Gold"
-        [Final Boss room Music](https://www.youtube.com/watch?v=UWR4aTdMbzw)
+       1. Title Screen: "Beetlejuice Beetlejuice Soundtrack | Main Title Theme - Danny Elfman "
+          [Title Screen Music](https://www.youtube.com/watch?v=C9vv3-AYxkw)
+       2. Regular rooms: "Goosebumps · Danny Elfman"
+          [Regular Rooms Music](https://www.youtube.com/watch?v=ztnifjaFDxQ)
+       3. Final Boss room: "Spooky, Scary Skeletons (Undead Tombstone Remix) · Andrew Gold"
+          [Final Boss room Music](https://www.youtube.com/watch?v=UWR4aTdMbzw)
 
+## _Graphics_
 
-## \_Graphics
+### **style-attributes**
 
-1. Characters
+1.  Vibrant neon colors on dark backgrounds, creating a strong contrast.
+2.  Intense particle effects with lighting.
+3.  Minimalist yet stylish design, with geometric shapes and defined silhouettes.
+4.  Dystopian atmosphere with supernatural Halloween elements.
+5.  Use of gradient shapes to simulate lighting.
 
-   1. Main character (Complete assets list -> [Main Character](https://github.com/santiagoarista/Videogames-team/tree/main/assets/character/main_character) )
+**Characters**
 
-      ![](assets/character/main_character/Run.png)
-      ![](assets/character/main_character/Jump.png)
-      ![](assets/character/main_character/Attack_1.png)
+1. Main character (Complete assets list -> [Main Character](https://github.com/santiagoarista/Videogames-team/tree/main/assets/character/main_character) )
+
+   ![](assets/character/main_character/Run.png)
+   ![](assets/character/main_character/Jump.png)
+   ![](assets/character/main_character/Attack_1.png)
 
 2. Sketch of the levels
 
@@ -249,7 +258,6 @@ _(example)_
    3. ObstacleWall
    4. ObstacleTile
    5. ObstacleGate
-  
 
 ## _Schedule_
 
