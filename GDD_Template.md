@@ -1,10 +1,8 @@
 # **Nine-Shions**
 
-## _Game Design Document_
+## _Documento de Diseño del Juego_
 
----
-
-##### **Copyright notice / author information / boring legal stuff nobody likes**
+Equipo Ghostbusters
 
 - Santiago Arista Viramontes
 - Darío Peña Mariano
@@ -12,11 +10,147 @@
 
 ##
 
-## _Index_
+## _Índice_
 
 ---
 
-1. [Index](#index)
+1. &#x20;[Mecánicas](#mecánicas)
+2. [Diseño de Niveles](#diseño-de-niveles)
+   1. [Temas](#temas)
+      1. Ambiente
+      2. Objetos
+         1. Ambientales
+         2. Interactivos
+      3. Desafíos
+   2. [Flujo del Juego](#flujo-del-juego)
+3. [Desarrollo](#desarrollo)
+   1. [Clases Abstractas](#clases-abstractas--componentes)
+   2. [Clases Derivadas](#clases-derivadas--composiciones-de-componentes)
+4. [Gráficos](#gráficos)
+   1. [Atributos de Estilo](#atributos-de-estilo)
+   2. [Gráficos Necesarios](#gráficos-necesarios)
+5. [Sonidos/Música](#sonidosmúsica)
+   1. [Atributos de Estilo](#atributos-de-estilo-1)
+   2. [Sonidos Necesarios](#sonidos-necesarios)
+   3. [Música Necesaria](#música-necesaria)
+6. [Calendario](#calendario)
+
+## _Diseño del Juego_
+
+### **Resumen**
+
+Nineshions es un juego de plataformas roguelite de terror en el que un cazador de monstruos entra en una mansión misteriosa de donde emergen criaturas para asustar a la gente cada Halloween. El cazador debe derrotar a todos los monstruos en las ocho habitaciones de la mansión. No será una tarea fácil en un lugar oscuro, grande y peligroso, por lo que contará con la ayuda ocasional de un asistente que dañará a algunos enemigos, una linterna para iluminar en la oscuridad y una mejora que le permitirá hacer un doble salto en las plataformas. A medida que explore la mansión, deberá encontrar ocho llaves para entrar en la novena habitación, donde se encuentra el jefe final, y derrotarlo para salvar Halloween.
+
+### **Jugabilidad**
+
+El cazador de monstruos se controla con las teclas W, A, S y D para moverse a la izquierda, derecha, saltar y descender de una plataforma.
+El jugador debe navegar a través de ocho habitaciones dentro de la mansión, luchar contra diferentes monstruos y recolectar ocho llaves para acceder a la sala del jefe final. El desafío radica en la gestión de recursos (vidas limitadas, pérdida de llaves al morir) y en el movimiento estratégico (usando el doble salto y el asistente).
+
+### **Mentalidad**
+
+Queremos que el jugador se sienta asustado, indefenso y confundido al comienzo del juego, en una mansión misteriosa con algunas habitaciones oscuras cuyo orden cambia tras la muerte y donde los monstruos acechan. Sin embargo, a medida que el jugador derrota monstruos, gana experiencia para aumentar su daño y derrotarlos más fácilmente. El jugador también debe ser cauteloso, ya que puede perder esta experiencia y las llaves recolectadas si muere, lo que le presenta más desafíos y lo obliga a usar su propia habilidad, con la ayuda de los objetos, para limpiar la mansión.
+
+## _Técnico_
+
+---
+
+### **Pantallas**
+
+1. Pantalla de Título
+   - Configuración
+   - Botón de Jugar
+   - Logo del Juego
+2. Pantalla de Juego
+   - Sección de Vida
+   - Sección de Llaves
+   - Sección de Juego
+   - Contenedor de Pausa
+     - Continuar
+     - Configuración
+     - Salir del Juego
+   - Contenedor del Mapa
+     - Habitaciones
+     - Sala del Jefe
+     - Título
+     - Habitación Actual
+     - Habitaciones Completadas
+3. Pantalla de Configuración
+   - Volumen General
+   - Reiniciar Progreso
+4. Pantalla de Créditos
+   - Créditos del Juego
+
+### **Controles**
+
+- W - Saltar / Doble Salto
+- A - Moverse a la Izquierda
+- D - Moverse a la Derecha
+- S - Agacharse
+- M - Desplegar Mapa
+- P - Menú de Pausa
+- K - Disparar
+
+### **Mecánicas**
+
+#### Mecánicas de Escenarios:
+
+- La primera habitación donde reaparece el jugador es la habitación segura, donde no hay enemigos y se puede encontrar un arsenal de armas para desbloquear nuevas según el puntaje del juego.
+- Al abrir el mapa, el juego no se detiene, por lo que el jugador debe abrirlo en momentos estratégicos.
+- Hay tres armas en la habitación segura, cada una con diferentes mecánicas de disparo, y se pueden desbloquear a medida que se avanza en el juego.
+
+#### Reglas:
+
+1. El jugador debe explorar las ocho habitaciones para obtener las llaves y entrar en la sala del jefe.
+2. Tiene tres vidas en total; al perderlas, debe reiniciar el nivel.
+3. Puede explorar las habitaciones libremente a través de las diferentes salidas dentro de una habitación.
+4. Tiene un arma predeterminada con la que puede disparar a los enemigos y dirigir sus disparos.
+5. Derrotar enemigos otorga experiencia, aumentando el daño del arma. Esta experiencia se reinicia si el jugador muere.
+6. El último monstruo en cada habitación tendrá una llave, por lo que el jugador debe derrotar a todos los monstruos en cada habitación hasta obtenerlas.
+7. Un monstruo aleatorio puede otorgar un objeto al ser derrotado:
+   - Linterna: Aumenta el rango de visión en habitaciones oscuras.
+   - Asistente: Dispara a algunos enemigos con un rango de ataque menor y menor daño.
+   - Doble Salto: Permite hacer un segundo salto en el aire.
+8. Estos objetos se obtienen una sola vez y permanecen incluso tras la muerte.
+9. Una vez obtenidas todas las llaves, el jugador debe encontrar la puerta secreta que conduce al jefe final.
+
+## _Desarrollo_
+
+---
+
+### **Clases Abstractas / Componentes**
+
+1. BasePhysics
+   - BasePlayer
+   - BaseAssistant
+   - BaseEnemy
+   - BaseObject
+2. BaseObstacle
+
+### **Clases Derivadas / Composiciones de Componentes**
+
+1. BasePlayer
+   - PlayerMain
+2. BaseEnemy
+   - Enemy (puede soltar llaves, siempre suelta experiencia)
+3. BaseObject
+   - ObjectKey (recogible, lanzable)
+   - ObjectFlashlight (recogible)
+   - ObjectAssistant (recogible)
+   - ObjectDoubleJumpJar (recogible)
+4. BaseObstacle
+   - ObstacleLibrary
+   - ObstacleTable
+   - ObstacleWall
+   - ObstacleTile
+   - ObstacleGate
+
+## _Calendario_
+
+---
+
+_(Definir las actividades principales y las fechas esperadas de finalización. Esto solo es una referencia y puede cambiar a medida que se desarrolle el proyecto.)_
+
+1. [Índice](#index)
 2. [Game Design](#game-design)
    1. [Summary](#summary)
    2. [Gameplay](#gameplay)
@@ -132,14 +266,14 @@ In the video game, we have assets inspired by monsters and the Halloween festivi
 
 1.  scenery
 
-    1.  Tiles (Complete assets list -> [Tiles](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/) )
+    1.  Tiles (Complete assets list -> [Tiles](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/)
 
-        | ![](assets/escenario/tiles/Tile_01.png) | ![](assets/escenario/tiles/Tile_03.png)| ![](assets/escenario/Tiles/Tile_12.png)|![](assets/escenario/Tiles/Tile_20.png) ![](assets/escenario/tiles/Tile_023.png) | ![](assets/escenario/tiles/Tile_25.png)| ![](assets/escenario/Tiles/Tile_30.png)|![](assets/escenario/Tiles/Tile_31.png)
+    ![](assets/escenario/tiles/Tile_01.png) | ![](assets/escenario/tiles/Tile_03.png)| ![](assets/escenario/Tiles/Tile_12.png)|![](assets/escenario/Tiles/Tile_20.png) ![](assets/escenario/tiles/Tile_023.png) | ![](assets/escenario/tiles/Tile_25.png)| ![](assets/escenario/Tiles/Tile_30.png)|![](assets/escenario/Tiles/Tile_31.png)
 
     1.  Decorations (Complete assets list -> [Decoration](https://github.com/santiagoarista/Videogames-team/tree/main/assets/escenario/decoraciones) )
 
-              | ![](assets/escenario/decoraciones/hallowen/Web1.png) | ![](assets/escenario/decoraciones/hallowen/Signboard3.png)| ![](assets/escenario/decoraciones/hallowen/Signboard4.png)|
-              | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box1.png) | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box5.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Flag.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Locker4.png)|
+        | ![](assets/escenario/decoraciones/hallowen/Web1.png) | ![](assets/escenario/decoraciones/hallowen/Signboard3.png)| ![](assets/escenario/decoraciones/hallowen/Signboard4.png)|
+        | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box1.png) | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box5.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Flag.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Locker4.png)|
 
         <img src="assets/escenario/decoraciones/hallowen/mesa.png" alt="Texto alternativo" width="100">|
         <img src="assets/escenario/decoraciones/hallowen/librarysprites2.png" alt="Texto alternativo" width="100"> |
@@ -190,6 +324,10 @@ In the video game, we have assets inspired by monsters and the Halloween festivi
       ![](sketches/pantallas/pause_screen.png)
       -Map Screen
       ![](sketches/pantallas/map_screen.png)
+
+## _soundsmusic_
+
+### **style-attributes**
 
 ### **Themes**
 
