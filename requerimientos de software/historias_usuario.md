@@ -1,4 +1,10 @@
 # Historias de Usuario
+## EQUIPO GHOSTBUSTERS
+
+-Rebeca Davila Araiza A01029805
+-Darío Cuauhtémoc Peña Mariano A01785420
+-Santiago Arista Viramontes A01028372
+
 
 ## Menú
 - [Videojuego](#videojuego)
