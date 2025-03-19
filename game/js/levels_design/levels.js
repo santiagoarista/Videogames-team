@@ -8,36 +8,35 @@
 
 "use strict";
 
-//EJEMPLO
+//CADA INTEGRANTE TIENE 3 NIVELES POR HACER, SI FALTAN SPRITES PARA AGREGAR SE NECESITAN AGREGAR EN LA SECCIÓN DE
 
-//let levelEjemplo = `
-//................
-//.##############.
-//.#....$.......#.
-//.#............#.
-//.#......#######.
-//.#............#.
-//.#......@.....#.
-//.#............#.
-//.##############.
-//................
-//`;
-
-
-//REBE
+//REBE-------------------------------
 
 let level_cuarto1 = ``;
-let level_cuarto2 = ``;
+
+//TODO QUITAR CUANDO SE HAYA DISEÑADO EL DE NIESTRO JUEGO, NIVEL DE TEST
+let level_cuarto2 = `
+........................
+........................
+........................
+........................
+........................
+........................
+........................
+........................
+.......................@`
+;
 let level_cuarto3 = ``;
 
-//SANTIAGO
+
+//SANTIAGO -------------------------------
 
 let level_cuarto4 = ``;
 let level_cuarto5 = ``;
 let level_cuarto6 = ``;
 
 
-//Darío
+//Darío -------------------------------
 
 let level_cuarto7 = ``;
 let level_cuarto_spawn = ``;
