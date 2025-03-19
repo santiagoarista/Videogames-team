@@ -16,7 +16,7 @@ Array.prototype.parse2D= function(){
         this.forEach((row, y) => {
             row.forEach((symbol, x)=>{
                    //Si encuentra de simbolo que sea gual a 2, significa que hay una colisión en el mapa, por lo que se tiene que agregar la colisión
-                   if (symbol == 2) {
+                   if (symbol == 2||symbol == 1 ||symbol == 4 ||symbol == 3) {
                         //Agregar colisión  
                         objects.push(new BloqueColision({
                           position:{

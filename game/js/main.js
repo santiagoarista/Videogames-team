@@ -8,7 +8,7 @@ canvas.width = 1344;
 canvas.height = 768;
 
 //convertimos mapoa de caracteres a una amtriz de listas
-const colisionesConvertidas = colisionesNivel4.parse2D();
+const colisionesConvertidas =level_cuarto_final_boss.parse2D();
 
 //Convertimos la matriz de listas a una lista de clases de BloqueColision
 const bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
@@ -16,7 +16,7 @@ const bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
 
 
 
-//sólo se ejecuta una ve<z
+//sólo se ejecuta una ve<zs
 
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 const fondoCuarto4 = new Sprite({
@@ -24,7 +24,7 @@ const fondoCuarto4 = new Sprite({
         x:0,
         y:0,      
     },
-    imgResource :"../cuarto_giff.gif"
+    imgResource :"../../game/assets/niveles_fondo/mapa_jefe_final.png"
 })
 
 //Esta clase esta en la carpeta de clases>player_class

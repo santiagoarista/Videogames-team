@@ -9,7 +9,7 @@ window.addEventListener("keydown", (event)=>{
             //Comporbación para hacer un solo salt,p sólo cuando no tenga velocidad en y, se puede hacer el salto
             if (player.velocity.y === 0) {
                 //cantidad de salto
-            player.velocity.y =-22;
+            player.velocity.y =-21;
             }
             break;
         //MOVIMIETNO A LA IZQUIERDA    
