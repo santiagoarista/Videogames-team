@@ -36,43 +36,65 @@ class Player extends Sprite{
     update(){
         //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
 
-        context.fillStyle= "rgba(0,0,255,0.5)";
+        context.fillStyle= "rgba(0, 0, 255, 0)";
         context.fillRect(this.position.x,this.position.y,this.width,this.height);
         //EFECTO DE GRAVEDAD, aumenta o disminuye los movimientos de pixeles en x, derecha izquierda
         this.position.x += this.velocity.x;
 
+
+        //aCTUALIZACIÓN DE HITBOX EN 2 PUNTOS
+        this.updateHitbox();
+        
         //Cpmrprobar si hay colisiones en X
         this.checkHorizontalCollisions();
 
         //EFECTO DE GRAVEDAD, aumenta o disminuye los movimientos de pixeles en y, arriba abajo
         this.applyGravity();
 
-    
+
+        //aCTUALIZACIÓN DE HITBOX EN 2 PUNTOS
+        this.updateHitbox();
+        context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
         //Cpmrprobar si hay colisiones en Y
         this.checkVerticalCollisions();
 
 
 
     }
+    //Creación de hitbox y actualiazción
+    updateHitbox() {
+               
+        this.hitbox ={
+           position:{
+               x: this.position.x + 45,
+               y: this.position.y + 60
+               
+           },
+           width: 38,
+           height: 67.5,
+       }
+       }
     checkHorizontalCollisions(){
           //CHECAR SI HAY COLISIONES EN X
           for (let index = 0; index < this.bloquesDeColision.length; index++) {
             const bloqueDeColsion = this.bloquesDeColision[index] ;
 
             //Comprobar si hay colisiones
-            if (this.position.x <= bloqueDeColsion.position.x +bloqueDeColsion.width &&
-                this.position.x + this.width>= bloqueDeColsion.position.x &&
-                this.position.y + this.height>= bloqueDeColsion.position.y &&
-                this.position.y <= bloqueDeColsion.position.y + bloqueDeColsion.height) {
+            if (this.hitbox.position.x <= bloqueDeColsion.position.x +bloqueDeColsion.width &&
+                this.hitbox.position.x + this.hitbox.width>= bloqueDeColsion.position.x &&
+                this.hitbox.position.y + this.hitbox.height>= bloqueDeColsion.position.y &&
+                this.hitbox.position.y <= bloqueDeColsion.position.y + bloqueDeColsion.height) {
                     
                     //Si detecta colisión a la derecha regresa el objeto, para que no lo pueda atravesar
                     if (this.velocity.x< 0) {
-                        this.position.x = bloqueDeColsion.position.x +bloqueDeColsion.width+0.01
+                        const offset = this.hitbox.position.x - this.position.x
+                        this.position.x = bloqueDeColsion.position.x +bloqueDeColsion.width-offset+0.01
                         break;
                     }
                     //Si detecta colisión a la izquierda, regresa el objeto, para que no lo pueda atravesar
                     if (this.velocity.x> 0) {
-                        this.position.x = bloqueDeColsion.position.x-this.width-0.01;
+                        const offset = this.hitbox.position.x - this.position.x+this.hitbox.width
+                        this.position.x = bloqueDeColsion.position.x-offset-0.01;
                         break;
                     }
             }
@@ -87,21 +109,23 @@ class Player extends Sprite{
     const bloqueDeColsion = this.bloquesDeColision[index] ;
 
     //Comprobar si hay colisiones
-    if (this.position.x <= bloqueDeColsion.position.x +bloqueDeColsion.width &&
-        this.position.x + this.width>= bloqueDeColsion.position.x &&
-        this.position.y + this.height>= bloqueDeColsion.position.y &&
-        this.position.y <= bloqueDeColsion.position.y + bloqueDeColsion.height) {
+    if (this.hitbox.position.x <= bloqueDeColsion.position.x +bloqueDeColsion.width &&
+        this.hitbox.position.x + this.hitbox.width>= bloqueDeColsion.position.x &&
+        this.hitbox.position.y + this.hitbox.height>= bloqueDeColsion.position.y &&
+        this.hitbox.position.y <= bloqueDeColsion.position.y + bloqueDeColsion.height) {
             
             //Si detecta colisión aarriba regresa el objeto, para que no lo pueda atravesar
             if (this.velocity.y< 0) {
                 this.velocity.y=0;
-                this.position.y = bloqueDeColsion.position.y +bloqueDeColsion.height+0.01
+                const offset = this.hitbox.position.y - this.position.y
+                this.position.y = bloqueDeColsion.position.y +bloqueDeColsion.height-offset +0.01
                 break;
             }
             //Si detecta colisión abajo, regresa el objeto, para que no lo pueda atravesar
             if (this.velocity.y> 0) {
                 this.velocity.y=0;
-                this.position.y = bloqueDeColsion.position.y-this.height-0.01;
+                const offset = this.hitbox.position.y - this.position.y+this.hitbox.height
+                this.position.y = bloqueDeColsion.position.y-offset-0.01;
                 break;
             }
     }
