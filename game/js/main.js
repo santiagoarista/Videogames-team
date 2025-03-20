@@ -59,6 +59,20 @@ const player = new Player({
             loop :true,
             imgResource: "../../game/assets/characters/main_character/RunLeft.png",
         },
+        jumpRight:{
+            frameRate:9,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/Jump.png",
+            
+        },
+        jumpLeft:{
+            frameRate:9,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+            
+        },
 
     },
 })
@@ -95,6 +109,7 @@ function animate(){
     //Movimiento a alderecha o izquierda, y velocidad que toma
     //Poner animaciones dependiendo de la dirección y movimineto
     player.velocity.x=0;
+
     if (keys.d.pressed) {
         //Hacer cambiar de animacón
         player.switchSprite("runRight")
@@ -107,6 +122,11 @@ function animate(){
             player.switchSprite("runLeft")
             player.velocity.x = -3
             player.lastDirection = "left"
+        }
+        else if (keys.w.pressed) {
+            //Hacer cambiar de animacón
+            player.switchSprite("jumpRight")
+        
         }
     else{
         if(player.lastDirection ==="left"){

@@ -10,7 +10,11 @@ window.addEventListener("keydown", (event)=>{
             if (player.velocity.y === 0) {
                 //cantidad de salto
             player.velocity.y =-21;
+            
+           
             }
+            
+            keys.w.pressed= true;
             break;
         //MOVIMIETNO A LA IZQUIERDA    
         case "a":
@@ -40,7 +44,8 @@ window.addEventListener("keydown", (event)=>{
 window.addEventListener("keyup", (event)=>{
     //hacemos un switch para las diferentes teclas
     switch (event.key) {
-      
+        case "w":
+            keys.w.pressed= false;
         case "a":
             keys.a.pressed= false;
        
