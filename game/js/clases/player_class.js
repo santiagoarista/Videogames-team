@@ -2,9 +2,9 @@
 class Player extends Sprite{
     constructor({
         bloquesDeColision=[], 
-        imgResource, frameRate}) 
+        imgResource, frameRate, animations}) 
         {
-        super({imgResource, frameRate})
+        super({imgResource, frameRate, animations})
         //propiedades de la clase
 
         //Posición en pantalla
@@ -61,6 +61,17 @@ class Player extends Sprite{
 
 
     }
+
+    //Método para cambiar de animación
+    switchSprite(name){
+        if (this.image=== this.animations[name].image) return
+
+        this.currentFrame = 0;
+        this.image =this.animations[name].image
+        this.frameRate = this.animations[name].frameRate
+        this.frameBuffer = this.animations[name].frameBuffer
+    }
+
     //Creación de hitbox y actualiazción
     updateHitbox() {
                
