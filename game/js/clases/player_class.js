@@ -7,7 +7,7 @@ class Player extends Sprite{
         super({imgResource, frameRate, animations})
         //propiedades de la clase
 
-        //Posición en pantalla
+        //Posición en pantallaad
         this.position ={
             x :200,
             y :400,

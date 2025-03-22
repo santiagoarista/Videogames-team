@@ -1,7 +1,7 @@
 
 
 class Sprite{                           //si no hay cantidad de frames, se pone 1 por default, esto significa que el sprite no se necesita recortar
-    constructor({position, imgResource, frameRate=1, animations}){
+    constructor({position, imgResource, frameRate=1, animations, loop = true, autoplay = true}){
         this.position = position;
         this.image = new Image();
         this.image.onload= ()=>{
@@ -9,6 +9,7 @@ class Sprite{                           //si no hay cantidad de frames, se pone 
             this.width = this.image.width/this.frameRate;
             this.height =this.image.height;
         }
+
         
         this.image.src= imgResource;
         this.loaded= false
@@ -17,6 +18,8 @@ class Sprite{                           //si no hay cantidad de frames, se pone 
         this.elapsedFrames =0
         this.frameBuffer =8
         this.animations= animations
+        this.loop = loop
+        this.autoplay = autoplay
         if (this.animations) {
             for (let key in this.animations) {
                 const image = new Image()
@@ -53,13 +56,17 @@ class Sprite{                           //si no hay cantidad de frames, se pone 
         )
         this.updateFrames()
     }
+    play(){
+        this.autoplay = true
+    }
     updateFrames(){
+        if (!this.autoplay) return;
         this.elapsedFrames++
         if(this.elapsedFrames % this.frameBuffer===0){
             
         
         if(this.currentFrame < this.frameRate-1)this.currentFrame++
-        else this.currentFrame= 0
+        else if (this.loop) this.currentFrame= 0
         }
         
     }

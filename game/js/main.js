@@ -2,24 +2,13 @@
 //sólo se ejecuta una ve<z
 const canvas = document.querySelector("canvas");
 context = canvas.getContext('2d');
-
-// Tamaño de renderizado 16:9 NO MODIFICAR
-canvas.width = 1344;
-canvas.height = 768;
-
 //convertimos mapoa de caracteres a una amtriz de listas
-const colisionesConvertidas =level_cuarto_final_boss.parse2D();
-
+let colisionesConvertidas =level_cuarto_final_boss.parse2D();
 //Convertimos la matriz de listas a una lista de clases de BloqueColision
-const bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
-
-
-
-
-//sólo se ejecuta una ve<zs
-
+let bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
+let puertas 
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
-const fondoCuarto4 = new Sprite({
+let fondoCuarto = new Sprite({
     position: {
         x:0,
         y:0,      
@@ -27,10 +16,15 @@ const fondoCuarto4 = new Sprite({
     imgResource :"../../game/assets/niveles_fondo/mapa_jefe_final.png"
 })
 
+let cuartosAleatorios =[
+    new Cuarto(1,true,0,0,0,0,2),
+    new Cuarto(2,false,0,0,1,1,),
+];
+
 //Esta clase esta en la carpeta de clases>player_class
 const player = new Player({
     //Pasamos los bloques que harán las colisiones con este objeto
-    bloquesDeColision:bloquesColisiones,
+    
     frameRate: 6,
     imgResource: "../../game/assets/characters/main_character/IdleRight.png",
     animations:{
@@ -80,6 +74,100 @@ const player = new Player({
 
 
 
+// Tamaño de renderizado 16:9 NO MODIFICAR
+canvas.width = 1344;
+canvas.height = 768;
+let currentLevel = 1;
+let levels={
+        1: {
+            init:()=>{
+                    //convertimos mapoa de caracteres a una amtriz de listas
+                     colisionesConvertidas =level_cuarto_final_boss.parse2D();
+                    //Convertimos la matriz de listas a una lista de clases de BloqueColision
+                     bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
+
+                     player.bloquesDeColision=bloquesColisiones,
+
+                    //-----------------------------------INSTANCIAS DE CLASES----------------------------
+                     fondoCuarto = new Sprite({
+                        position: {
+                            x:0,
+                            y:0,      
+                        },
+                        imgResource :"../../game/assets/niveles_fondo/mapa_jefe_final.png"
+                    }),
+                    puertas = [
+                        new Puerta({
+                            position: {
+                                x: 1200,
+                                y:650,
+                            },
+                            imgResource: "../../game/assets/sprites/doors/exitBlock.png",
+                            posicionOrigen: {x: 1200, y:650},
+                            posicionDestino: {x: 100, y:650},
+                            idOrigen: 1,
+                            idDestino: 2,
+                            puertaActiva:true
+                       
+                        }),
+                      
+                    ]
+
+            }
+        },
+        2: {
+            init:()=>{
+                    //convertimos mapoa de caracteres a una amtriz de listas
+                     colisionesConvertidas =level_cuarto_spawn.parse2D();
+                    //Convertimos la matriz de listas a una lista de clases de BloqueColision
+                     bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
+
+                     player.bloquesDeColision=bloquesColisiones,
+
+                    //-----------------------------------INSTANCIAS DE CLASES----------------------------
+                     fondoCuarto = new Sprite({
+                        position: {
+                            x:0,
+                            y:0,      
+                        },
+                        imgResource :"../../game/assets/niveles_fondo/cuarto_spawn.png"
+                    }),
+                    puertas = [
+                        new Puerta({
+                            position: {
+                                x: 100,
+                                y:650,
+                            },
+                            imgResource: "../../game/assets/sprites/doors/exitBlock.png",
+                            posicionOrigen: {x: 100, y:650},
+                            posicionDestino: {x: 1200, y:650},
+                            idOrigen: 2,
+                            idDestino: 1,
+                            puertaActiva:true
+                       
+                        }),
+                    ]
+
+            }
+        }
+
+
+}
+
+
+class Puerta extends Sprite{
+    constructor({position, imgResource, posicionOrigen, posicionDestino, idOrigen, idDestino, puertaActiva=false}){
+        super({position, imgResource})
+
+        this.posicionOrigen = posicionOrigen;
+        this.posicionDestino = posicionDestino;
+        this.idOrigen = idOrigen;
+        this.idDestino = idDestino;
+        this.puertaActiva = puertaActiva;
+        
+    }
+}
+
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
 //let buttom = y-100;
@@ -96,16 +184,36 @@ const keys = {
     },
 }
 
+
+const overlay = {
+    opacity: 0,
+}
+
 //LOOP DE ANIMACIÓN
 function animate(){
+
+
+
+
+
 //BPORRA EL FRAME ANTERIOR PARA DIBUJAR UNO NUEVO
     window.requestAnimationFrame(animate);
     //Se dibuja el canvas básico
-
-    fondoCuarto4.draw();
+    fondoCuarto.draw();
     bloquesColisiones.forEach((bloqueColisiones)=>{
         bloqueColisiones.draw();
     })
+
+    //DIBUJAR LAS SALIDAS DEL MAPA
+    puertas.forEach((puerta)=>{
+        puerta.draw();
+    })
+
+ 
+    
+
+
+
     //Movimiento a alderecha o izquierda, y velocidad que toma
     //Poner animaciones dependiendo de la dirección y movimineto
     player.velocity.x=0;
@@ -117,7 +225,6 @@ function animate(){
         player.velocity.x =3;
         player.lastDirection = "right"
     }else if(keys.a.pressed)
-         
         {
             player.switchSprite("runLeft")
             player.velocity.x = -3
@@ -141,7 +248,15 @@ function animate(){
 
     player.draw()
     player.update()
+
+    //Pantalla negra de cambio de nivel
+    context.save();
+    context.globalAlpha =overlay.opacity;
+    context.fillStyle = "black";
+    context.fillRect(0,0,canvas.width,canvas.height);
+    context.restore();
+    
 //
 }
-
+levels[currentLevel].init();
 animate();
