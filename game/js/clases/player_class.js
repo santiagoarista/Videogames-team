@@ -2,6 +2,7 @@
 class Player extends Sprite{
     constructor({
         bloquesDeColision=[], 
+        puertas=[], 
         imgResource, frameRate, animations}) 
         {
         super({imgResource, frameRate, animations})
@@ -24,6 +25,8 @@ class Player extends Sprite{
         }
         this.gravity =0.8;
         this.bloquesDeColision = bloquesDeColision;
+        this.puertas = puertas;
+
     }
 
     //draw(){
@@ -113,6 +116,36 @@ class Player extends Sprite{
 
 
         }
+        //Agregar colisiones de las conexiones de nivel
+        for (let index = 0; index < this.puertas.length; index++) {
+           
+            const bloqueDeColsion = this.puertas[index] ;
+
+            //Comprobar si hay colisiones 
+            if (this.hitbox.position.x <= bloqueDeColsion.position.x +bloqueDeColsion.width &&
+                this.hitbox.position.x + this.hitbox.width>= bloqueDeColsion.position.x &&
+                this.hitbox.position.y + this.hitbox.height>= bloqueDeColsion.position.y &&
+                this.hitbox.position.y <= bloqueDeColsion.position.y + bloqueDeColsion.height) {
+                    
+                    //Si detecta colisión a la derecha regresa el objeto, para que no lo pueda atravesar
+                    if (this.velocity.x< 0) {
+                
+                      console.log("Cambio de mapa")
+                      navegarNuevoCuarto(bloqueDeColsion.idDestino);
+                      break;
+                    }
+                    //Si detecta colisión a la izquierda, regresa el objeto, para que no lo pueda atravesar
+                    if (this.velocity.x> 0) {
+                        console.log("Cambio de mapa")
+                        navegarNuevoCuarto(bloqueDeColsion.idDestino);
+                        break;
+                    }
+            }
+            
+
+
+        }
+
     }
     checkVerticalCollisions(){
    //CHECAR SI HAY COLISIONES EN Y
@@ -137,6 +170,38 @@ class Player extends Sprite{
                 this.velocity.y=0;
                 const offset = this.hitbox.position.y - this.position.y+this.hitbox.height
                 this.position.y = bloqueDeColsion.position.y-offset-0.01;
+                break;
+            }
+    }
+    
+
+
+}
+ //Agregar colisiones de las conexiones de nivel
+
+for (let index = 0; index < this.puertas.length; index++) {
+    const bloqueDeColsion = this.puertas[index] ;
+
+    //Comprobar si hay colisiones
+    if (this.hitbox.position.x <= bloqueDeColsion.position.x +bloqueDeColsion.width &&
+        this.hitbox.position.x + this.hitbox.width>= bloqueDeColsion.position.x &&
+        this.hitbox.position.y + this.hitbox.height>= bloqueDeColsion.position.y &&
+        this.hitbox.position.y <= bloqueDeColsion.position.y + bloqueDeColsion.height) {
+            
+            //Si detecta colisión aarriba regresa el objeto, para que no lo pueda atravesar
+            if (this.velocity.y< 0) {
+             
+
+                console.log("Cambio de mapa")
+                navegarNuevoCuarto(bloqueDeColsion.idDestino);
+                break;
+            }
+            //Si detecta colisión abajo, regresa el objeto, para que no lo pueda atravesar
+            if (this.velocity.y> 0) {
+              
+                console.log("Cambio de mapa")
+                navegarNuevoCuarto(bloqueDeColsion.idDestino);
+               
                 break;
             }
     }

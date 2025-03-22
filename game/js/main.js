@@ -6,7 +6,8 @@ context = canvas.getContext('2d');
 let colisionesConvertidas =level_cuarto_final_boss.parse2D();
 //Convertimos la matriz de listas a una lista de clases de BloqueColision
 let bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
-let puertas 
+let puertas =[]
+let currentLevel =8;
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 let fondoCuarto = new Sprite({
     position: {
@@ -16,10 +17,6 @@ let fondoCuarto = new Sprite({
     imgResource :"../../game/assets/niveles_fondo/mapa_jefe_final.png"
 })
 
-let cuartosAleatorios =[
-    new Cuarto(1,true,0,0,0,0,2),
-    new Cuarto(2,false,0,0,1,1,),
-];
 
 //Esta clase esta en la carpeta de clases>player_class
 const player = new Player({
@@ -73,92 +70,17 @@ const player = new Player({
 
 
 
-
 // Tamaño de renderizado 16:9 NO MODIFICAR
 canvas.width = 1344;
 canvas.height = 768;
-let currentLevel = 1;
-let levels={
-        1: {
-            init:()=>{
-                    //convertimos mapoa de caracteres a una amtriz de listas
-                     colisionesConvertidas =level_cuarto_final_boss.parse2D();
-                    //Convertimos la matriz de listas a una lista de clases de BloqueColision
-                     bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
 
-                     player.bloquesDeColision=bloquesColisiones,
-
-                    //-----------------------------------INSTANCIAS DE CLASES----------------------------
-                     fondoCuarto = new Sprite({
-                        position: {
-                            x:0,
-                            y:0,      
-                        },
-                        imgResource :"../../game/assets/niveles_fondo/mapa_jefe_final.png"
-                    }),
-                    puertas = [
-                        new Puerta({
-                            position: {
-                                x: 1200,
-                                y:650,
-                            },
-                            imgResource: "../../game/assets/sprites/doors/exitBlock.png",
-                            posicionOrigen: {x: 1200, y:650},
-                            posicionDestino: {x: 100, y:650},
-                            idOrigen: 1,
-                            idDestino: 2,
-                            puertaActiva:true
-                       
-                        }),
-                      
-                    ]
-
-            }
-        },
-        2: {
-            init:()=>{
-                    //convertimos mapoa de caracteres a una amtriz de listas
-                     colisionesConvertidas =level_cuarto_spawn.parse2D();
-                    //Convertimos la matriz de listas a una lista de clases de BloqueColision
-                     bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
-
-                     player.bloquesDeColision=bloquesColisiones,
-
-                    //-----------------------------------INSTANCIAS DE CLASES----------------------------
-                     fondoCuarto = new Sprite({
-                        position: {
-                            x:0,
-                            y:0,      
-                        },
-                        imgResource :"../../game/assets/niveles_fondo/cuarto_spawn.png"
-                    }),
-                    puertas = [
-                        new Puerta({
-                            position: {
-                                x: 100,
-                                y:650,
-                            },
-                            imgResource: "../../game/assets/sprites/doors/exitBlock.png",
-                            posicionOrigen: {x: 100, y:650},
-                            posicionDestino: {x: 1200, y:650},
-                            idOrigen: 2,
-                            idDestino: 1,
-                            puertaActiva:true
-                       
-                        }),
-                    ]
-
-            }
-        }
-
-
-}
-
-
+//cuartos aleatorios
+let cuartos= generarLevels(crear_disposicion_cuartos())
 class Puerta extends Sprite{
     constructor({position, imgResource, posicionOrigen, posicionDestino, idOrigen, idDestino, puertaActiva=false}){
         super({position, imgResource})
-
+    
+ 
         this.posicionOrigen = posicionOrigen;
         this.posicionDestino = posicionDestino;
         this.idOrigen = idOrigen;
@@ -258,5 +180,7 @@ function animate(){
     
 //
 }
-levels[currentLevel].init();
+cuartos[currentLevel].init();
 animate();
+
+

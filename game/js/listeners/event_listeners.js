@@ -12,7 +12,7 @@ window.addEventListener("keydown", (event)=>{
             //Comporbación para hacer un solo salt,p sólo cuando no tenga velocidad en y, se puede hacer el salto
             if (player.velocity.y === 0) {
                 //cantidad de salto
-            player.velocity.y =-21;
+            player.velocity.y =-18;
             
            
             }
@@ -29,13 +29,15 @@ window.addEventListener("keydown", (event)=>{
                     player.hitbox.position.x +  player.hitbox.width>= door.position.x &&
                     player.hitbox.position.y +  player.hitbox.height>= door.position.y &&
                     player.hitbox.position.y <= door.position.y + door.height) {
-                    console.log("Cambio de mapa")
-                    overlay.opacity
-                    gsap.to(overlay, {opacity:1, onComplete:()=>{
-                        currentLevel  = cuartosAleatorios[currentLevel-1].conexionDerecha;
-                        levels[currentLevel].init();
-                        gsap.to(overlay, {opacity:0})
-                    }})
+                    
+                    
+                    //    console.log("Cambio de mapa")
+                    //overlay.opacity
+                    //gsap.to(overlay, {opacity:1, onComplete:()=>{
+                    //    currentLevel  = cuartosAleatorios[currentLevel-1].conexionDerecha;
+                    //    levels[currentLevel].init();
+                    //    gsap.to(overlay, {opacity:0})
+                    //}})
                 
              
                  }
@@ -55,13 +57,8 @@ window.addEventListener("keydown", (event)=>{
             player.hitbox.position.x +  player.hitbox.width>= door.position.x &&
             player.hitbox.position.y +  player.hitbox.height>= door.position.y &&
             player.hitbox.position.y <= door.position.y + door.height) {
-            console.log("Cambio de mapa")
-            overlay.opacity
-            gsap.to(overlay, {opacity:1, onComplete:()=>{
-                currentLevel  = cuartosAleatorios[currentLevel-1].conexionDerecha;
-                levels[currentLevel].init();
-                gsap.to(overlay, {opacity:0})
-            }})
+           // console.log("Cambio de mapa")
+            
         
      
          }

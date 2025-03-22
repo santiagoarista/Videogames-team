@@ -33,3 +33,14 @@ Array.prototype.parse2D= function(){
      return objects;
 
     }
+
+function navegarNuevoCuarto(idDestino){
+
+       overlay.opacity
+       gsap.to(overlay, {opacity:1, onComplete:()=>{
+       currentLevel  = idDestino[0]
+       console.log(currentLevel)
+       cuartos[currentLevel].init();
+        gsap.to(overlay, {opacity:0})}})
+
+       }
