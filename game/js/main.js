@@ -9,13 +9,7 @@ let bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
 let puertas =[]
 let currentLevel =8;
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
-let fondoCuarto = new Sprite({
-    position: {
-        x:0,
-        y:0,      
-    },
-    imgResource :"../../game/assets/niveles_fondo/mapa_jefe_final.png"
-})
+
 
 
 //Esta clase esta en la carpeta de clases>player_class

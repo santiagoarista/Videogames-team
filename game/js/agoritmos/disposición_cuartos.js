@@ -122,7 +122,7 @@ let cuarto4 = new Cuarto(
         posicionJugadorIzquierda :{x: 300, y: 650},
         posicionJugadorDerecha :  {x: 300, y: 650},
         colisiones:colisionesNivel4,
-        imgBackground: "../../game/assets/niveles_fondo/cuarto4_sketch.png"
+        imgBackground: "../../game/assets/niveles_fondo/cuarto_giff.gif"
     })
 let cuarto5 = new Cuarto(
         {idCuarto : 5,
@@ -392,10 +392,10 @@ function generarLevels(listaNiveles) {
                 if (cuarto.conexionSuperior) {
                     puertas.push( new Puerta({
                         position: {
-                            x: 500,
-                            y:0,
+                            x: 0,
+                            y:-40,
                         },
-                        imgResource: "../../game/assets/sprites/doors/exitBlock.png",
+                        imgResource: "../../game/assets/sprites/doors/colisionInferior.png",
                         posicionOrigen: {x: 1200, y:650},
                         posicionDestino: {x: 100, y:650},
                         idOrigen: cuarto.idCuarto,
@@ -407,10 +407,10 @@ function generarLevels(listaNiveles) {
                 if (cuarto.conexionInferior) {
                     puertas.push( new Puerta({
                         position: {
-                            x: 640,
-                            y:950,
+                            x: 0,
+                            y:745,
                         },
-                        imgResource: "../../game/assets/sprites/doors/exitBlock.png",
+                        imgResource: "../../game/assets/sprites/doors/colisionInferior.png",
                         posicionOrigen: {x: 1200, y:650},
                         posicionDestino: {x: 100, y:650},
                         idOrigen: cuarto.idCuarto,
@@ -422,10 +422,10 @@ function generarLevels(listaNiveles) {
                 if (cuarto.conexionDerecha) {
                     puertas.push( new Puerta({
                         position: {
-                            x: 1000,
-                            y:650,
+                            x: 1330,
+                            y:0,
                         },
-                        imgResource: "../../game/assets/sprites/doors/exitBlock.png",
+                        imgResource: "../../game/assets/sprites/doors/colisionLateral.png",
                         posicionOrigen: {x: 1200, y:650},
                         posicionDestino: {x: 100, y:650},
                         idOrigen: cuarto.idCuarto,
@@ -437,10 +437,10 @@ function generarLevels(listaNiveles) {
                 if (cuarto.conexionIzquierda) {
                     puertas.push( new Puerta({
                         position: {
-                            x: 32,
-                            y:650,
+                            x: -20,
+                            y:0,
                         },
-                        imgResource: "../../game/assets/sprites/doors/exitBlock.png",
+                        imgResource: "../../game/assets/sprites/doors/colisionLateral.png",
                         posicionOrigen: {x: 1200, y:650},
                         posicionDestino: {x: 100, y:650},
                         idOrigen: cuarto.idCuarto,
