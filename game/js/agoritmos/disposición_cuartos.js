@@ -81,12 +81,12 @@ let cuarto1 = new Cuarto(
         {idCuarto : 1,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 640, y: 81},
-        posicionJugadorInferior : {x: 672, y: 725},
+        posicionJugadorSuperior : {x: 106, y: 82},
+        posicionJugadorInferior : {x: 520, y: 673},
         posicionJugadorIzquierda :{x: 50, y: 691},
-        posicionJugadorDerecha :  {x: 1233, y: 247},
+        posicionJugadorDerecha :  {x: 1233, y: 691},
         colisiones:level_cuarto1,
-        imgBackground: "../../game/assets/niveles_fondo/Escenario1.png"
+        imgBackground: "../../game/assets/niveles_fondo/Scene1.png"
         
     })
 let cuarto2 = new Cuarto(
@@ -94,24 +94,24 @@ let cuarto2 = new Cuarto(
         {idCuarto : 2,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 640, y: 81},
-        posicionJugadorInferior : {x: 672, y: 725},
-        posicionJugadorIzquierda :{x: 50, y: 691},
-        posicionJugadorDerecha :  {x: 1233, y: 247},
+        posicionJugadorSuperior : {x: 687, y: 150},
+        posicionJugadorInferior : {x: 449, y: 689},
+        posicionJugadorIzquierda :{x: 140, y: 242},
+        posicionJugadorDerecha :  {x: 1119, y: 247},
         colisiones:level_cuarto2,
-        imgBackground: "../../game/assets/niveles_fondo/Escenario2.png"
+        imgBackground: "../../game/assets/niveles_fondo/Scene2.png"
     })
 
 let cuarto3 = new Cuarto(
         {idCuarto : 3,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 640, y: 81},
-        posicionJugadorInferior : {x: 672, y: 725},
-        posicionJugadorIzquierda :{x: 50, y: 691},
-        posicionJugadorDerecha :  {x: 1233, y: 247},
+        posicionJugadorSuperior : {x: 672, y: 182},
+        posicionJugadorInferior : {x: 927, y: 673},
+        posicionJugadorIzquierda :{x: 191, y: 270},
+        posicionJugadorDerecha :  {x: 1153, y: 691},
         colisiones:level_cuarto3,
-        imgBackground: "../../game/assets/niveles_fondo/Escenario3.png"
+        imgBackground: "../../game/assets/niveles_fondo/Scene3.png"
     })
 
 let cuarto4 = new Cuarto(
@@ -134,7 +134,7 @@ let cuarto5 = new Cuarto(
         posicionJugadorIzquierda :{x: 50, y: 691},
         posicionJugadorDerecha :  {x: 1233, y: 247},
         colisiones:level_cuarto_final_boss,
-        imgBackground: "../../game/assets/niveles_fondo/mapa_jefe_final.png"
+        imgBackground: "../../game/assets/niveles_fondo/Scene4.png"
     })
 let cuarto6 = new Cuarto(
         {idCuarto : 6,
@@ -145,7 +145,7 @@ let cuarto6 = new Cuarto(
         posicionJugadorIzquierda :{x: 50, y: 691},
         posicionJugadorDerecha :  {x: 1233, y: 247},
         colisiones:level_cuarto_final_boss,
-        imgBackground: "../../game/assets/niveles_fondo/mapa_jefe_final.png"
+        imgBackground: "../../game/assets/niveles_fondo/Scene5.png"
     })
 let cuarto7 = new Cuarto(
         {idCuarto : 7,
@@ -156,7 +156,7 @@ let cuarto7 = new Cuarto(
         posicionJugadorIzquierda :{x: 50, y: 691},
         posicionJugadorDerecha :  {x: 1233, y: 247},
         colisiones:level_cuarto_final_boss,
-        imgBackground: "../../game/assets/niveles_fondo/mapa_jefe_final.png"
+        imgBackground: "../../game/assets/niveles_fondo/Scene6.png"
     })
    
 
