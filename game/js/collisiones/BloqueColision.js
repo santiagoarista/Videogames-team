@@ -7,7 +7,7 @@ class BloqueColision {
     }
     //Dibujar la colisión en el mapa
     draw(){
-           context.fillStyle="rgba(255, 0, 0, 0.0)";
+           context.fillStyle="rgba(255, 0, 0, 0.6)";
            context.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 }
