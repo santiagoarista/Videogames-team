@@ -67,7 +67,15 @@ window.addEventListener("keydown", (event)=>{
             keys.d.pressed= true;
   
             break;  
-        //AGACHARSE    
+         
+        case "p":
+            paused = !paused; // Toggle pause state
+            if (!paused) {
+                animate(); // Restart animation loop when resuming
+            }
+            break;
+
+        //AGACHARSE 
         case "s":
         
             break;  
