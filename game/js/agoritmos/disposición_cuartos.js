@@ -37,12 +37,13 @@ class Cuarto{
 
 class ConexionCuarto{
 
-constructor({idConexion, idOrigen,idDestino, esConexionJefe, conexionActiva = false}){
+constructor({idConexion, idOrigen,idDestino, esConexionJefe, conexionActiva = false, posicionDestino}){
 this.idConexion= idConexion
 this.idOrigen = idOrigen;
 this.idDestino = idDestino;
 this.esConexionJefe = esConexionJefe;
 this.conexionActiva = conexionActiva;
+this.posicionDestino = posicionDestino;
 
 
 }
@@ -54,10 +55,10 @@ let cuartoJefeFinal = new Cuarto(
         {idCuarto : 9,
         cuartoSpawn : false,
         cuartoJefeFinal : true,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
+        posicionJugadorSuperior : {x: 560, y: 25},
+        posicionJugadorInferior : {x: 672, y: 725},
+        posicionJugadorIzquierda: {x: 50, y: 691},
+        posicionJugadorDerecha  : {x: 1233, y: 691},
         colisiones:level_cuarto_final_boss,
         imgBackground: "../../game/assets/niveles_fondo/mapa_jefe_final.png"
 
@@ -68,10 +69,10 @@ let cuartoSpawn = new Cuarto(
         {idCuarto : 8,
         cuartoSpawn : true,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
+        posicionJugadorSuperior : {x: 640, y: 81},
+        posicionJugadorInferior : {x: 672, y: 725},
+        posicionJugadorIzquierda :{x: 50, y: 691},
+        posicionJugadorDerecha :  {x: 1233, y: 247},
         colisiones:level_cuarto_spawn,
         imgBackground: "../../game/assets/niveles_fondo/cuarto_spawn.png"
     })
@@ -80,10 +81,10 @@ let cuarto1 = new Cuarto(
         {idCuarto : 1,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
+        posicionJugadorSuperior : {x: 640, y: 81},
+        posicionJugadorInferior : {x: 672, y: 725},
+        posicionJugadorIzquierda :{x: 50, y: 691},
+        posicionJugadorDerecha :  {x: 1233, y: 247},
         colisiones:level_cuarto1,
         imgBackground: "../../game/assets/niveles_fondo/Escenario1.png"
         
@@ -93,10 +94,10 @@ let cuarto2 = new Cuarto(
         {idCuarto : 2,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
+        posicionJugadorSuperior : {x: 640, y: 81},
+        posicionJugadorInferior : {x: 672, y: 725},
+        posicionJugadorIzquierda :{x: 50, y: 691},
+        posicionJugadorDerecha :  {x: 1233, y: 247},
         colisiones:level_cuarto2,
         imgBackground: "../../game/assets/niveles_fondo/Escenario2.png"
     })
@@ -105,10 +106,10 @@ let cuarto3 = new Cuarto(
         {idCuarto : 3,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
+        posicionJugadorSuperior : {x: 640, y: 81},
+        posicionJugadorInferior : {x: 672, y: 725},
+        posicionJugadorIzquierda :{x: 50, y: 691},
+        posicionJugadorDerecha :  {x: 1233, y: 247},
         colisiones:level_cuarto3,
         imgBackground: "../../game/assets/niveles_fondo/Escenario3.png"
     })
@@ -117,10 +118,10 @@ let cuarto4 = new Cuarto(
         {idCuarto : 4,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
+        posicionJugadorSuperior : {x: 640, y: 81},
+        posicionJugadorInferior : {x: 672, y: 725},
+        posicionJugadorIzquierda :{x: 50, y: 691},
+        posicionJugadorDerecha :  {x: 1233, y: 247},
         colisiones:colisionesNivel4,
         imgBackground: "../../game/assets/niveles_fondo/cuarto_giff.gif"
     })
@@ -128,10 +129,10 @@ let cuarto5 = new Cuarto(
         {idCuarto : 5,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
+        posicionJugadorSuperior : {x: 640, y: 81},
+        posicionJugadorInferior : {x: 672, y: 725},
+        posicionJugadorIzquierda :{x: 50, y: 691},
+        posicionJugadorDerecha :  {x: 1233, y: 247},
         colisiones:level_cuarto_final_boss,
         imgBackground: "../../game/assets/niveles_fondo/mapa_jefe_final.png"
     })
@@ -139,10 +140,10 @@ let cuarto6 = new Cuarto(
         {idCuarto : 6,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
+        posicionJugadorSuperior : {x: 640, y: 81},
+        posicionJugadorInferior : {x: 672, y: 725},
+        posicionJugadorIzquierda :{x: 50, y: 691},
+        posicionJugadorDerecha :  {x: 1233, y: 247},
         colisiones:level_cuarto_final_boss,
         imgBackground: "../../game/assets/niveles_fondo/mapa_jefe_final.png"
     })
@@ -150,10 +151,10 @@ let cuarto7 = new Cuarto(
         {idCuarto : 7,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
+        posicionJugadorSuperior : {x: 640, y: 81},
+        posicionJugadorInferior : {x: 672, y: 725},
+        posicionJugadorIzquierda :{x: 50, y: 691},
+        posicionJugadorDerecha :  {x: 1233, y: 247},
         colisiones:level_cuarto_final_boss,
         imgBackground: "../../game/assets/niveles_fondo/mapa_jefe_final.png"
     })
@@ -388,19 +389,21 @@ function generarLevels(listaNiveles) {
                     imgResource: cuarto.imgBackground,
                 });
 
+
                 puertas =[];
                 if (cuarto.conexionSuperior) {
                     puertas.push( new Puerta({
                         position: {
                             x: 0,
-                            y:-40,
+                            y:-120,
                         },
                         imgResource: "../../game/assets/sprites/doors/colisionInferior.png",
                         posicionOrigen: {x: 1200, y:650},
                         posicionDestino: {x: 100, y:650},
                         idOrigen: cuarto.idCuarto,
                         idDestino: cuarto.conexionSuperior.idDestino,
-                        puertaActiva:true
+                        puertaActiva:true,
+                        posicionDestino: cuarto.posicionJugadorInferior
                    
                     }))
                 };
@@ -415,7 +418,8 @@ function generarLevels(listaNiveles) {
                         posicionDestino: {x: 100, y:650},
                         idOrigen: cuarto.idCuarto,
                         idDestino: cuarto.conexionInferior.idDestino,
-                        puertaActiva:true
+                        puertaActiva:true,
+                        posicionDestino: cuarto.posicionJugadorSuperior,
                    
                     }))
                 };
@@ -430,7 +434,8 @@ function generarLevels(listaNiveles) {
                         posicionDestino: {x: 100, y:650},
                         idOrigen: cuarto.idCuarto,
                         idDestino: cuarto.conexionDerecha.idDestino,
-                        puertaActiva:true
+                        puertaActiva:true,
+                        posicionDestino: cuarto.posicionJugadorIzquierda
                    
                     }))
                 }
@@ -445,7 +450,8 @@ function generarLevels(listaNiveles) {
                         posicionDestino: {x: 100, y:650},
                         idOrigen: cuarto.idCuarto,
                         idDestino: cuarto.conexionIzquierda.idDestino,
-                        puertaActiva:true
+                        puertaActiva:true,
+                        posicionDestino: cuarto.posicionJugadorDerecha
                    
                     }))
                 }

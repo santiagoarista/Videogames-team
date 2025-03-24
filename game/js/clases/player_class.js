@@ -131,13 +131,13 @@ class Player extends Sprite{
                     if (this.velocity.x< 0) {
                 
                       console.log("Cambio de mapa")
-                      navegarNuevoCuarto(bloqueDeColsion.idDestino);
+                      navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino);
                       break;
                     }
                     //Si detecta colisión a la izquierda, regresa el objeto, para que no lo pueda atravesar
                     if (this.velocity.x> 0) {
                         console.log("Cambio de mapa")
-                        navegarNuevoCuarto(bloqueDeColsion.idDestino);
+                        navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino);
                         break;
                     }
             }
@@ -193,14 +193,14 @@ for (let index = 0; index < this.puertas.length; index++) {
              
 
                 console.log("Cambio de mapa")
-                navegarNuevoCuarto(bloqueDeColsion.idDestino);
+                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino);
                 break;
             }
             //Si detecta colisión abajo, regresa el objeto, para que no lo pueda atravesar
             if (this.velocity.y> 0) {
               
                 console.log("Cambio de mapa")
-                navegarNuevoCuarto(bloqueDeColsion.idDestino);
+                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino);
                
                 break;
             }

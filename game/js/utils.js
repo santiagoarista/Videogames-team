@@ -34,13 +34,24 @@ Array.prototype.parse2D= function(){
 
     }
 
-function navegarNuevoCuarto(idDestino){
+function navegarNuevoCuarto(idDestino, posicionDestino){
 
        overlay.opacity
        gsap.to(overlay, {opacity:1, onComplete:()=>{
        currentLevel  = idDestino[0]
        console.log(currentLevel)
        cuartos[currentLevel].init();
-        gsap.to(overlay, {opacity:0})}})
+       player.position = posicionDestino;
+       console.log(player.position)
+       player.update(),
+       player.draw(),
+      
+        gsap.to(overlay, {opacity:0})
+       
+       
+       },
+       
+       
+       })
 
        }
