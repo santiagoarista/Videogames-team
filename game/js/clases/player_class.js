@@ -27,7 +27,8 @@ class Player extends Sprite{
         this.bloquesDeColision = bloquesDeColision;
         this.puertas = puertas;
         this.lives = 3; // Initialize lives to 3
-
+        this.lifeImage = new Image();
+        this.lifeImage.src = '../../../assets/icons/PNG/Transperent/Icon12.png';
     }
 
     //draw(){
@@ -47,9 +48,9 @@ class Player extends Sprite{
     }
 
     drawLives() {
-        context.font = '30px Arial';
-        context.fillStyle = 'white';
-        context.fillText(`Lives: ${this.lives}`, 80, 30); // Position it at the top left
+        for (let i = 0; i < this.lives; i++) {
+            context.drawImage(this.lifeImage, 90 + i * 65, 10, 60, 60);
+        }
     }
     
     update(){
