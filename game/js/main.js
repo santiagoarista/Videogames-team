@@ -146,7 +146,7 @@ function animate(){
             player.velocity.x = -3
             player.lastDirection = "left"
         }
-        else if (keys.w.pressed) {
+    else if (keys.w.pressed) {
             //Hacer cambiar de animacón
             player.switchSprite("jumpRight")
         

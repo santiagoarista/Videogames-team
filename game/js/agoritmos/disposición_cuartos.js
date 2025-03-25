@@ -54,10 +54,10 @@ let cuartoJefeFinal = new Cuarto(
         {idCuarto : 9,
         cuartoSpawn : false,
         cuartoJefeFinal : true,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
+        posicionJugadorSuperior : {x: 562, y: 30},
+        posicionJugadorInferior :  {x: 641, y: 725},
+        posicionJugadorIzquierda :{x: 97, y: 670},
+        posicionJugadorDerecha :  {x: 1233, y: 235},
         colisiones:level_cuarto_final_boss,
         imgBackground: "../../game/assets/niveles_fondo/mapa_jefe_final.png"
 
@@ -68,10 +68,10 @@ let cuartoSpawn = new Cuarto(
         {idCuarto : 8,
         cuartoSpawn : true,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
+        posicionJugadorSuperior : {x: 514, y: 56},
+        posicionJugadorInferior : {x: 641, y: 725},
+        posicionJugadorIzquierda :{x: 97, y: 670},
+        posicionJugadorDerecha :  {x: 1233, y: 235},
         colisiones:level_cuarto_spawn,
         imgBackground: "../../game/assets/niveles_fondo/cuarto_spawn.png"
     })
@@ -123,10 +123,10 @@ let cuarto4 = new Cuarto(
         {idCuarto : 4,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
+        posicionJugadorSuperior : {x: 544, y: 30},
+        posicionJugadorInferior : {x: 496, y: 670},
+        posicionJugadorIzquierda :{x: 97, y: 670},
+        posicionJugadorDerecha :  {x: 1233, y: 235},
         colisiones:colisionesNivel4,
         imgBackground: "../../game/assets/niveles_fondo/cuarto_giff.gif"
     })
@@ -134,33 +134,33 @@ let cuarto5 = new Cuarto(
         {idCuarto : 5,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
-        colisiones:level_cuarto_final_boss,
+        posicionJugadorSuperior : {x: 608, y: 171},
+        posicionJugadorInferior : {x: 286, y: 695},
+        posicionJugadorIzquierda :{x: 77, y: 371}, 
+        posicionJugadorDerecha :  {x: 1253, y: 691},
+        colisiones:level_cuarto5,
         imgBackground: "../../game/assets/niveles_fondo/Scene4.png"
     })
 let cuarto6 = new Cuarto(
         {idCuarto : 6,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
-        colisiones:level_cuarto_final_boss,
+        posicionJugadorSuperior : {x: 673, y: 110},
+        posicionJugadorInferior : {x: 560, y: 674},
+        posicionJugadorIzquierda :{x: 89, y: 674},
+        posicionJugadorDerecha :  {x: 1250, y: 674},
+        colisiones:level_cuarto6,
         imgBackground: "../../game/assets/niveles_fondo/Scene5.png"
     })
 let cuarto7 = new Cuarto(
         {idCuarto : 7,
         cuartoSpawn : false,
         cuartoJefeFinal : false,
-        posicionJugadorSuperior : {x: 300, y: 650},
-        posicionJugadorInferior : {x: 300, y: 650},
-        posicionJugadorIzquierda :{x: 300, y: 650},
-        posicionJugadorDerecha :  {x: 300, y: 650},
-        colisiones:level_cuarto_final_boss,
+        posicionJugadorSuperior : {x: 674, y: 175},
+        posicionJugadorInferior : {x: 560, y: 674},
+        posicionJugadorIzquierda :{x: 89, y: 674},
+        posicionJugadorDerecha :  {x: 1250, y: 674},
+        colisiones:level_cuarto7,
         imgBackground: "../../game/assets/niveles_fondo/Scene6.png"
     })
    
@@ -399,11 +399,11 @@ function generarLevels(listaNiveles) {
                     puertas.push( new Puerta({
                         position: {
                             x: 0,
-                            y:-40,
+                            y:-80,
                         },
                         imgResource: "../../game/assets/sprites/doors/colisionInferior.png",
                         posicionOrigen: {x: 1200, y:650},
-                        posicionDestino: {x: 100, y:650},
+                        posicionDestino:{x: 1200, y:650},
                         idOrigen: cuarto.idCuarto,
                         idDestino: cuarto.conexionSuperior.idDestino,
                         puertaActiva:true
@@ -418,7 +418,7 @@ function generarLevels(listaNiveles) {
                         },
                         imgResource: "../../game/assets/sprites/doors/colisionInferior.png",
                         posicionOrigen: {x: 1200, y:650},
-                        posicionDestino: {x: 100, y:650},
+                        posicionDestino:{x: 1200, y:650},
                         idOrigen: cuarto.idCuarto,
                         idDestino: cuarto.conexionInferior.idDestino,
                         puertaActiva:true
@@ -433,7 +433,7 @@ function generarLevels(listaNiveles) {
                         },
                         imgResource: "../../game/assets/sprites/doors/colisionLateral.png",
                         posicionOrigen: {x: 1200, y:650},
-                        posicionDestino: {x: 100, y:650},
+                        posicionDestino:{x: 1200, y:650},
                         idOrigen: cuarto.idCuarto,
                         idDestino: cuarto.conexionDerecha.idDestino,
                         puertaActiva:true
@@ -448,7 +448,7 @@ function generarLevels(listaNiveles) {
                         },
                         imgResource: "../../game/assets/sprites/doors/colisionLateral.png",
                         posicionOrigen: {x: 1200, y:650},
-                        posicionDestino: {x: 100, y:650},
+                        posicionDestino: {x: 1200, y:650},
                         idOrigen: cuarto.idCuarto,
                         idDestino: cuarto.conexionIzquierda.idDestino,
                         puertaActiva:true
