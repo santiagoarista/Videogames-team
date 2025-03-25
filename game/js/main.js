@@ -165,6 +165,7 @@ function animate(){
 
 
     player.draw()
+    player.drawLives()
     player.update()
 
     //Pantalla negra de cambio de nivel

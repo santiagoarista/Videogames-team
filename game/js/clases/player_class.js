@@ -26,6 +26,7 @@ class Player extends Sprite{
         this.gravity =0.8;
         this.bloquesDeColision = bloquesDeColision;
         this.puertas = puertas;
+        this.lives = 3; // Initialize lives to 3
 
     }
 
@@ -35,6 +36,21 @@ class Player extends Sprite{
     //    context.fillRect(this.position.x,this.position.y,this.width,this.height);
     //}
     //Dibujar sprite del personaje
+
+
+    // Decrease lives if the player collides with certain objects or hazards
+    decreaseLives() {
+        this.lives -= 1;
+        if (this.lives <= 0) {
+            this.gameOver();
+        }
+    }
+
+    drawLives() {
+        context.font = '30px Arial';
+        context.fillStyle = 'white';
+        context.fillText(`Lives: ${this.lives}`, 80, 30); // Position it at the top left
+    }
     
     update(){
         //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
@@ -215,4 +231,6 @@ for (let index = 0; index < this.puertas.length; index++) {
     this.velocity.y +=this.gravity;
     this.position.y += this.velocity.y;
   }
+
+
 }
