@@ -80,6 +80,7 @@ class Puerta extends Sprite{
         this.idOrigen = idOrigen;
         this.idDestino = idDestino;
         this.puertaActiva = puertaActiva;
+
         
     }
 }
