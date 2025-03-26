@@ -81,6 +81,7 @@ class Puerta extends Sprite{
         this.idOrigen = idOrigen;
         this.idDestino = idDestino;
         this.puertaActiva = puertaActiva;
+
         
     }
 }
@@ -148,7 +149,7 @@ function animate(){
             player.velocity.x = -3
             player.lastDirection = "left"
         }
-        else if (keys.w.pressed) {
+    else if (keys.w.pressed) {
             //Hacer cambiar de animacón
             player.switchSprite("jumpRight")
         

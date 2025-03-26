@@ -37,6 +37,7 @@ Array.prototype.parse2D= function(){
 function navegarNuevoCuarto(idDestino, posicionDestino){
 
        overlay.opacity
+       player.velocity = {x:0,y:0};
        gsap.to(overlay, {opacity:1, onComplete:()=>{
        currentLevel  = idDestino[0]
        console.log(currentLevel)
@@ -45,6 +46,7 @@ function navegarNuevoCuarto(idDestino, posicionDestino){
        console.log(player.position)
        player.update(),
        player.draw(),
+       player.velocity = {x:0,y:0};
       
         gsap.to(overlay, {opacity:0})
        

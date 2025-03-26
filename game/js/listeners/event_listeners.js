@@ -21,48 +21,15 @@ window.addEventListener("keydown", (event)=>{
             break;
         //MOVIMIETNO A LA IZQUIERDA    
         case "a":
-//COLISIÓN CON SALIDA DEL MAPA
-        for (let index = 0; index < puertas.length; index++) {
-            const door = puertas[index];
-                 //CAMBIO DE MAPA, al salirte del mapa
-                 if (player.hitbox.position.x <= door.position.x +door.width &&
-                    player.hitbox.position.x +  player.hitbox.width>= door.position.x &&
-                    player.hitbox.position.y +  player.hitbox.height>= door.position.y &&
-                    player.hitbox.position.y <= door.position.y + door.height) {
-                    
-                    
-                    //    console.log("Cambio de mapa")
-                    //overlay.opacity
-                    //gsap.to(overlay, {opacity:1, onComplete:()=>{
-                    //    currentLevel  = cuartosAleatorios[currentLevel-1].conexionDerecha;
-                    //    levels[currentLevel].init();
-                    //    gsap.to(overlay, {opacity:0})
-                    //}})
-                
-             
-                 }
-        }
             keys.a.pressed= true;
 
        
             break;    
         //MOVIMIENTO A LA DERECHA
         case "d":
+            keys.d.pressed= true;
 
-        //COLISIÓN CON SALIDA DEL MAPA
-            for (let index = 0; index < puertas.length; index++) {
-                const door = puertas[index];
-                     //CAMBIO DE MAPA, al salirte del mapa
-        if (player.hitbox.position.x <= door.position.x +door.width &&
-            player.hitbox.position.x +  player.hitbox.width>= door.position.x &&
-            player.hitbox.position.y +  player.hitbox.height>= door.position.y &&
-            player.hitbox.position.y <= door.position.y + door.height) {
-           // console.log("Cambio de mapa")
-            
-        
-     
-         }
-            }
+
         
             keys.d.pressed= true;
   
