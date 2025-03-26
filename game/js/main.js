@@ -119,9 +119,7 @@ function animate(){
     window.requestAnimationFrame(animate);
     //Se dibuja el canvas básico
     fondoCuarto.draw();
-    bloquesColisiones.forEach((bloqueColisiones)=>{
-        bloqueColisiones.draw();
-    })
+    
 
     //DIBUJAR LAS SALIDAS DEL MAPA
     puertas.forEach((puerta)=>{
