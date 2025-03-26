@@ -34,7 +34,16 @@ window.addEventListener("keydown", (event)=>{
             keys.d.pressed= true;
   
             break;  
-        //AGACHARSE    
+            
+        //PAUSAR JUEGO 
+        case "p":
+            paused = !paused; 
+            if (!paused) {
+                animate(); //Volver a renderizar las animaciones cuando no esté en pausa
+            }
+            break;
+
+        //AGACHARSE 
         case "s":
         
             break;  
