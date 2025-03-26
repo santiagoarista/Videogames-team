@@ -8,6 +8,7 @@ let colisionesConvertidas =level_cuarto_final_boss.parse2D();
 let bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
 let puertas =[]
 let currentLevel =8;
+let paused = false;
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
 
@@ -109,7 +110,11 @@ const overlay = {
 //LOOP DE ANIMACIÓN
 function animate(){
 
-
+    //Pausar Juego
+    if (paused) {
+        drawPauseMenu(); 
+        return; // No hacer nada más
+    }
 
 
 
