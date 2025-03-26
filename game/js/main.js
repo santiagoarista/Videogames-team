@@ -108,10 +108,10 @@ const overlay = {
 
 //LOOP DE ANIMACIÓN
 function animate(){
-
+    //Pausar
     if (paused) {
-        drawPauseMenu();
-        return; // Stop updating game objects
+        drawPauseMenu(); 
+        return; // No hacer nada más
     }
 
 //BPORRA EL FRAME ANTERIOR PARA DIBUJAR UNO NUEVO

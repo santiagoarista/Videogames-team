@@ -67,11 +67,12 @@ window.addEventListener("keydown", (event)=>{
             keys.d.pressed= true;
   
             break;  
-         
+            
+        //PAUSAR JUEGO 
         case "p":
-            paused = !paused; // Toggle pause state
+            paused = !paused; 
             if (!paused) {
-                animate(); // Restart animation loop when resuming
+                animate(); //Volver a renderizar las animaciones cuando no esté en pausa
             }
             break;
 
