@@ -10,7 +10,7 @@ let puertas =[]
 let currentLevel =8;
 let listaCuartosAleatorios=[];
 let showMap = false;
-
+let llaves =[false,false,true,true,false,true,false,true,false,]
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
 

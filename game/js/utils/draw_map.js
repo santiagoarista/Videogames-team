@@ -7,7 +7,6 @@ imgPROTA.src = "../assets/sprites/JugadorIMG.png";
 let imgLlave = new Image();
 imgLlave.src = "../assets/sprites/35.png";
 
-let llaves =[false,false,true,false,false,false,false,false,false,]
 //Funcion para dibujar el mapa
 function drawMap(cuartosAleatorios) {
 
@@ -93,14 +92,13 @@ class ContainerCuarto{
             this.colorfondo = "rgb(168, 10, 10)";
         }
 
-        if(this.esCuartoActual){
-            this.colorfondo = "yellow";
-            context.drawImage(imgJEFE, this.position.x + 20, this.position.y + 20, 60, 60);
-        }
         if((llaves[this.idcuarto-1]) == true){
             this.colorfondo = "rgb(119, 245, 93)";
         }
 
+        if(this.esCuartoActual){
+            this.colorfondo = "yellow";
+        }
 
         if(this.salidaDER){
            context.fillStyle = "white";
@@ -114,22 +112,24 @@ class ContainerCuarto{
      
         context.fillStyle = this.colorfondo;
         context.fillRect(this.position.x, this.position.y, 100, 100);
-        if(this.cuartoJefeFinal){
+        if(this.cuartoJefeFinal && !this.esCuartoActual){
             context.drawImage(imgJEFE, this.position.x + 20, this.position.y + 20, 60, 60);
         }
-        if(this.esCuartoActual){
-            context.drawImage(imgPROTA, this.position.x + 30, this.position.y + 20, 40, 60);
-        }
-
+        
         context.strokeStyle = "white";
         context.lineWidth = 2;
         context.lineJoin = "round";
         context.strokeRect(this.position.x, this.position.y, 100, 100);
        console.log((llaves[this.idcuarto-1]));
-        if((llaves[this.idcuarto-1]) == true){
+        if(((llaves[this.idcuarto-1]) == true) && !this.esCuartoActual){
             context.drawImage(imgLlave, this.position.x + 33, this.position.y + 20, 30, 60);
             console.log("cuarto "+this.idcuarto);
         }
+
+        if(this.esCuartoActual){
+            context.drawImage(imgPROTA, this.position.x + 30, this.position.y + 20, 40, 60);
+        }
+
 
     }
 }
