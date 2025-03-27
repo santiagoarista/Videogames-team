@@ -1,23 +1,23 @@
 const pauseMenuImage = new Image();
-pauseMenuImage.src = "../../../assets/menu/5 Logo/Logo3.png";
+pauseMenuImage.src = "../assets/menu/logo/Logo3.png";
 
 const playButton = new Image();
-playButton.src = "../../../assets/menu/6 Buttons/1/1_09.png";
+playButton.src = "../assets/menu/6 Buttons/1/1_09.png";
 
 const exitButton = new Image();
-exitButton.src = "../../../assets/menu/6 Buttons/2/2_09.png";
+exitButton.src = "../assets/menu/6 Buttons/2/2_09.png";
 
 const exitIcon = new Image();
-exitIcon.src = "../../../assets/menu/3 Icons/Icons/Icon_35.png";
+exitIcon.src = "../assets/menu/3 Icons/Icons/Icon_35.png";
 
 const settingsButton = new Image();
-settingsButton.src = "../../../assets/menu/6 Buttons/3/3_09.png";
+settingsButton.src = "../assets/menu/6 Buttons/3/3_09.png";
 
 const playButtonIcon = new Image();
-playButtonIcon.src = "../../../assets/menu/3 Icons/Icons/Icon_34.png";
+playButtonIcon.src = "../assets/menu/3 Icons/Icons/Icon_34.png";
 
 const settingsButtonIcon = new Image();
-settingsButtonIcon.src = "../../../assets/menu/3 Icons/Icons/Icon_07.png";
+settingsButtonIcon.src = "../assets/menu/3 Icons/Icons/Icon_07.png";
 
 // Play Button. Globales para reusarlas en el eventListener
 const buttonWidth = 80;

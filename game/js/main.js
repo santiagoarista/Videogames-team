@@ -111,9 +111,9 @@ const overlay = {
 function animate(){
 
     //Pausar Juego
-    if (paused) {
-        drawPauseMenu(); 
-        return; // No hacer nada más
+    if (paused){
+        drawPauseMenu();
+        return 
     }
 
 
@@ -167,10 +167,10 @@ function animate(){
     //Movimiento a alderecha o izquierda
 
 
-
     player.draw()
-    player.drawLives() //Player Lives
+    player.drawLives() //Dibujar vidas del jugador
     player.update()
+    
 
     //Pantalla negra de cambio de nivel
     context.save();
