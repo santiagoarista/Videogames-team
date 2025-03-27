@@ -1,12 +1,16 @@
+let imgJEFE = new Image();
+imgJEFE.src = "../assets/sprites/escenario_jefe_dario/spriteJEFE.png";
+
+let imgPROTA = new Image();
+imgPROTA.src = "../assets/sprites/JugadorIMG.png";
+
+let imgLlave = new Image();
+imgLlave.src = "../assets/sprites/35.png";
+
+let llaves =[false,false,true,false,false,false,false,false,false,]
 //Funcion para dibujar el mapa
 function drawMap(cuartosAleatorios) {
-    context.save();
-    
-    // Dibujar fondo del mapa
-    context.globalAlpha = 0.7; // Transparencia
-    context.fillStyle = "black";
-    context.fillRect(0,0,canvas.width,canvas.height);
-    context.restore();
+
 
     //Dibujar cuadro del mapa
     context.globalAlpha = 1; // Restaurar opacidad
@@ -20,7 +24,12 @@ function drawMap(cuartosAleatorios) {
     //Texto del Titulo
     context.font = "60px Arcade Gamer";  // Tamaño y fuente del texto
     context.fillStyle = "white";  // Color del texto
-    context.fillText("MAP", canvas.width/2 -60, 200);  // Texto y posición (x, y)
+    context.shadowColor = "white";
+    context.shadowBlur = 15;
+    context.fillText("Mapa", canvas.width/2 -100, 200);  // Texto y posición (x, y)
+    
+    context.shadowColor = "transparent";
+    context.shadowBlur = 0;
 
     //Creacion de cuartos en el mapa
     let startX = 525; // Posición inicial en X
@@ -81,12 +90,17 @@ class ContainerCuarto{
         }
         
         if(this.cuartoJefeFinal){
-            this.colorfondo = "red";
+            this.colorfondo = "rgb(168, 10, 10)";
         }
 
         if(this.esCuartoActual){
             this.colorfondo = "yellow";
+            context.drawImage(imgJEFE, this.position.x + 20, this.position.y + 20, 60, 60);
         }
+        if((llaves[this.idcuarto-1]) == true){
+            this.colorfondo = "rgb(119, 245, 93)";
+        }
+
 
         if(this.salidaDER){
            context.fillStyle = "white";
@@ -97,12 +111,25 @@ class ContainerCuarto{
             context.fillStyle = "white";
             context.fillRect(this.position.x + 50-20, this.position.y+50 , 20, -70)
         }
-
+     
         context.fillStyle = this.colorfondo;
         context.fillRect(this.position.x, this.position.y, 100, 100);
+        if(this.cuartoJefeFinal){
+            context.drawImage(imgJEFE, this.position.x + 20, this.position.y + 20, 60, 60);
+        }
+        if(this.esCuartoActual){
+            context.drawImage(imgPROTA, this.position.x + 30, this.position.y + 20, 40, 60);
+        }
+
         context.strokeStyle = "white";
         context.lineWidth = 2;
         context.lineJoin = "round";
         context.strokeRect(this.position.x, this.position.y, 100, 100);
+       console.log((llaves[this.idcuarto-1]));
+        if((llaves[this.idcuarto-1]) == true){
+            context.drawImage(imgLlave, this.position.x + 33, this.position.y + 20, 30, 60);
+            console.log("cuarto "+this.idcuarto);
+        }
+
     }
 }

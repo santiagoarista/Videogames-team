@@ -10,6 +10,7 @@ let puertas =[]
 let currentLevel =8;
 let listaCuartosAleatorios=[];
 let showMap = false;
+
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
 
@@ -110,10 +111,7 @@ const overlay = {
 //LOOP DE ANIMACIÓN
 function animate(){
 
-    if (showMap) {
-        drawMap(listaCuartosAleatorios);
-        return; // Stop updating game objects
-    }
+
 
 //BPORRA EL FRAME ANTERIOR PARA DIBUJAR UNO NUEVO
     window.requestAnimationFrame(animate);
@@ -171,11 +169,13 @@ function animate(){
     context.fillStyle = "black";
     context.fillRect(0,0,canvas.width,canvas.height);
     context.restore();
-    
-//
+
+    if (showMap) {
+        drawMap(listaCuartosAleatorios);
+    }
 }
 cuartos[currentLevel].init();
-console.log(listaCuartosAleatorios)
+//console.log(listaCuartosAleatorios)
 animate();
 
 

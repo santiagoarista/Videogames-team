@@ -70,10 +70,7 @@ window.addEventListener("keydown", (event)=>{
         
         
             case "m":
-                showMap = !showMap; // Toggle pause state
-                if (!showMap) {
-                    animate(); // Restart animation loop when resuming
-                }
+                showMap = !showMap; // cambiar el showmap a verdadero o falso
                 break;
         
         
