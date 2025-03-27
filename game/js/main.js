@@ -1,7 +1,7 @@
 
 //sólo se ejecuta una ve<z
 const canvas = document.querySelector("canvas");
-context = canvas.getContext('2d');
+const context = canvas.getContext('2d');
 //convertimos mapoa de caracteres a una amtriz de listas
 let colisionesConvertidas =level_cuarto_final_boss.parse2D();
 //Convertimos la matriz de listas a una lista de clases de BloqueColision
@@ -11,6 +11,8 @@ let currentLevel =8;
 let listaCuartosAleatorios=[];
 let showMap = false;
 let llaves =[false,false,true,true,false,true,false,true,false,]
+let paused = false;
+
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
 
@@ -83,6 +85,7 @@ class Puerta extends Sprite{
         this.idOrigen = idOrigen;
         this.idDestino = idDestino;
         this.puertaActiva = puertaActiva;
+
         
     }
 }
@@ -111,7 +114,11 @@ const overlay = {
 //LOOP DE ANIMACIÓN
 function animate(){
 
-
+    //Pausar Juego
+    if (paused){
+        drawPauseMenu(); //Todo lo relacionado a pausa está en pause.js
+        return 
+    }
 
 //BPORRA EL FRAME ANTERIOR PARA DIBUJAR UNO NUEVO
     window.requestAnimationFrame(animate);
@@ -144,7 +151,7 @@ function animate(){
             player.velocity.x = -3
             player.lastDirection = "left"
         }
-        else if (keys.w.pressed) {
+    else if (keys.w.pressed) {
             //Hacer cambiar de animacón
             player.switchSprite("jumpRight")
         
@@ -159,9 +166,10 @@ function animate(){
     //Movimiento a alderecha o izquierda
 
 
-
     player.draw()
+    player.drawLives() //Dibujar vidas del jugador
     player.update()
+    
 
     //Pantalla negra de cambio de nivel
     context.save();

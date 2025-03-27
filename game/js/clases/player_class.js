@@ -26,7 +26,9 @@ class Player extends Sprite{
         this.gravity =0.8;
         this.bloquesDeColision = bloquesDeColision;
         this.puertas = puertas;
-
+        this.lives = 3; // Inicializar vidas a 3
+        this.lifeImage = new Image();
+        this.lifeImage.src = '../assets/PNG/Transperent/Icon12.png'; //Imagen de vidas
     }
 
     //draw(){
@@ -34,7 +36,22 @@ class Player extends Sprite{
     //    context.fillStyle = "red";
     //    context.fillRect(this.position.x,this.position.y,this.width,this.height);
     //}
+    
     //Dibujar sprite del personaje
+
+    decreaseLives() {
+        this.lives -= 1;
+        if (this.lives <= 0) {
+            this.gameOver();
+        }
+    }
+
+    // Dibujar vidas
+    drawLives() {
+        for (let i = 0; i < this.lives; i++) {
+            context.drawImage(this.lifeImage, 90 + i * 65, 10, 60, 60);
+        }
+    }
     
     update(){
         //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
