@@ -1,7 +1,7 @@
 
 //sólo se ejecuta una ve<z
 const canvas = document.querySelector("canvas");
-context = canvas.getContext('2d');
+const context = canvas.getContext('2d');
 //convertimos mapoa de caracteres a una amtriz de listas
 let colisionesConvertidas =level_cuarto_final_boss.parse2D();
 //Convertimos la matriz de listas a una lista de clases de BloqueColision
@@ -112,7 +112,7 @@ function animate(){
 
     //Pausar Juego
     if (paused){
-        drawPauseMenu();
+        drawPauseMenu(); //Todo lo relacionado a pausa está en pause.js
         return 
     }
 
