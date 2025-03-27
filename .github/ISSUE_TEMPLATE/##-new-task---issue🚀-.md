@@ -9,23 +9,21 @@ assignees: santiagoarista
 ---
 
 ---
-## Issue Name📌
-<!-- Brief title describing the problem or task -->
-## Technical Description📖
+## Descripción Técnica📖
 <!-- Detailed explanation of the problem, expected implementation, or technical
 context -->
-## Associated Software🛠
+## Software Asociado🛠
 <!-- Indicate if the issue is related to a specific module, framework, or tool -->
-## Ideal Candidate🎯
+## Candidato Ideal🎯
 <!-- Profile of the developer or team best suited to handle this issue -->
-## Time Estimate⏳
+## Tiempo Estimado⏳
 <!-- Estimated time in hours/days/weeks to complete the task -->
-## Notes🔍
+## Notas🔍
 <!-- Additional comments, blockers, dependencies, risks, or important notes -->
 ## Checklist📋
 - [ ] Task 1
 - [ ] Task 2
 - [ ] Tests completed
 - [ ] Team review
-## Related Resources📎
+## Recursos📎
 <!-- Links
