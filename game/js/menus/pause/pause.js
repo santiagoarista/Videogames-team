@@ -75,33 +75,48 @@ function drawPauseMenu() {
     const exitIconY = exitY + (exitHeight - exitIconHeight) / 2 + 8;
 
     //Dibujar BG
+    context.globalAplha = 0.09
     context.fillStyle = "black";
-    context.fillRect(bgX, bgY, bgWidth, bgHeight);
+    context.fillRect(0,0, canvas.width, canvas.height);
 
     //Dibujar menú
+    context.globalAplha = 1
     context.drawImage(pauseMenuImage, imgX, imgY, imgWidth, imgHeight);
 
     // Texto
     context.fillStyle = "white";
-    context.font = "50px Arial";
+    context.font = "50px Arcade Gamer";
     context.textAlign = "center";
+    context.shadowColor = "cyan"; //Efecto de letras neon
+    context.shadowBlur = 15;
     context.fillText("Menú de Pausa", centerX, centerY - 180);
 
+    // Resetear efecto neon
+    context.shadowBlur = 0;
+    context.shadowColor = "transparent";
+
     // Dibujar Play Button
+    context.shadowColor = "cyan"; //Efecto neon
+    context.shadowBlur = 15;
     context.drawImage(playButton, buttonX, buttonY, buttonWidth, buttonHeight);
     context.drawImage(playButtonIcon, iconX, iconY, iconWidth, iconHeight);
 
     //Dibujar Exit Button
     context.drawImage(exitButton, exitX, exitY, exitWidth, exitHeight);
     context.fillStyle = "white";
-    context.font = "35px Arial";
+    context.font = "20px Arcade Gamer";
     context.textAlign = "center";
+    context.shadowColor = "cyan"; //Efecto neon
+    context.shadowBlur = 15;
     context.fillText("Salir", centerX - 20, centerY - 18);
     context.drawImage(exitIcon, exitIconX, exitIconY, exitIconWidth, exitIconHeight);
+    // Resetear efecto neon
 
     //Dibujar Settings Button
     context.drawImage(settingsButton, settingsX, settingsY, settingsWidth, settingsHeight);
     context.drawImage(settingsButtonIcon, settingsIconX, settingsIconY, settingsIconWidth, settingsIconHeight);
+    context.shadowBlur = 0;
+    context.shadowColor = "transparent";
 }
 
 //Play button Event
