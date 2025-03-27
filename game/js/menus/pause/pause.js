@@ -1,4 +1,5 @@
 const pauseMenuImage = new Image();
+
 pauseMenuImage.src = "../assets/menu/logo/Logo3.png";
 
 const playButton = new Image();

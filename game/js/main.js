@@ -8,7 +8,11 @@ let colisionesConvertidas =level_cuarto_final_boss.parse2D();
 let bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
 let puertas =[]
 let currentLevel =8;
+let listaCuartosAleatorios=[];
+let showMap = false;
+let llaves =[false,false,true,true,false,true,false,true,false,]
 let paused = false;
+
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
 
@@ -116,8 +120,6 @@ function animate(){
         return 
     }
 
-
-
 //BPORRA EL FRAME ANTERIOR PARA DIBUJAR UNO NUEVO
     window.requestAnimationFrame(animate);
     //Se dibuja el canvas básico
@@ -130,9 +132,6 @@ function animate(){
     puertas.forEach((puerta)=>{
         puerta.draw();
     })
-
- 
-    
 
 
 
@@ -178,10 +177,13 @@ function animate(){
     context.fillStyle = "black";
     context.fillRect(0,0,canvas.width,canvas.height);
     context.restore();
-    
-//
+
+    if (showMap) {
+        drawMap(listaCuartosAleatorios);
+    }
 }
 cuartos[currentLevel].init();
+//console.log(listaCuartosAleatorios)
 animate();
 
 

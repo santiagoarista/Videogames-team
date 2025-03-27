@@ -377,6 +377,7 @@ return cuartos;
 
 function generarLevels(listaNiveles) {
     const levels = {};
+    listaCuartosAleatorios=[...listaNiveles]
 
     listaNiveles.forEach((cuarto) => {
         console.log(cuarto),
