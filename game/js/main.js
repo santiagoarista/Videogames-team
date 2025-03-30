@@ -1,14 +1,18 @@
 
 //sólo se ejecuta una ve<z
 const canvas = document.querySelector("canvas");
-context = canvas.getContext('2d');
+const context = canvas.getContext('2d');
 //convertimos mapoa de caracteres a una amtriz de listas
 let colisionesConvertidas =level_cuarto_final_boss.parse2D();
 //Convertimos la matriz de listas a una lista de clases de BloqueColision
 let bloquesColisiones =colisionesConvertidas.creatObjectsFrom2d();
 let puertas =[]
 let currentLevel =8;
+let listaCuartosAleatorios=[];
+let showMap = false;
+let llaves =[false,false,true,true,false,true,false,true,false,]
 let paused = false;
+
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
 
@@ -111,12 +115,10 @@ const overlay = {
 function animate(){
 
     //Pausar Juego
-    if (paused) {
-        drawPauseMenu(); 
-        return; // No hacer nada más
+    if (paused){
+        drawPauseMenu(); //Todo lo relacionado a pausa está en pause.js
+        return 
     }
-
-
 
 //BPORRA EL FRAME ANTERIOR PARA DIBUJAR UNO NUEVO
     window.requestAnimationFrame(animate);
@@ -130,9 +132,6 @@ function animate(){
     puertas.forEach((puerta)=>{
         puerta.draw();
     })
-
- 
-    
 
 
 
@@ -167,10 +166,10 @@ function animate(){
     //Movimiento a alderecha o izquierda
 
 
-
     player.draw()
-    player.drawLives() //Player Lives
+    player.drawLives() //Dibujar vidas del jugador
     player.update()
+    
 
     //Pantalla negra de cambio de nivel
     context.save();
@@ -178,10 +177,13 @@ function animate(){
     context.fillStyle = "black";
     context.fillRect(0,0,canvas.width,canvas.height);
     context.restore();
-    
-//
+
+    if (showMap) {
+        drawMap(listaCuartosAleatorios);
+    }
 }
 cuartos[currentLevel].init();
+//console.log(listaCuartosAleatorios)
 animate();
 
 

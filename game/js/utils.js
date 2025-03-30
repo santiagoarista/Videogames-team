@@ -42,10 +42,7 @@ function navegarNuevoCuarto(idDestino, posicionDestino){
        currentLevel  = idDestino[0]
        console.log(currentLevel)
        cuartos[currentLevel].init();
-       player.position = posicionDestino;
-       console.log(player.position)
-       player.update(),
-       player.draw(),
+
        player.velocity = {x:0,y:0};
       
         gsap.to(overlay, {opacity:0})
@@ -54,6 +51,10 @@ function navegarNuevoCuarto(idDestino, posicionDestino){
        },
        
        
-       })
+       }),
+       player.position = posicionDestino;
+    
+       player.update(),
+       player.draw()
 
        }

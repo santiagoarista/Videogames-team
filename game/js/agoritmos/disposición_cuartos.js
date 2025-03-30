@@ -253,6 +253,7 @@ switch (direccion) {
         switch (index) {
             case 0:
              set_conexion_origen({direccion:"derecha",indexOrigen:index})
+             set_conexion_origen({direccion:"inferior",indexOrigen:index})
                 break;
             case 1:
                 set_conexion_origen({direccion:"izquierda",indexOrigen:index})
@@ -263,6 +264,7 @@ switch (direccion) {
                 set_conexion_origen({direccion:"inferior",indexOrigen:index})
                     break;   
             case 3:
+                set_conexion_origen({direccion:"superior",indexOrigen:index})
                 set_conexion_origen({direccion:"derecha",indexOrigen:index})
                 set_conexion_origen({direccion:"inferior",indexOrigen:index})
             break;     
@@ -299,6 +301,7 @@ for (let index = 0; index < cuartos.length; index++) {
     switch (index) {
         case 0:
          set_conexion_destino({direccion:"derecha",indexOrigen:index, indexDestino:1})
+         set_conexion_destino({direccion:"inferior",indexOrigen:index, indexDestino:3})
             break;
         case 1:
             set_conexion_destino({direccion:"izquierda",indexOrigen:index, indexDestino:0})
@@ -310,6 +313,7 @@ for (let index = 0; index < cuartos.length; index++) {
     
                 break;   
         case 3:
+            set_conexion_destino({direccion:"superior",indexOrigen:index, indexDestino:0})
             set_conexion_destino({direccion:"derecha",indexOrigen:index, indexDestino:4})
             set_conexion_destino({direccion:"inferior",indexOrigen:index, indexDestino:6})
  
@@ -377,6 +381,7 @@ return cuartos;
 
 function generarLevels(listaNiveles) {
     const levels = {};
+    listaCuartosAleatorios=[...listaNiveles]
 
     listaNiveles.forEach((cuarto) => {
         console.log(cuarto),

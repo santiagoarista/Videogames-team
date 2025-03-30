@@ -28,7 +28,7 @@ class Player extends Sprite{
         this.puertas = puertas;
         this.lives = 3; // Inicializar vidas a 3
         this.lifeImage = new Image();
-        this.lifeImage.src = '../../../assets/icons/PNG/Transperent/Icon12.png'; //Imagen de vidas
+        this.lifeImage.src = '../assets/PNG/Transperent/Icon12.png'; //Imagen de vidas
     }
 
     //draw(){
@@ -36,9 +36,9 @@ class Player extends Sprite{
     //    context.fillStyle = "red";
     //    context.fillRect(this.position.x,this.position.y,this.width,this.height);
     //}
+    
     //Dibujar sprite del personaje
 
-    // Disminuir vidas y si no hay más vidas, Game Over
     decreaseLives() {
         this.lives -= 1;
         if (this.lives <= 0) {
