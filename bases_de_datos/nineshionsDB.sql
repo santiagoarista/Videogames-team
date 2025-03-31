@@ -19,6 +19,7 @@ USE nineshions;
 CREATE TABLE Usuario (
   id_usuario SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
   correo VARCHAR(254) NOT NULL UNIQUE,
+  contrasena TEXT NOT NULL,
   monstruos_eliminados INT UNSIGNED DEFAULT 0,
   partidas_jugadas INT UNSIGNED DEFAULT 0,
   partidas_ganadas INT UNSIGNED DEFAULT 0,
@@ -33,8 +34,8 @@ CREATE TABLE Usuario (
 CREATE TABLE Partida (
   id_partida SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
   id_usuario SMALLINT UNSIGNED NOT NULL,
-  monstruos_eliminados SMALLINT UNSIGNED NOT NULL DEFAULT 0,
-  puntuacion SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+  monstruos_eliminados INT UNSIGNED NOT NULL DEFAULT 0,
+  puntuacion INT UNSIGNED NOT NULL DEFAULT 0,
   llaves_encontradas JSON NOT NULL DEFAULT (JSON_ARRAY(false, false, false, false, false, false, false, false, false)),
   items_encontrados JSON NOT NULL DEFAULT (JSON_ARRAY(false, false, false)),
   mapa JSON NOT NULL DEFAULT (JSON_ARRAY()),
