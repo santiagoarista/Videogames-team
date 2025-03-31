@@ -29,6 +29,9 @@ class Player extends Sprite{
         this.lives = 3; // Inicializar vidas a 3
         this.lifeImage = new Image();
         this.lifeImage.src = '../assets/PNG/Transperent/Icon12.png'; //Imagen de vidas
+        this.keys = 0;
+        this.keysImage = new Image();
+        this.keysImage.src = '../assets/sprites/36.png'; //Imagen de llave
     }
 
     //draw(){
@@ -51,6 +54,18 @@ class Player extends Sprite{
         for (let i = 0; i < this.lives; i++) {
             context.drawImage(this.lifeImage, 90 + i * 65, 10, 60, 60);
         }
+    }
+
+    // Dibujar conteo de llaves
+    drawKeys() {
+        context.shadowColor = "white";
+        context.shadowBlur = 15;
+        context.drawImage(this.keysImage, 300, 10, 30, 60);
+        context.font = "40px Arcade Gamer";  // Tamaño y fuente del texto
+        context.fillStyle = "white";  // Color del texto
+        context.fillText(this.keys, 350, 60);  // Texto y posición (x, y)
+        context.shadowColor = "transparent";
+        context.shadowBlur = 0;
     }
     
     update(){
