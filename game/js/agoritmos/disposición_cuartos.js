@@ -476,6 +476,5 @@ function generarLevels(listaNiveles) {
     }
 
 );
-   
     return levels;
 }
