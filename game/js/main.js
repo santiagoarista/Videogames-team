@@ -168,6 +168,7 @@ function animate(){
 
     player.draw()
     player.drawLives() //Dibujar vidas del jugador
+    player.drawKeys() //Dibujar llaves
     player.update()
     
 
