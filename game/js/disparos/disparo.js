@@ -1,5 +1,5 @@
 class Bulletcontroller {
-    bullets= [];
+ 
     timeToNextBullet=0;
     constructor(canvas) {
         this.canvas = canvas;
@@ -19,11 +19,8 @@ let direccion = ""
             direccion = "derecha" 
         }
 
-      console.log("direccion2_")
-        console.log(direccion)
-        console.log("Shooott3");
         if (this.timeToNextBullet<=0) {
-            this.bullets.push(new Bullet({
+            disparosJugador.push(new Bullet({
                 x: bulletX,
                 y: bulletY,
                 speed: bulletSpeed,
@@ -36,9 +33,9 @@ let direccion = ""
         this.timeToNextBullet--;
     }
     draw(context){
-        this.bullets.forEach(element => {
+        disparosJugador.forEach(element => {
             if (this.isBulletScreen(element)) {
-                this.bullets.splice(index,1)
+                disparosJugador.splice(index,1)
             }
             element.draw(context)
         });
@@ -49,9 +46,9 @@ let direccion = ""
     }
 
     collideWith(object){
-        return this.bullets.some(bullet=>{
+        return disparosJugador.some(bullet=>{
             if (bullet.collideWith(object)) {
-                this.bullets.splice(this.bullets.indexOf(bullet),1)
+                disparosJugador.splice(disparosJugador.indexOf(bullet),1)
                 return true
             }
             return false

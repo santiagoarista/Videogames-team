@@ -1,7 +1,9 @@
 
 
 class Sprite{                           //si no hay cantidad de frames, se pone 1 por default, esto significa que el sprite no se necesita recortar
-    constructor({position, imgResource, frameRate=1, animations, loop = true, autoplay = true}){
+    constructor({
+        
+        position, imgResource, frameRate=1, animations, loop = true, autoplay = true}){
         this.position = position;
         this.image = new Image();
         this.image.onload= ()=>{

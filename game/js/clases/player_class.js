@@ -1,6 +1,7 @@
 
 class Player extends Sprite{
     constructor({
+        enemigos,
         bulletController,
         bloquesDeColision=[], 
         puertas=[], 
@@ -25,6 +26,7 @@ class Player extends Sprite{
         this.sides = {
             bottom : this.position.y + this.height
         }
+        this.enemigos = enemigos
         this.gravity =0.8;
         this.bloquesDeColision = bloquesDeColision;
         this.puertas = puertas;
@@ -58,7 +60,7 @@ class Player extends Sprite{
     update(){
         //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
 
-        context.fillStyle= "rgba(0, 0, 255, 0)";
+        context.fillStyle= "rgba(255, 153, 0, 0)";
         context.fillRect(this.position.x,this.position.y,this.width,this.height);
         //EFECTO DE GRAVEDAD, aumenta o disminuye los movimientos de pixeles en x, derecha izquierda
         this.position.x += this.velocity.x;
@@ -76,6 +78,7 @@ class Player extends Sprite{
 
         //aCTUALIZACIÓN DE HITBOX EN 2 PUNTOS
         this.updateHitbox();
+        context.fillStyle= "rgba(0, 0, 255, 0)";
         context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
         //Cpmrprobar si hay colisiones en Y
         this.checkVerticalCollisions();
@@ -85,6 +88,30 @@ class Player extends Sprite{
 
     }
 
+    shoot(){
+        //Disparo
+
+    if (keys.k.pressed) {
+        
+        let bulletSpeed = 30;
+        let bulletDelay = 20;
+        let damage =1;
+        let bulletX = this.position.x + this.width/2;
+        let bulletY = this.position.y+80
+        this.bulletController.shoot({
+            bulletSpeed:bulletSpeed,
+            bulletDelay:bulletDelay,
+            damage:damage,
+            bulletX : bulletX,
+            bulletY : bulletY,
+       
+        
+        })
+
+    
+    }
+
+}
         shoot(){
                 //Disparo
    
@@ -191,6 +218,27 @@ class Player extends Sprite{
 
         }
 
+          //Agregar colisiones de disparos
+          for (let index = 0; index < this.enemigos.length; index++) {
+           
+            const enemigo = this.enemigos[index] ;
+
+            //Comprobar si hay colisiones 
+            if (this.hitbox.position.x <= enemigo.hitbox.position.x +enemigo.hitbox.width &&
+                this.hitbox.position.x + (this.hitbox.width)>= enemigo.hitbox.position.x &&
+                this.hitbox.position.y + (this.hitbox.height)>= enemigo.hitbox.position.y &&
+                this.hitbox.position.y <= enemigo.hitbox.position.y + enemigo.hitbox.height) {
+                    
+                    this.enemigos.splice(index, 1);
+                    console.log("colision enemigo")
+            
+            }
+            
+
+
+        }
+    
+
     }
     checkVerticalCollisions(){
    //CHECAR SI HAY COLISIONES EN Y
@@ -249,6 +297,24 @@ for (let index = 0; index < this.puertas.length; index++) {
                
                 break;
             }
+    }
+    
+
+
+}
+
+for (let index = 0; index < this.enemigos.length; index++) {
+    const enemigo = this.enemigos[index] ;
+
+    //Comprobar si hay colisiones
+    if ((this.hitbox.position.x) <= enemigo.hitbox.position.x +enemigo.hitbox.width &&
+        (this.hitbox.position.x) + (this.hitbox.width)>= enemigo.hitbox.position.x &&
+        (this.hitbox.position.y) + (this.hitbox.height)>= enemigo.hitbox.position.y &&
+        (this.hitbox.position.y) <= enemigo.hitbox.position.y + enemigo.hitbox.height) {
+            
+            this.enemigos.splice(index, 1);
+            console.log("colision enemigo")
+
     }
     
 
