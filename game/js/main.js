@@ -13,14 +13,23 @@ let showMap = false;
 let llaves =[false,false,true,true,false,true,false,true,false,]
 let paused = false;
 
+let enemigos =[new Enemigo({
+    x: 300,
+    y: 400,
+    color: "blue",
+    health: 3
+
+
+})]
+
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
 
-
+const bulletController = new Bulletcontroller(canvas)
 //Esta clase esta en la carpeta de clases>player_class
 const player = new Player({
     //Pasamos los bloques que harán las colisiones con este objeto
-    
+    bulletController: bulletController,
     frameRate: 6,
     imgResource: "../../game/assets/characters/main_character/IdleRight.png",
     animations:{
@@ -95,6 +104,9 @@ class Puerta extends Sprite{
 //let buttom = y-100;
 
 const keys = {
+    k:{
+        pressed: false
+    },
     w:{
         pressed: false
     },
@@ -110,80 +122,90 @@ const keys = {
 const overlay = {
     opacity: 0,
 }
+let lastTime = 0; // Para almacenar el tiempo del último frame
 
-//LOOP DE ANIMACIÓN
-function animate(){
-
-    //Pausar Juego
-    if (paused){
-        drawPauseMenu(); //Todo lo relacionado a pausa está en pause.js
-        return 
+function animate(timeStamp) {
+    if (paused) {
+        drawPauseMenu();
+        return;
     }
 
-//BPORRA EL FRAME ANTERIOR PARA DIBUJAR UNO NUEVO
-    window.requestAnimationFrame(animate);
-    //Se dibuja el canvas básico
+    requestAnimationFrame(animate);
+
+    // Calcular delta time (tiempo transcurrido en segundos)
+    const deltaTime = (timeStamp - lastTime) / 1000;
+    lastTime = timeStamp;
+
+    // Limpiar el canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Dibujar el fondo
     fondoCuarto.draw();
-    bloquesColisiones.forEach((bloqueColisiones)=>{
+
+    // Dibujar colisiones
+    bloquesColisiones.forEach((bloqueColisiones) => {
         bloqueColisiones.draw();
-    })
+    });
 
-    //DIBUJAR LAS SALIDAS DEL MAPA
-    puertas.forEach((puerta)=>{
+    // Dibujar puertas
+    puertas.forEach((puerta) => {
         puerta.draw();
-    })
+    });
 
-
-
-    //Movimiento a alderecha o izquierda, y velocidad que toma
-    //Poner animaciones dependiendo de la dirección y movimineto
-    player.velocity.x=0;
-
-    if (keys.d.pressed) {
-        //Hacer cambiar de animacón
-        player.switchSprite("runRight")
-        //Hacer movimiento
-        player.velocity.x =3;
-        player.lastDirection = "right"
-    }else if(keys.a.pressed)
-        {
-            player.switchSprite("runLeft")
-            player.velocity.x = -3
-            player.lastDirection = "left"
-        }
-    else if (keys.w.pressed) {
-            //Hacer cambiar de animacón
-            player.switchSprite("jumpRight")
-        
-        }
-    else{
-        if(player.lastDirection ==="left"){
-            player.switchSprite("idleLeft")
-        }else{
-            player.switchSprite("idleRight")
-        }
-    }
-    //Movimiento a alderecha o izquierda
-
-
-    player.draw()
-    player.drawLives() //Dibujar vidas del jugador
-    player.update()
+    // Movimiento del jugador con deltaTime
+    player.velocity.x = 0;
+    const speed = 200; // Velocidad en píxeles por segundo
     
 
-    //Pantalla negra de cambio de nivel
+    if (keys.d.pressed) {
+        player.switchSprite("runRight");
+        player.velocity.x = speed * deltaTime;
+        player.lastDirection = "right";
+    } else if (keys.a.pressed) {
+        player.switchSprite("runLeft");
+        player.velocity.x = -speed * deltaTime;
+        player.lastDirection = "left";
+    } else if (keys.w.pressed) {
+        player.switchSprite("jumpRight");
+    } else {
+        player.switchSprite(player.lastDirection === "left" ? "idleLeft" : "idleRight");
+    }
+
+    // Actualizar y dibujar el jugador
+    player.update();
+    player.draw();
+    player.drawLives();
+    bulletController.draw(context);
+
+    //PRUEBAS ENEMIGOS
+    enemigos.forEach(element => {
+        if (bulletController.collideWith(element)) {
+            if (element.health<=0){
+                const index =enemigos.indexOf(element);
+                enemigos.splice(index,1)
+            }
+        }else{
+            element.draw(context);
+        }
+ 
+    });
+
+
+    // Dibujar pantalla de cambio de nivel
     context.save();
-    context.globalAlpha =overlay.opacity;
+    context.globalAlpha = overlay.opacity;
     context.fillStyle = "black";
-    context.fillRect(0,0,canvas.width,canvas.height);
+    context.fillRect(0, 0, canvas.width, canvas.height);
     context.restore();
 
     if (showMap) {
         drawMap(listaCuartosAleatorios);
     }
 }
+
+
 cuartos[currentLevel].init();
 //console.log(listaCuartosAleatorios)
-animate();
+requestAnimationFrame(animate);
 
 

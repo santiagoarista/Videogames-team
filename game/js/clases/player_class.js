@@ -1,13 +1,15 @@
 
 class Player extends Sprite{
     constructor({
+        bulletController,
         bloquesDeColision=[], 
         puertas=[], 
         imgResource, frameRate, animations}) 
         {
         super({imgResource, frameRate, animations})
         //propiedades de la clase
-
+        
+        this.bulletController = bulletController;
         //Posición en pantallaad
         this.position ={
             x :200,
@@ -77,10 +79,36 @@ class Player extends Sprite{
         context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
         //Cpmrprobar si hay colisiones en Y
         this.checkVerticalCollisions();
+        this.shoot()
 
 
 
     }
+
+        shoot(){
+                //Disparo
+   
+            if (keys.k.pressed) {
+                
+                let bulletSpeed = 30;
+                let bulletDelay = 20;
+                let damage =1;
+                let bulletX = this.position.x + this.width/2;
+                let bulletY = this.position.y+80
+                this.bulletController.shoot({
+                    bulletSpeed:bulletSpeed,
+                    bulletDelay:bulletDelay,
+                    damage:damage,
+                    bulletX : bulletX,
+                    bulletY : bulletY,
+               
+                
+                })
+
+            
+            }
+        
+        }
 
     //Método para cambiar de animación
     switchSprite(name){

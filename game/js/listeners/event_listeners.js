@@ -46,7 +46,9 @@ window.addEventListener("keydown", (event)=>{
             }
             break;
   
-        
+            case "k":
+                keys.k.pressed= true;
+                break;
         
         case "s":
         
@@ -78,6 +80,11 @@ window.addEventListener("keyup", (event)=>{
         case "s":
       
             break;  
+        case "k":
+            //Dinamicas de disparo
+            keys.k.pressed= false;
+            disparoActivo = false;
+            break;
                               
             
 
