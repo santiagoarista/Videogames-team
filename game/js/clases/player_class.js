@@ -1,15 +1,17 @@
 
 class Player extends Sprite{
     constructor({
+        countdown = false,
         enemigos,
         bulletController,
         bloquesDeColision=[], 
         puertas=[], 
         imgResource, frameRate, animations}) 
         {
-        super({imgResource, frameRate, animations})
+        super({imgResource, frameRate, animations, countdown: countdown })
         //propiedades de la clase
-        
+        this.countodown = countdown
+        this.countdownDelay= 300;
         this.bulletController = bulletController;
         //Posición en pantallaad
         this.position ={
@@ -26,13 +28,20 @@ class Player extends Sprite{
         this.sides = {
             bottom : this.position.y + this.height
         }
-        this.enemigos = enemigos
+   
+  
+        this.enemigos = enemigos;
         this.gravity =0.8;
         this.bloquesDeColision = bloquesDeColision;
         this.puertas = puertas;
         this.lives = 3; // Inicializar vidas a 3
         this.lifeImage = new Image();
         this.lifeImage.src = '../assets/PNG/Transperent/Icon12.png'; //Imagen de vidas
+        // Propiedades para el parpadeo
+        this.blinking = false;
+        this.blinkInterval = 100; // Tiempo entre parpadeos en milisegundos
+        this.blinkDuration = 2000; // Duración total del parpadeo en milisegundos
+        this.blinkStartTime = null;
     }
 
     //draw(){
@@ -59,6 +68,16 @@ class Player extends Sprite{
     
     update(){
         //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
+        if (this.countdown  ) {
+            if (this.countdownDelay>0) {
+                this.countdownDelay -=1;
+            }else{
+                this.countdown = false;
+                this.countdownDelay =300;
+            }
+           
+
+        }
 
         context.fillStyle= "rgba(255, 153, 0, 0)";
         context.fillRect(this.position.x,this.position.y,this.width,this.height);
@@ -78,7 +97,7 @@ class Player extends Sprite{
 
         //aCTUALIZACIÓN DE HITBOX EN 2 PUNTOS
         this.updateHitbox();
-        context.fillStyle= "rgba(0, 0, 255, 0)";
+        context.fillStyle= "rgba(0, 0, 255, 0.89)";
         context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
         //Cpmrprobar si hay colisiones en Y
         this.checkVerticalCollisions();
@@ -93,7 +112,7 @@ class Player extends Sprite{
 
     if (keys.k.pressed) {
         
-        let bulletSpeed = 30;
+        let bulletSpeed = 10;
         let bulletDelay = 20;
         let damage =1;
         let bulletX = this.position.x + this.width/2;
@@ -160,6 +179,7 @@ class Player extends Sprite{
            height: 67.5,
        }
        }
+    
     checkHorizontalCollisions(){
           //CHECAR SI HAY COLISIONES EN X
           for (let index = 0; index < this.bloquesDeColision.length; index++) {
@@ -217,8 +237,10 @@ class Player extends Sprite{
 
 
         }
-
-          //Agregar colisiones de disparos
+        if (!this.countdown) {
+            
+        
+          //Agregar colisiones con enemigos
           for (let index = 0; index < this.enemigos.length; index++) {
            
             const enemigo = this.enemigos[index] ;
@@ -229,14 +251,23 @@ class Player extends Sprite{
                 this.hitbox.position.y + (this.hitbox.height)>= enemigo.hitbox.position.y &&
                 this.hitbox.position.y <= enemigo.hitbox.position.y + enemigo.hitbox.height) {
                     
+                    if (!this.countdown) {
+                        
+                    console.log(this.countdown)
+                        
                     this.enemigos.splice(index, 1);
                     console.log("colision enemigo")
+                    playSound("hurt"); // Reproduce el sonido de dolor
+                    this.lives-=1
+                    this.countdown = true;
+                  
             
+                    }
             }
             
 
 
-        }
+        }}
     
 
     }
@@ -303,6 +334,9 @@ for (let index = 0; index < this.puertas.length; index++) {
 
 }
 
+if (!this.countdown) {
+    
+
 for (let index = 0; index < this.enemigos.length; index++) {
     const enemigo = this.enemigos[index] ;
 
@@ -312,14 +346,24 @@ for (let index = 0; index < this.enemigos.length; index++) {
         (this.hitbox.position.y) + (this.hitbox.height)>= enemigo.hitbox.position.y &&
         (this.hitbox.position.y) <= enemigo.hitbox.position.y + enemigo.hitbox.height) {
             
-            this.enemigos.splice(index, 1);
-            console.log("colision enemigo")
+             
+            if (!this.countdown) {
+               
+                console.log(this.countdown)
+                
+                this.enemigos.splice(index, 1);
+                playSound("hurt"); // Reproduce el sonido de dolor
+                this.lives-=1
+                this.countdown = true;
+            
+        
+                }
 
     }
     
 
 
-}
+}}
   }
   applyGravity(){
 //Sólo se aplica gravedad en Y porque es para que baje el objeto

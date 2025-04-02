@@ -9,17 +9,22 @@ class Bulletcontroller {
         
 let direccion = ""
 
-        if (keys.d.pressed) {
-            direccion = "derecha"
-        } else if (keys.a.pressed) {
-            direccion = "izquierda"  
-        } else if (keys.w.pressed) {
-                direccion = "arriba" 
-        } else {
-            direccion = "derecha" 
-        }
+
+if (keys.d.pressed) {
+    direccion = "derecha" 
+} else if (keys.a.pressed) {
+    direccion = "izquierda"  
+} else if (keys.w.pressed) {
+    direccion = "arriba" 
+} else {
+    player.lastDirection === "left" ? direccion = "izquierda"   : direccion = "derecha";
+}
+
 
         if (this.timeToNextBullet<=0) {
+            // Ejemplo de uso
+            playSound("shoot"); // Reproduce el sonido de sdisparo
+
             disparosJugador.push(new Bullet({
                 x: bulletX,
                 y: bulletY,
@@ -33,11 +38,11 @@ let direccion = ""
         this.timeToNextBullet--;
     }
     draw(context){
-        disparosJugador.forEach(element => {
+        disparosJugador.forEach((element, index) => {
             if (this.isBulletScreen(element)) {
-                disparosJugador.splice(index,1)
+                disparosJugador.splice(index, 1);
             }
-            element.draw(context)
+            element.draw(context);
         });
     }
 

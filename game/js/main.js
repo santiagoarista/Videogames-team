@@ -25,7 +25,7 @@ const bulletController = new Bulletcontroller(canvas)
 let enemigos =[
     new  Fantasma({
         //Pasamos los bloques que harán las colisiones con este objeto
-        health:3,
+        health:1,
         position: {x:100, y:300},
         bulletController: bulletController,
         frameRate: 4,
@@ -75,7 +75,7 @@ let enemigos =[
     }),
     new  Fantasma({
         //Pasamos los bloques que harán las colisiones con este objeto
-        health:3,
+        health:1,
         position: {x:600, y:500},
         bulletController: bulletController,
         frameRate: 4,
@@ -125,7 +125,7 @@ let enemigos =[
     }),
     new  Fantasma({
         //Pasamos los bloques que harán las colisiones con este objeto
-        health:3,
+        health:1,
         position: {x:600, y:100},
         bulletController: bulletController,
         frameRate: 4,
