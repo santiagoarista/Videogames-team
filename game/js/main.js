@@ -362,6 +362,7 @@ function animate(timeStamp) {
     player.update();
     player.draw();
     player.drawLives();
+    player.drawKeys();
     bulletController.draw(context);
     enemyBulletController.draw(context);
 
