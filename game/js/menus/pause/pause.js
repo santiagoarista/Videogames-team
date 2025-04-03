@@ -103,6 +103,7 @@ function drawPauseMenu() {
     context.shadowColor = "cyan"; //Efecto de letras neon
     context.shadowBlur = 15;
     context.fillText("Menú de Pausa", centerX, centerY - 180);
+    console.log(centerX, centerY)
 
     // Resetear efecto neon
     context.shadowBlur = 0;
@@ -113,6 +114,8 @@ function drawPauseMenu() {
     context.shadowBlur = 15;
     context.drawImage(playButton, buttonX, buttonY, buttonWidth, buttonHeight);
     context.drawImage(playButtonIcon, iconX, iconY, iconWidth, iconHeight);
+    console.log(buttonX, buttonY, 'BOTONES')
+    
 
     //Dibujar Exit Button
     context.drawImage(exitButton, exitX, exitY, exitWidth, exitHeight);
@@ -193,6 +196,7 @@ function drawSettingsMenu() {
     //Dibujar menú
     context.globalAplha = 1
     context.drawImage(pauseMenuImage, imgX, imgY, imgWidth, imgHeight);
+    console.log(imgX, imgY, 'BG')
 
     // Texto
     context.fillStyle = "white";
@@ -201,6 +205,8 @@ function drawSettingsMenu() {
     context.shadowColor = "cyan"; //Efecto de letras neon
     context.shadowBlur = 15;
     context.fillText("Configuración", centerX, centerY - 180);
+    console.log(canvas.height)
+    console.log(centerX, centerY, 'POSICIONES')
 
     // Dibujar Music Button
     context.shadowColor = "cyan"; //Efecto neon
@@ -238,6 +244,7 @@ function drawSettingsMenu() {
     context.fillRect(closeX + 60, closeY, 40, 40);
     context.fillStyle = "white";
     context.fillText("X", closeX + 81, closeY + 32);
+    console.log(closeX, closeY, 'X')
     
 }
 

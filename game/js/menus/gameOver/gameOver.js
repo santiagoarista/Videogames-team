@@ -31,10 +31,10 @@ function drawGameOverScreen() {
     context.fillStyle = "white";
     context.font = "70px Arcade Gamer"; 
     context.textAlign = "center";
-    context.textBaseline = "middle"; 
+    // context.textBaseline = "middle"; 
     context.shadowColor = "cyan"; //Efecto de letras neon
     context.shadowBlur = 15;
-    context.fillText("GAME OVER", canvas.width / 2, canvas.height / 4); 
+    context.fillText("GAME OVER", canvas.width / 2, canvas.height / 4 - 30); 
 
     // Dibujar botones
     drawButton(playX, playY, playWidth, playHeight, "Volver a Jugar", "black"); 
@@ -57,7 +57,7 @@ function drawButton(x, y, width, height, text, color) {
     // Dibujar el texto del botón
     context.fillStyle = "white";
     context.font = "20px Arcade Gamer";
-    context.fillText(text, x + width / 2, y + height / 2);
+    context.fillText(text, x + width / 2, y + height / 2 + 11);
 }
 
 canvas.addEventListener("click", (event) => {
