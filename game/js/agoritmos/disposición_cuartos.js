@@ -392,6 +392,9 @@ function generarLevels(listaNiveles) {
 
                 player.bloquesDeColision = bloquesColisiones;
                 player.puertas = puertas;
+                linterna.bloquesDeColision = bloquesColisiones;
+                botas.bloquesDeColision = bloquesColisiones;
+                asistente.bloquesDeColision = bloquesColisiones;
 
                 //-----------------------------------INSTANCIAS DE CLASES----------------------------
                 fondoCuarto = new Sprite({

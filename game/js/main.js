@@ -12,6 +12,7 @@ let listaCuartosAleatorios=[];
 let showMap = false;
 let llaves =[false,false,true,true,false,true,false,true,false,]
 let paused = false;
+let showLinterna = false;
 
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
@@ -67,6 +68,55 @@ const player = new Player({
     },
 })
 
+const asistente = new Asistente({
+    frameRate: 6,
+    imgResource: "../assets/characters/Slime2_Idle_full.png",
+    animations:{
+        idleRight:{
+            frameRate:6,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/IdleRight.png",
+            
+        },
+        idleLeft:{
+            frameRate:6,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
+        },
+        runRight:{
+            frameRate:8,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/Run.png",
+        },
+        runLeft:{
+            frameRate:8,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/RunLeft.png",
+        },
+        jumpRight:{
+            frameRate:9,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/Jump.png",
+            
+        },
+        jumpLeft:{
+            frameRate:9,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+            
+        },
+    },
+
+})
+
+const linterna = new Linterna({});
+const botas = new Botas({});
 
 
 // Tamaño de renderizado 16:9 NO MODIFICAR
@@ -166,6 +216,12 @@ function animate(){
     //Movimiento a alderecha o izquierda
 
 
+    //linterna.drawItem()
+    //linterna.update()
+    //botas.drawItem()
+    //botas.update()
+    //asistente.draw()
+    //asistente.update()
     player.draw()
     player.drawLives() //Dibujar vidas del jugador
     player.drawKeys() //Dibujar llaves
