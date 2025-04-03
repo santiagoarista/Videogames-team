@@ -400,7 +400,7 @@ function generarLevels(listaNiveles) {
                 //AGREGAR COLISIONES A PERSONAJES
             
                     //Enemigos agregar colsiones
-                 enemigos.forEach((enemigo, index) => {
+                    enemigos.forEach((enemigo, index) => {
                      enemigo.bloquesDeColision = bloquesColisiones
          
                  });

@@ -88,7 +88,10 @@ class Sprite {
     
         if (!value) {
             this.startBlinking(150); // Reiniciar parpadeo cuando countdown termina
+          
         }
+        this.visible = true;
     }
+    
     
 }

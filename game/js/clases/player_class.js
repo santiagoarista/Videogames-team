@@ -2,16 +2,18 @@
 class Player extends Sprite{
     constructor({
         countdown = false,
-
+        visible = true,
         bulletController,
         bloquesDeColision=[], 
         puertas=[], 
         imgResource, frameRate, animations}) 
         {
-        super({imgResource, frameRate, animations, countdown: countdown })
+        super({imgResource, frameRate, animations, countdown: countdown, visible: visible })
         //propiedades de la clase
+        
+        this.visible=true
         this.countodown = countdown
-        this.countdownDelay= 300;
+        this.countdownDelay= 50;
         this.bulletController = bulletController;
         //Posición en pantallaad
         this.position ={
@@ -40,7 +42,7 @@ class Player extends Sprite{
                   // Propiedades para el parpadeo
         this.blinking = false;
         this.blinkInterval = 100; // Tiempo entre parpadeos en milisegundos
-        this.blinkDuration = 2000; // Duración total del parpadeo en milisegundos
+        this.blinkDuration = 50; // Duración total del parpadeo en milisegundos
         this.blinkStartTime = null;
         this.keys = 0;
         this.keysImage = new Image();
@@ -83,17 +85,19 @@ class Player extends Sprite{
     }
     
     update(){
+        console.log(this.visible)
         //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
         if (this.countdown  ) {
+           
             if (this.countdownDelay>0) {
                 this.countdownDelay -=1;
             }else{
                 this.countdown = false;
-                this.countdownDelay =300;
+                this.countdownDelay =50;
+                this.visible = true
             }
-           
-
         }
+        
 
         context.fillStyle= "rgba(255, 153, 0, 0)";
         context.fillRect(this.position.x,this.position.y,this.width,this.height);
@@ -353,7 +357,9 @@ for (let index = 0; index < disparosEnemigos.length; index++) {
         playSound("hurt"); // Reproduce el sonido de dolor
         this.lives-=1
         this.countdown = true;
-    
+        if (this.lives<=0) {
+            gameOver = true; 
+        }
 
         }
 
@@ -369,10 +375,19 @@ for (let index = 0; index < disparosEnemigos.length; index++) {
         playSound("hurt"); // Reproduce el sonido de dolor
         this.lives-=1
         this.countdown = true;
-    
+        if (this.lives<=0) {
+            gameOver = true; 
+        }
 
         }
 
+  }
+
+  gameOver(){
+
+    if(this.lives<=0){
+        gameOver = true
+    }
   }
   applyGravity(){
 //Sólo se aplica gravedad en Y porque es para que baje el objeto
