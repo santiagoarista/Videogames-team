@@ -2,7 +2,7 @@
 class Player extends Sprite{
     constructor({
         countdown = false,
-        enemigos,
+
         bulletController,
         bloquesDeColision=[], 
         puertas=[], 
@@ -30,7 +30,7 @@ class Player extends Sprite{
         }
    
   
-        this.enemigos = enemigos;
+        
         this.gravity =0.8;
         this.bloquesDeColision = bloquesDeColision;
         this.puertas = puertas;
@@ -219,9 +219,9 @@ class Player extends Sprite{
             
         
           //Agregar colisiones con enemigos
-          for (let index = 0; index < this.enemigos.length; index++) {
+          for (let index = 0; index < enemigos.length; index++) {
            
-            const enemigo = this.enemigos[index] ;
+            const enemigo = enemigos[index] ;
 
             //Comprobar si hay colisiones 
             if (this.hitbox.position.x <= enemigo.hitbox.position.x +enemigo.hitbox.width &&
@@ -229,18 +229,7 @@ class Player extends Sprite{
                 this.hitbox.position.y + (this.hitbox.height)>= enemigo.hitbox.position.y &&
                 this.hitbox.position.y <= enemigo.hitbox.position.y + enemigo.hitbox.height) {
                     
-                    if (!this.countdown) {
-                        
-                    console.log(this.countdown)
-                        
-                    this.enemigos.splice(index, 1);
-                    console.log("colision enemigo")
-                    playSound("hurt"); // Reproduce el sonido de dolor
-                    this.lives-=1
-                    this.countdown = true;
-                  
-            
-                    }
+                    this.recibirDaño(index);
             }
             
 
@@ -315,33 +304,59 @@ for (let index = 0; index < this.puertas.length; index++) {
 if (!this.countdown) {
     
 
-for (let index = 0; index < this.enemigos.length; index++) {
-    const enemigo = this.enemigos[index] ;
+
+
+for (let index = 0; index < disparosEnemigos.length; index++) {
+    const bala = disparosEnemigos[index] ;
 
     //Comprobar si hay colisiones
-    if ((this.hitbox.position.x) <= enemigo.hitbox.position.x +enemigo.hitbox.width &&
-        (this.hitbox.position.x) + (this.hitbox.width)>= enemigo.hitbox.position.x &&
-        (this.hitbox.position.y) + (this.hitbox.height)>= enemigo.hitbox.position.y &&
-        (this.hitbox.position.y) <= enemigo.hitbox.position.y + enemigo.hitbox.height) {
+    if ((this.hitbox.position.x) <= bala.x +bala.width &&
+        (this.hitbox.position.x) + (this.hitbox.width)>= bala.x &&
+        (this.hitbox.position.y) + (this.hitbox.height)>= bala.y &&
+        (this.hitbox.position.y) <= bala.y + bala.height) {
             
-             
-            if (!this.countdown) {
-               
-                console.log(this.countdown)
-                
-                this.enemigos.splice(index, 1);
-                playSound("hurt"); // Reproduce el sonido de dolor
-                this.lives-=1
-                this.countdown = true;
             
-        
-                }
+             this.recibirDañoBalaEnemigo(index);
 
     }
     
 
 
-}}
+}
+
+
+}
+  }
+  recibirDaño(index){
+
+    if (!this.countdown) {
+               
+        console.log(this.countdown)
+        
+        enemigos.splice(index, 1);
+        playSound("hurt"); // Reproduce el sonido de dolor
+        this.lives-=1
+        this.countdown = true;
+    
+
+        }
+
+  }
+  
+  recibirDañoBalaEnemigo(index){
+
+    if (!this.countdown) {
+               
+        console.log(this.countdown)
+        
+        disparosEnemigos.splice(index, 1);
+        playSound("hurt"); // Reproduce el sonido de dolor
+        this.lives-=1
+        this.countdown = true;
+    
+
+        }
+
   }
   applyGravity(){
 //Sólo se aplica gravedad en Y porque es para que baje el objeto

@@ -126,6 +126,7 @@ let enemigos =[
     }),
     new  Fantasma({
         //Pasamos los bloques que harán las colisiones con este objeto
+
         health:1,
         position: {x:600, y:100},
         bulletController: bulletController,
@@ -176,12 +177,16 @@ let enemigos =[
     }),
     new  Ojo({
         //Pasamos los bloques que harán las colisiones con este objeto
-        estatico: true,
-        movimiento: "x",
-        umbralDisparo : 20,
-        direccionDisparo: "arriba",
-        umbralesMovimiento:[0,500],
-        health:1,
+        delayBala: 0.0001,
+        velocidadEnemigo: 10,
+        velocidadBala:20,
+      
+        estatico: false,
+        movimiento: "y",
+        umbralDisparo : 40,
+        direccionDisparo: "izquierda",
+        umbralesMovimiento:[0,700],
+        health:5,
         position: {x:600, y:576.48},
         enemyBulletController: enemyBulletController,
         frameBuffer: 16,
@@ -194,7 +199,7 @@ let enemigos =[
 
 const player = new Player({
     //Pasamos los bloques que harán las colisiones con este objeto
-    enemigos: enemigos,
+ 
     bulletController: bulletController,
     frameRate: 6,
     imgResource: "../../game/assets/characters/main_character/IdleRight.png",

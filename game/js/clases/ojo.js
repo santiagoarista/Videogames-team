@@ -2,6 +2,9 @@
 
 class Ojo extends Sprite{
     constructor({
+        velocidadBala =7,
+        delayBala =10,
+        velocidadEnemigo=1,
         estatico,
         umbralDisparo,
         umbralesMovimiento,
@@ -22,6 +25,9 @@ class Ojo extends Sprite{
         this.enemyBulletController = enemyBulletController;
         //Posición en pantallaad
         this.position =position
+        this.delayBala = delayBala,
+        this.velocidadBala = velocidadBala
+        this.velocidadEnemigo= velocidadBala
         this.direccion = 1
         this.velocity = {
             x:0,
@@ -33,6 +39,10 @@ class Ojo extends Sprite{
         this.sides = {
             bottom : this.position.y + this.height
         }
+        this.velocidadBala=velocidadBala,
+        this.delayBala=delayBala,
+        this.velocidadEnemigo=velocidadEnemigo,
+
         this.umbralDisparo = umbralDisparo
         this.direccionDisparo = direccionDisparo
         this.movimiento = movimiento
@@ -51,7 +61,7 @@ class Ojo extends Sprite{
     
     update(player) {
 
-    const velocidad = 0.8
+    const velocidad = this.velocidadEnemigo
     
         
     
@@ -59,8 +69,8 @@ class Ojo extends Sprite{
         
         
     if (Math.abs(player.position.x+30 - this.position.x) <= (this.umbralDisparo/2)*2) {
-        let bulletSpeed = 10;
-        let bulletDelay = 20;
+        let bulletSpeed = this.velocidadBala;
+        let bulletDelay = this.delayBala;
         let damage =1;
         let bulletX = this.position.x + this.width/2;
         let bulletY = this.position.y+21
@@ -93,8 +103,8 @@ class Ojo extends Sprite{
      
     }else if(this.movimiento == "y"){
         if (Math.abs(player.position.y+60 - this.position.y) <= this.umbralDisparo/2) {
-            let bulletSpeed = 5;
-            let bulletDelay = 10;
+            let bulletSpeed = this.velocidadBala;
+            let bulletDelay = this.delayBala;
             let damage =1;
             let bulletX = this.position.x + this.width/2;
             let bulletY = this.position.y+21
