@@ -40,6 +40,9 @@ window.addEventListener("keydown", (event)=>{
         
          //PAUSAR JUEGO 
         case "p":
+            if(gameOver){ 
+                break;
+            }
             paused = !paused; 
             if (!paused) {
                 animate(); //Volver a renderizar las animaciones cuando no esté en pausa
@@ -47,7 +50,13 @@ window.addEventListener("keydown", (event)=>{
             break; 
 
         case "g":
-                gameOver = !gameOver; //EXCLUSIVAMENTE PARA PRUEBAS
+            pause = false
+            gameOver = !gameOver
+            if (gameOver) {
+                drawGameOverScreen();
+            } else {
+                animate(); // Resume the game if gameOver is turned off
+            }
             break;
         
         case "s":

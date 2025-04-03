@@ -16,6 +16,7 @@ const exitGameHeight = 60;
 let exitGameX, exitGameY
 
 function drawGameOverScreen() {
+    if (!gameOver) return;
 
     //Posiciones
     playX = canvas.width / 2 - 150;
@@ -64,16 +65,21 @@ canvas.addEventListener("click", (event) => {
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
 
-    // Si settings no está abierto, actúa de acuerdo a pausa
-    if (gameOver) {
+    // Si gameOver está abierto
+    if (gameOver && !paused && !settingsOpen) {
+        paused = false
         if (
             mouseX >= playX &&
             mouseX <= playX + playWidth &&
             mouseY >= playY &&
-            mouseY <= playY + playHeight
+            mouseY <= playY + playHeight &&
+            gameOver
         ) {
             console.log('Play again...')
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
             gameOver = false; 
+            paused = false;
             // Reset Player
             player.lives = 3; // Reiniciar vidas
             player.position = { x: 100, y: 100 }; // Reiniciar posición inicial para que parezca que cae en el cuarto spawn
@@ -94,7 +100,8 @@ canvas.addEventListener("click", (event) => {
             mouseX >= exitGameX &&
             mouseX <= exitGameX + exitGameWidth &&
             mouseY >= exitGameY &&
-            mouseY <= exitGameY + exitGameHeight
+            mouseY <= exitGameY + exitGameHeight &&
+            gameOver
         ) {
             console.log("Salir al Menú...");
             window.location.href = "principal_menu.html"; // Redirige a la página del menú

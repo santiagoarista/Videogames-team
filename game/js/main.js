@@ -115,15 +115,16 @@ const overlay = {
 //LOOP DE ANIMACIÓN
 function animate(){
 
+    //Game Over Pantalla
+    if (gameOver) {
+            drawGameOverScreen(); //Todo lo relacionado a gameOver está en gameOver.js
+            return;
+        }
+    
     //Pausar Juego
     if (paused){
         drawPauseMenu(); //Todo lo relacionado a pausa y ajustes está en pause.js
         return 
-    }
-    //Game Over Pantalla
-    if (gameOver) {
-        drawGameOverScreen(); //Todo lo relacionado a gameOver está en gameOver.js
-        return;
     }
 
 //BPORRA EL FRAME ANTERIOR PARA DIBUJAR UNO NUEVO

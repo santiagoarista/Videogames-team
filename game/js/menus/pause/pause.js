@@ -52,6 +52,7 @@ let settingsX, settingsY;
 
 //Menú de pausa
 function drawPauseMenu() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
     
     //Menú
     const imgWidth = 600;
@@ -88,12 +89,11 @@ function drawPauseMenu() {
     const exitIconY = exitY + (exitHeight - exitIconHeight) / 2 + 8;
 
     //Dibujar BG
-    context.globalAplha = 0.09
     context.fillStyle = "black";
     context.fillRect(0,0, canvas.width, canvas.height);
 
     //Dibujar menú
-    context.globalAplha = 1
+    context.globalAlpha = 1
     context.drawImage(pauseMenuImage, imgX, imgY, imgWidth, imgHeight);
 
     // Texto
@@ -147,6 +147,8 @@ let effectsX, effectsY;
 //Menú de Ajustes
 function drawSettingsMenu() {
     if (!settingsOpen) return;
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
     
     //Para Exit "X"
     const menuWidth = 500;
@@ -247,7 +249,7 @@ canvas.addEventListener("click", (event) => {
     const mouseY = event.clientY - rect.top;
 
     // Si settings no está abierto, actúa de acuerdo a pausa
-    if (!settingsOpen) {
+    if (!settingsOpen && paused) {
         if (
             mouseX >= buttonX &&
             mouseX <= buttonX + buttonWidth &&
@@ -277,11 +279,12 @@ canvas.addEventListener("click", (event) => {
             mouseY <= exitY + exitHeight
         ) {
             // Acción de Salir
-            console.log("Exit");
+            console.log("Salir al Menú...");
+            window.location.href = "principal_menu.html"; // Redirige a la página del menú
         }
     } 
     // Si settings está abierto
-    else {
+    else if (settingsOpen){
         const menuWidth = 500;
         const menuHeight = 350;
         const menuX = canvas.width / 2 - menuWidth / 2;
