@@ -14,7 +14,7 @@ let llaves =[false,false,true,true,false,true,false,true,false,]
 let paused = false;
 let disparosJugador=[]
 let disparosEnemigos=[]
-
+let gameOver = false;
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
 
@@ -295,11 +295,17 @@ const overlay = {
     opacity: 0,
 }
 let lastTime = 0; // Para almacenar el tiempo del último frame
-
 function animate(timeStamp) {
-    if (paused) {
-        drawPauseMenu();
-        return;
+ //Game Over Pantalla
+    if (gameOver) {
+            drawGameOverScreen(); //Todo lo relacionado a gameOver está en gameOver.js
+            return;
+        }
+    
+    //Pausar Juego
+    if (paused){
+        drawPauseMenu(); //Todo lo relacionado a pausa y ajustes está en pause.js
+        return 
     }
 
     requestAnimationFrame(animate);
@@ -343,8 +349,7 @@ function animate(timeStamp) {
         player.switchSprite(player.lastDirection === "left" ? "idleLeft" : "idleRight");
     }
 
-
-    //Enemigos
+      //Enemigos
     enemigos.forEach((enemigo, index) => {
         enemigo.index = index; // Asigna el índice del array al enemigo
         enemigo.velocity.x = 0;
@@ -359,6 +364,8 @@ function animate(timeStamp) {
     player.drawLives();
     bulletController.draw(context);
     enemyBulletController.draw(context);
+
+
 
 
 
