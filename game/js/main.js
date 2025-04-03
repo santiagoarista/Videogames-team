@@ -12,6 +12,7 @@ let listaCuartosAleatorios=[];
 let showMap = false;
 let llaves =[false,false,true,true,false,true,false,true,false,]
 let paused = false;
+let gameOver = false;
 
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
@@ -116,8 +117,13 @@ function animate(){
 
     //Pausar Juego
     if (paused){
-        drawPauseMenu(); //Todo lo relacionado a pausa está en pause.js
+        drawPauseMenu(); //Todo lo relacionado a pausa y ajustes está en pause.js
         return 
+    }
+    //Game Over Pantalla
+    if (gameOver) {
+        drawGameOverScreen(); //Todo lo relacionado a gameOver está en gameOver.js
+        return;
     }
 
 //BPORRA EL FRAME ANTERIOR PARA DIBUJAR UNO NUEVO

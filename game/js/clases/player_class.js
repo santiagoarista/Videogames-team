@@ -45,7 +45,7 @@ class Player extends Sprite{
     decreaseLives() {
         this.lives -= 1;
         if (this.lives <= 0) {
-            this.gameOver();
+            gameOver = true; //Game Over si hay 0 vidas o menos
         }
     }
 

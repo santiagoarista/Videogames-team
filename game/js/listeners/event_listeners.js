@@ -44,9 +44,11 @@ window.addEventListener("keydown", (event)=>{
             if (!paused) {
                 animate(); //Volver a renderizar las animaciones cuando no esté en pausa
             }
+            break; 
+
+        case "g":
+                gameOver = !gameOver; //EXCLUSIVAMENTE PARA PRUEBAS
             break;
-  
-        
         
         case "s":
         
