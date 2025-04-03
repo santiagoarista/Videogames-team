@@ -86,12 +86,130 @@ canvas.addEventListener("click", (event) => {
 
             // Reiniciar el estado del juego
             currentLevel = 8; // Volver al cuarto spawn
-            //Generar nueva disposición de cuartos
-            listaCuartosAleatorios = generarLevels(crear_disposicion_cuartos()); 
+            
+            //Generar nueva disposición de cuartos 
+            console.log('...........')
+
+cuartoJefeFinal = new Cuarto(
+    
+    {idCuarto : 9,
+    cuartoSpawn : false,
+    cuartoJefeFinal : true,
+    posicionJugadorSuperior : {x: 562, y: 30},
+    posicionJugadorInferior :  {x: 641, y: 720},
+    posicionJugadorIzquierda :{x: 97, y: 670},
+    posicionJugadorDerecha :  {x: 1220, y: 235},
+    colisiones:level_cuarto_final_boss,
+    imgBackground: "../../game/assets/niveles_fondo/mapa_jefe_final.png"
+
+})
+
+ cuartoSpawn = new Cuarto(
+
+    {idCuarto : 8,
+    cuartoSpawn : true,
+    cuartoJefeFinal : false,
+    posicionJugadorSuperior : {x: 514, y: 56},
+    posicionJugadorInferior : {x: 641, y: 720},
+    posicionJugadorIzquierda :{x: 97, y: 670},
+    posicionJugadorDerecha :  {x: 1220, y: 235},
+    colisiones:level_cuarto_spawn,
+    imgBackground: "../../game/assets/niveles_fondo/cuarto_spawn.png"
+})
+cuarto1 = new Cuarto(
+
+    {idCuarto : 1,
+    cuartoSpawn : false,
+    cuartoJefeFinal : false,
+    posicionJugadorSuperior : {x: 106, y: 82},
+    posicionJugadorInferior : {x: 520, y: 665},
+    posicionJugadorIzquierda :{x: 90, y: 691},
+    posicionJugadorDerecha :  {x: 1220, y: 691},
+    colisiones:level_cuarto1,
+    imgBackground: "../../game/assets/niveles_fondo/Scene1.png"
+    
+})
+
+cuarto2 = new Cuarto(
+
+    {idCuarto : 2,
+    cuartoSpawn : false,
+    cuartoJefeFinal : false,
+     
+    posicionJugadorSuperior : {x: 687, y: 150},
+    posicionJugadorInferior : {x: 449, y: 680},
+    posicionJugadorIzquierda :{x: 140, y: 242},
+    posicionJugadorDerecha :  {x: 1120, y: 247},
+     
+    colisiones:level_cuarto2,
+    imgBackground: "../../game/assets/niveles_fondo/Scene2.png"
+})
+
+ cuarto3 = new Cuarto(
+    {idCuarto : 3,
+    cuartoSpawn : false,
+    cuartoJefeFinal : false,
+  
+    posicionJugadorSuperior : {x: 672, y: 182},
+    posicionJugadorInferior : {x: 927, y: 670},
+    posicionJugadorIzquierda :{x: 191, y: 270},
+    posicionJugadorDerecha :  {x: 1220, y: 691},
+     
+    colisiones:level_cuarto3,
+    imgBackground: "../../game/assets/niveles_fondo/Scene3.png"
+})
+
+cuarto4 = new Cuarto(
+    {idCuarto : 4,
+    cuartoSpawn : false,
+    cuartoJefeFinal : false,
+    posicionJugadorSuperior : {x: 544, y: 30},
+    posicionJugadorInferior : {x: 496, y: 670},
+    posicionJugadorIzquierda :{x: 97, y: 670},
+    posicionJugadorDerecha :  {x: 1120, y: 235},
+    colisiones:colisionesNivel4,
+    imgBackground: "../../game/assets/niveles_fondo/cuarto_giff.gif"
+})
+cuarto5 = new Cuarto(
+    {idCuarto : 5,
+    cuartoSpawn : false,
+    cuartoJefeFinal : false,
+    posicionJugadorSuperior : {x: 608, y: 171},
+    posicionJugadorInferior : {x: 286, y: 690},
+    posicionJugadorIzquierda :{x: 90, y: 371}, 
+    posicionJugadorDerecha :  {x: 1220, y: 691},
+    colisiones:level_cuarto5,
+    imgBackground: "../../game/assets/niveles_fondo/Scene4.png"
+})
+cuarto6 = new Cuarto(
+    {idCuarto : 6,
+    cuartoSpawn : false,
+    cuartoJefeFinal : false,
+    posicionJugadorSuperior : {x: 673, y: 110},
+    posicionJugadorInferior : {x: 560, y: 670},
+    posicionJugadorIzquierda :{x: 89, y: 674},
+    posicionJugadorDerecha :  {x: 1220, y: 674},
+    colisiones:level_cuarto6,
+    imgBackground: "../../game/assets/niveles_fondo/Scene5.png"
+})
+ cuarto7 = new Cuarto(
+    {idCuarto : 7,
+    cuartoSpawn : false,
+    cuartoJefeFinal : false,
+    posicionJugadorSuperior : {x: 674, y: 175},
+    posicionJugadorInferior : {x: 560, y: 670},
+    posicionJugadorIzquierda :{x: 90, y: 674},
+    posicionJugadorDerecha :  {x: 1250, y: 674},
+    colisiones:level_cuarto7,
+    imgBackground: "../../game/assets/niveles_fondo/Scene6.png"
+})
+
+            console.log(cuarto1.conexionDerecha)
             cuartos = generarLevels(crear_disposicion_cuartos()); 
+            console.log(cuarto1.conexionDerecha)
 
             // Reset Level
-            cuartos[currentLevel].init(); // Reinitialize the level
+
             animate(); // Play
         }
 

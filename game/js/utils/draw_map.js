@@ -23,6 +23,7 @@ function drawMap(cuartosAleatorios) {
     //Texto del Titulo
     context.font = "60px Arcade Gamer";  // Tamaño y fuente del texto
     context.fillStyle = "white";  // Color del texto
+    context.textAlign = 'start'; 
     context.shadowColor = "white";
     context.shadowBlur = 15;
     context.fillText("Mapa", canvas.width/2 -100, 200);  // Texto y posición (x, y)

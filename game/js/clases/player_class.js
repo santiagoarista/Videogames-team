@@ -62,6 +62,7 @@ class Player extends Sprite{
         context.shadowBlur = 15;
         context.drawImage(this.keysImage, 300, 10, 30, 60);
         context.font = "40px Arcade Gamer";  // Tamaño y fuente del texto
+        context.textAlign = 'start'
         context.fillStyle = "white";  // Color del texto
         context.fillText(this.keys, 350, 60);  // Texto y posición (x, y)
         context.shadowColor = "transparent";
