@@ -354,18 +354,28 @@ function animate(timeStamp) {
         enemigo.index = index; // Asigna el índice del array al enemigo
         enemigo.velocity.x = 0;
         enemigo.update(player);
+        context.shadowColor = "cyan"; // Neon effect
+        context.shadowBlur = 10;
         enemigo.draw();
+        context.shadowBlur = 0;
+        context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
     });
+
 
 
     // Actualizar y dibujar el jugador
     player.update();
+    context.shadowColor = "white"; // Neon effect
+    context.shadowBlur = 10;
     player.draw();
     player.drawLives();
     player.drawKeys();
+    context.shadowColor = "white"; // Neon effect
+    context.shadowBlur = 10;
     bulletController.draw(context);
     enemyBulletController.draw(context);
-
+    context.shadowBlur = 0;
+    context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
 
 
 
