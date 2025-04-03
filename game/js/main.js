@@ -12,16 +12,195 @@ let listaCuartosAleatorios=[];
 let showMap = false;
 let llaves =[false,false,true,true,false,true,false,true,false,]
 let paused = false;
+let disparosJugador=[]
+let disparosEnemigos=[]
 let gameOver = false;
-
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
 
-
+const bulletController = new Bulletcontroller(canvas)
 //Esta clase esta en la carpeta de clases>player_class
+const enemyBulletController = new EnemyBulletcontroller(canvas)
+//Esta clase esta en la carpeta de clases>player_class
+
+let enemigos =[
+    new  Fantasma({
+        //Pasamos los bloques que harán las colisiones con este objeto
+        health:1,
+        position: {x:100, y:300},
+        bulletController: bulletController,
+        frameRate: 4,
+        imgResource: "../../game/assets/characters/enemies/ghost/Ghost_Walk_left.png",
+        animations:{
+            idleRight:{
+                frameRate:6,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/IdleRight.png",
+                
+            },
+            idleLeft:{
+                frameRate:6,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
+            },
+            runRight:{
+                frameRate:8,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/Run.png",
+            },
+            runLeft:{
+                frameRate:8,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/RunLeft.png",
+            },
+            jumpRight:{
+                frameRate:9,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/Jump.png",
+                
+            },
+            jumpLeft:{
+                frameRate:9,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+                
+            },
+    
+        },
+    }),
+    new  Fantasma({
+        //Pasamos los bloques que harán las colisiones con este objeto
+        health:1,
+        position: {x:600, y:500},
+        bulletController: bulletController,
+        frameRate: 4,
+        imgResource: "../../game/assets/characters/enemies/ghost/Ghost_Walk_left.png",
+        animations:{
+            idleRight:{
+                frameRate:6,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/IdleRight.png",
+                
+            },
+            idleLeft:{
+                frameRate:6,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
+            },
+            runRight:{
+                frameRate:8,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/Run.png",
+            },
+            runLeft:{
+                frameRate:8,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/RunLeft.png",
+            },
+            jumpRight:{
+                frameRate:9,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/Jump.png",
+                
+            },
+            jumpLeft:{
+                frameRate:9,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+                
+            },
+    
+        },
+    }),
+    new  Fantasma({
+        //Pasamos los bloques que harán las colisiones con este objeto
+
+        health:1,
+        position: {x:600, y:100},
+        bulletController: bulletController,
+        frameRate: 4,
+        imgResource: "../../game/assets/characters/enemies/ghost/Ghost_Walk_left.png",
+        animations:{
+            idleRight:{
+                frameRate:6,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/IdleRight.png",
+                
+            },
+            idleLeft:{
+                frameRate:6,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
+            },
+            runRight:{
+                frameRate:8,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/Run.png",
+            },
+            runLeft:{
+                frameRate:8,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/RunLeft.png",
+            },
+            jumpRight:{
+                frameRate:9,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/Jump.png",
+                
+            },
+            jumpLeft:{
+                frameRate:9,
+                frameBuffer:4,
+                loop :true,
+                imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+                
+            },
+    
+        },
+    }),
+    new  Ojo({
+        //Pasamos los bloques que harán las colisiones con este objeto
+        delayBala: 0.0001,
+        velocidadEnemigo: 10,
+        velocidadBala:20,
+      
+        estatico: false,
+        movimiento: "y",
+        umbralDisparo : 40,
+        direccionDisparo: "izquierda",
+        umbralesMovimiento:[0,700],
+        health:5,
+        position: {x:600, y:576.48},
+        enemyBulletController: enemyBulletController,
+        frameBuffer: 16,
+        frameRate: 4,
+        imgResource: "../../game/assets/characters/enemies/jack/jack.png",
+
+    })
+]
+
+
 const player = new Player({
     //Pasamos los bloques que harán las colisiones con este objeto
-    
+ 
+    bulletController: bulletController,
     frameRate: 6,
     imgResource: "../../game/assets/characters/main_character/IdleRight.png",
     animations:{
@@ -70,6 +249,7 @@ const player = new Player({
 
 
 
+
 // Tamaño de renderizado 16:9 NO MODIFICAR
 canvas.width = 1344;
 canvas.height = 768;
@@ -96,6 +276,9 @@ class Puerta extends Sprite{
 //let buttom = y-100;
 
 const keys = {
+    k:{
+        pressed: false
+    },
     w:{
         pressed: false
     },
@@ -111,11 +294,9 @@ const keys = {
 const overlay = {
     opacity: 0,
 }
-
-//LOOP DE ANIMACIÓN
-function animate(){
-
-    //Game Over Pantalla
+let lastTime = 0; // Para almacenar el tiempo del último frame
+function animate(timeStamp) {
+ //Game Over Pantalla
     if (gameOver) {
             drawGameOverScreen(); //Todo lo relacionado a gameOver está en gameOver.js
             return;
@@ -127,71 +308,82 @@ function animate(){
         return 
     }
 
-//BPORRA EL FRAME ANTERIOR PARA DIBUJAR UNO NUEVO
-    window.requestAnimationFrame(animate);
-    //Se dibuja el canvas básico
+    requestAnimationFrame(animate);
+
+    // Calcular delta time (tiempo transcurrido en segundos)
+    const deltaTime = (timeStamp - lastTime) / 1000;
+    lastTime = timeStamp;
+
+    // Limpiar el canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Dibujar el fondo
     fondoCuarto.draw();
-    bloquesColisiones.forEach((bloqueColisiones)=>{
+
+    // Dibujar colisiones
+    bloquesColisiones.forEach((bloqueColisiones) => {
         bloqueColisiones.draw();
-    })
+    });
 
-    //DIBUJAR LAS SALIDAS DEL MAPA
-    puertas.forEach((puerta)=>{
+    // Dibujar puertas
+    puertas.forEach((puerta) => {
         puerta.draw();
-    })
+    });
 
-
-
-    //Movimiento a alderecha o izquierda, y velocidad que toma
-    //Poner animaciones dependiendo de la dirección y movimineto
-    player.velocity.x=0;
-
-    if (keys.d.pressed) {
-        //Hacer cambiar de animacón
-        player.switchSprite("runRight")
-        //Hacer movimiento
-        player.velocity.x =3;
-        player.lastDirection = "right"
-    }else if(keys.a.pressed)
-        {
-            player.switchSprite("runLeft")
-            player.velocity.x = -3
-            player.lastDirection = "left"
-        }
-    else if (keys.w.pressed) {
-            //Hacer cambiar de animacón
-            player.switchSprite("jumpRight")
-        
-        }
-    else{
-        if(player.lastDirection ==="left"){
-            player.switchSprite("idleLeft")
-        }else{
-            player.switchSprite("idleRight")
-        }
-    }
-    //Movimiento a alderecha o izquierda
-
-
-    player.draw()
-    player.drawLives() //Dibujar vidas del jugador
-    player.drawKeys() //Dibujar llaves
-    player.update()
+    // Movimiento del jugador con deltaTime
+    player.velocity.x = 0;
+    const speed = 200; // Velocidad en píxeles por segundo
     
 
-    //Pantalla negra de cambio de nivel
+    if (keys.d.pressed) {
+        player.switchSprite("runRight");
+        player.velocity.x = speed * deltaTime;
+        player.lastDirection = "right";
+    } else if (keys.a.pressed) {
+        player.switchSprite("runLeft");
+        player.velocity.x = -speed * deltaTime;
+        player.lastDirection = "left";
+    } else if (keys.w.pressed) {
+        player.switchSprite("jumpRight");
+    } else {
+        player.switchSprite(player.lastDirection === "left" ? "idleLeft" : "idleRight");
+    }
+
+      //Enemigos
+    enemigos.forEach((enemigo, index) => {
+        enemigo.index = index; // Asigna el índice del array al enemigo
+        enemigo.velocity.x = 0;
+        enemigo.update(player);
+        enemigo.draw();
+    });
+
+
+    // Actualizar y dibujar el jugador
+    player.update();
+    player.draw();
+    player.drawLives();
+    bulletController.draw(context);
+    enemyBulletController.draw(context);
+
+
+
+
+
+    // Dibujar pantalla de cambio de nivel
     context.save();
-    context.globalAlpha =overlay.opacity;
+    context.globalAlpha = overlay.opacity;
     context.fillStyle = "black";
-    context.fillRect(0,0,canvas.width,canvas.height);
+    context.fillRect(0, 0, canvas.width, canvas.height);
     context.restore();
 
     if (showMap) {
         drawMap(listaCuartosAleatorios);
     }
 }
+
+
 cuartos[currentLevel].init();
 //console.log(listaCuartosAleatorios)
-animate();
+requestAnimationFrame(animate);
 
 

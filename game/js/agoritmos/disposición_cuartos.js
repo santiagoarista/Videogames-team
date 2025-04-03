@@ -397,7 +397,17 @@ function generarLevels(listaNiveles) {
                 colisionesConvertidas = cuarto.colisiones.parse2D();
                 // Convertir la matriz de listas a una lista de clases de BloqueColision
                 bloquesColisiones = colisionesConvertidas.creatObjectsFrom2d();
+                //AGREGAR COLISIONES A PERSONAJES
+            
+                    //Enemigos agregar colsiones
+                 enemigos.forEach((enemigo, index) => {
+                     enemigo.bloquesDeColision = bloquesColisiones
+         
+                 });
 
+
+
+                
                 player.bloquesDeColision = bloquesColisiones;
                 player.puertas = puertas;
 
