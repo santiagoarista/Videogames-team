@@ -110,12 +110,17 @@ class Player extends Sprite{
         //EFECTO DE GRAVEDAD, aumenta o disminuye los movimientos de pixeles en y, arriba abajo
         this.applyGravity();
 
+        context.shadowColor = "cyan"; // Neon effect
+        context.shadowBlur = 15;
 
-        //aCTUALIZACIÓN DE HITBOX EN 2 PUNTOS
         this.updateHitbox();
-        context.fillStyle= "rgba(0, 0, 255, 0.89)";
-        context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
-        //Cpmrprobar si hay colisiones en Y
+
+        context.fillStyle = "rgba(0, 0, 0, 0.01)"; // Fully transparent fill
+        context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height);
+
+        // Reset shadow effects
+        context.shadowBlur = 0;
+        context.shadowColor = "transparent";
         this.checkVerticalCollisions();
         this.shoot()
 
