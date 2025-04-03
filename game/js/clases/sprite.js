@@ -1,6 +1,6 @@
 class Sprite {
     constructor({
-        position, imgResource, frameRate = 1, animations, loop = true, autoplay = true, blinkRate =150, countdown = false
+        position, imgResource, frameRate = 1,frameBuffer = 8,  animations, loop = true, autoplay = true, blinkRate =150, countdown = false
     }) {
         this.position = position;
         this.image = new Image();
@@ -15,7 +15,7 @@ class Sprite {
         this.frameRate = frameRate;
         this.currentFrame = 0;
         this.elapsedFrames = 0;
-        this.frameBuffer = 8;
+        this.frameBuffer = frameBuffer
         this.animations = animations;
         this.loop = loop;
         this.autoplay = autoplay;

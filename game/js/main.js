@@ -13,14 +13,15 @@ let showMap = false;
 let llaves =[false,false,true,true,false,true,false,true,false,]
 let paused = false;
 let disparosJugador=[]
-
+let disparosEnemigos=[]
 
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
 
 const bulletController = new Bulletcontroller(canvas)
 //Esta clase esta en la carpeta de clases>player_class
-
+const enemyBulletController = new EnemyBulletcontroller(canvas)
+//Esta clase esta en la carpeta de clases>player_class
 
 let enemigos =[
     new  Fantasma({
@@ -172,6 +173,21 @@ let enemigos =[
             },
     
         },
+    }),
+    new  Ojo({
+        //Pasamos los bloques que harán las colisiones con este objeto
+        estatico: true,
+        movimiento: "x",
+        umbralDisparo : 20,
+        direccionDisparo: "arriba",
+        umbralesMovimiento:[0,500],
+        health:1,
+        position: {x:600, y:576.48},
+        enemyBulletController: enemyBulletController,
+        frameBuffer: 16,
+        frameRate: 4,
+        imgResource: "../../game/assets/characters/enemies/jack/jack.png",
+
     })
 ]
 
@@ -337,7 +353,7 @@ function animate(timeStamp) {
     player.draw();
     player.drawLives();
     bulletController.draw(context);
-
+    enemyBulletController.draw(context);
 
 
 
