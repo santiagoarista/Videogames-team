@@ -19,21 +19,21 @@ Equipo Ghostbusters
    - [Pantallas](#Pantallas)
    - [Controles](#Controles)
    - [Mecánicas](#Mecánicas)
-1. [Diseño de Nivel](#diseño-de-niveles)
+1. [Diseño de Nivel](#Diseño-de-niveles)
    1. [Temas](#temas)
       1. Ambiente
       2. Objetos
          1. Ambientales
          2. Interactivos
       3. Desafíos
-   2. [Flujo del Juego](#flujo-del-juego)
+   2. [Flujo del Juego](#Flujo-del-juego)
 1. [Desarrollo](#Desarrollo)
    1. [Clases Abstractas](#clases-abstractas--componentes)
    2. [Clases Derivadas](#clases-derivadas--composiciones-de-componentes)
 1. [Gráficos](#gráficos)
    1. [Atributos de Estilo](#atributos-de-estilo)
    2. [Gráficos Necesarios](#gráficos-necesarios)
-1. [Sonidos/Música](#sonidosmúsica)
+1. [Sonidos/Música](#SonidosMúsica)
    1. [Atributos de Estilo](#atributos-de-estilo-1)
    2. [Sonidos Necesarios](#sonidos-necesarios)
    3. [Música Necesaria](#música-necesaria)
@@ -146,50 +146,17 @@ En el videojuego tenemos assets inspirados por mounestros de la literatura clás
 
         | ![](assets/bullets/Laser%20Sprites/15.png) |
 
-2.  Assets de sonido
+### **Flujo de juego**
 
-    **Música**
-    La música del videojuego tiene que estar inspirada en música de hallowen
-
-    1. Los assets musicales que utilizamos incluyen tres pistas, ya que en el videojuego habrá tres momentos musicalizados. Estos momentos son:
-       1. Pantalla de titulos (inicio): "Beetlejuice Beetlejuice Soundtrack | Main Title Theme - Danny Elfman "
-          [Title Screen Music](https://www.youtube.com/watch?v=C9vv3-AYxkw)
-       2. Cuartos normales: "Goosebumps · Danny Elfman"
-          [Regular Rooms Music](https://www.youtube.com/watch?v=ztnifjaFDxQ)
-       3. Cuarto del jefe final: "Spooky, Scary Skeletons (Undead Tombstone Remix) · Andrew Gold"
-          [Final Boss room Music](https://www.youtube.com/watch?v=UWR4aTdMbzw)
-
-## _Gráficos_
-
-### **Atributos de estilo**
-
-1. Colores neón vibrantes sobre fondos oscuros, creando un fuerte contraste.
-2. Efectos de partículas intensos con iluminación.
-3. Diseño minimalista pero estilizado, con formas geométricas y siluetas definidas.
-4. Ambiente distópico con elementos sobrenaturales de Halloween.
-5. Uso de formas con degradado para simular iluminación.
-
-**Personajes**
-
-1. Personaje principal (Lista completa de assets -> [Main Character](https://github.com/santiagoarista/Videogames-team/tree/main/assets/character/main_character) )
-
-   ![](assets/character/main_character/Run.png)
-   ![](assets/character/main_character/Jump.png)
-   ![](assets/character/main_character/Attack_1.png)
-
-2. Borradores de los cuartos
-
-   1. Cuartos:
-      -Jefe final
-      ![](sketches/cuartos/cuarto_jefeFinal_skecth.png)
-      -Spawn
-      ![](sketches/cuartos/cuarto_spawn_sketch.png)
-
-   2. Otras pantallas dentro del juego:
-      -Panralla de pausa
-      ![](sketches/pantallas/pause_screen.png)
-      -Pantalla de mapa
-      ![](sketches/pantallas/map_screen.png)
+1. El jugador comienza en la sala de reaparición.
+2. En esa sala, el jugador puede encontrar tres armas para usar, pero al principio o después de reaparecer, solo podrá usar la primera (se enseñan los "controles de movimiento").
+3. Hay cuatro salidas abiertas en esa sala, el jugador puede ir hacia cualquier dirección que desee.
+4. En cualquiera de las habitaciones en las que el jugador decida entrar, un grupo de enemigos dentro comenzará a atacarlo.
+5. El jugador dispara a los enemigos para eliminarlos.
+6. El último enemigo que el jugador derrote soltará una llave que el jugador debe recoger.
+7. Luego, el jugador debe continuar hacia la siguiente habitación que decida explorar.
+8. Algunos monstruos otorgarán un ítem al jugador para facilitar el juego, el cual solo se puede recoger una vez. El jugador puede tener estos ítems permanentemente.
+9. Eventualmente, el jugador encontrará la puerta al jefe final, pero debe recolectar las ocho llaves para poder entrar.
 
 ---
 
@@ -373,15 +340,48 @@ En el videojuego tenemos assets inspirados por mounestros de la literatura clás
          3. Murcielagos
          4. Llaves
          5. Itemas recogibles con ayudas al jugafor como doble salto, asistente, linterna
+        
+## _Gráficos_
 
-### **Flujo de juego**
+### **Atributos de estilo**
 
-1. El jugador comienza en la sala de reaparición.
-2. En esa sala, el jugador puede encontrar tres armas para usar, pero al principio o después de reaparecer, solo podrá usar la primera (se enseñan los "controles de movimiento").
-3. Hay cuatro salidas abiertas en esa sala, el jugador puede ir hacia cualquier dirección que desee.
-4. En cualquiera de las habitaciones en las que el jugador decida entrar, un grupo de enemigos dentro comenzará a atacarlo.
-5. El jugador dispara a los enemigos para eliminarlos.
-6. El último enemigo que el jugador derrote soltará una llave que el jugador debe recoger.
-7. Luego, el jugador debe continuar hacia la siguiente habitación que decida explorar.
-8. Algunos monstruos otorgarán un ítem al jugador para facilitar el juego, el cual solo se puede recoger una vez. El jugador puede tener estos ítems permanentemente.
-9. Eventualmente, el jugador encontrará la puerta al jefe final, pero debe recolectar las ocho llaves para poder entrar.
+1. Colores neón vibrantes sobre fondos oscuros, creando un fuerte contraste.
+2. Efectos de partículas intensos con iluminación.
+3. Diseño minimalista pero estilizado, con formas geométricas y siluetas definidas.
+4. Ambiente distópico con elementos sobrenaturales de Halloween.
+5. Uso de formas con degradado para simular iluminación.
+
+**Personajes**
+
+1. Personaje principal (Lista completa de assets -> [Main Character](https://github.com/santiagoarista/Videogames-team/tree/main/assets/character/main_character) )
+
+   ![](assets/character/main_character/Run.png)
+   ![](assets/character/main_character/Jump.png)
+   ![](assets/character/main_character/Attack_1.png)
+
+2. Borradores de los cuartos
+
+   1. Cuartos:
+      -Jefe final
+      ![](sketches/cuartos/cuarto_jefeFinal_skecth.png)
+      -Spawn
+      ![](sketches/cuartos/cuarto_spawn_sketch.png)
+
+   2. Otras pantallas dentro del juego:
+      -Panralla de pausa
+      ![](sketches/pantallas/pause_screen.png)
+      -Pantalla de mapa
+      ![](sketches/pantallas/map_screen.png)
+
+
+
+**Sonidos/Música**
+La música del videojuego tiene que estar inspirada en música de hallowen
+
+1. Los assets musicales que utilizamos incluyen tres pistas, ya que en el videojuego habrá tres momentos musicalizados. Estos momentos son:
+   1. Pantalla de titulos (inicio): "Beetlejuice Beetlejuice Soundtrack | Main Title Theme - Danny Elfman "
+          [Title Screen Music](https://www.youtube.com/watch?v=C9vv3-AYxkw)
+   2. Cuartos normales: "Goosebumps · Danny Elfman"
+          [Regular Rooms Music](https://www.youtube.com/watch?v=ztnifjaFDxQ)
+   3. Cuarto del jefe final: "Spooky, Scary Skeletons (Undead Tombstone Remix) · Andrew Gold"
+          [Final Boss room Music](https://www.youtube.com/watch?v=UWR4aTdMbzw)
