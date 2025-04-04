@@ -1,4 +1,17 @@
+class Puerta extends Sprite{
+    constructor({position, imgResource, posicionOrigen, posicionDestino, idOrigen, idDestino, puertaActiva=false}){
+        super({position, imgResource})
+    
+ 
+        this.posicionOrigen = posicionOrigen;
+        this.posicionDestino = posicionDestino;
+        this.idOrigen = idOrigen;
+        this.idDestino = idDestino;
+        this.puertaActiva = puertaActiva;
 
+        
+    }
+}
 class Cuarto{
 
     constructor({
@@ -379,7 +392,7 @@ return cuartos;
 
 
 
-function generarLevels(listaNiveles) {
+function generarLevels(listaNiveles, enemigosPorNiveles) {
 
 
     console.log("generar")
@@ -406,7 +419,7 @@ function generarLevels(listaNiveles) {
                  });
 
 
-
+                enemigos = enemigosPorNiveles[cuarto.idCuarto-1];
                 
                 player.bloquesDeColision = bloquesColisiones;
                 player.puertas = puertas;
