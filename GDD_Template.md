@@ -26,13 +26,13 @@ Equipo Ghostbusters
          1. Ambientales
          2. Interactivos
       3. Desafíos
-   2. [Flujo del Juego](#Flujo-del-juego)
+   2. [Flujo del Juego](#Flujo-de-juego)
 1. [Desarrollo](#Desarrollo)
    1. [Clases Abstractas](#clases-abstractas--componentes)
-   2. [Clases Derivadas](#clases-derivadas--composiciones-de-componentes)
+   2. [Clases Derivadas](#Clases-Derivadas--Componentes)
 1. [Gráficos](#gráficos)
    1. [Atributos de Estilo](#atributos-de-estilo)
-   2. [Gráficos Necesarios](#gráficos-necesarios)
+   2. [Gráficos Necesarios](#Gráficos-necesarios)
 1. [Sonidos/Música](#SonidosMúsica)
    1. [Atributos de Estilo](#atributos-de-estilo-1)
    2. [Sonidos Necesarios](#sonidos-necesarios)
@@ -350,6 +350,8 @@ En el videojuego tenemos assets inspirados por mounestros de la literatura clás
 3. Diseño minimalista pero estilizado, con formas geométricas y siluetas definidas.
 4. Ambiente distópico con elementos sobrenaturales de Halloween.
 5. Uso de formas con degradado para simular iluminación.
+
+### **Gráficos necesarios**
 
 **Personajes**
 
