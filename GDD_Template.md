@@ -59,9 +59,10 @@ Queremos que el jugador se sienta asustado, indefenso y confundido al comienzo d
 ### **Pantallas**
 
 1. Pantalla de Título
-   - Configuración
-   - Botón de Jugar
    - Logo del Juego
+   - Botón de Jugar
+   - Boton de registro
+   - Boton de estadisticas del juego
 2. Pantalla de Juego
    - Sección de Vida
    - Sección de Llaves
@@ -76,21 +77,25 @@ Queremos que el jugador se sienta asustado, indefenso y confundido al comienzo d
      - Título
      - Habitación Actual
      - Habitaciones Completadas
-3. Pantalla de Configuración
+3. Pantalla de Configuración Rapida
    - Volumen General
    - Reiniciar Progreso
-4. Pantalla de Créditos
+4. Pantalla de GAME OVER
+   - Volver a jugar
+   - Salir del juego
+5. Pantalla de Créditos
    - Créditos del Juego
 
 ### **Controles**
 
-- W - Saltar / Doble Salto
-- A - Moverse a la Izquierda
-- D - Moverse a la Derecha
-- S - Agacharse
-- M - Desplegar Mapa
-- P - Menú de Pausa
-- K - Disparar
+- w - Saltar / Doble Salto
+- a - Moverse a la Izquierda
+- d - Moverse a la Derecha
+- s - Agacharse
+- m - Desplegar Mapa
+- p - Menú de Pausa
+- k - Disparar
+- l - Cambiar de arma
 
 ### **Mecánicas**
 
@@ -190,30 +195,161 @@ En el videojuego tenemos assets inspirados por mounestros de la literatura clás
 
 ### **Clases Abstractas / Componentes**
 
-1. BasePhysics
-   - BasePlayer
-   - BaseAssistant
-   - BaseEnemy
-   - BaseObject
-2. BaseObstacle
+1. Sprite
+   - Jugador
+   - Enemigo1
+   - Enemigo2
+   - Objetos
+   - Puerta
+2. Cuarto
+3. ConexionCuarto
+4. ControladorDeAudio
+5. ContenedorCuarto
 
 ### **Clases Derivadas / Componentes**
 
-1. BasePlayer
-   - PlayerMain
-2. BaseEnemy
-   - Enemy (puede soltar llaves, siempre suelta experiencia)
-3. BaseObject
-   - ObjectKey (recogible, lanzable)
-   - ObjectFlashlight (recogible)
-   - ObjectAssistant (recogible)
-   - ObjectDoubleJumpJar (recogible)
-4. BaseObstacle
-   - ObstacleLibrary
-   - ObstacleTable
-   - ObstacleWall
-   - ObstacleTile
-   - ObstacleGate
+1. #### Jugador, derivada de Sprite
+   - ##### Atributos
+      * EnTransicion
+      * visible
+      * countdown
+      * countdownDelay
+      * bulletController
+      * posicion
+      * velocidad
+      * lados
+      * gravedad
+      * bloques de colision
+      * puertas
+      * vidas
+      * parpadeo
+      * parapdeo Intervalo
+      * parpadeo Duracion
+      * llaves
+      * objetos
+   - ##### Metodos
+      * BajarVidas
+      * DibujarVidas
+      * DibujarLlaves
+      * Actualizar
+      * Disparar
+      * CambiarSprite
+      * ActualizarHitbox
+      * ChecarColisionesHorizontales
+      * ChecarColisionesVerticales
+      * RecibirDaño
+      * RecibirDañoBalaEnemigo
+      * GameOver
+      * AplicarGravedad
+2. #### Enemigo1, derivada de Sprite
+   - ##### Atributos
+      * indice
+      * salud
+      * bulletController
+      * posicion
+      * velocidad
+      * lados
+      * gravedad
+      * bloques de colision
+      * puertas
+      * disparosJugador
+      * ImagenVidas
+   - ##### Metodos
+      * RecibirDaño
+      * Actualizar
+      * Disparar
+      * CambiarSprite
+      * ActualizarHitbox
+      * ChecarColisionesHorizontales
+      * ChecarColisionesVerticales
+      * AplicarGravedad
+      * RecibirGolpe
+3. #### Enemigo2, derivada de Sprite
+   - ##### Atributos
+      * indice
+      * salud
+      * EnemigobulletController
+      * posicion
+      * delayBala
+      * velocidadBala
+      * velocidadEnemigo
+      * direccion
+      * velocidad
+      * lados
+      * umbralDisparo
+      * direccionDisparo
+      * movimiento
+      * umbralesMovimiento
+      * bloques de colision
+      * puertas
+      * estatico
+      * disparosJugador
+      * imagenVida
+   - ##### Metodos
+      * RecibirDaño
+      * Actualizar
+      * Disparar
+      * CambiarSprite
+      * ActualizarHitbox
+      * ChecarColisionesHorizontales
+      * ChecarColisionesVerticales
+      * RecibirGolpe
+4. #### Items, derivada de Sprite
+   - ##### Atributos
+      * idObjeto
+      * tipo
+      * posicion
+      * velocidad
+      * lados
+      * gravedad
+      * bloques de colision
+   - ##### Metodos
+      * Actualizar
+      * ActualizarHitbox
+      * ChecarColisionesHorizontales
+      * ChecarColisionesVerticales
+      * AplicarGravedad
+5. #### Linterna, derivada de Item
+   - ##### Atributos
+      * idObjeto
+      * largo
+      * ancho
+   - ##### Metodos
+      * Dibujar
+      * ActualizarHitbox
+6. #### Asistente, derivada de Item
+   - ##### Atributos
+      * frameRate
+      * imgFuente
+      * idObjeto
+      * tipo
+      * x
+      * y
+   - ##### Metodos
+      * CambiarSprite
+      * ActualizarHitbox
+5. #### Botas, derivada de Item
+   - ##### Atributos
+      * idObjeto
+      * largo
+      * ancho
+   - ##### Metodos
+      * Dibujar
+      * ActualizarHitbox
+6. #### Arma, derivada de Item
+   - ##### Atributos
+      * idObjeto
+      * tipo
+      * imgFuente
+      * x
+      * y
+      * idArma
+      * largo
+      * ancho
+   - ##### Metodos
+      * Actualizar
+      * Dibujar
+      * ActualizarHitbox
 
 ### **Temática**
 
