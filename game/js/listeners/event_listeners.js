@@ -75,6 +75,22 @@ window.addEventListener("keydown", (event)=>{
 
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+    fullscreenBtn.addEventListener('click', () => {
+        if (canvas.requestFullscreen) {
+            canvas.requestFullscreen();
+        } else if (canvas.webkitRequestFullscreen) {
+            canvas.webkitRequestFullscreen();
+        } else if (canvas.msRequestFullscreen) {
+            canvas.msRequestFullscreen();
+        }
+    });
+});
+
+
+
 //parar los movimientos
 window.addEventListener("keyup", (event)=>{
     //hacemos un switch para las diferentes teclas
