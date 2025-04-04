@@ -12,11 +12,13 @@ let listaCuartosAleatorios=[];
 let showMap = false;
 let llaves =[false,false,true,false,false,false,false,false,false,]
 let paused = false;
-let itemsEnJuego = [];
+let itemsEnJuego = obtenerListaItems();
 let idArmaActual = '0';
 let disparosJugador=[]
 let disparosEnemigos=[]
 let gameOver = false;
+let armaAnterior = null;
+
 
 
 // Tamaño de renderizado 16:9 NO MODIFICAR
@@ -24,73 +26,28 @@ canvas.width = 1344;
 canvas.height = 768;
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
-const asistente = new Asistente({ x: 600, y: 500,
-    frameRate: 6,
-    imgResource: "../assets/characters/Slime2_Idle.png",
-    animations:{
-        idleRight:{
-            frameRate:6,
-            frameBuffer:4,
-            loop :true,
-            imgResource: "../../game/assets/characters/main_character/IdleRight.png",
-            
-        },
-        idleLeft:{
-            frameRate:6,
-            frameBuffer:4,
-            loop :true,
-            imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
-        },
-        runRight:{
-            frameRate:8,
-            frameBuffer:4,
-            loop :true,
-            imgResource: "../../game/assets/characters/main_character/Run.png",
-        },
-        runLeft:{
-            frameRate:8,
-            frameBuffer:4,
-            loop :true,
-            imgResource: "../../game/assets/characters/main_character/RunLeft.png",
-        },
-        jumpRight:{
-            frameRate:9,
-            frameBuffer:4,
-            loop :true,
-            imgResource: "../../game/assets/characters/main_character/Jump.png",
-            
-        },
-        jumpLeft:{
-            frameRate:9,
-            frameBuffer:4,
-            loop :true,
-            imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
-            
-        },
-    },
-
-})
-
-const linterna = new Linterna({x: 500, y: 500});
-const botas = new Botas({x: 100, y:500});
-itemsEnJuego.push(linterna);
-itemsEnJuego.push(asistente);
-itemsEnJuego.push(botas);
-
-let armaGrisImage = new Image();
-armaGrisImage.src = "../assets/sprites/escenario_spawm_dario/8_1.png";
-let armaAzulImage = new Image();
-armaAzulImage.src = "../assets/sprites/escenario_spawm_dario/7_1.png";
-let armaRojaImage = new Image();
-armaRojaImage.src = "../assets/sprites/escenario_spawm_dario/9_1.png";
-
-const armaGris = new Arma({x: 525, y: 640, idArma: '1', armaImage: armaGrisImage});
-const armaAzul = new Arma({x: 940, y: 640, idArma: '2', armaImage: armaAzulImage});
-const armaRoja = new Arma({x: 1005, y: 195, idArma: '3', armaImage: armaRojaImage});
+const armaGris = new Arma({x: 525, y: 640, idArma: '1', armaImageSrc: "../assets/sprites/escenario_spawm_dario/8_1.png"});
+const armaAzul = new Arma({x: 940, y: 640, idArma: '2', armaImageSrc: "../assets/sprites/escenario_spawm_dario/7_1.png"});
+const armaRoja = new Arma({x: 1005, y: 195, idArma: '3', armaImageSrc: "../assets/sprites/escenario_spawm_dario/9_1.png"});
 let armaslista = [];
 armaslista.push(armaGris);
 armaslista.push(armaAzul);
 armaslista.push(armaRoja);
+
+let armasEnEscenario = [...armaslista];
+
+const armasOriginales = [
+    new Arma({x: 525, y: 640, idArma: '1', armaImageSrc: "../assets/sprites/escenario_spawm_dario/8_1.png"}),
+    new Arma({x: 940, y: 640, idArma: '2', armaImageSrc: "../assets/sprites/escenario_spawm_dario/7_1.png"}),
+    new Arma({x: 1005, y: 195, idArma: '3', armaImageSrc: "../assets/sprites/escenario_spawm_dario/9_1.png"}),
+];
+
+function clonarArmaDesdeId(id, x, y) {
+    const original = armasOriginales.find(a => a.idArma === id);
+    if (!original) return null;
+
+    return new Arma({ x, y, idArma: original.idArma, armaImageSrc: original.image.src});
+}
 
 //Controladores de disparos
 const bulletController = new Bulletcontroller(canvas)
@@ -103,7 +60,7 @@ const enemyBulletController = new EnemyBulletcontroller(canvas)
 let enemigos =[
 ]
 let enemigosPorNivel =obtenerListaEnemigos(bulletController, enemyBulletController);
-const player = jugador1(bulletController, armaslista, itemsEnJuego);
+const player = jugador1(bulletController, itemsEnJuego);
 
 
 //cuartos aleatorios
@@ -183,7 +140,6 @@ function animate(timeStamp) {
     if(cuartos[currentLevel].id == 8){
         armaslista.forEach((arma) => {
             if (arma.idArma !== idArmaActual) {
-                arma.drawArma();
                 arma.update();
             }
         });

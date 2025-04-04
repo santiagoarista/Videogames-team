@@ -418,14 +418,15 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
          
                  });
 
+                 itemsEnJuego.forEach((i) => {
+                    i.bloquesDeColision = bloquesColisiones
+        
+                });
 
                 enemigos = enemigosPorNiveles[cuarto.idCuarto-1];
                 
                 player.bloquesDeColision = bloquesColisiones;
                 player.puertas = puertas;
-                linterna.bloquesDeColision = bloquesColisiones;
-                botas.bloquesDeColision = bloquesColisiones;
-                asistente.bloquesDeColision = bloquesColisiones;
 
                 //-----------------------------------INSTANCIAS DE CLASES----------------------------
                 fondoCuarto = new Sprite({

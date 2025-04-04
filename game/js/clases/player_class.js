@@ -5,7 +5,7 @@ class Player extends Sprite{
         visible = true,
         bulletController,
         bloquesDeColision=[], 
-        puertas=[], armas, items,
+        puertas=[], items,
         imgResource, frameRate, animations}) 
         {
         super({imgResource, frameRate, animations, countdown: countdown, visible: visible })
@@ -47,7 +47,6 @@ class Player extends Sprite{
         this.keys = 0;
         this.keysImage = new Image();
         this.keysImage.src = '../assets/sprites/36.png'; //Imagen de llave
-        this.armas = armas;
         this.items = items;
     }
 
@@ -267,7 +266,7 @@ class Player extends Sprite{
         
         //Colisiones con las Armas   
         if(cuartos[currentLevel].id == 8){
-            this.armas = this.armas.filter(arma => {
+            armasEnEscenario = armasEnEscenario.filter(arma => {
                 if (this.hitbox.position.x <= arma.hitbox.position.x + arma.hitbox.width &&
                     this.hitbox.position.x + this.hitbox.width >= arma.hitbox.position.x &&
                     this.hitbox.position.y + this.hitbox.height >= arma.hitbox.position.y &&
@@ -275,6 +274,7 @@ class Player extends Sprite{
                     keys.l.pressed) {
     
                     console.log("Colisión con arma ID:", arma.idArma);
+
                     idArmaActual = arma.idArma;
                     keys.l.pressed = false;
                     return false; // Se elimina del array
