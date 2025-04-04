@@ -27,7 +27,7 @@ Equipo Ghostbusters
          2. Interactivos
       3. Desafíos
    2. [Flujo del Juego](#flujo-del-juego)
-1. [Desarrollo](#desarrollo)
+1. [Desarrollo](#Desarrollo)
    1. [Clases Abstractas](#clases-abstractas--componentes)
    2. [Clases Derivadas](#clases-derivadas--composiciones-de-componentes)
 1. [Gráficos](#gráficos)
@@ -192,6 +192,8 @@ En el videojuego tenemos assets inspirados por mounestros de la literatura clás
       ![](sketches/pantallas/map_screen.png)
 
 ---
+
+## Desarrollo
 
 ### **Clases Abstractas / Componentes**
 
