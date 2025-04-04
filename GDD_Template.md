@@ -137,9 +137,6 @@ En el videojuego tenemos assets inspirados por mounestros de la literatura clás
         | ![](assets/escenario/decoraciones/hallowen/Web1.png) | ![](assets/escenario/decoraciones/hallowen/Signboard3.png)| ![](assets/escenario/decoraciones/hallowen/Signboard4.png)|
         | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box1.png) | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box5.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Flag.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Locker4.png)|
 
-        <img src="assets/escenario/decoraciones/hallowen/mesa.png" alt="Texto alternativo" width="100">|
-        <img src="assets/escenario/decoraciones/hallowen/librarysprites2.png" alt="Texto alternativo" width="100"> |
-
     1.  Balas (Lista completa de assets -> [Bullets](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/) )
 
         | ![](assets/bullets/Laser%20Sprites/01.png) | ![](assets/bullets/Laser%20Sprites/02.png)| ![](assets/bullets/Laser%20Sprites/03.png))|
