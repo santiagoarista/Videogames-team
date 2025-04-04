@@ -218,9 +218,15 @@ class Botas extends Item {
 }
 
 class Arma extends Item {
-    constructor({x, y, idArma, armaImage}) {
-        super({idItem : 4, type : "Arma", x, y});
-        this.armaImage = armaImage;
+    constructor({x, y, idArma, armaImageSrc}) {
+        super({
+            idItem: 4,
+            type: "Arma",
+            imgResource: armaImageSrc, // usamos esto como Sprite espera
+            x,
+            y
+        });
+
         this.idArma = idArma;
         this.width = 40;
         this.height = 20;
@@ -234,14 +240,16 @@ class Arma extends Item {
 
         //aCTUALIZACIÓN DE HITBOX EN 2 PUNTOS
         this.updateHitbox();
-        context.fillStyle= "rgba(30, 255, 0, 0)";
+        this.draw();
+        context.fillStyle= "rgba(30, 255, 0, 0.2)";
         context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
     }
     
 
-    drawArma(){
-        context.drawImage(this.armaImage, this.position.x, this.position.y, this.width, this.height)
-        //if(this.idArma == idArmaActual){}
+    draw(){
+        if (this.loaded) {
+            context.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        }
     }
 
     updateHitbox() {
