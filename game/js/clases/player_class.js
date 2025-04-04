@@ -10,7 +10,7 @@ class Player extends Sprite{
         {
         super({imgResource, frameRate, animations, countdown: countdown, visible: visible })
         //propiedades de la clase
-        
+        this.inTransition = false;
         this.visible=true
         this.countodown = countdown
         this.countdownDelay= 50;
@@ -87,6 +87,11 @@ class Player extends Sprite{
     }
     
     update(){
+        if (this.inTransition) {
+            this.velocity.x = 0;
+            this.velocity.y = 0;
+            return; // Detener actualización si está en transición
+        }
         console.log(this.visible)
         //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
         if (this.countdown  ) {
@@ -228,13 +233,21 @@ class Player extends Sprite{
                     if (this.velocity.x< 0) {
                 
                       console.log("Cambio de mapa")
-                      navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino);
+                      navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
+                      console.log("bloque:");
+                      console.log(bloqueDeColsion.posicionDestino);
+                      console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
+                      console.log(bloqueDeColsion);
                       break;
                     }
                     //Si detecta colisión a la izquierda, regresa el objeto, para que no lo pueda atravesar
                     if (this.velocity.x> 0) {
                         console.log("Cambio de mapa")
-                        navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino);
+                        navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
+                        console.log("bloque:");
+                        console.log(bloqueDeColsion.posicionDestino);
+                        console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
+                        console.log(bloqueDeColsion);
                         break;
                     }
             }
@@ -346,15 +359,20 @@ for (let index = 0; index < this.puertas.length; index++) {
              
 
                 console.log("Cambio de mapa")
-                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino);
+                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
+                console.log("bloque:");
+                console.log(bloqueDeColsion.posicionDestino);
+                console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
+                console.log(bloqueDeColsion);
                 break;
             }
             //Si detecta colisión abajo, regresa el objeto, para que no lo pueda atravesar
             if (this.velocity.y> 0) {
-              
-                console.log("Cambio de mapa")
-                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino);
-               
+                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
+                console.log("bloque:");
+                console.log(bloqueDeColsion.posicionDestino);
+                console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
+                console.log(bloqueDeColsion);
                 break;
             }
     }

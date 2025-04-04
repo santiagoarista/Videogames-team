@@ -33,28 +33,67 @@ Array.prototype.parse2D= function(){
      return objects;
 
     }
-
-function navegarNuevoCuarto(idDestino, posicionDestino){
-
-       overlay.opacity
-       player.velocity = {x:0,y:0};
-       gsap.to(overlay, {opacity:1, onComplete:()=>{
-       currentLevel  = idDestino[0]
-       console.log(currentLevel)
-       cuartos[currentLevel].init();
-
-       player.velocity = {x:0,y:0};
-      
-        gsap.to(overlay, {opacity:0})
+    function navegarNuevoCuarto(idDestino, posicionDestino, nombreOrigen) {
+       console.log("Nombre origen desde navegarCuarto: " + nombreOrigen);
        
+       let posiciónFinal = { x: 0, y: 0 };
+       let cuartoDestino = cuartosOrdenadosCons.find(c => c.idCuarto == idDestino);
        
-       },
-       
-       
-       }),
-       player.position = posicionDestino;
-    
-       player.update(),
-       player.draw()
-
+       console.log(nombreOrigen);
+   
+       switch (nombreOrigen) {
+           case "izquierda":
+               console.log("Dirección destino id:", idDestino, "posición:", cuartoDestino.posicionJugadorDerecha);
+               posiciónFinal = cuartoDestino.posicionJugadorDerecha;
+               break;
+           case "derecha":
+               console.log("Dirección destino id:", idDestino, "posición:", cuartoDestino.posicionJugadorIzquierda);
+               posiciónFinal = cuartoDestino.posicionJugadorIzquierda;
+               break;
+           case "superior":
+               console.log("Dirección destino id:", idDestino, "posición:", cuartoDestino.posicionJugadorInferior);
+               posiciónFinal = cuartoDestino.posicionJugadorInferior;
+               break;
+           case "inferior":
+               console.log("Dirección destino id:", idDestino, "posición:", cuartoDestino.posicionJugadorSuperior);
+               posiciónFinal = cuartoDestino.posicionJugadorSuperior;
+               break;
        }
+   
+       console.log("Navegando nuevo cuarto...");
+       console.log("Destino:", idDestino);
+       console.log("Posición Final:", posiciónFinal);
+   
+       // Bloquear el movimiento y visibilidad del jugador
+       player.position = { x: -300, y: -300 };
+       player.inTransition = true;
+       player.visible = false;
+       player.velocity = { x: 0, y: 0 };
+   
+// Poner pantalla negra de inmediato
+overlay.opacity = 1;  // Pantalla se pone negra de inmediato
+
+gsap.to(overlay, {
+    opacity: 1, // Mantiene la opacidad en 1
+    duration: 0, // Sin transición inicial (se vuelve negro al instante)
+    onComplete: () => {
+        currentLevel = idDestino;
+        console.log("Nuevo nivel:", currentLevel);
+        cuartos[currentLevel].init();
+        
+        player.position = posiciónFinal;
+        player.visible = true;
+        player.inTransition = false;
+        player.countdown = true; // Reiniciar el temporizador
+        // Desvanecimiento más lento
+        gsap.to(overlay, {
+            opacity: 0,
+            duration: 2, // Transición más lenta (aquí puedes ajustar el tiempo a tu gusto)
+            ease: "power2.out",
+            onComplete: () => {
+                // Desbloquear movimiento y visibilidad cuando termine la transición
+               
+            }
+        });
+    }
+});}
