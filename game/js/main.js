@@ -12,16 +12,87 @@ let listaCuartosAleatorios=[];
 let showMap = false;
 let llaves =[false,false,true,true,false,true,false,true,false,]
 let paused = false;
-let showLinterna = false;
+let itemsEnJuego = [];
+let idArmaActual = '0';
 
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
+
+const asistente = new Asistente({ x: 600, y: 500,
+    frameRate: 6,
+    imgResource: "../assets/characters/Slime2_Idle.png",
+    animations:{
+        idleRight:{
+            frameRate:6,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/IdleRight.png",
+            
+        },
+        idleLeft:{
+            frameRate:6,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
+        },
+        runRight:{
+            frameRate:8,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/Run.png",
+        },
+        runLeft:{
+            frameRate:8,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/RunLeft.png",
+        },
+        jumpRight:{
+            frameRate:9,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/Jump.png",
+            
+        },
+        jumpLeft:{
+            frameRate:9,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+            
+        },
+    },
+
+})
+
+const linterna = new Linterna({x: 500, y: 500});
+const botas = new Botas({x: 100, y:500});
+itemsEnJuego.push(linterna);
+itemsEnJuego.push(asistente);
+itemsEnJuego.push(botas);
+
+let armaGrisImage = new Image();
+armaGrisImage.src = "../assets/sprites/escenario_spawm_dario/8_1.png";
+let armaAzulImage = new Image();
+armaAzulImage.src = "../assets/sprites/escenario_spawm_dario/7_1.png";
+let armaRojaImage = new Image();
+armaRojaImage.src = "../assets/sprites/escenario_spawm_dario/9_1.png";
+
+const armaGris = new Arma({x: 525, y: 640, idArma: '1', armaImage: armaGrisImage});
+const armaAzul = new Arma({x: 940, y: 640, idArma: '2', armaImage: armaAzulImage});
+const armaRoja = new Arma({x: 1005, y: 195, idArma: '3', armaImage: armaRojaImage});
+let armaslista = [];
+armaslista.push(armaGris);
+armaslista.push(armaAzul);
+armaslista.push(armaRoja);
+
 
 
 
 //Esta clase esta en la carpeta de clases>player_class
 const player = new Player({
     //Pasamos los bloques que harán las colisiones con este objeto
-    
+    armas: armaslista,
+    items: itemsEnJuego,
     frameRate: 6,
     imgResource: "../../game/assets/characters/main_character/IdleRight.png",
     animations:{
@@ -68,56 +139,6 @@ const player = new Player({
     },
 })
 
-const asistente = new Asistente({
-    frameRate: 6,
-    imgResource: "../assets/characters/Slime2_Idle_full.png",
-    animations:{
-        idleRight:{
-            frameRate:6,
-            frameBuffer:4,
-            loop :true,
-            imgResource: "../../game/assets/characters/main_character/IdleRight.png",
-            
-        },
-        idleLeft:{
-            frameRate:6,
-            frameBuffer:4,
-            loop :true,
-            imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
-        },
-        runRight:{
-            frameRate:8,
-            frameBuffer:4,
-            loop :true,
-            imgResource: "../../game/assets/characters/main_character/Run.png",
-        },
-        runLeft:{
-            frameRate:8,
-            frameBuffer:4,
-            loop :true,
-            imgResource: "../../game/assets/characters/main_character/RunLeft.png",
-        },
-        jumpRight:{
-            frameRate:9,
-            frameBuffer:4,
-            loop :true,
-            imgResource: "../../game/assets/characters/main_character/Jump.png",
-            
-        },
-        jumpLeft:{
-            frameRate:9,
-            frameBuffer:4,
-            loop :true,
-            imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
-            
-        },
-    },
-
-})
-
-const linterna = new Linterna({});
-const botas = new Botas({});
-
 
 // Tamaño de renderizado 16:9 NO MODIFICAR
 canvas.width = 1344;
@@ -145,6 +166,9 @@ class Puerta extends Sprite{
 //let buttom = y-100;
 
 const keys = {
+    l:{
+        pressed: false
+    },
     w:{
         pressed: false
     },
@@ -214,14 +238,27 @@ function animate(){
         }
     }
     //Movimiento a alderecha o izquierda
+    
 
+    if(cuartos[currentLevel].id == 8){
+        armaslista.forEach((arma) => {
+            if (arma.idArma !== idArmaActual) {
+                arma.drawArma();
+                arma.update();
+            }
+        });
+    } else {
+        armaslista = [];
+    }
 
-    //linterna.drawItem()
-    //linterna.update()
-    //botas.drawItem()
-    //botas.update()
-    //asistente.draw()
-    //asistente.update()
+    itemsEnJuego.forEach((i) => {
+        if (i.visible !== false) { // Solo dibujar si es visible
+            i.draw();
+            i.update();
+        }
+    });
+    
+
     player.draw()
     player.drawLives() //Dibujar vidas del jugador
     player.drawKeys() //Dibujar llaves
@@ -240,7 +277,7 @@ function animate(){
     }
 }
 cuartos[currentLevel].init();
-//console.log(listaCuartosAleatorios)
+//console.log(cuartos[currentLevel].id)
 animate();
 
 

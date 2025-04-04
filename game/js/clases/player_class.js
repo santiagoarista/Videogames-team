@@ -2,7 +2,7 @@
 class Player extends Sprite{
     constructor({
         bloquesDeColision=[], 
-        puertas=[], 
+        puertas=[], armas, items,
         imgResource, frameRate, animations}) 
         {
         super({imgResource, frameRate, animations})
@@ -32,6 +32,8 @@ class Player extends Sprite{
         this.keys = 0;
         this.keysImage = new Image();
         this.keysImage.src = '../assets/sprites/36.png'; //Imagen de llave
+        this.armas = armas;
+        this.items = items;
     }
 
     //draw(){
@@ -178,7 +180,42 @@ class Player extends Sprite{
 
         }
 
+        
+        //Colisiones con las Armas   
+        if(cuartos[currentLevel].id == 8){
+            this.armas = this.armas.filter(arma => {
+                if (this.hitbox.position.x <= arma.hitbox.position.x + arma.hitbox.width &&
+                    this.hitbox.position.x + this.hitbox.width >= arma.hitbox.position.x &&
+                    this.hitbox.position.y + this.hitbox.height >= arma.hitbox.position.y &&
+                    this.hitbox.position.y <= arma.hitbox.position.y + arma.hitbox.height &&
+                    keys.l.pressed) {
+    
+                    console.log("Colisión con arma ID:", arma.idArma);
+                    idArmaActual = arma.idArma;
+                    keys.l.pressed = false;
+                    return false; // Se elimina del array
+                }
+                return true; // Se mantiene en el array
+            });
     }
+
+    //Colisiones con los items   
+    this.items = this.items.filter(item => {
+    if (this.hitbox.position.x <= item.hitbox.position.x + item.hitbox.width &&
+        this.hitbox.position.x + this.hitbox.width >= item.hitbox.position.x &&
+        this.hitbox.position.y + this.hitbox.height >= item.hitbox.position.y &&
+        this.hitbox.position.y <= item.hitbox.position.y + item.hitbox.height) {
+    
+                    console.log("Colisión con item ID:", item.idItem);
+                    item.visible = false;
+                    return false; // Se elimina del array
+                }
+                return true; // Se mantiene en el array
+            });
+        
+
+}
+
     checkVerticalCollisions(){
    //CHECAR SI HAY COLISIONES EN Y
    for (let index = 0; index < this.bloquesDeColision.length; index++) {

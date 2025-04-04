@@ -1,7 +1,7 @@
 class Item extends Sprite{
     constructor({
         bloquesDeColision=[],
-        idItem, type, imgResource, frameRate, animations
+        idItem, type, imgResource, frameRate, animations, x = 500, y = 500,
         }){
         super({imgResource, frameRate, animations})
 
@@ -10,8 +10,8 @@ class Item extends Sprite{
         
         //Posición en pantalla
         this.position ={
-            x :500,
-            y :500,
+            x :x,
+            y :y,
         }
 
         this.velocity = {
@@ -46,7 +46,7 @@ class Item extends Sprite{
 
         //aCTUALIZACIÓN DE HITBOX EN 2 PUNTOS
         this.updateHitbox();
-        context.fillStyle= "rgba(30, 255, 0, 0.2)";
+        context.fillStyle= "rgba(30, 255, 0, 0)";
         context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
         //Cpmrprobar si hay colisiones en Y
         this.checkVerticalCollisions();
@@ -126,15 +126,15 @@ class Item extends Sprite{
 }
 
 class Linterna extends Item {
-    constructor() {
-        super({idItem : 1, type : "Linterna"});
+    constructor({x, y}) {
+        super({idItem : 1, type : "Linterna", x, y});
         this.itemImage = new Image();
         this.itemImage.src = "../assets/sprites/escenario_spawm_dario/linternaSprite.png";
         this.width = 50;
         this.height = 20;
     }
     
-    drawItem(){
+    draw(){
         context.drawImage(this.itemImage, this.position.x, this.position.y, this.width, this.height)
     }
 
@@ -155,8 +155,11 @@ class Linterna extends Item {
 }
 
 class Asistente extends Item {
-    constructor() {
-        super({idItem : 2, type : "Asistente"});
+    constructor({x, y}) {
+        super({
+            frameRate: 6,
+            imgResource: "../assets/characters/Slime2_Idle.png",
+            idItem : 2, type : "Asistente", x, y});
     }
     
     //Método para cambiar de animación
@@ -173,12 +176,12 @@ class Asistente extends Item {
                
         this.hitbox ={
            position:{
-               x: this.position.x,
+               x: this.position.x + 18,
                y: this.position.y
            },
 
            width: 30,
-           height: 30
+           height: 40
        }
        }
 
@@ -186,8 +189,8 @@ class Asistente extends Item {
 }
 
 class Botas extends Item {
-    constructor() {
-        super({idItem : 3, type : "Botas"});
+    constructor({x, y}) {
+        super({idItem : 3, type : "Botas", x, y});
         this.itemImage = new Image();
         this.itemImage.src = "../assets/sprites/escenario_spawm_dario/botas.png";
         this.width = 30;
@@ -195,7 +198,7 @@ class Botas extends Item {
     }
     
 
-    drawItem(){
+    draw(){
         context.drawImage(this.itemImage, this.position.x, this.position.y, this.width, this.height)
     }
 
@@ -209,6 +212,47 @@ class Botas extends Item {
            },
            width: this.width - 6,
            height: this.height - 5
+       }
+       }
+    
+}
+
+class Arma extends Item {
+    constructor({x, y, idArma, armaImage}) {
+        super({idItem : 4, type : "Arma", x, y});
+        this.armaImage = armaImage;
+        this.idArma = idArma;
+        this.width = 40;
+        this.height = 20;
+    }
+
+    update(){
+        //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
+
+        context.fillStyle= "rgba(0, 0, 255, 0)";
+        context.fillRect(this.position.x,this.position.y,this.width,this.height);
+
+        //aCTUALIZACIÓN DE HITBOX EN 2 PUNTOS
+        this.updateHitbox();
+        context.fillStyle= "rgba(30, 255, 0, 0)";
+        context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
+    }
+    
+
+    drawArma(){
+        context.drawImage(this.armaImage, this.position.x, this.position.y, this.width, this.height)
+        //if(this.idArma == idArmaActual){}
+    }
+
+    updateHitbox() {
+        this.hitbox ={
+           position:{
+               x: this.position.x,
+               y: this.position.y
+               
+           },
+           width: this.width,
+           height: this.height +30,
        }
        }
     

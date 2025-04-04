@@ -120,10 +120,10 @@ class ContainerCuarto{
         context.lineWidth = 2;
         context.lineJoin = "round";
         context.strokeRect(this.position.x, this.position.y, 100, 100);
-       console.log((llaves[this.idcuarto-1]));
+       //console.log((llaves[this.idcuarto-1]));
         if(((llaves[this.idcuarto-1]) == true) && !this.esCuartoActual){
             context.drawImage(imgLlave, this.position.x + 33, this.position.y + 20, 30, 60);
-            console.log("cuarto "+this.idcuarto);
+            //console.log("cuarto "+this.idcuarto);
         }
 
         if(this.esCuartoActual){
