@@ -6,7 +6,8 @@ const soundMap = {
     enemyhurt1: " ../../game/assets/soundeffects/protagonist/hurt2.wav",
     hit: "../assets/sounds/hit.mp3",
     walk: "../assets/soundeffects/protagonist/run.mp3",
-    regularLevelsMusic: "../assets/music/musical_cuartos_regulares.mp3",
+    regularLevelsMusic: "../assets/music/musica_menu_principal.mp3",
+    menuPrincipalMusic: "../assets/music/musical_cuartos_regulares.mp3",
     
 };
 
@@ -24,7 +25,8 @@ function playSound(action) {
 
 // Controlador de sonidos individuales// Controlador de sonidos individuales
 class SoundController {
-    constructor(action, loop = false, volume = 1.0) {
+    constructor(action, loop = false, volume = 1.0, ) {
+
         this.action = action;
         this.audio = new Audio(soundMap[action]);
         this.audio.loop = loop;
@@ -34,7 +36,10 @@ class SoundController {
 
     play() {
         this.audio.play();
-        console.log("Sonido: " + soundMap[this.action] + " se está reproduciendo.");
+ 
+    }
+    muted(){
+        this.audio.muted = !this.audio.muted;
     }
 
     pause() {
@@ -61,14 +66,13 @@ class SoundController {
             this.audio.pause();
             this.audio = new Audio(soundFile);
             this.audio.loop = true;
-            this.audio.volume = 1.0;
+            this.audio.volume =0.5;
             if (isPlaying) this.audio.play();
         } else {
             console.warn(`No hay sonido asociado a: ${action}`);
         }
     }
 
-    // 🎧 Fade In
     fadeIn(targetVolume = 1.0, duration = 500) {
         if (this.fadeInterval) clearInterval(this.fadeInterval);
 

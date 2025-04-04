@@ -87,6 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
             canvas.msRequestFullscreen();
         }
     });
+    buttonX = canvas.width / 2 - imgWidth / 2 + 65;
+    buttonY = imgY + imgHeight / 2 - 78;
 });
 
 

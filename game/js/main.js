@@ -61,7 +61,7 @@ const keys = {
     },
 }
 
-const caminarSound = new SoundController("walk", true, 0.1); // "walk" debe existir en tu soundMap
+const caminarSound = new SoundController("walk", true, 0.02); // "walk" debe existir en tu soundMap
 let caminando = false; // Bandera para saber si ya está sonando
 
 
@@ -115,7 +115,7 @@ function animate(timeStamp) {
         player.lastDirection = "right";
     
         if (!caminando) {
-            caminarSound.fadeIn(1.0, 500); // Fade in suave
+            caminarSound.fadeIn(0.5, 500); // Fade in suave
             caminando = true;
         }
     } else if (keys.a.pressed) {
@@ -124,7 +124,7 @@ function animate(timeStamp) {
         player.lastDirection = "left";
     
         if (!caminando) {
-            caminarSound.fadeIn(1.0, 500);
+            caminarSound.fadeIn(0.5, 500);
             caminando = true;
         }
     } else {
@@ -188,7 +188,7 @@ cuartos[currentLevel].init();
 //console.log(listaCuartosAleatorios)
 requestAnimationFrame(animate);
 
-const sonidoMusica = new SoundController("regularLevelsMusic", true, 0.3);
+const sonidoMusica = new SoundController("regularLevelsMusic", true, 0.2);
 let musicaIniciada = false;
 
 window.addEventListener("keydown", (event) => {
