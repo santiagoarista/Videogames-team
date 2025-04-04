@@ -84,9 +84,9 @@ armaAzulImage.src = "../assets/sprites/escenario_spawm_dario/7_1.png";
 let armaRojaImage = new Image();
 armaRojaImage.src = "../assets/sprites/escenario_spawm_dario/9_1.png";
 
-const armaGris = new Arma({x: 525, y: 640, idArma: '1', armaImage: armaGrisImage});
-const armaAzul = new Arma({x: 940, y: 640, idArma: '2', armaImage: armaAzulImage});
-const armaRoja = new Arma({x: 1005, y: 195, idArma: '3', armaImage: armaRojaImage});
+const armaGris = new Arma({x: 510, y: 640, idArma: '1', armaImage: armaGrisImage});
+const armaAzul = new Arma({x: 927, y: 640, idArma: '2', armaImage: armaAzulImage});
+const armaRoja = new Arma({x: 1020, y: 195, idArma: '3', armaImage: armaRojaImage});
 let armaslista = [];
 armaslista.push(armaGris);
 armaslista.push(armaAzul);
