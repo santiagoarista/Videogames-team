@@ -19,7 +19,7 @@ Equipo Ghostbusters
    - [Pantallas](#Pantallas)
    - [Controles](#Controles)
    - [Mecánicas](#Mecánicas)
-1. [Diseño de Nivel](#Diseño-de-niveles)
+1. [Diseño de Nivel](#Diseño-de-nivel)
    1. [Temas](#temas)
       1. Ambiente
       2. Objetos
@@ -375,7 +375,7 @@ En el videojuego tenemos assets inspirados por mounestros de la literatura clás
 
 
 
-**Sonidos/Música**
+## **Sonidos/Música**
 La música del videojuego tiene que estar inspirada en música de hallowen
 
 1. Los assets musicales que utilizamos incluyen tres pistas, ya que en el videojuego habrá tres momentos musicalizados. Estos momentos son:
