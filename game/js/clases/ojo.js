@@ -149,13 +149,13 @@ class Ojo extends Sprite{
         //context.fillStyle = "red";
         //context.fillRect(this.position.x, this.position.y, this.width, this.height);
         // Dibuja el hitbox
-        context.fillStyle = "blue";
-        context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height);
+        //context.fillStyle = "blue";
+        //context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height);
         
         // Dibuja la salud
-        context.fillStyle = "white";
-        context.font = "25px Arial";
-        context.fillText(this.health+"Ojo", this.position.x + this.width / 2, this.position.y + 40);
+        //context.fillStyle = "white";
+        //context.font = "25px Arial";
+       // context.fillText(this.health+"Ojo", this.position.x + this.width / 2, this.position.y + 40);
     }
     //Método para cambiar de animación
     switchSprite(name){
