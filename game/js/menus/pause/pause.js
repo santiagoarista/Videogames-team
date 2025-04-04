@@ -250,12 +250,14 @@ function drawSettingsMenu() {
 
 
 // Event listeners para Menú completo
-canvas.addEventListener("click", (event) => {
+window.addEventListener("click", (event) => {
     const rect = canvas.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
 
-    // Si settings no está abierto, actúa de acuerdo a pausa
+    // Ahora ajustamos las posiciones de los botones para que se correspondan correctamente con las coordenadas del mouse.
+    // Si está en pantalla completa, las coordenadas del canvas cambiarán
+
     if (!settingsOpen && paused) {
         if (
             mouseX >= buttonX &&
@@ -263,11 +265,10 @@ canvas.addEventListener("click", (event) => {
             mouseY >= buttonY &&
             mouseY <= buttonY + buttonHeight
         ) {
-            paused = false; 
+            paused = false;
             animate(); // Play
         }
 
-        // Al hacer click en Settiings 
         if (
             mouseX >= settingsX &&
             mouseX <= settingsX + settingsWidth &&
@@ -275,34 +276,28 @@ canvas.addEventListener("click", (event) => {
             mouseY <= settingsY + settingsHeight
         ) {
             settingsOpen = true;
-            drawSettingsMenu(); // Dibujar Settings
+            drawSettingsMenu(); // Draw settings menu
         }
 
-        // Si se hizo click en Salir 
         if (
             mouseX >= exitX &&
             mouseX <= exitX + exitWidth &&
             mouseY >= exitY &&
             mouseY <= exitY + exitHeight
         ) {
-            // Acción de Salir
             console.log("Salir al Menú...");
-            window.location.href = "principal_menu.html"; // Redirige a la página del menú
+            window.location.href = "principal_menu.html";
         }
-    } 
-    // Si settings está abierto
-    else if (settingsOpen){
+    } else if (settingsOpen) {
         const menuWidth = 500;
         const menuHeight = 350;
         const menuX = canvas.width / 2 - menuWidth / 2;
         const menuY = canvas.height / 2 - menuHeight / 2;
 
-        // X button
         const closeX = menuX + menuWidth;
         const closeY = menuY + 10;
         const closeSize = 40;
 
-        //Si se hace click en X button
         if (
             mouseX >= closeX &&
             mouseX <= closeX + closeSize &&
@@ -310,20 +305,19 @@ canvas.addEventListener("click", (event) => {
             mouseY <= closeY + closeSize
         ) {
             settingsOpen = false;
-            drawPauseMenu(); //Volver a dibujar pausa, cerrar settings
+            drawPauseMenu();
         }
 
-        // Si se hace click en Music button
         if (
             mouseX >= buttonX &&
             mouseX <= buttonX + buttonWidth &&
             mouseY >= buttonY &&
             mouseY <= buttonY + buttonHeight
         ) {
+            sonidoMusica.muted();
             console.log("Music");
         }
 
-        // Si se hace click en reiniciar estadísticas
         if (
             mouseX >= resetX &&
             mouseX <= resetX + resetWidth &&
@@ -333,7 +327,6 @@ canvas.addEventListener("click", (event) => {
             console.log("Reset");
         }
 
-        // Si se hace click en efectos de sonido
         if (
             mouseX >= effectsX &&
             mouseX <= effectsX + effectsWidth &&

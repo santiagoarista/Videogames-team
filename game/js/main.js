@@ -132,6 +132,10 @@ const keys = {
     },
 }
 
+const caminarSound = new SoundController("walk", true, 0.02); // "walk" debe existir en tu soundMap
+let caminando = false; // Bandera para saber si ya está sonando
+
+
 
 const overlay = {
     opacity: 0,
@@ -198,33 +202,28 @@ function animate(timeStamp) {
         player.switchSprite("runRight");
         player.velocity.x = speed * deltaTime;
         player.lastDirection = "right";
+    
+        if (!caminando) {
+            caminarSound.fadeIn(0.5, 500); // Fade in suave
+            caminando = true;
+        }
     } else if (keys.a.pressed) {
         player.switchSprite("runLeft");
         player.velocity.x = -speed * deltaTime;
         player.lastDirection = "left";
-    } else if (keys.w.pressed) {
-        player.switchSprite("jumpRight");
+    
+        if (!caminando) {
+            caminarSound.fadeIn(0.5, 500);
+            caminando = true;
+        }
     } else {
         player.switchSprite(player.lastDirection === "left" ? "idleLeft" : "idleRight");
-    }
-//
-
-document.addEventListener('DOMContentLoaded', () => {
-    const fullscreenBtn = document.getElementById('fullscreen-btn');
-
-    fullscreenBtn.addEventListener('click', () => {
-        if (canvas.requestFullscreen) {
-            canvas.requestFullscreen();
-        } else if (canvas.webkitRequestFullscreen) {
-            canvas.webkitRequestFullscreen();
-        } else if (canvas.msRequestFullscreen) {
-            canvas.msRequestFullscreen();
+    
+        if (caminando) {
+            caminarSound.fadeOut(500); // Fade out suave
+            caminando = false;
         }
-    });
-});
-
-
-
+    }
 
 
 
@@ -235,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
         enemigo.velocity.x = 0;
         enemigo.update(player);
         context.shadowColor = "cyan"; // Neon effect
-        context.shadowBlur = 10;
+        context.shadowBlur = 40;
         enemigo.draw();
         context.shadowBlur = 0;
         context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
@@ -249,9 +248,11 @@ document.addEventListener('DOMContentLoaded', () => {
     player.draw();
     player.drawLives();
     player.drawKeys();
-    context.shadowColor = "white"; // Neon effect
-    context.shadowBlur = 10;
+    context.shadowColor = "red"; // Neon effect
+    context.shadowBlur = 40;
     bulletController.draw(context);
+    context.shadowColor = "blue"; // Neon effect
+    context.shadowBlur = 40;
     enemyBulletController.draw(context);
     context.shadowBlur = 0;
     context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
@@ -276,5 +277,16 @@ cuartos[currentLevel].init();
 //console.log(listaCuartosAleatorios)
 requestAnimationFrame(animate);
 
+const sonidoMusica = new SoundController("regularLevelsMusic", true, 0.2);
+let musicaIniciada = false;
 
+window.addEventListener("keydown", (event) => {
+    const key = event.key.toLowerCase();
+
+    if (["a", "w", "s", "d", "k"].includes(key) && !musicaIniciada) {
+        sonidoMusica.play();
+        musicaIniciada = true;
+        console.log("🎵 Música iniciada");
+    }
+});
 
