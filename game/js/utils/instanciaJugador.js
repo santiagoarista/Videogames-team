@@ -1,9 +1,10 @@
 //instancia del jugador en el juego
 
-function jugador1(bulletController) {
+function jugador1(bulletController, armaslista, itemsEnJuego) {
    return new Player({
         //Pasamos los bloques que harán las colisiones con este objeto
-     
+        armas: armaslista,
+        items: itemsEnJuego,
         bulletController: bulletController,
         frameRate: 6,
         imgResource: "../../game/assets/characters/main_character/IdleRight.png",

@@ -24,20 +24,6 @@ canvas.width = 1344;
 canvas.height = 768;
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
-
-//Controladores de disparos
-const bulletController = new Bulletcontroller(canvas)
-//Esta clase esta en la carpeta de clases>player_class
-const enemyBulletController = new EnemyBulletcontroller(canvas)
-//Esta clase esta en la carpeta de clases>player_class
-
-
-//instancias de objetos en cuartos
-let enemigos =[
-]
-let enemigosPorNivel =obtenerListaEnemigos(bulletController, enemyBulletController);
-const player = jugador1(bulletController);
-
 const asistente = new Asistente({ x: 600, y: 500,
     frameRate: 6,
     imgResource: "../assets/characters/Slime2_Idle.png",
@@ -105,6 +91,19 @@ let armaslista = [];
 armaslista.push(armaGris);
 armaslista.push(armaAzul);
 armaslista.push(armaRoja);
+
+//Controladores de disparos
+const bulletController = new Bulletcontroller(canvas)
+//Esta clase esta en la carpeta de clases>player_class
+const enemyBulletController = new EnemyBulletcontroller(canvas)
+//Esta clase esta en la carpeta de clases>player_class
+
+
+//instancias de objetos en cuartos
+let enemigos =[
+]
+let enemigosPorNivel =obtenerListaEnemigos(bulletController, enemyBulletController);
+const player = jugador1(bulletController, armaslista, itemsEnJuego);
 
 
 //cuartos aleatorios
