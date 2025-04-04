@@ -26,13 +26,11 @@ canvas.width = 1344;
 canvas.height = 768;
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
-const armaGris = new Arma({x: 525, y: 640, idArma: '1', armaImageSrc: "../assets/sprites/escenario_spawm_dario/8_1.png"});
-const armaAzul = new Arma({x: 940, y: 640, idArma: '2', armaImageSrc: "../assets/sprites/escenario_spawm_dario/7_1.png"});
-const armaRoja = new Arma({x: 1005, y: 195, idArma: '3', armaImageSrc: "../assets/sprites/escenario_spawm_dario/9_1.png"});
-let armaslista = [];
-armaslista.push(armaGris);
-armaslista.push(armaAzul);
-armaslista.push(armaRoja);
+let armaslista = [
+ new Arma({x: 525, y: 640, idArma: '1', armaImageSrc: "../assets/sprites/escenario_spawm_dario/8_1.png"}),
+ new Arma({x: 940, y: 640, idArma: '2', armaImageSrc: "../assets/sprites/escenario_spawm_dario/7_1.png"}),
+ new Arma({x: 1005, y: 195, idArma: '3', armaImageSrc: "../assets/sprites/escenario_spawm_dario/9_1.png"})
+];
 
 let armasEnEscenario = [...armaslista];
 
@@ -182,6 +180,31 @@ function animate(timeStamp) {
     }
 
 
+let puertasCueart = cuartosOrdenados.filter(c => c.idCuarto == currentLevel)
+
+context.fillStyle= "rgb(255, 0, 0)";
+context.fillRect(puertasCueart[0].posicionJugadorSuperior.x, puertasCueart[0].posicionJugadorSuperior.y, 5, 5);
+
+context.fillStyle= "rgb(255, 0, 0)";
+context.fillRect(puertasCueart[0].posicionJugadorInferior.x, puertasCueart[0].posicionJugadorInferior.y, 5, 5);
+
+
+context.fillStyle= "rgb(255, 0, 0)";
+context.fillRect(puertasCueart[0].posicionJugadorDerecha.x, puertasCueart[0].posicionJugadorDerecha.y, 5, 5);
+
+
+
+context.fillStyle= "rgb(255, 0, 0)";
+context.fillRect(puertasCueart[0].posicionJugadorIzquierda.x, puertasCueart[0].posicionJugadorIzquierda.y, 5, 5);
+
+
+context.fillStyle= "rgb(0, 8, 255)";
+context.fillRect(1220,674, 5, 5);
+
+
+
+
+
 
 
       //Enemigos
@@ -233,6 +256,8 @@ cuartos[currentLevel].init();
 //console.log(listaCuartosAleatorios)
 requestAnimationFrame(animate);
 
+
+//CONTROLADORES DE MÚSICA
 const sonidoMusica = new SoundController("regularLevelsMusic", true, 0.2);
 let musicaIniciada = false;
 

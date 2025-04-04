@@ -10,7 +10,7 @@ class Player extends Sprite{
         {
         super({imgResource, frameRate, animations, countdown: countdown, visible: visible })
         //propiedades de la clase
-        
+        this.inTransition = false;
         this.visible=true
         this.countodown = countdown
         this.countdownDelay= 50;
@@ -86,6 +86,11 @@ class Player extends Sprite{
     }
     
     update(){
+        if (this.inTransition) {
+            this.velocity.x = 0;
+            this.velocity.y = 0;
+            return; // Detener actualización si está en transición
+        }
         console.log(this.visible)
         //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
         if (this.countdown  ) {
@@ -126,6 +131,7 @@ class Player extends Sprite{
         // Reset shadow effects
         context.shadowBlur = 0;
         context.shadowColor = "transparent";
+        
         this.checkVerticalCollisions();
         this.shoot()
 
@@ -185,6 +191,7 @@ class Player extends Sprite{
        }
     
     checkHorizontalCollisions(){
+        
           //CHECAR SI HAY COLISIONES EN X
           for (let index = 0; index < this.bloquesDeColision.length; index++) {
             const bloqueDeColsion = this.bloquesDeColision[index] ;
@@ -227,13 +234,21 @@ class Player extends Sprite{
                     if (this.velocity.x< 0) {
                 
                       console.log("Cambio de mapa")
-                      navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino);
+                      navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
+                      console.log("bloque:");
+                      console.log(bloqueDeColsion.posicionDestino);
+                      console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
+                      console.log(bloqueDeColsion);
                       break;
                     }
                     //Si detecta colisión a la izquierda, regresa el objeto, para que no lo pueda atravesar
                     if (this.velocity.x> 0) {
                         console.log("Cambio de mapa")
-                        navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino);
+                        navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
+                        console.log("bloque:");
+                        console.log(bloqueDeColsion.posicionDestino);
+                        console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
+                        console.log(bloqueDeColsion);
                         break;
                     }
             }
@@ -257,10 +272,23 @@ class Player extends Sprite{
                     
                     this.recibirDaño(index);
             }
-            
+                
+          //Agregar colisiones con enemigos
+          for (let index = 0; index < disparosEnemigos.length; index++) {
+           
+            const bala = disparosEnemigos[index] ;
+
+            //Comprobar si hay colisiones 
+            if (this.hitbox.position.x <= bala.x +bala.width &&
+                this.hitbox.position.x + (this.hitbox.width)>= bala.x &&
+                this.hitbox.position.y + (this.hitbox.height)>= bala.y &&
+                this.hitbox.position.y <= bala.y + bala.height) {
+                    console.log("colision con bala");
+                    this.recibirDañoBalaEnemigo(index);
+            }
 
 
-        }}
+        }}}
     
 
         
@@ -346,15 +374,20 @@ for (let index = 0; index < this.puertas.length; index++) {
              
 
                 console.log("Cambio de mapa")
-                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino);
+                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
+                console.log("bloque:");
+                console.log(bloqueDeColsion.posicionDestino);
+                console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
+                console.log(bloqueDeColsion);
                 break;
             }
             //Si detecta colisión abajo, regresa el objeto, para que no lo pueda atravesar
             if (this.velocity.y> 0) {
-              
-                console.log("Cambio de mapa")
-                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino);
-               
+                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
+                console.log("bloque:");
+                console.log(bloqueDeColsion.posicionDestino);
+                console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
+                console.log(bloqueDeColsion);
                 break;
             }
     }
@@ -367,20 +400,27 @@ if (!this.countdown) {
     
 
 
-
 for (let index = 0; index < disparosEnemigos.length; index++) {
     const bala = disparosEnemigos[index] ;
 
     //Comprobar si hay colisiones
-    if ((this.hitbox.position.x) <= bala.x +bala.width &&
-        (this.hitbox.position.x) + (this.hitbox.width)>= bala.x &&
-        (this.hitbox.position.y) + (this.hitbox.height)>= bala.y &&
-        (this.hitbox.position.y) <= bala.y + bala.height) {
-            
-            
-             this.recibirDañoBalaEnemigo(index);
+    if ((this.hitbox.position.x + this.hitbox.width > bala.x) && 
+    (this.hitbox.position.x < bala.x + bala.width) &&
+    (this.hitbox.position.y + this.hitbox.height > bala.y) && 
+    (this.hitbox.position.y < bala.y + bala.height)) {
+        
+    this.recibirDañoBalaEnemigo(index);
+}
 
-    }
+// Comprobar si hay colisiones entre el hitbox del jugador y la bala
+if ((this.hitbox.position.x + this.hitbox.width > bala.x) && // El lado derecho del hitbox del jugador está más allá de la bala
+    (this.hitbox.position.x < bala.x + bala.width) && // El lado izquierdo del hitbox del jugador está antes del lado derecho de la bala
+    (this.hitbox.position.y + this.hitbox.height > bala.y) && // El lado inferior del hitbox del jugador está más allá de la bala
+    (this.hitbox.position.y < bala.y + bala.height)) { // El lado superior del hitbox del jugador está antes del lado inferior de la bala
+        
+    // Si todas las condiciones son verdaderas, la bala está dentro del hitbox del jugador
+    this.recibirDañoBalaEnemigo(index);
+}
     
 
 
@@ -437,3 +477,77 @@ for (let index = 0; index < disparosEnemigos.length; index++) {
     this.position.y += this.velocity.y;
   }
 }
+
+
+//Verical
+for (let index = 0; index < this.puertas.length; index++) {
+    const bloqueDeColsion = this.puertas[index] ;
+
+    //Comprobar si hay colisiones
+    if (this.hitbox.position.x <= bloqueDeColsion.position.x +bloqueDeColsion.width &&
+        this.hitbox.position.x + this.hitbox.width>= bloqueDeColsion.position.x &&
+        this.hitbox.position.y + this.hitbox.height>= bloqueDeColsion.position.y &&
+        this.hitbox.position.y <= bloqueDeColsion.position.y + bloqueDeColsion.height) {
+            
+            //Si detecta colisión aarriba regresa el objeto, para que no lo pueda atravesar
+            if (this.velocity.y< 0) {
+             
+
+                console.log("Cambio de mapa")
+                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
+                console.log("bloque:");
+                console.log(bloqueDeColsion.posicionDestino);
+                console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
+                console.log(bloqueDeColsion);
+                break;
+            }
+            //Si detecta colisión abajo, regresa el objeto, para que no lo pueda atravesar
+            if (this.velocity.y> 0) {
+                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
+                console.log("bloque:");
+                console.log(bloqueDeColsion.posicionDestino);
+                console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
+                console.log(bloqueDeColsion);
+                break;
+            }
+    }
+    
+
+
+}
+
+//Horiz
+    //Agregar colisiones de las conexiones de nivel
+    for (let index = 0; index < this.puertas.length; index++) {
+           
+        const bloqueDeColsion = this.puertas[index] ;
+
+        //Comprobar si hay colisiones 
+        if (this.hitbox.position.x <= bloqueDeColsion.position.x +bloqueDeColsion.width &&
+            this.hitbox.position.x + this.hitbox.width>= bloqueDeColsion.position.x &&
+            this.hitbox.position.y + this.hitbox.height>= bloqueDeColsion.position.y &&
+            this.hitbox.position.y <= bloqueDeColsion.position.y + bloqueDeColsion.height) {
+                
+                //Si detecta colisión a la derecha regresa el objeto, para que no lo pueda atravesar
+                if (this.velocity.x< 0) {
+            
+                  console.log("Cambio de mapa")
+                  navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
+                  console.log("bloque:");
+                  console.log(bloqueDeColsion.posicionDestino);
+                  console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
+                  console.log(bloqueDeColsion);
+                  break;
+                }
+                //Si detecta colisión a la izquierda, regresa el objeto, para que no lo pueda atravesar
+                if (this.velocity.x> 0) {
+                    console.log("Cambio de mapa")
+                    navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
+                    console.log("bloque:");
+                    console.log(bloqueDeColsion.posicionDestino);
+                    console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
+                    console.log(bloqueDeColsion);
+                    break;
+                }
+        }
+    }
