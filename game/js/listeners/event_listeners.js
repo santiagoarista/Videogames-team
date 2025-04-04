@@ -59,6 +59,9 @@ window.addEventListener("keydown", (event)=>{
             }
             break;
 
+            case "l":
+                keys.l.pressed= true;
+                break;
         
             case "k":
                 keys.k.pressed= true;

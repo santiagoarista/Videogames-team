@@ -12,9 +12,13 @@ let listaCuartosAleatorios=[];
 let showMap = false;
 let llaves =[false,false,true,false,false,false,false,false,false,]
 let paused = false;
+let itemsEnJuego = [];
+let idArmaActual = '0';
 let disparosJugador=[]
 let disparosEnemigos=[]
 let gameOver = false;
+
+
 // Tamaño de renderizado 16:9 NO MODIFICAR
 canvas.width = 1344;
 canvas.height = 768;
@@ -34,8 +38,73 @@ let enemigos =[
 let enemigosPorNivel =obtenerListaEnemigos(bulletController, enemyBulletController);
 const player = jugador1(bulletController);
 
+const asistente = new Asistente({ x: 600, y: 500,
+    frameRate: 6,
+    imgResource: "../assets/characters/Slime2_Idle.png",
+    animations:{
+        idleRight:{
+            frameRate:6,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/IdleRight.png",
+            
+        },
+        idleLeft:{
+            frameRate:6,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
+        },
+        runRight:{
+            frameRate:8,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/Run.png",
+        },
+        runLeft:{
+            frameRate:8,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/RunLeft.png",
+        },
+        jumpRight:{
+            frameRate:9,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/Jump.png",
+            
+        },
+        jumpLeft:{
+            frameRate:9,
+            frameBuffer:4,
+            loop :true,
+            imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+            
+        },
+    },
 
+})
 
+const linterna = new Linterna({x: 500, y: 500});
+const botas = new Botas({x: 100, y:500});
+itemsEnJuego.push(linterna);
+itemsEnJuego.push(asistente);
+itemsEnJuego.push(botas);
+
+let armaGrisImage = new Image();
+armaGrisImage.src = "../assets/sprites/escenario_spawm_dario/8_1.png";
+let armaAzulImage = new Image();
+armaAzulImage.src = "../assets/sprites/escenario_spawm_dario/7_1.png";
+let armaRojaImage = new Image();
+armaRojaImage.src = "../assets/sprites/escenario_spawm_dario/9_1.png";
+
+const armaGris = new Arma({x: 525, y: 640, idArma: '1', armaImage: armaGrisImage});
+const armaAzul = new Arma({x: 940, y: 640, idArma: '2', armaImage: armaAzulImage});
+const armaRoja = new Arma({x: 1005, y: 195, idArma: '3', armaImage: armaRojaImage});
+let armaslista = [];
+armaslista.push(armaGris);
+armaslista.push(armaAzul);
+armaslista.push(armaRoja);
 
 
 //cuartos aleatorios
@@ -48,6 +117,9 @@ let cuartos= generarLevels(crear_disposicion_cuartos(),enemigosPorNivel)
 
 const keys = {
     k:{
+        pressed: false
+    },
+    l:{
         pressed: false
     },
     w:{
@@ -104,7 +176,24 @@ function animate(timeStamp) {
     // Movimiento del jugador con deltaTime
     player.velocity.x = 0;
     const speed = 200; // Velocidad en píxeles por segundo
-    
+
+    if(cuartos[currentLevel].id == 8){
+        armaslista.forEach((arma) => {
+            if (arma.idArma !== idArmaActual) {
+                arma.drawArma();
+                arma.update();
+            }
+        });
+    } else {
+        armaslista = [];
+    }
+
+    itemsEnJuego.forEach((i) => {
+        if (i.visible !== false) { // Solo dibujar si es visible
+            i.draw();
+            i.update();
+        }
+    });
 
     if (keys.d.pressed) {
         player.switchSprite("runRight");
@@ -187,5 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
 cuartos[currentLevel].init();
 //console.log(listaCuartosAleatorios)
 requestAnimationFrame(animate);
+
 
 
