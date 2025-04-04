@@ -16,9 +16,9 @@ Equipo Ghostbusters
    - [Jugabilidad](#Jugabilidad)
    - [Mentalidad](#Mentalidad)
 1. &#x20;[Apectos técnicos](#Aspectos_técnicos)
-   - [Pantallas](#Resumen)
-   - [Controles](#Jugabilidad)
-   - [Mecánicas](#Mentalidad)
+   - [Pantallas](#Pantallas)
+   - [Controles](#Controles)
+   - [Mecánicas](#Mecánicas)
 1. [Diseño de Nivel](#diseño-de-niveles)
    1. [Temas](#temas)
       1. Ambiente
