@@ -148,9 +148,7 @@ Queremos que el jugador se sienta asustado, indefenso y confundido al comienzo d
          3. Bloques
       2. Interactuables
          1. Linterna
-         
          2. Asistente
-         
          3. Botas
          4. Armas
    3. _Desafíos_
