@@ -1,9 +1,10 @@
 # **Instrucciones para correr Nine-Shions**
 
 ## **¿Como corro el juego?**
-  1. Para correr el juego de Nineshions, primero empieza abriendo el archivo html con el nombre de ["principal_menu.html"](https://github.com/santiagoarista/Videogames-team/blob/main/game/html/principal_menu.html) en el navegador que prefieras. Ahi se abrira el menu principal del juego.
-  2. Ya estando en el menu, mueve el cursor hacia el boton que dice "Jugar" para que cambie la pantalla al juego.
-  3. Una vez que presiones el boton, ya empezaras a jugar. Tambien hay un boton de pantalla completa en la parte superior del canvas para que se vea más grande y para más comodidad.
+  1. Primero debe clonar el repositorio en su dispositivo para tener todas las carpetas y archivos del juego.
+  2. Para correr el juego de Nineshions, primero empieza abriendo el archivo html con el nombre de ["principal_menu.html"](https://github.com/santiagoarista/Videogames-team/blob/main/game/html/principal_menu.html) en el navegador que prefieras. Ahi se abrira el menu principal del juego.
+  3. Ya estando en el menu, mueve el cursor hacia el boton que dice "Jugar" para que cambie la pantalla al juego.
+  4. Una vez que presiones el boton, ya empezaras a jugar. Tambien hay un boton de pantalla completa en la parte superior del canvas para que se vea más grande y para más comodidad.
 
 ## **¿Cuales son los controles?**
   - w - Saltar
