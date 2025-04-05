@@ -110,7 +110,11 @@ window.addEventListener("keyup", (event)=>{
         case "d":
             keys.d.pressed= false;
 
-            break;  
+            break; 
+         case "l":
+             keys.l.pressed= false; 
+             lKeyProcessed = false;
+             break;  
         //AGACHARSE    
         case "s":
       

@@ -222,28 +222,54 @@ class Arma extends Item {
         super({
             idItem: 4,
             type: "Arma",
-            imgResource: armaImageSrc, // usamos esto como Sprite espera
+           // usamos esto como Sprite espera
             x,
             y
         });
-
+        
+        this.armaImage = armaImageSrc;
         this.idArma = idArma;
         this.width = 40;
         this.height = 20;
+        this.baseY = this.position.y;
+        this.floatAmplitude = 10; // Qué tanto sube y baja
+        this.floatSpeed = 0.05;   // Qué tan rápido levita
+        this.floatTime = 0;       // Contador de tiempo para el seno
+      
     }
 
     update(){
-        //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
+        // Aumentar tiempo para animación
+        this.floatTime += this.floatSpeed;
+    
+        // Calcular desplazamiento vertical tipo "levitación"
+        const floatOffset = Math.sin(this.floatTime) * this.floatAmplitude;
+    
+        // Calcular sombra oscilante (entre 30 y 60 de blur, por ejemplo)
+        const shadowOscillation = 30 + Math.abs(Math.sin(this.floatTime)) * 30;
+    
+        // Limpiar fondo (si hace falta, opcional)
+        // context.clearRect(0, 0, canvas.width, canvas.height);
+    if (this.idArma !=idArmaActual) {
+        // Dibujar sombra y levitación
+        context.shadowColor = "#faff61";
+        context.shadowBlur = shadowOscillation;
+    
+        // Cargar imagen y dibujarla en nueva posición
+        const img = new Image();
+        img.src = this.armaImage;
+        context.drawImage(img, this.position.x, this.baseY + floatOffset, img.width, img.height);
+    
+    }
+    context.shadowBlur = 0;
+    context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
 
-        context.fillStyle= "rgba(0, 0, 255, 0)";
-        context.fillRect(this.position.x,this.position.y,this.width,this.height);
-
-        //aCTUALIZACIÓN DE HITBOX EN 2 PUNTOS
+        // Redibujar hitbox
         this.updateHitbox();
         this.draw();
-        context.fillStyle= "rgba(30, 255, 0, 0.2)";
-        context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
+    
     }
+    
     
 
     draw(){
@@ -264,4 +290,31 @@ class Arma extends Item {
        }
        }
     
+}
+
+
+function dibujarArmaActual() {
+    const img = new Image();
+
+    switch (idArmaActual) {
+        case "1":
+            img.src = "../assets/sprites/escenario_spawm_dario/8_1.png"
+            break;
+        case "2":
+            img.src = "../assets/sprites/escenario_spawm_dario/7_1.png"
+        break;
+        case "3":
+            img.src =  "../assets/sprites/escenario_spawm_dario/9_1.png"
+        break;
+        default:
+            break;
+    }
+
+    context.shadowColor = "white";
+    context.shadowBlur = 10;
+    
+
+    // Dibujo del arma
+    context.drawImage(img, 400, 20, img.width * 2, img.height * 2);
+
 }

@@ -326,7 +326,7 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
         [],
         [],
         [],
-        enemigosSpawn,
+        [],
         [],
     ]
     

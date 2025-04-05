@@ -13,11 +13,11 @@ let showMap = false;
 let llaves =[false,false,true,false,false,false,false,false,false,]
 let paused = false;
 let itemsEnJuego = obtenerListaItems();
-let idArmaActual = '0';
+let idArmaActual = '0'
 let disparosJugador=[]
 let disparosEnemigos=[]
 let gameOver = false;
-let armaAnterior = null;
+let lKeyProcessed = false;
 
 
 
@@ -34,18 +34,6 @@ let armaslista = [
 
 let armasEnEscenario = [...armaslista];
 
-const armasOriginales = [
-    new Arma({x: 525, y: 640, idArma: '1', armaImageSrc: "../assets/sprites/escenario_spawm_dario/8_1.png"}),
-    new Arma({x: 940, y: 640, idArma: '2', armaImageSrc: "../assets/sprites/escenario_spawm_dario/7_1.png"}),
-    new Arma({x: 1005, y: 195, idArma: '3', armaImageSrc: "../assets/sprites/escenario_spawm_dario/9_1.png"}),
-];
-
-function clonarArmaDesdeId(id, x, y) {
-    const original = armasOriginales.find(a => a.idArma === id);
-    if (!original) return null;
-
-    return new Arma({ x, y, idArma: original.idArma, armaImageSrc: original.image.src});
-}
 
 //Controladores de disparos
 const bulletController = new Bulletcontroller(canvas)
@@ -137,13 +125,15 @@ function animate(timeStamp) {
 
     if(cuartos[currentLevel].id == 8){
         armaslista.forEach((arma) => {
-            if (arma.idArma !== idArmaActual) {
+            
                 arma.update();
-            }
+            
         });
     } else {
-        armaslista = [];
+   
     }
+
+
 
     itemsEnJuego.forEach((i) => {
         if (i.visible !== false) { // Solo dibujar si es visible
@@ -237,7 +227,7 @@ context.fillRect(1220,674, 5, 5);
     context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
 
 
-
+console.log(idArmaActual);
 
     // Dibujar pantalla de cambio de nivel
     context.save();
@@ -249,6 +239,7 @@ context.fillRect(1220,674, 5, 5);
     if (showMap) {
         drawMap(listaCuartosAleatorios);
     }
+    dibujarArmaActual()
 }
 
 

@@ -8,13 +8,16 @@ const soundMap = {
     walk: "../assets/soundeffects/protagonist/run.mp3",
     regularLevelsMusic: "../assets/music/musica_menu_principal.mp3",
     menuPrincipalMusic: "../assets/music/musical_cuartos_regulares.mp3",
-    
+    no_weapon: "../assets/soundeffects/weapon_box/no_weapon.mp3",
+    take_weapon: "../assets/soundeffects/weapon_box/take_weapon.wav",    
 };
 
-function playSound(action) {
+function playSound(action, volume= 1.0) {
     const soundFile = soundMap[action];
     if (soundFile) {
+        
         const audio = new Audio(soundFile);
+        audio.volume= volume;
         audio.play();
     } else {
         console.warn(`No hay sonido asociado a: ${action}`);

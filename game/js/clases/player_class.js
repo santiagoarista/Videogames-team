@@ -293,24 +293,33 @@ class Player extends Sprite{
 
         
         //Colisiones con las Armas   
-        if(cuartos[currentLevel].id == 8){
-            armasEnEscenario = armasEnEscenario.filter(arma => {
-                if (this.hitbox.position.x <= arma.hitbox.position.x + arma.hitbox.width &&
+        if (keys.l.pressed && !lKeyProcessed) {
+            // Se ejecuta una vez al presionar "l"
+            for (let index = 0; index < armasEnEscenario.length; index++) {
+                const arma = armasEnEscenario[index];
+        
+                if (
+                    this.hitbox.position.x <= arma.hitbox.position.x + arma.hitbox.width &&
                     this.hitbox.position.x + this.hitbox.width >= arma.hitbox.position.x &&
                     this.hitbox.position.y + this.hitbox.height >= arma.hitbox.position.y &&
-                    this.hitbox.position.y <= arma.hitbox.position.y + arma.hitbox.height &&
-                    keys.l.pressed) {
-    
-                    console.log("Colisión con arma ID:", arma.idArma);
-
+                    this.hitbox.position.y <= arma.hitbox.position.y + arma.hitbox.height
+                ) {
+                    if (idArmaActual !== arma.idArma) {
+                        console.log("se recogió arma");
+                        playSound("take_weapon", 0.5);
+                    } else {
+                        console.log("no recogió arma");
+                        playSound("no_weapon", 0.1);
+                    }
                     idArmaActual = arma.idArma;
-                    keys.l.pressed = false;
-                    return false; // Se elimina del array
                 }
-                return true; // Se mantiene en el array
-            });
-    }
-
+            }
+        
+            lKeyProcessed = true; // Marcar como procesado para evitar múltiples ejecuciones
+        }
+        
+    
+       
     //Colisiones con los items   
     this.items = this.items.filter(item => {
     if (this.hitbox.position.x <= item.hitbox.position.x + item.hitbox.width &&
