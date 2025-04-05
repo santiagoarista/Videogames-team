@@ -20,13 +20,14 @@ Equipo Ghostbusters
    - [Controles](#Controles)
    - [Mecánicas](#Mecánicas)
 1. [Diseño de Nivel](#Diseño-de-nivel)
-   1. [Temas](#temas)
+   1. [Temática](#Temática)
       1. Ambiente
       2. Objetos
          1. Ambientales
          2. Interactivos
       3. Desafíos
-   2. [Flujo del Juego](#Flujo-de-juego)
+   2. [Borradores de Diseños de cuartos](#Borradores-de-diseños-de-cuartos)
+   3. [Flujo del Juego](#Flujo-de-juego)
 1. [Desarrollo](#Desarrollo)
    1. [Clases Abstractas](#clases-abstractas--componentes)
    2. [Clases Derivadas](#Clases-Derivadas--Componentes)
@@ -37,7 +38,6 @@ Equipo Ghostbusters
    1. [Atributos de Estilo](#atributos-de-estilo-1)
    2. [Sonidos Necesarios](#sonidos-necesarios)
    3. [Música Necesaria](#música-necesaria)
-1. [Calendario](#calendario)
 
 ## _Diseño_del_Juego_
 
@@ -53,6 +53,8 @@ El jugador debe navegar a través de ocho habitaciones dentro de la mansión, lu
 ### **Mentalidad**
 
 Queremos que el jugador se sienta asustado, indefenso y confundido al comienzo del juego, en una mansión misteriosa con algunas habitaciones oscuras cuyo orden cambia tras la muerte y donde los monstruos acechan. Sin embargo, a medida que el jugador derrota monstruos, gana experiencia para aumentar su daño y derrotarlos más fácilmente. El jugador también debe ser cauteloso, ya que puede perder esta experiencia y las llaves recolectadas si muere, lo que le presenta más desafíos y lo obliga a usar su propia habilidad, con la ayuda de los objetos, para limpiar la mansión.
+
+---
 
 ## _Aspectos_técnicos_
 
@@ -85,6 +87,12 @@ Queremos que el jugador se sienta asustado, indefenso y confundido al comienzo d
    - Salir del juego
 5. Pantalla de Créditos
    - Créditos del Juego
+
+**Bocetos de pantallas**:
+   -Panralla de pausa
+      ![](sketches/pantallas/pause_screen.png)
+   -Pantalla de mapa
+      ![](sketches/pantallas/map_screen.png)
 
 ### **Controles**
 
@@ -120,28 +128,63 @@ Queremos que el jugador se sienta asustado, indefenso y confundido al comienzo d
 8. Estos objetos se obtienen una sola vez y permanecen incluso tras la muerte.
 9. Una vez obtenidas todas las llaves, el jugador debe encontrar la puerta secreta que conduce al jefe final.
 
+#### Mecanicas con enemigos
+ * Fantasmas: Los fantasmas flotan por las habitaciones sin colisionar con los bloques. En cuanto detecten al juagdor, los fantasmas flotaran a la dirección de este, y cuando el fantasma toca al jugador, el jugador perderá una vida y entrata en un cooldown donde será invulnerable a cualquier colision con los enemigos. Al derrotar este tipo de enemigos, el jugador ganara un total de 50 puntos, los cuales si se consiguen 300 o 500 puntos podra desbloquear otras armas para incrementar su daño a los enemigos.
+ * Jack: Un jack tambien flota en las habitaciones sin colisionar con los bloques, con la diferencia de que solo se mueve de arriba y abajo y puede realizar disparos en el momento que detecta al jugador. Si el disparo colisiona con el jugador, perderá una vida y entrata en un cooldown donde será invulnerable a cualquier colision con los enemigos. Al derrotar este tipo de enemigos, el jugador ganara un total de 80 puntos, los cuales si se consiguen 300 o 500 puntos podra desbloquear otras armas para incrementar su daño a los enemigos.
+
+---
+
 ## _Diseño de nivel_
 
-**Assets gráficos:**
+### **Temática**
 
-En el videojuego tenemos assets inspirados por mounestros de la literatura clásica de terror y la festividad de Hallowen, los assets son los siguientes:
+1. Mansión embrujada
+   1. _Ambiente_
+      1. Brillante, impredecible, intrigante, misteriosa, sobrenatural
+   2. _Objetos_
+      1. Escenario de Fondo
+         1. Luces neón
+         2. Grafitis
+         3. Bloques
+      2. Interactuables
+         1. Linterna
+         
+         2. Asistente
+         
+         3. Botas
+         4. Armas
+   3. _Desafíos_
+        1. Fantasmas
+        2. Jack
 
-1.  Escenario
+### Borradores de diseños de cuartos
 
-    1.  Tiles (Lista completa de tiles -> [Tiles](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/)
+   1. Cuartos:
+      -Jefe final
+      ![](sketches/cuartos/cuarto_jefeFinal_skecth.png)
+      
+      -Cuarto Spawn
+      ![](sketches/cuartos/cuarto_spawn_sketch.png)
+      
+      -Cuarto 1
+      ![](game/assets/niveles_fondo/Scene1.png)
+      
+      -Cuarto 2
+      ![](game/assets/niveles_fondo/Scene2.png)
+      
+      -Cuarto 3
+      ![](game/assets/niveles_fondo/Scene3.png)
+      
+      -Cuarto 4
+      ![](game/assets/niveles_fondo/Scene4.png)
+      
+      -Cuarto 5
+      ![](game/assets/niveles_fondo/Scene5.png)
+      
+      -Cuarto 6
+      ![](game/assets/niveles_fondo/Scene6.png)
 
-    ![](assets/escenario/tiles/Tile_01.png) | ![](assets/escenario/tiles/Tile_03.png)| ![](assets/escenario/Tiles/Tile_12.png)|![](assets/escenario/Tiles/Tile_20.png) ![](assets/escenario/tiles/Tile_023.png) | ![](assets/escenario/tiles/Tile_25.png)| ![](assets/escenario/Tiles/Tile_30.png)|![](assets/escenario/Tiles/Tile_31.png)
-
-    1.  Decoraciones (Lista completa de assets -> [Decoration](https://github.com/santiagoarista/Videogames-team/tree/main/assets/escenario/decoraciones) )
-
-        | ![](assets/escenario/decoraciones/hallowen/Web1.png) | ![](assets/escenario/decoraciones/hallowen/Signboard3.png)| ![](assets/escenario/decoraciones/hallowen/Signboard4.png)|
-        | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box1.png) | ![](assets/escenario/decoraciones/elementos%20de%20mapa/Box5.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Flag.png)| ![](assets/escenario/decoraciones/elementos%20de%20mapa/Locker4.png)|
-
-    1.  Balas (Lista completa de assets -> [Bullets](https://github.com/santiagoarista/Videogames-team/tree/main/assets/bullets/Laser%20Sprites/) )
-
-        | ![](assets/bullets/Laser%20Sprites/01.png) | ![](assets/bullets/Laser%20Sprites/02.png)| ![](assets/bullets/Laser%20Sprites/03.png))|
-
-        | ![](assets/bullets/Laser%20Sprites/15.png) |
+    
 
 ### **Flujo de juego**
 
@@ -161,16 +204,79 @@ En el videojuego tenemos assets inspirados por mounestros de la literatura clás
 
 ### **Clases Abstractas / Componentes**
 
-1. Sprite
-   - Jugador
-   - Enemigo1
-   - Enemigo2
-   - Objetos
-   - Puerta
-2. Cuarto
-3. ConexionCuarto
-4. ControladorDeAudio
-5. ContenedorCuarto
+1. #### Sprite
+   - ##### Atributos
+      * posicion
+      * imagen
+      * cargado
+      * ancho
+      * largo
+      * framerate
+      * frameActual
+      * framesTranscurridos
+      * frameBuffer
+      * animaciones
+      * ciclo
+      * autoplay
+      * visible
+      * countdown
+   - ##### Metodos
+      * Dibujar
+      * Reproducir
+      * ActualizarFrames
+      * EmpezarParpadeo
+      * EstablecerCountdown
+2. #### Cuarto
+   - ##### Atributos
+      * idCuarto
+      * cuartoSpawn
+      * cuartoJefeFinal
+      * conexionSuperior
+      * conexionIzquierda
+      * conexionDerecha
+      * posicionJugadorSuperior
+      * posicionJugadorInferior
+      * posicionJugadorIzquierda
+      * posicionJugadorDerecha
+      * imgBackground
+      * colisiones
+4. #### ConexionCuarto
+   - ##### Atributos
+      * idConexion
+      * idOrigen
+      * idDestino
+      * esConexionJefe
+      * conexionActiva
+      * posicionDestino
+6. #### ControladorDeAudio
+   - ##### Atributos
+      * accion
+      * audio
+      * ciclo
+      * volumen
+   - ##### Metodos
+     * reproducir
+     * mutar
+     * pausar
+     * detener
+     * establecerVolumen
+     * establecerSonido
+     * fadeIn
+     * fadeOut
+8. #### ContenedorCuarto
+   - ##### Atributos
+      * colorfondo
+      * icono
+      * salidaIZQ
+      * salidaDER
+      * salidaUP
+      * salidaDOWN
+      * posicion
+      * idCuarto
+      * cuartoJefeFinal
+      * esCuartoActual
+   - ##### Metodos
+     * dibujar
 
 ### **Clases Derivadas / Componentes**
 
@@ -316,28 +422,16 @@ En el videojuego tenemos assets inspirados por mounestros de la literatura clás
       * Actualizar
       * Dibujar
       * ActualizarHitbox
+7. #### Puerta, derivada de Sprite
+   - ##### Atributos
+      * posicionOrigen
+      * posicionDestino
+      * idOrigen
+      * idDestino
+      * puertaActiva
 
-### **Temática**
+---
 
-1. Mansión embrujada
-   1. Tema
-      1. Oscura, misteriosa, impredecible
-   2. Objetos
-      1. _Ambiente_
-         1. Luces neón
-         2. Mosaicos
-         3. Atúdes
-         4. Mesas
-         5. Libreros
-         6. Lockers
-         7. Cajas
-      2. _Interactuables_
-         1. Esquelotos
-         2. Fantasmas
-         3. Murcielagos
-         4. Llaves
-         5. Itemas recogibles con ayudas al jugafor como doble salto, asistente, linterna
-        
 ## _Gráficos_
 
 ### **Atributos de estilo**
@@ -350,28 +444,61 @@ En el videojuego tenemos assets inspirados por mounestros de la literatura clás
 
 ### **Gráficos necesarios**
 
-**Personajes**
-
 1. Personaje principal (Lista completa de assets -> [Main Character](https://github.com/santiagoarista/Videogames-team/tree/main/assets/character/main_character) )
 
    ![](assets/character/main_character/Run.png)
    ![](assets/character/main_character/Jump.png)
    ![](assets/character/main_character/Attack_1.png)
 
-2. Borradores de los cuartos
+2. Objetos
+   - Linterna
 
-   1. Cuartos:
-      -Jefe final
-      ![](sketches/cuartos/cuarto_jefeFinal_skecth.png)
-      -Spawn
-      ![](sketches/cuartos/cuarto_spawn_sketch.png)
+      <img src="game/assets/sprites/escenario_spawm_dario/linternaSprite.png" width="50">
+   
+   - Asistente
+     
+      ![](game/assets/characters/Slime2_Idle.png)
 
-   2. Otras pantallas dentro del juego:
-      -Panralla de pausa
-      ![](sketches/pantallas/pause_screen.png)
-      -Pantalla de mapa
-      ![](sketches/pantallas/map_screen.png)
+   - Botas
+  
+      <img src="game/assets/sprites/escenario_spawm_dario/botas.png" width="50">
 
+   - Armas
+
+      ![](game/assets/sprites/escenario_spawm_dario/7_1.png)
+      ![](game/assets/sprites/escenario_spawm_dario/8_1.png)
+      ![](game/assets/sprites/escenario_spawm_dario/9_1.png)
+
+3. Disparos
+
+      ![](assets/bullets/Laser%20Sprites/01.png)
+      ![](assets/bullets/Laser%20Sprites/02.png)
+      ![](assets/bullets/Laser%20Sprites/03.png)
+      ![](assets/bullets/Laser%20Sprites/15.png)
+
+4. Enemigos
+   - Fantasmas
+
+      ![](game/assets/characters/enemies/ghost/Ghost_Walk_left.png)
+
+   - Jack
+
+      ![](game/assets/characters/enemies/jack/jack.png)
+
+4. Escenarios
+   - Bloques
+  
+      ![](game/assets/sprites/escenario_spawm_dario/Tile_28.png)
+
+   - Paredes
+
+      ![](game/assets/sprites/escenario_spawm_dario/Tile_09.png)
+      ![](game/assets/sprites/escenario_spawm_dario/Tile_10.png)
+      ![](game/assets/sprites/escenario_spawm_dario/Tile_11.png)
+     
+   - Suelo
+  
+      ![](game/assets/sprites/escenario_spawm_dario/Tile_02.png)
 
 
 ## **Sonidos/Música**
@@ -384,3 +511,18 @@ La música del videojuego tiene que estar inspirada en música de hallowen
           [Regular Rooms Music](https://www.youtube.com/watch?v=ztnifjaFDxQ)
    3. Cuarto del jefe final: "Spooky, Scary Skeletons (Undead Tombstone Remix) · Andrew Gold"
           [Final Boss room Music](https://www.youtube.com/watch?v=UWR4aTdMbzw)
+
+**Efectos de Sonido**
+
+1. Personaje principal (Lista completa de efectos de sonido -> [Personaje Principal](https://github.com/santiagoarista/Videogames-team/tree/main/game/assets/soundeffects/protagonist)
+   - Sonido para caminar
+   - Sonido para aterrizar despues de saltar
+   - Sonido de dolor al recibir daño
+
+2. Disparos (Lista completa de efectos de sonido -> [Disparos](https://github.com/santiagoarista/Videogames-team/tree/main/game/assets/soundeffects/laserShot)
+   - Sonido de disparos del jugador
+   - Sonido de disparos de los enemigos
+
+4. Enemigos (Lista completa de efectos de sonido -> [Enemigos](https://github.com/santiagoarista/Videogames-team/tree/main/game/assets/soundeffects/monsterSounds)
+   - Sonidos para los fantasmas
+   - Sonidos al ser eliminados
