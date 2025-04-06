@@ -82,6 +82,7 @@ gsap.to(overlay, {
         cuartos[currentLevel].init();
         
         player.position = posiciónFinal;
+        itemsEnJuego =[]
         player.visible = true;
         player.inTransition = false;
         player.countdown = true; // Reiniciar el temporizador
