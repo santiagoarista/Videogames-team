@@ -74,6 +74,9 @@ class Player extends Sprite{
 
     // Dibujar conteo de llaves
     drawKeys() {
+        this.keys = llaves.filter(element => element === true).length;
+
+        
         context.shadowColor = "white";
         context.shadowBlur = 15;
         context.drawImage(this.keysImage, 300, 10, 30, 60);

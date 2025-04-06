@@ -8,6 +8,8 @@ const soundMap = {
     walk: "../assets/soundeffects/protagonist/run.mp3",
     regularLevelsMusic: "../assets/music/musica_menu_principal.mp3",
     menuPrincipalMusic: "../assets/music/musical_cuartos_regulares.mp3",
+    musica_jefe: "../assets/music/cuerto_jefe_final_musica.mp3",
+
     no_weapon: "../assets/soundeffects/weapon_box/no_weapon.mp3",
     take_weapon: "../assets/soundeffects/weapon_box/take_weapon.wav",    
 };
