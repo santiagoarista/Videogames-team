@@ -318,3 +318,48 @@ function dibujarArmaActual() {
     context.drawImage(img, 400, 20, img.width * 2, img.height * 2);
 
 }
+
+class Llave extends Item {
+    constructor({x, y}) {
+        super({idItem : 10, type : "Llave", x, y});
+        this.itemImage = new Image();
+        this.itemImage.src = "../assets/sprites/36.png";
+        this.width = 22.1;
+        this.height = 49.2;
+
+        this.baseY = y;               // Posición base para la levitación
+        this.time = 0;                // Para animación senoidal
+        this.shadowPulse = 0;         // Para animación de sombra
+    }
+
+    update() {
+        this.time += 0.05; // velocidad de levitación
+        this.position.y = this.baseY + Math.sin(this.time) * 5; // levitación suave
+
+        this.shadowPulse = 20 + Math.sin(this.time * 2) * 10; // sombra que pulsa
+
+        this.updateHitbox();
+    }
+
+    draw(){
+        context.shadowColor = "yellow";
+        context.shadowBlur = this.shadowPulse;
+
+        context.drawImage(this.itemImage, this.position.x, this.position.y, this.width, this.height);
+
+        // Reset shadow
+        context.shadowColor = "transparent";
+        context.shadowBlur = 5;
+    }
+
+    updateHitbox() {
+        this.hitbox = {
+            position: {
+                x: this.position.x + 3,
+                y: this.position.y + 2
+            },
+            width: this.width - 6,
+            height: this.height - 5
+        };
+    }
+}

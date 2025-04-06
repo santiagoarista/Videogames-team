@@ -10,7 +10,7 @@ let puertas =[]
 let currentLevel =8;
 let listaCuartosAleatorios=[];
 let showMap = false;
-let llaves =[false,false,true,false,false,false,false,false,false,]
+let llaves =[false,false,false,false,false,false,false,false,false,]
 let paused = false;
 let itemsEnJuego = obtenerListaItems();
 let idArmaActual = '0'
@@ -51,7 +51,6 @@ const player = jugador1(bulletController, itemsEnJuego);
 
 //cuartos aleatorios
 let cuartos= generarLevels(crear_disposicion_cuartos(),enemigosPorNivel)
-
 
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
@@ -226,8 +225,6 @@ context.fillRect(1220,674, 5, 5);
     context.shadowBlur = 0;
     context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
 
-
-console.log(idArmaActual);
 
     // Dibujar pantalla de cambio de nivel
     context.save();

@@ -269,7 +269,7 @@ class Player extends Sprite{
                 this.hitbox.position.x + (this.hitbox.width)>= enemigo.hitbox.position.x &&
                 this.hitbox.position.y + (this.hitbox.height)>= enemigo.hitbox.position.y &&
                 this.hitbox.position.y <= enemigo.hitbox.position.y + enemigo.hitbox.height) {
-                    
+                    this.lastEnemyKill( enemigo)
                     this.recibirDaño(index);
             }
                 
@@ -319,23 +319,48 @@ class Player extends Sprite{
         }
         
     
-       
-    //Colisiones con los items   
-    this.items = this.items.filter(item => {
-    if (this.hitbox.position.x <= item.hitbox.position.x + item.hitbox.width &&
-        this.hitbox.position.x + this.hitbox.width >= item.hitbox.position.x &&
-        this.hitbox.position.y + this.hitbox.height >= item.hitbox.position.y &&
-        this.hitbox.position.y <= item.hitbox.position.y + item.hitbox.height) {
     
-                    console.log("Colisión con item ID:", item.idItem);
-                    item.visible = false;
-                    return false; // Se elimina del array
-                }
-                return true; // Se mantiene en el array
-            });
+        for (let index = 0; index < itemsEnJuego.length; index++) {
+            const item = itemsEnJuego[index] ;
         
+            //Comprobar si hay colisiones
+            if (this.hitbox.position.x <= item.position.x +item.width &&
+                this.hitbox.position.x + this.hitbox.width>= item.position.x &&
+                this.hitbox.position.y + this.hitbox.height>= item.position.y &&
+                this.hitbox.position.y <= item.position.y + item.height) {
+                    
+                
+                console.log("Colisión con item ID");
+                    if (item.type == "Llave") {
+                        llaves[currentLevel-1]= true
+                    }
+                    itemsEnJuego.splice(index, 1);
 
-}
+            }
+            
+        
+        
+        }
+ //   //Colisiones con los items   
+ //   this.items = this.items.filter(item => {
+ //   if (this.hitbox.position.x <= item.hitbox.position.x + item.hitbox.width &&
+ //       this.hitbox.position.x + this.hitbox.width >= item.hitbox.position.x &&
+ //       this.hitbox.position.y + this.hitbox.height >= item.hitbox.position.y &&
+ //       this.hitbox.position.y <= item.hitbox.position.y + item.hitbox.height) {
+ //   
+ //                   console.log("Colisión con item ID:", item.idItem);
+ //                   item.visible = false;
+ //                   if (item.type == "Llave") {
+ //                       llaves[currentLevel-1]= true
+ //                   }
+//
+ //                   return false; // Se elimina del array
+ //               }
+ //               return true; // Se mantiene en el array
+ //           });
+ //       
+//
+}//
 
     checkVerticalCollisions(){
    //CHECAR SI HAY COLISIONES EN Y
@@ -480,6 +505,16 @@ if ((this.hitbox.position.x + this.hitbox.width > bala.x) && // El lado derecho 
         gameOver = true
     }
   }
+
+  lastEnemyKill( enemigo){
+    if (enemigos.length==1) {
+        if (enemigo.health==1) {
+            console.log("ultimo enemigo")
+            itemsEnJuego.push(new Llave({x: enemigo.position.x, y: enemigo.position.y}))
+        }
+    }
+   
+  }
   applyGravity(){
 //Sólo se aplica gravedad en Y porque es para que baje el objeto
     this.velocity.y +=this.gravity;
@@ -487,76 +522,3 @@ if ((this.hitbox.position.x + this.hitbox.width > bala.x) && // El lado derecho 
   }
 }
 
-
-//Verical
-for (let index = 0; index < this.puertas.length; index++) {
-    const bloqueDeColsion = this.puertas[index] ;
-
-    //Comprobar si hay colisiones
-    if (this.hitbox.position.x <= bloqueDeColsion.position.x +bloqueDeColsion.width &&
-        this.hitbox.position.x + this.hitbox.width>= bloqueDeColsion.position.x &&
-        this.hitbox.position.y + this.hitbox.height>= bloqueDeColsion.position.y &&
-        this.hitbox.position.y <= bloqueDeColsion.position.y + bloqueDeColsion.height) {
-            
-            //Si detecta colisión aarriba regresa el objeto, para que no lo pueda atravesar
-            if (this.velocity.y< 0) {
-             
-
-                console.log("Cambio de mapa")
-                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
-                console.log("bloque:");
-                console.log(bloqueDeColsion.posicionDestino);
-                console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
-                console.log(bloqueDeColsion);
-                break;
-            }
-            //Si detecta colisión abajo, regresa el objeto, para que no lo pueda atravesar
-            if (this.velocity.y> 0) {
-                navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
-                console.log("bloque:");
-                console.log(bloqueDeColsion.posicionDestino);
-                console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
-                console.log(bloqueDeColsion);
-                break;
-            }
-    }
-    
-
-
-}
-
-//Horiz
-    //Agregar colisiones de las conexiones de nivel
-    for (let index = 0; index < this.puertas.length; index++) {
-           
-        const bloqueDeColsion = this.puertas[index] ;
-
-        //Comprobar si hay colisiones 
-        if (this.hitbox.position.x <= bloqueDeColsion.position.x +bloqueDeColsion.width &&
-            this.hitbox.position.x + this.hitbox.width>= bloqueDeColsion.position.x &&
-            this.hitbox.position.y + this.hitbox.height>= bloqueDeColsion.position.y &&
-            this.hitbox.position.y <= bloqueDeColsion.position.y + bloqueDeColsion.height) {
-                
-                //Si detecta colisión a la derecha regresa el objeto, para que no lo pueda atravesar
-                if (this.velocity.x< 0) {
-            
-                  console.log("Cambio de mapa")
-                  navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
-                  console.log("bloque:");
-                  console.log(bloqueDeColsion.posicionDestino);
-                  console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
-                  console.log(bloqueDeColsion);
-                  break;
-                }
-                //Si detecta colisión a la izquierda, regresa el objeto, para que no lo pueda atravesar
-                if (this.velocity.x> 0) {
-                    console.log("Cambio de mapa")
-                    navegarNuevoCuarto(bloqueDeColsion.idDestino, bloqueDeColsion.posicionDestino,bloqueDeColsion.nombreOrigen  );
-                    console.log("bloque:");
-                    console.log(bloqueDeColsion.posicionDestino);
-                    console.log("Nombre de Origen:", bloqueDeColsion.nombreOrigen);
-                    console.log(bloqueDeColsion);
-                    break;
-                }
-        }
-    }

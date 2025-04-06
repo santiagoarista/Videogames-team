@@ -36,6 +36,9 @@ class Fantasma extends Sprite{
     }
 
     takeDamage (damage){
+
+ 
+ 
         this.health -=damage
     }
     update(player) {
@@ -210,6 +213,14 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
   //ACCÍON cuando el enemigo recibe un golpe
   recibirGolpe(disparo,index){
 
+    if (enemigos.length==1) {
+        if (this.health==1) {
+            console.log("ultimo enemigo")
+            itemsEnJuego.push(new Llave({x:300,y:600, bloquesDeColision: bloquesColisiones}))
+        }
+ 
+   
+  }
     console.log("golpe recibido por fantasma")
     this.health-= disparo.damage;
     playSound("hurt"); // Reproduce el sonido de dolor
