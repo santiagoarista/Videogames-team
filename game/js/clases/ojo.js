@@ -227,7 +227,14 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
  
   //ACCÍON cuando el enemigo recibe un golpe
   recibirGolpe(disparo,index){
-
+    if (enemigos.length==1) {
+        if (this.health==1) {
+            console.log("ultimo enemigo")
+            itemsEnJuego.push(new Llave({x:this.position.x,y:this.position.y, bloquesDeColision: bloquesColisiones}))
+        }
+ 
+   
+  }
     console.log("golpe recibido por fantasma")
     this.health-= disparo.damage;
     this.disparosJugador.splice(index, 1);

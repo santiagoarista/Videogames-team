@@ -59,6 +59,14 @@ Array.prototype.parse2D= function(){
                posiciónFinal = cuartoDestino.posicionJugadorSuperior;
                break;
        }
+
+       if (idDestino == 9) {
+
+
+        sonidoMusica.setSound("musica_jefe")
+        sonidoMusica.setVolume(0.2)
+        
+       }
    
        console.log("Navegando nuevo cuarto...");
        console.log("Destino:", idDestino);
