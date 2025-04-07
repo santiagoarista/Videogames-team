@@ -117,6 +117,8 @@ function animate(timeStamp) {
     puertas.forEach((puerta) => {
         puerta.draw();
     });
+    context.shadowBlur = 0;
+    context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
 
     // Movimiento del jugador con deltaTime
     player.velocity.x = 0;

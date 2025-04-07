@@ -8,9 +8,11 @@ class Puerta extends Sprite{
         this.idOrigen = idOrigen;
         this.idDestino = idDestino;
         this.puertaActiva = puertaActiva;
-
+        
+        
         
     }
+    
 }
 class Cuarto{
 
@@ -110,7 +112,7 @@ let cuarto2 = new Cuarto(
         cuartoJefeFinal : false,
          
         posicionJugadorSuperior : {x: 687, y: 40},
-        posicionJugadorInferior : {x: 449, y: 600},
+        posicionJugadorInferior : {x: 449, y: 580},
         posicionJugadorIzquierda :{x: 70, y: 150},
         posicionJugadorDerecha :  {x: 1220, y: 150},
          
@@ -455,6 +457,24 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                         posicionDestino:   cuarto.conexionSuperior.posicionDestino,
                    
                     }))
+
+                }else{
+                    player.bloquesDeColision.push(
+                        new Puerta({
+                            position: {
+                                x: 0,
+                                y:-40,
+                            },
+                            nombreOrigen: "superior",
+                            imgResource: "../../game/assets/sprites/doors/colisionInferior2.png",
+                            posicionOrigen: {x: 1200, y:650},
+    
+                         
+                            puertaActiva:true,
+                           
+                       
+                    })
+                    )
                 };
                 if (cuarto.conexionInferior) {
                     puertas.push( new Puerta({
@@ -472,6 +492,26 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                         posicionDestino:   cuarto.conexionInferior.posicionDestino,
                    
                     }))
+                }else{
+                    player.bloquesDeColision.push(
+                        new Puerta({
+                            position: {
+                                x: 0,
+                                y:745,
+                            },
+                            nombreOrigen: "superior",
+                            imgResource: "../../game/assets/sprites/doors/colisionInferior2.png",
+                            posicionOrigen: {x: 1200, y:650},
+    
+                           
+                            puertaActiva:true,
+                           
+                       
+                    })
+
+                    )
+
+
                 };
                 if (cuarto.conexionDerecha) {
                     puertas.push( new Puerta({
@@ -489,6 +529,22 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                         posicionDestino:   cuarto.conexionDerecha.posicionDestino,
                    
                     }))
+                }else{
+                   player.bloquesDeColision.push(
+                        new Puerta({
+                           position: {
+                               x: 1330,
+                               y:0,
+                           },
+                           nombreOrigen: "derecha",
+                           imgResource: "../../game/assets/sprites/doors/colisionLateral2.png",
+                           posicionOrigen: {x: 1200, y:650},
+
+                           puertaActiva:true,
+                         
+                      
+                       }
+                   ))
                 }
                 if (cuarto.conexionIzquierda) {
                     puertas.push( new Puerta({
@@ -506,6 +562,25 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                         posicionDestino:   cuarto.conexionIzquierda.posicionDestino,
                    
                     }))
+                }else{
+                    player.bloquesDeColision.push(
+                        new Puerta({
+                            position: {
+                                x: -20,
+                                y:0,
+                            },
+                            nombreOrigen: "izquierda",
+                            imgResource: "../../game/assets/sprites/doors/colisionLateral2.png",
+                            posicionOrigen: {x: 1200, y:650},
+    
+                           
+                            puertaActiva:true,
+                        
+                       
+                        })
+
+                    )
+
                 }
 
                 player.puertas= puertas;
