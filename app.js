@@ -26,6 +26,13 @@ async function connectToDB()
 }
 
 // Routes definition and handling
+app.get('/', (req, res) => {
+    fs.readFile('game/html/principal_menu.html', 'utf8', (err, html) => {
+        if (err) res.status(500).send('Error loading file: ' + err)
+        else res.send(html)
+    })
+})
+
 app.get('/', (request,response)=>{
     fs.readFile('game/html/in_game_screen.html', 'utf8', (err, html)=>{
         if(err) response.status(500).send('There was an error: ' + err)
@@ -34,12 +41,7 @@ app.get('/', (request,response)=>{
     })
 })
 
-app.get('/', (req, res) => {
-    fs.readFile('game/html/principal_menu.html', 'utf8', (err, html) => {
-        if (err) res.status(500).send('Error loading file: ' + err)
-        else res.send(html)
-    })
-})
+
 
 app.get('/api/Usuario', async (request, response)=>{
     let connection = null
