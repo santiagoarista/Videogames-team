@@ -96,7 +96,7 @@ class Linterna extends Item {
        }
 
        efect(player){
-        player.visionRadius = 800;
+        player.visionRadius = 400;
    }
 
     

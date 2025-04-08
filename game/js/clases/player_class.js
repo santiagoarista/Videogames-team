@@ -50,7 +50,7 @@ class Player extends Sprite{
         this.items = items;
         this.canDoubleJump = false; // Solo se activa al recoger las botas
         this.jumpCount = 0;         // Contador de saltos
-        this.visionRadius = 400; // valor por defecto
+        this.visionRadius = 200; // valor por defecto
     }
 
     //draw(){
