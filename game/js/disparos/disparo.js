@@ -20,11 +20,11 @@ if (keys.d.pressed) {
     player.lastDirection === "left" ? direccion = "izquierda"   : direccion = "derecha";
 }
 
-let imageR= "../../game/assets/bullets/02_shine.png"
+let imageR= "../../assets/bullets/02_shine.png"
 if (direccion == "arriba" ) {
-     imageR= "../../game/assets/bullets/02_shine_up.png"
+     imageR= "../../assets/bullets/02_shine_up.png"
 }else{
-       imageR= "../../game/assets/bullets/02_shine.png"
+       imageR= "../../assets/bullets/02_shine.png"
 }
 
         if (this.timeToNextBullet<=0) {
@@ -91,11 +91,11 @@ if (direccionDisparo ==="derecha") {
     direccion = "abajo" 
 }
 
-let imageR= "../../game/assets/bullets/02_shine.png"
+let imageR= "../../assets/bullets/02_shine.png"
 if (direccion == "arriba" ||  direccion == "abajo") {
-     imageR= "../../game/assets/bullets/02_shine_up.png"
+     imageR= "../../assets/bullets/02_shine_up.png"
 }else{
-       imageR= "../../game/assets/bullets/02_shine.png"
+       imageR= "../../assets/bullets/02_shine.png"
 }
 
         if (this.timeToNextBullet<=0) {

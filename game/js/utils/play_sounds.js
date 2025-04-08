@@ -1,9 +1,9 @@
 const soundMap = {
     jump: "../assets/sounds/jump.mp3",
-    shoot: " ../../game/assets/soundeffects/laserShot/107613__robinhood76__02156-laser-shot.wav",
-    hurt: " ../../game/assets/soundeffects/protagonist/hurt.mp3",
-    hurt2: " ../../game/assets/soundeffects/protagonist/hurt2.wav",
-    enemyhurt1: " ../../game/assets/soundeffects/protagonist/hurt2.wav",
+    shoot: " ../../assets/soundeffects/laserShot/107613__robinhood76__02156-laser-shot.wav",
+    hurt: " ../../assets/soundeffects/protagonist/hurt.mp3",
+    hurt2: " ../../assets/soundeffects/protagonist/hurt2.wav",
+    enemyhurt1: " ../../assets/soundeffects/protagonist/hurt2.wav",
     hit: "../assets/sounds/hit.mp3",
     walk: "../assets/soundeffects/protagonist/run.mp3",
     regularLevelsMusic: "../assets/music/musica_menu_principal.mp3",

@@ -17,39 +17,39 @@ function ShowLinterna(enemigo){
                         frameRate:6,
                         frameBuffer:4,
                         loop :true,
-                        imgResource: "../../game/assets/characters/main_character/IdleRight.png",
+                        imgResource: "../../assets/characters/main_character/IdleRight.png",
                         
                     },
                     idleLeft:{
                         frameRate:6,
                         frameBuffer:4,
                         loop :true,
-                        imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
+                        imgResource: "../../assets/characters/main_character/IdleLeft.png",
                     },
                     runRight:{
                         frameRate:8,
                         frameBuffer:4,
                         loop :true,
-                        imgResource: "../../game/assets/characters/main_character/Run.png",
+                        imgResource: "../../assets/characters/main_character/Run.png",
                     },
                     runLeft:{
                         frameRate:8,
                         frameBuffer:4,
                         loop :true,
-                        imgResource: "../../game/assets/characters/main_character/RunLeft.png",
+                        imgResource: "../../assets/characters/main_character/RunLeft.png",
                     },
                     jumpRight:{
                         frameRate:9,
                         frameBuffer:4,
                         loop :true,
-                        imgResource: "../../game/assets/characters/main_character/Jump.png",
+                        imgResource: "../../assets/characters/main_character/Jump.png",
                         
                     },
                     jumpLeft:{
                         frameRate:9,
                         frameBuffer:4,
                         loop :true,
-                        imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+                        imgResource: "../../assets/characters/main_character/JumpLeft.png",
                         
                     },
                 },

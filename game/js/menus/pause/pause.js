@@ -286,7 +286,7 @@ window.addEventListener("click", (event) => {
             mouseY <= exitY + exitHeight
         ) {
             console.log("Salir al Menú...");
-            window.location.href = "principal_menu.html";
+            window.location.href = "/html/principal_menu.html";
         }
     } else if (settingsOpen) {
         const menuWidth = 500;
