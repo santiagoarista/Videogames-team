@@ -47,7 +47,7 @@ function navegarNuevoCuarto(idDestino, posicionDestino, nombreOrigen) {
       break;
     case "superior":
       posiciónFinal = { ...cuartoDestino.posicionJugadorInferior };
-      posiciónFinal.y = 50; // esta línea ya no modifica el original
+      posiciónFinal.y = 500; // esta línea ya no modifica el original
       break;
     case "inferior":
       posiciónFinal = { ...cuartoDestino.posicionJugadorSuperior };
