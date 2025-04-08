@@ -9,45 +9,45 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
             position: {x:100, y:300},
             bulletController: bulletController,
             frameRate: 4,
-            imgResource: "../../game/assets/characters/enemies/ghost/Ghost_Walk_left.png",
+            imgResource: "../../assets/characters/enemies/ghost/Ghost_Walk_left.png",
             animations:{
                 idleRight:{
                     frameRate:6,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/IdleRight.png",
+                    imgResource: "../../assets/characters/main_character/IdleRight.png",
                     
                 },
                 idleLeft:{
                     frameRate:6,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
+                    imgResource: "../../assets/characters/main_character/IdleLeft.png",
                 },
                 runRight:{
                     frameRate:8,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/Run.png",
+                    imgResource: "../../assets/characters/main_character/Run.png",
                 },
                 runLeft:{
                     frameRate:8,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/RunLeft.png",
+                    imgResource: "../../assets/characters/main_character/RunLeft.png",
                 },
                 jumpRight:{
                     frameRate:9,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/Jump.png",
+                    imgResource: "../../assets/characters/main_character/Jump.png",
                     
                 },
                 jumpLeft:{
                     frameRate:9,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+                    imgResource: "../../assets/characters/main_character/JumpLeft.png",
                     
                 },
         
@@ -60,45 +60,45 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
            position: {x:600, y:100},
            bulletController: bulletController,
            frameRate: 4,
-           imgResource: "../../game/assets/characters/enemies/ghost/Ghost_Walk_left.png",
+           imgResource: "../../assets/characters/enemies/ghost/Ghost_Walk_left.png",
            animations:{
                idleRight:{
                    frameRate:6,
                    frameBuffer:4,
                    loop :true,
-                   imgResource: "../../game/assets/characters/main_character/IdleRight.png",
+                   imgResource: "../../assets/characters/main_character/IdleRight.png",
                    
                },
                idleLeft:{
                    frameRate:6,
                    frameBuffer:4,
                    loop :true,
-                   imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
+                   imgResource: "../../assets/characters/main_character/IdleLeft.png",
                },
                runRight:{
                    frameRate:8,
                    frameBuffer:4,
                    loop :true,
-                   imgResource: "../../game/assets/characters/main_character/Run.png",
+                   imgResource: "../../assets/characters/main_character/Run.png",
                },
                runLeft:{
                    frameRate:8,
                    frameBuffer:4,
                    loop :true,
-                   imgResource: "../../game/assets/characters/main_character/RunLeft.png",
+                   imgResource: "../../assets/characters/main_character/RunLeft.png",
                },
                jumpRight:{
                    frameRate:9,
                    frameBuffer:4,
                    loop :true,
-                   imgResource: "../../game/assets/characters/main_character/Jump.png",
+                   imgResource: "../../assets/characters/main_character/Jump.png",
                    
                },
                jumpLeft:{
                    frameRate:9,
                    frameBuffer:4,
                    loop :true,
-                   imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+                   imgResource: "../../assets/characters/main_character/JumpLeft.png",
                    
                },
        
@@ -152,45 +152,45 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
             position: {x:100, y:300},
             bulletController: bulletController,
             frameRate: 4,
-            imgResource: "../../game/assets/characters/enemies/ghost/Ghost_Walk_left.png",
+            imgResource: "../../assets/characters/enemies/ghost/Ghost_Walk_left.png",
             animations:{
                 idleRight:{
                     frameRate:6,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/IdleRight.png",
+                    imgResource: "../../assets/characters/main_character/IdleRight.png",
                     
                 },
                 idleLeft:{
                     frameRate:6,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
+                    imgResource: "../../assets/characters/main_character/IdleLeft.png",
                 },
                 runRight:{
                     frameRate:8,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/Run.png",
+                    imgResource: "../../assets/characters/main_character/Run.png",
                 },
                 runLeft:{
                     frameRate:8,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/RunLeft.png",
+                    imgResource: "../../assets/characters/main_character/RunLeft.png",
                 },
                 jumpRight:{
                     frameRate:9,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/Jump.png",
+                    imgResource: "../../assets/characters/main_character/Jump.png",
                     
                 },
                 jumpLeft:{
                     frameRate:9,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+                    imgResource: "../../assets/characters/main_character/JumpLeft.png",
                     
                 },
         
@@ -202,45 +202,45 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
             position: {x:600, y:500},
             bulletController: bulletController,
             frameRate: 4,
-            imgResource: "../../game/assets/characters/enemies/ghost/Ghost_Walk_left.png",
+            imgResource: "../../assets/characters/enemies/ghost/Ghost_Walk_left.png",
             animations:{
                 idleRight:{
                     frameRate:6,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/IdleRight.png",
+                    imgResource: "../../assets/characters/main_character/IdleRight.png",
                     
                 },
                 idleLeft:{
                     frameRate:6,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
+                    imgResource: "../../assets/characters/main_character/IdleLeft.png",
                 },
                 runRight:{
                     frameRate:8,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/Run.png",
+                    imgResource: "../../assets/characters/main_character/Run.png",
                 },
                 runLeft:{
                     frameRate:8,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/RunLeft.png",
+                    imgResource: "../../assets/characters/main_character/RunLeft.png",
                 },
                 jumpRight:{
                     frameRate:9,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/Jump.png",
+                    imgResource: "../../assets/characters/main_character/Jump.png",
                     
                 },
                 jumpLeft:{
                     frameRate:9,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+                    imgResource: "../../assets/characters/main_character/JumpLeft.png",
                     
                 },
         
@@ -253,45 +253,45 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
             position: {x:600, y:100},
             bulletController: bulletController,
             frameRate: 4,
-            imgResource: "../../game/assets/characters/enemies/ghost/Ghost_Walk_left.png",
+            imgResource: "../../assets/characters/enemies/ghost/Ghost_Walk_left.png",
             animations:{
                 idleRight:{
                     frameRate:6,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/IdleRight.png",
+                    imgResource: "../../assets/characters/main_character/IdleRight.png",
                     
                 },
                 idleLeft:{
                     frameRate:6,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
+                    imgResource: "../../assets/characters/main_character/IdleLeft.png",
                 },
                 runRight:{
                     frameRate:8,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/Run.png",
+                    imgResource: "../../assets/characters/main_character/Run.png",
                 },
                 runLeft:{
                     frameRate:8,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/RunLeft.png",
+                    imgResource: "../../assets/characters/main_character/RunLeft.png",
                 },
                 jumpRight:{
                     frameRate:9,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/Jump.png",
+                    imgResource: "../../assets/characters/main_character/Jump.png",
                     
                 },
                 jumpLeft:{
                     frameRate:9,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
+                    imgResource: "../../assets/characters/main_character/JumpLeft.png",
                     
                 },
         
@@ -313,7 +313,7 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
             enemyBulletController: enemyBulletController,
             frameBuffer: 16,
             frameRate: 4,
-            imgResource: "../../game/assets/characters/enemies/jack/jack.png",
+            imgResource: "../../assets/characters/enemies/jack/jack.png",
     
         })
 

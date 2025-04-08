@@ -74,7 +74,7 @@ let cuartoJefeFinal = new Cuarto(
         posicionJugadorIzquierda :{x: 97, y: 600},
         posicionJugadorDerecha :  {x: 1220, y: 600},
         colisiones:level_cuarto_final_boss,
-        imgBackground: "../../game/assets/niveles_fondo/mapa_jefe_final.png"
+        imgBackground: "../assets/niveles_fondo/mapa_jefe_final.png"
 
     })
 
@@ -88,7 +88,7 @@ let cuartoSpawn = new Cuarto(
         posicionJugadorIzquierda :{x: 97, y: 600},
         posicionJugadorDerecha :  {x: 1250, y: 150},
         colisiones:level_cuarto_spawn,
-        imgBackground: "../../game/assets/niveles_fondo/cuarto_spawn.png"
+        imgBackground: "../assets/niveles_fondo/cuarto_spawn.png"
     })
 
 let cuarto1 = new Cuarto(
@@ -101,7 +101,7 @@ let cuarto1 = new Cuarto(
         posicionJugadorIzquierda :{x: 90, y: 600},
         posicionJugadorDerecha :  {x: 1220, y: 600},
         colisiones:level_cuarto1,
-        imgBackground: "../../game/assets/niveles_fondo/Scene1.png"
+        imgBackground: "../assets/niveles_fondo/Scene1.png"
         
     })
 
@@ -117,7 +117,7 @@ let cuarto2 = new Cuarto(
         posicionJugadorDerecha :  {x: 1220, y: 150},
          
         colisiones:level_cuarto2,
-        imgBackground: "../../game/assets/niveles_fondo/Scene2.png"
+        imgBackground: "../assets/niveles_fondo/Scene2.png"
     })
 
 let cuarto3 = new Cuarto(
@@ -131,7 +131,7 @@ let cuarto3 = new Cuarto(
         posicionJugadorDerecha :  {x: 1220, y: 600},
          
         colisiones:level_cuarto3,
-        imgBackground: "../../game/assets/niveles_fondo/Scene3.png"
+        imgBackground: "../assets/niveles_fondo/Scene3.png"
     })
 
 let cuarto4 = new Cuarto(
@@ -143,7 +143,7 @@ let cuarto4 = new Cuarto(
         posicionJugadorIzquierda :{x: 97, y: 600},
         posicionJugadorDerecha :  {x: 1200, y: 600},
         colisiones:colisionesNivel4,
-        imgBackground: "../../game/assets/niveles_fondo/cuarto_giff.gif"
+        imgBackground: "../assets/niveles_fondo/cuarto_giff.gif"
     })
 let cuarto5 = new Cuarto(
         {idCuarto : 5,
@@ -154,7 +154,7 @@ let cuarto5 = new Cuarto(
         posicionJugadorIzquierda :{x: 90, y: 300}, 
         posicionJugadorDerecha :  {x: 1220, y: 600},
         colisiones:level_cuarto5,
-        imgBackground: "../../game/assets/niveles_fondo/Scene4.png"
+        imgBackground: "../assets/niveles_fondo/Scene4.png"
     })
 let cuarto6 = new Cuarto(
         {idCuarto : 6,
@@ -165,7 +165,7 @@ let cuarto6 = new Cuarto(
         posicionJugadorIzquierda :{x: 89, y: 600},
         posicionJugadorDerecha :  {x: 1220, y: 600},
         colisiones:level_cuarto6,
-        imgBackground: "../../game/assets/niveles_fondo/Scene5.png"
+        imgBackground: "../assets/niveles_fondo/Scene5.png"
     })
 let cuarto7 = new Cuarto(
         {idCuarto : 7,
@@ -176,7 +176,7 @@ let cuarto7 = new Cuarto(
         posicionJugadorIzquierda :{x: 90, y: 600},
         posicionJugadorDerecha :  {x: 1250, y: 600},
         colisiones:level_cuarto7,
-        imgBackground: "../../game/assets/niveles_fondo/Scene6.png"
+        imgBackground: "../assets/niveles_fondo/Scene6.png"
     })
    
 const cuartosOrdenados= [
@@ -448,7 +448,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                             y:-120,
                         },
                         nombreOrigen: "superior",
-                        imgResource: "../../game/assets/sprites/doors/colisionInferior.png",
+                        imgResource: "../assets/sprites/doors/colisionInferior.png",
                         posicionOrigen: {x: 1200, y:650},
 
                         idOrigen: cuarto.idCuarto,
@@ -466,7 +466,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                                 y:-40,
                             },
                             nombreOrigen: "superior",
-                            imgResource: "../../game/assets/sprites/doors/colisionInferior2.png",
+                            imgResource: "../assets/sprites/doors/colisionInferior2.png",
                             posicionOrigen: {x: 1200, y:650},
     
                          
@@ -483,7 +483,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                             y:745,
                         },
                         nombreOrigen: "inferior",
-                        imgResource: "../../game/assets/sprites/doors/colisionInferior.png",
+                        imgResource: "../assets/sprites/doors/colisionInferior.png",
                         posicionOrigen: {x: 1200, y:650},
 
                         idOrigen: cuarto.idCuarto,
@@ -500,7 +500,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                                 y:745,
                             },
                             nombreOrigen: "superior",
-                            imgResource: "../../game/assets/sprites/doors/colisionInferior2.png",
+                            imgResource: "../assets/sprites/doors/colisionInferior2.png",
                             posicionOrigen: {x: 1200, y:650},
     
                            
@@ -520,7 +520,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                             y:0,
                         },
                         nombreOrigen: "derecha",
-                        imgResource: "../../game/assets/sprites/doors/colisionLateral.png",
+                        imgResource: "../assets/sprites/doors/colisionLateral.png",
                         posicionOrigen: {x: 1200, y:650},
 
                         idOrigen: cuarto.idCuarto,
@@ -537,7 +537,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                                y:0,
                            },
                            nombreOrigen: "derecha",
-                           imgResource: "../../game/assets/sprites/doors/colisionLateral2.png",
+                           imgResource: "../assets/sprites/doors/colisionLateral2.png",
                            posicionOrigen: {x: 1200, y:650},
 
                            puertaActiva:true,
@@ -553,7 +553,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                             y:0,
                         },
                         nombreOrigen: "izquierda",
-                        imgResource: "../../game/assets/sprites/doors/colisionLateral.png",
+                        imgResource: "../assets/sprites/doors/colisionLateral.png",
                         posicionOrigen: {x: 1200, y:650},
 
                         idOrigen: cuarto.idCuarto,
@@ -570,7 +570,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                                 y:0,
                             },
                             nombreOrigen: "izquierda",
-                            imgResource: "../../game/assets/sprites/doors/colisionLateral2.png",
+                            imgResource: "../assets/sprites/doors/colisionLateral2.png",
                             posicionOrigen: {x: 1200, y:650},
     
                            
@@ -606,7 +606,7 @@ let cuartoJefeFinalCons = new Cuarto(
     posicionJugadorIzquierda :{x: 97, y: 600},
     posicionJugadorDerecha :  {x: 1220, y: 600},
     colisiones:level_cuarto_final_boss,
-    imgBackground: "../../game/assets/niveles_fondo/mapa_jefe_final.png"
+    imgBackground: "../assets/niveles_fondo/mapa_jefe_final.png"
 
 })
 
@@ -620,7 +620,7 @@ let cuartoSpawnCons = new Cuarto(
     posicionJugadorIzquierda :{x: 97, y: 600},
     posicionJugadorDerecha :  {x: 1250, y: 150},
     colisiones:level_cuarto_spawn,
-    imgBackground: "../../game/assets/niveles_fondo/cuarto_spawn.png"
+    imgBackground: "../assets/niveles_fondo/cuarto_spawn.png"
 })
 
 let cuarto1Cons = new Cuarto(
@@ -633,7 +633,7 @@ let cuarto1Cons = new Cuarto(
     posicionJugadorIzquierda :{x: 90, y: 600},
     posicionJugadorDerecha :  {x: 1220, y: 600},
     colisiones:level_cuarto1,
-    imgBackground: "../../game/assets/niveles_fondo/Scene1.png"
+    imgBackground: "../assets/niveles_fondo/Scene1.png"
     
 })
 
@@ -649,7 +649,7 @@ let cuarto2Cons = new Cuarto(
     posicionJugadorDerecha :  {x: 1220, y: 150},
      
     colisiones:level_cuarto2,
-    imgBackground: "../../game/assets/niveles_fondo/Scene2.png"
+    imgBackground: "../assets/niveles_fondo/Scene2.png"
 })
 
 let cuarto3Cons = new Cuarto(
