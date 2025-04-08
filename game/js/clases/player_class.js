@@ -94,7 +94,7 @@ class Player extends Sprite{
             this.velocity.y = 0;
             return; // Detener actualización si está en transición
         }
-
+        console.log(this.visible)
         //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
         if (this.countdown  ) {
            

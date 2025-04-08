@@ -6,45 +6,45 @@ function jugador1(bulletController, itemsEnJuego) {
         items: itemsEnJuego,
         bulletController: bulletController,
         frameRate: 6,
-        imgResource: "../assets/characters/main_character/IdleRight.png",
+        imgResource: "../../game/assets/characters/main_character/IdleRight.png",
         animations:{
             idleRight:{
                 frameRate:6,
                 frameBuffer:4,
                 loop :true,
-                imgResource: "../assets/characters/main_character/IdleRight.png",
+                imgResource: "../../game/assets/characters/main_character/IdleRight.png",
                 
             },
             idleLeft:{
                 frameRate:6,
                 frameBuffer:4,
                 loop :true,
-                imgResource: "../assets/characters/main_character/IdleLeft.png",
+                imgResource: "../../game/assets/characters/main_character/IdleLeft.png",
             },
             runRight:{
                 frameRate:8,
                 frameBuffer:4,
                 loop :true,
-                imgResource: "../assets/characters/main_character/Run.png",
+                imgResource: "../../game/assets/characters/main_character/Run.png",
             },
             runLeft:{
                 frameRate:8,
                 frameBuffer:4,
                 loop :true,
-                imgResource: "../assets/characters/main_character/RunLeft.png",
+                imgResource: "../../game/assets/characters/main_character/RunLeft.png",
             },
             jumpRight:{
                 frameRate:9,
                 frameBuffer:4,
                 loop :true,
-                imgResource: "../assets/characters/main_character/Jump.png",
+                imgResource: "../../game/assets/characters/main_character/Jump.png",
                 
             },
             jumpLeft:{
                 frameRate:9,
                 frameBuffer:4,
                 loop :true,
-                imgResource: "../assets/characters/main_character/JumpLeft.png",
+                imgResource: "../../game/assets/characters/main_character/JumpLeft.png",
                 
             },
     
