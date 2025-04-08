@@ -85,7 +85,7 @@ canvas.addEventListener("click", (event) => {
             player.position = { x: 100, y: 100 }; // Reiniciar posición inicial para que parezca que cae en el cuarto spawn
 
             // Reiniciar el estado del juego
-            currentLevel = 8; // Volver al cuarto spawn
+            
             
             //Generar nueva disposición de cuartos 
             console.log('...........')
@@ -207,6 +207,7 @@ cuarto6 = new Cuarto(
             console.log(cuarto1.conexionDerecha)
             cuartos = generarLevels(crear_disposicion_cuartos()); 
             console.log(cuarto1.conexionDerecha)
+            currentLevel = 8; // Volver al cuarto spawn
 
             // Reset Level
 
