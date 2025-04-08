@@ -48,6 +48,9 @@ class Player extends Sprite{
         this.keysImage = new Image();
         this.keysImage.src = '../assets/sprites/36.png'; //Imagen de llave
         this.items = items;
+        this.canDoubleJump = false; // Solo se activa al recoger las botas
+        this.jumpCount = 0;         // Contador de saltos
+        this.visionRadius = 400; // valor por defecto
     }
 
     //draw(){
@@ -272,7 +275,8 @@ class Player extends Sprite{
                 this.hitbox.position.x + (this.hitbox.width)>= enemigo.hitbox.position.x &&
                 this.hitbox.position.y + (this.hitbox.height)>= enemigo.hitbox.position.y &&
                 this.hitbox.position.y <= enemigo.hitbox.position.y + enemigo.hitbox.height) {
-                    this.lastEnemyKill( enemigo)
+                    this.lastEnemyKill(enemigo);
+                    ejecutarFuncionItemAleatoria(enemigo);
                     this.recibirDaño(index);
             }
                 
@@ -336,6 +340,16 @@ class Player extends Sprite{
                 console.log("Colisión con item ID");
                     if (item.type == "Llave") {
                         llaves[currentLevel-1]= true
+                    } else if (item.type == "Linterna") {
+                        itemsActivos[item.idItem -1]= true
+                        item.efect(this);
+                    } else if (item.type == "Asistente") {
+                        itemsActivos[item.idItem -1]= true
+                        item.efect(this);
+                        //console.log(this.lives);
+                    } else if (item.type == "Botas") {
+                        itemsActivos[item.idItem -1]= true
+                        item.efect(this); // Llama al efecto de las botas
                     }
                     itemsEnJuego.splice(index, 1);
 
@@ -388,6 +402,7 @@ class Player extends Sprite{
                 this.velocity.y=0;
                 const offset = this.hitbox.position.y - this.position.y+this.hitbox.height
                 this.position.y = bloqueDeColsion.position.y-offset-0.01;
+                this.jumpCount = 0;
                 break;
             }
     }
@@ -516,8 +531,9 @@ if ((this.hitbox.position.x + this.hitbox.width > bala.x) && // El lado derecho 
             itemsEnJuego.push(new Llave({x: enemigo.position.x, y: enemigo.position.y}))
         }
     }
-   
+    
   }
+
   applyGravity(){
 //Sólo se aplica gravedad en Y porque es para que baje el objeto
     this.velocity.y +=this.gravity;

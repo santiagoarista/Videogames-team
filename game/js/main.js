@@ -12,7 +12,8 @@ let listaCuartosAleatorios=[];
 let showMap = false;
 let llaves =[false,false,false,false,false,false,false,false,false,]
 let paused = false;
-let itemsEnJuego = obtenerListaItems();
+let itemsEnJuego = []; //obtenerListaItems()
+let itemsActivos = [false, false, false];
 let idArmaActual = '0'
 let disparosJugador=[]
 let disparosEnemigos=[]
@@ -32,8 +33,6 @@ let armaslista = [
  new Arma({x: 1025, y: 195, idArma: '3', armaImageSrc: "../assets/sprites/escenario_spawm_dario/9_1.png"})
 ];
 
-let armasEnEscenario = [...armaslista];
-
 
 //Controladores de disparos
 const bulletController = new Bulletcontroller(canvas)
@@ -51,6 +50,14 @@ const player = jugador1(bulletController, itemsEnJuego);
 
 //cuartos aleatorios
 let cuartos= generarLevels(crear_disposicion_cuartos(),enemigosPorNivel)
+
+let cuartosOscuros = new Set(); // IDs de cuartos con oscuridad
+
+// Aleatoriamente seleccionar cuartos oscuros (por ejemplo, 4 cuartos)
+while (cuartosOscuros.size < 4) {
+    const randomIndex = Math.floor(Math.random() * cuartosOrdenados.length);
+    cuartosOscuros.add(cuartosOrdenados[randomIndex].idCuarto);
+}
 
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 
@@ -83,6 +90,7 @@ const overlay = {
     opacity: 0,
 }
 let lastTime = 0; // Para almacenar el tiempo del último frame
+
 function animate(timeStamp) {
  //Game Over Pantalla
     if (gameOver) {
@@ -126,22 +134,26 @@ function animate(timeStamp) {
 
     if(cuartos[currentLevel].id == 8){
         armaslista.forEach((arma) => {
-            
-                arma.update();
-            
+            arma.update();
+
         });
-    } else {
-   
     }
-
-
 
     itemsEnJuego.forEach((i) => {
         if (i.visible !== false) { // Solo dibujar si es visible
+            if(i.idItem == 2){
+                context.shadowColor = "blue";
+                context.shadowBlur = this.shadowPulse;
+                // Reset shadow
+                context.shadowColor = "transparent";
+                context.shadowBlur = 5;
+            }
             i.draw();
             i.update();
         }
     });
+
+    //console.log(itemsActivos);
 
     if (keys.d.pressed) {
         player.switchSprite("runRight");
@@ -216,8 +228,6 @@ context.fillRect(1220,674, 5, 5);
     context.shadowColor = "white"; // Neon effect
     context.shadowBlur = 10;
     player.draw();
-    player.drawLives();
-    player.drawKeys();
     context.shadowColor = "red"; // Neon effect
     context.shadowBlur = 40;
     bulletController.draw(context);
@@ -227,6 +237,10 @@ context.fillRect(1220,674, 5, 5);
     context.shadowBlur = 0;
     context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
 
+    dibujarOscuridadSiNecesaria(cuartos[currentLevel].id, cuartosOscuros);
+
+    player.drawLives();
+    player.drawKeys();
 
     // Dibujar pantalla de cambio de nivel
     context.save();

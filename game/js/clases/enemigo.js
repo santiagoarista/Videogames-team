@@ -218,9 +218,10 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
             console.log("ultimo enemigo")
             itemsEnJuego.push(new Llave({x:this.position.x,y:this.position.y, bloquesDeColision: bloquesColisiones}))
         }
- 
-   
-  }
+    }
+
+    ejecutarFuncionItemAleatoria(this);
+
     console.log("golpe recibido por fantasma")
     this.health-= disparo.damage;
     playSound("hurt"); // Reproduce el sonido de dolor
@@ -231,3 +232,4 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
     }
   }
 }
+
