@@ -90,6 +90,8 @@ canvas.addEventListener("click", (event) => {
             player.lives = 3; // Reiniciar vidas
             player.position = { x: 100, y: 100 }; // Reiniciar posición inicial para que parezca que cae en el cuarto spawn
 
+            // Reiniciar el estado del juego
+            currentLevel = 8; // Volver al cuarto spawn
             
             //Generar nueva disposición de cuartos 
             console.log('...........')
@@ -208,13 +210,11 @@ cuarto6 = new Cuarto(
     imgBackground: "../assets/niveles_fondo/Scene6.png"
 })
 
-            
-            // Reset the Level and Enemies
-            cuartos = generarLevels(crear_disposicion_cuartos()); // Generate level layout
-            console.log(cuartos)
-            console.log(currentLevel)
-            cuartos[currentLevel] = cuartoSpawn
-            console.log(cuartos[currentLevel])
+            console.log(cuarto1.conexionDerecha)
+            cuartos = generarLevels(crear_disposicion_cuartos()); 
+            console.log(cuarto1.conexionDerecha)
+
+            // Reset Level
 
             animate(); // Play
         }

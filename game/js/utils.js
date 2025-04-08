@@ -34,12 +34,16 @@ Array.prototype.parse2D= function(){
 
     }
     function navegarNuevoCuarto(idDestino, posicionDestino, nombreOrigen) {
+        currentLevel = idDestino;
        console.log("Nombre origen desde navegarCuarto: " + nombreOrigen);
        
        let posiciónFinal = { x: 0, y: 0 };
-       let cuartoDestino = cuartosOrdenadosCons.find(c => c.idCuarto == idDestino);
+       let cuartoDestino = cuartosOrdenadosCons.find(c => c.idCuarto == idDestino).coop;
        
        console.log(nombreOrigen);
+          
+       console.log(cuartosOrdenadosCons);
+   
    
        switch (nombreOrigen) {
            case "izquierda":
@@ -52,7 +56,9 @@ Array.prototype.parse2D= function(){
                break;
            case "superior":
                console.log("Dirección destino id:", idDestino, "posición:", cuartoDestino.posicionJugadorInferior);
+               console.log("Posición final:", cuartoDestino.posicionJugadorInferior);
                posiciónFinal = cuartoDestino.posicionJugadorInferior;
+               posiciónFinal.y=600
                break;
            case "inferior":
                console.log("Dirección destino id:", idDestino, "posición:", cuartoDestino.posicionJugadorSuperior);
@@ -73,7 +79,7 @@ Array.prototype.parse2D= function(){
        console.log("Posición Final:", posiciónFinal);
    
        // Bloquear el movimiento y visibilidad del jugador
-       player.position = { x: -300, y: -300 };
+      // player.position = { x: -300, y: -300 };
        player.inTransition = true;
        player.visible = false;
        player.velocity = { x: 0, y: 0 };
@@ -82,18 +88,21 @@ Array.prototype.parse2D= function(){
 overlay.opacity = 1;  // Pantalla se pone negra de inmediato
 
 gsap.to(overlay, {
-    opacity: 1, // Mantiene la opacidad en 1
+    opacity: 0, // Mantiene la opacidad en 1
     duration: 0, // Sin transición inicial (se vuelve negro al instante)
     onComplete: () => {
-        currentLevel = idDestino;
+        
+       
+        player.position = posiciónFinal;
         console.log("Nuevo nivel:", currentLevel);
         cuartos[currentLevel].init();
         
-        player.position = posiciónFinal;
+   
         itemsEnJuego =[]
         player.visible = true;
-        player.inTransition = false;
-        player.countdown = true; // Reiniciar el temporizador
+       
+        //player.countdown = true; // Reiniciar el temporizador
+      
         // Desvanecimiento más lento
         gsap.to(overlay, {
             opacity: 0,
@@ -101,8 +110,8 @@ gsap.to(overlay, {
             ease: "power2.out",
             onComplete: () => {
                 // Desbloquear movimiento y visibilidad cuando termine la transición
-               
             }
         });
+        player.inTransition = false;
     }
 });}

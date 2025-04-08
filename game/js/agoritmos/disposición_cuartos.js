@@ -70,7 +70,7 @@ let cuartoJefeFinal = new Cuarto(
         cuartoSpawn : false,
         cuartoJefeFinal : true,
         posicionJugadorSuperior : {x: 725, y: 10},
-        posicionJugadorInferior :  {x: 621, y: 630},
+        posicionJugadorInferior :  {x: 621, y: 580},
         posicionJugadorIzquierda :{x: 97, y: 600},
         posicionJugadorDerecha :  {x: 1220, y: 600},
         colisiones:level_cuarto_final_boss,
@@ -84,7 +84,7 @@ let cuartoSpawn = new Cuarto(
         cuartoSpawn : true,
         cuartoJefeFinal : false,
         posicionJugadorSuperior : {x: 600, y: 0},
-        posicionJugadorInferior : {x: 641, y: 630},
+        posicionJugadorInferior : {x: 641, y: 580},
         posicionJugadorIzquierda :{x: 97, y: 600},
         posicionJugadorDerecha :  {x: 1250, y: 150},
         colisiones:level_cuarto_spawn,
@@ -97,7 +97,7 @@ let cuarto1 = new Cuarto(
         cuartoSpawn : false,
         cuartoJefeFinal : false,
         posicionJugadorSuperior : {x: 106, y: 40},
-        posicionJugadorInferior : {x: 520, y: 600},
+        posicionJugadorInferior : {x: 520, y: 580},
         posicionJugadorIzquierda :{x: 90, y: 600},
         posicionJugadorDerecha :  {x: 1220, y: 600},
         colisiones:level_cuarto1,
@@ -126,7 +126,7 @@ let cuarto3 = new Cuarto(
         cuartoJefeFinal : false,
       
         posicionJugadorSuperior : {x: 672, y: 50},
-        posicionJugadorInferior : {x: 550, y: 600},
+        posicionJugadorInferior : {x: 550, y: 580},
         posicionJugadorIzquierda :{x: 80, y: 150},
         posicionJugadorDerecha :  {x: 1220, y: 600},
          
@@ -139,7 +139,7 @@ let cuarto4 = new Cuarto(
         cuartoSpawn : false,
         cuartoJefeFinal : false,
         posicionJugadorSuperior : {x: 650, y: 30},
-        posicionJugadorInferior : {x: 440, y: 600},
+        posicionJugadorInferior : {x: 440, y: 580},
         posicionJugadorIzquierda :{x: 97, y: 600},
         posicionJugadorDerecha :  {x: 1200, y: 600},
         colisiones:colisionesNivel4,
@@ -150,7 +150,7 @@ let cuarto5 = new Cuarto(
         cuartoSpawn : false,
         cuartoJefeFinal : false,
         posicionJugadorSuperior : {x: 608, y: 30},
-        posicionJugadorInferior : {x: 286, y: 600},
+        posicionJugadorInferior : {x: 286, y: 580},
         posicionJugadorIzquierda :{x: 90, y: 300}, 
         posicionJugadorDerecha :  {x: 1220, y: 600},
         colisiones:level_cuarto5,
@@ -161,7 +161,7 @@ let cuarto6 = new Cuarto(
         cuartoSpawn : false,
         cuartoJefeFinal : false,
         posicionJugadorSuperior : {x: 673, y: 30},
-        posicionJugadorInferior : {x: 520, y: 600},
+        posicionJugadorInferior : {x: 520, y: 580},
         posicionJugadorIzquierda :{x: 89, y: 600},
         posicionJugadorDerecha :  {x: 1220, y: 600},
         colisiones:level_cuarto6,
@@ -172,7 +172,7 @@ let cuarto7 = new Cuarto(
         cuartoSpawn : false,
         cuartoJefeFinal : false,
         posicionJugadorSuperior : {x: 674, y: 30},
-        posicionJugadorInferior : {x: 520, y: 600},
+        posicionJugadorInferior : {x: 520, y: 580},
         posicionJugadorIzquierda :{x: 90, y: 600},
         posicionJugadorDerecha :  {x: 1250, y: 600},
         colisiones:level_cuarto7,
@@ -438,6 +438,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                     },
                     imgResource: cuarto.imgBackground,
                 });
+                
 
                 puertas =[];
                 if (cuarto.conexionSuperior) {
@@ -596,13 +597,13 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
 
 
 
-let cuartoJefeFinalCons = new Cuarto(
+const cuartoJefeFinalCons = new Cuarto(
     
     {idCuarto : 9,
     cuartoSpawn : false,
     cuartoJefeFinal : true,
     posicionJugadorSuperior : {x: 725, y: 10},
-    posicionJugadorInferior :  {x: 621, y: 630},
+    posicionJugadorInferior :  {x: 621, y: 580},
     posicionJugadorIzquierda :{x: 97, y: 600},
     posicionJugadorDerecha :  {x: 1220, y: 600},
     colisiones:level_cuarto_final_boss,
@@ -610,26 +611,26 @@ let cuartoJefeFinalCons = new Cuarto(
 
 })
 
-let cuartoSpawnCons = new Cuarto(
+const cuartoSpawnCons = new Cuarto(
 
     {idCuarto : 8,
     cuartoSpawn : true,
     cuartoJefeFinal : false,
-    posicionJugadorSuperior : {x: 600, y: 0},
-    posicionJugadorInferior : {x: 641, y: 630},
+    posicionJugadorSuperior : {x: 600, y: 30},
+    posicionJugadorInferior : {x: 641, y: 580},
     posicionJugadorIzquierda :{x: 97, y: 600},
     posicionJugadorDerecha :  {x: 1250, y: 150},
     colisiones:level_cuarto_spawn,
     imgBackground: "../assets/niveles_fondo/cuarto_spawn.png"
 })
 
-let cuarto1Cons = new Cuarto(
+const cuarto1Cons = new Cuarto(
 
     {idCuarto : 1,
     cuartoSpawn : false,
     cuartoJefeFinal : false,
     posicionJugadorSuperior : {x: 106, y: 40},
-    posicionJugadorInferior : {x: 520, y: 600},
+    posicionJugadorInferior : {x: 520, y: 580},
     posicionJugadorIzquierda :{x: 90, y: 600},
     posicionJugadorDerecha :  {x: 1220, y: 600},
     colisiones:level_cuarto1,
@@ -637,14 +638,14 @@ let cuarto1Cons = new Cuarto(
     
 })
 
-let cuarto2Cons = new Cuarto(
+const cuarto2Cons = new Cuarto(
 
     {idCuarto : 2,
     cuartoSpawn : false,
     cuartoJefeFinal : false,
      
     posicionJugadorSuperior : {x: 687, y: 40},
-    posicionJugadorInferior : {x: 449, y: 600},
+    posicionJugadorInferior : {x: 449, y: 580},
     posicionJugadorIzquierda :{x: 70, y: 150},
     posicionJugadorDerecha :  {x: 1220, y: 150},
      
@@ -652,13 +653,13 @@ let cuarto2Cons = new Cuarto(
     imgBackground: "../assets/niveles_fondo/Scene2.png"
 })
 
-let cuarto3Cons = new Cuarto(
+const cuarto3Cons = new Cuarto(
     {idCuarto : 3,
     cuartoSpawn : false,
     cuartoJefeFinal : false,
   
     posicionJugadorSuperior : {x: 672, y: 50},
-    posicionJugadorInferior : {x: 550, y: 600},
+    posicionJugadorInferior : {x: 550, y: 580},
     posicionJugadorIzquierda :{x: 80, y: 150},
     posicionJugadorDerecha :  {x: 1220, y: 600},
      
@@ -666,45 +667,45 @@ let cuarto3Cons = new Cuarto(
     imgBackground: "../../game/assets/niveles_fondo/Scene3.png"
 })
 
-let cuarto4Cons = new Cuarto(
+const cuarto4Cons = new Cuarto(
     {idCuarto : 4,
     cuartoSpawn : false,
     cuartoJefeFinal : false,
     posicionJugadorSuperior : {x: 650, y: 30},
-    posicionJugadorInferior : {x: 440, y: 600},
+    posicionJugadorInferior : {x: 440, y: 580},
     posicionJugadorIzquierda :{x: 97, y: 600},
     posicionJugadorDerecha :  {x: 1200, y: 600},
     colisiones:colisionesNivel4,
     imgBackground: "../../game/assets/niveles_fondo/cuarto_giff.gif"
 })
-let cuarto5Cons = new Cuarto(
+const cuarto5Cons = new Cuarto(
     {idCuarto : 5,
     cuartoSpawn : false,
     cuartoJefeFinal : false,
     posicionJugadorSuperior : {x: 608, y: 30},
-    posicionJugadorInferior : {x: 286, y: 600},
+    posicionJugadorInferior : {x: 286, y: 580},
     posicionJugadorIzquierda :{x: 90, y: 300}, 
     posicionJugadorDerecha :  {x: 1220, y: 600},
     colisiones:level_cuarto5,
     imgBackground: "../../game/assets/niveles_fondo/Scene4.png"
 })
-let cuarto6Cons= new Cuarto(
+const cuarto6Cons= new Cuarto(
     {idCuarto : 6,
     cuartoSpawn : false,
     cuartoJefeFinal : false,
     posicionJugadorSuperior : {x: 673, y: 30},
-    posicionJugadorInferior : {x: 520, y: 600},
+    posicionJugadorInferior : {x: 520, y: 580},
     posicionJugadorIzquierda :{x: 89, y: 600},
     posicionJugadorDerecha :  {x: 1220, y: 600},
     colisiones:level_cuarto6,
     imgBackground: "../../game/assets/niveles_fondo/Scene5.png"
 })
-let cuarto7Cons = new Cuarto(
+const cuarto7Cons = new Cuarto(
     {idCuarto : 7,
     cuartoSpawn : false,
     cuartoJefeFinal : false,
     posicionJugadorSuperior : {x: 674, y: 30},
-    posicionJugadorInferior : {x: 520, y: 600},
+    posicionJugadorInferior : {x: 520, y: 580},
     posicionJugadorIzquierda :{x: 90, y: 600},
     posicionJugadorDerecha :  {x: 1250, y: 600},
     colisiones:level_cuarto7,
@@ -712,5 +713,7 @@ let cuarto7Cons = new Cuarto(
 })
 
 const cuartosOrdenadosCons= [
-cuarto1Cons,cuarto2Cons,cuarto3Cons,cuarto4Cons,cuarto5Cons,cuarto6Cons,cuarto7Cons,cuartoSpawnCons,cuartoJefeFinalCons
+
+    cuarto1Cons,cuarto2Cons,cuarto3Cons,cuarto4Cons,cuarto5Cons,cuarto6Cons,cuarto7Cons,cuartoSpawnCons,cuartoJefeFinalCons
+
 ]
