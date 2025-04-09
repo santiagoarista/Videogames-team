@@ -286,6 +286,16 @@ window.addEventListener("click", (event) => {
             mouseY <= exitY + exitHeight
         ) {
             console.log("Salir al Menú...");
+            console.log("Lives: ", player.lives)
+            createPartida( // id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, listaCuartosAleatorios
+                30,
+                10,
+                150,
+                player.lives,
+                llaves,
+                itemsActivos,
+                listaCuartosAleatorios
+            );
             window.location.href = "/html/principal_menu.html";
         }
     } else if (settingsOpen) {
