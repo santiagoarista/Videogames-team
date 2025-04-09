@@ -1,5 +1,6 @@
 "use strict"
 
+import bcrypt from 'bcrypt' //Password hashing
 // Importing modules
 import express from 'express'
 
@@ -19,7 +20,7 @@ async function connectToDB()
 {
     return await mysql.createConnection({
         host:'localhost',
-        user:'root', // Cambiar user si quieren usarlo
+        user:'root', // Cambiar user y constraseña si quieren usarlo
         password:'Hopecos@123',
         database:'nineshions'
     })
@@ -30,14 +31,6 @@ app.get('/', (req, res) => {
     fs.readFile('game/html/principal_menu.html', 'utf8', (err, html) => {
         if (err) res.status(500).send('Error loading file: ' + err)
         else res.send(html)
-    })
-})
-
-app.get('/', (request,response)=>{
-    fs.readFile('game/html/in_game_screen.html', 'utf8', (err, html)=>{
-        if(err) response.status(500).send('There was an error: ' + err)
-        console.log('Loading page...')
-        response.send(html)
     })
 })
 
@@ -72,45 +65,119 @@ app.get('/api/Usuario', async (request, response)=>{
 })
 
 
+//User create account
+app.post('/api/register', async (req, res) => {
+    const { email, password } = req.body
 
-// Insert a new map into the database and return a JSON object with the id of the new Partida
-// app.post('/api/Partida', async (request, response)=>{
+    if (!email || !password) {
+        return res.status(400).json({ error: 'Email and password required' })
+    }
 
-//     let connection = null
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10)
+        const connection = await connectToDB()
 
-//     try
-//     {    
-//         connection = await connectToDB()
+        const [existing] = await connection.execute('SELECT * FROM Usuario WHERE email = ?', [email])
+        if (existing.length > 0) {
+            return res.status(409).json({ error: 'Email already registered' })
+        }
 
-//         const partidaData = {
-//             id_usuario: 1000,
-//             monstruos_eliminados: 10,
-//             puntuacion: 100,
-//             llaves_encontradas: [true, false, false, true, false, false, false, false, true],
-//             items_encontrados: [true, false, true],
-//             mapa: JSON.stringify(listaCuartosAleatorios)
-//         }
+        const [result] = await connection.execute(
+            'INSERT INTO Usuario (email, password) VALUES (?, ?)',
+            [email, hashedPassword]
+        )
 
-//         const [results, fields] = await connection.query('insert into Partida set ?', partidaData)
-        
-//         console.log(`${results.affectedRows} row inserted`)
-//         response.status(201).json({ message: "Data inserted correctly.", id: results.insertId })
-//     }
-//     catch(error)
-//     {
-//         response.status(500)
-//         response.json(error)
-//         console.log(error)
-//     }
-//     finally
-//     {
-//         if(connection!==null) 
-//         {
-//             connection.end()
-//             console.log("Connection closed succesfully!")
-//         }
-//     }
-// })
+        res.status(201).json({ message: 'User registered', userId: result.insertId })
+
+        connection.end()
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ error: 'Server error' })
+    }
+})
+
+//User login
+app.post('/api/login', async (req, res) => {
+    const { email, password } = req.body
+
+    if (!email || !password) {
+        return res.status(400).json({ error: 'Email and password are required' })
+    }
+
+    try {
+        const connection = await connectToDB()
+        const [users] = await connection.execute(
+            'SELECT * FROM Usuario WHERE email = ?',
+            [email]
+        )
+
+        if (users.length === 0) {
+            return res.status(401).json({ error: 'User not found' })
+        }
+
+        const user = users[0]
+        const match = await bcrypt.compare(password, user.password)
+
+        if (!match) {
+            return res.status(401).json({ error: 'Invalid credentials' })
+        }
+
+        // Generate JWT
+        const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+            expiresIn: '1h'
+        })
+
+        res.status(200).json({ message: 'Login successful', token })
+        connection.end()
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ error: 'Server error' })
+    }
+})
+
+
+
+// Insert a new map into the database
+app.post('/api/Partida', async (req, res) => {
+    let connection = null;
+
+    try {
+        connection = await connectToDB();
+
+        const {
+            id_usuario,
+            monstruos_eliminados,
+            puntuacion,
+            vidas,
+            llaves_encontradas,
+            items_encontrados,
+            listaCuartosAleatorios
+        } = req.body;
+
+        const partidaData = {
+            id_usuario,
+            monstruos_eliminados,
+            puntuacion,
+            vidas,
+            llaves_encontradas: JSON.stringify(llaves_encontradas),
+            items_encontrados: JSON.stringify(items_encontrados),
+            mapa: JSON.stringify(listaCuartosAleatorios)
+        };
+
+        const [results] = await connection.query('INSERT INTO Partida SET ?', partidaData);
+
+        console.log(`${results.affectedRows} row inserted`);
+        res.status(201).json({ message: "Data inserted correctly.", id: results.insertId });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Database error", details: error });
+    } finally {
+        if (connection) {
+            connection.end();
+            console.log("Connection closed successfully!");
+        }
+    }
+});
 
 app.listen(port, ()=>
 {
