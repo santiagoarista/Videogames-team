@@ -9,23 +9,43 @@ class Bulletcontroller {
         
 let direccion = ""
 
-
-if (keys.d.pressed) {
-    direccion = "derecha" 
+if (arguments[0].direccionForzada) {
+    direccion = arguments[0].direccionForzada;
 } else if (keys.a.pressed) {
     direccion = "izquierda"  
 } else if (keys.w.pressed) {
     direccion = "arriba" 
+} else if (keys.d.pressed) {
+    direccion = "derecha" 
 } else {
     player.lastDirection === "left" ? direccion = "izquierda"   : direccion = "derecha";
 }
 
-let imageR= "../../assets/bullets/02_shine.png"
-if (direccion == "arriba" ) {
-     imageR= "../../assets/bullets/02_shine_up.png"
-}else{
-       imageR= "../../assets/bullets/02_shine.png"
+let imageR = "";
+
+if (idArmaActual == '1'){
+    imageR= "../../assets/bullets/04.png"
+    if (direccion == "arriba" ) {
+        imageR= "../../assets/bullets/04_up.png"
+    }else{
+        imageR= "../../assets/bullets/04.png"
+    }
+} else if (idArmaActual == '2'){
+    imageR= "../../assets/bullets/01.png"
+    if (direccion == "arriba" ) {
+        imageR= "../../assets/bullets/01_up.png"
+    }else{
+        imageR= "../../assets/bullets/01.png"
+    }
+} else if (idArmaActual == '3'){
+    imageR= "../../assets/bullets/02_shine.png"
+    if (direccion == "arriba" ) {
+        imageR= "../../assets/bullets/02_shine_up.png"
+    }else{
+        imageR= "../../assets/bullets/02_shine.png"
+    }
 }
+
 
         if (this.timeToNextBullet<=0) {
             // Ejemplo de uso

@@ -53,6 +53,7 @@ class Ojo extends Sprite{
         this.disparosJugador = disparosJugador
         this.lifeImage = new Image();
         this.lifeImage.src = '../assets/PNG/Transperent/Icon12.png'; //Imagen de vidas
+        this.isOjo = true;
     }
 
     takeDamage (damage){
@@ -231,16 +232,18 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
         if (this.health==1) {
             console.log("ultimo enemigo")
             itemsEnJuego.push(new Llave({x:this.position.x,y:this.position.y, bloquesDeColision: bloquesColisiones}))
+            console.log("player", player.monstruos_eliminados);
         }
  
    
   }
-    console.log("golpe recibido por fantasma")
+    console.log("golpe recibido por ojo")
     this.health-= disparo.damage;
     this.disparosJugador.splice(index, 1);
     if (this.health<=0) {
         enemigos.splice(this.index, 1);
-
+        player.monstruos_eliminados += 1;
+        console.log("player", player.monstruos_eliminados);
     }
   }
 }

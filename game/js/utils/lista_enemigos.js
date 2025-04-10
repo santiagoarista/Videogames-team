@@ -104,25 +104,25 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
        
            },
        }),
-   // new  Ojo({
-   //     //Pasamos los bloques que harán las colisiones con este objeto
-   //     delayBala: 10,
-   //         velocidadEnemigo: 5,
-   //         velocidadBala:7,
-   //       
-   //         estatico: false,
-   //         movimiento: "x",
-   //         umbralDisparo : 40,
-   //         direccionDisparo: "abajo",
-   //         umbralesMovimiento:[60,1100],
-   //         health:5,
-   //         position: {x:60, y:100},
-   //         enemyBulletController: enemyBulletController,
-   //         frameBuffer: 16,
-   //         frameRate: 4,
-   //         imgResource: "../../assets/characters/enemies/jack/jack.png",
-   // 
-   //     }),
+   new  Ojo({
+       //Pasamos los bloques que harán las colisiones con este objeto
+       delayBala: 10,
+           velocidadEnemigo: 5,
+           velocidadBala:7,
+         
+           estatico: false,
+           movimiento: "x",
+           umbralDisparo : 40,
+           direccionDisparo: "abajo",
+           umbralesMovimiento:[60,1100],
+           health:5,
+           position: {x:60, y:100},
+           enemyBulletController: enemyBulletController,
+           frameBuffer: 16,
+           frameRate: 4,
+           imgResource: "../../assets/characters/enemies/jack/jack.png",
+   
+       }),
    //     new  Ojo({
    //         //Pasamos los bloques que harán las colisiones con este objeto
    //         delayBala: 10,
