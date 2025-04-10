@@ -13,7 +13,11 @@ class Bullet {
         } else if (direccion === "arriba") {
             this.width = 5;
             this.height = 15;
-        } else 
+        } else {
+            // Para diagonales
+            this.width = 10;
+            this.height = 10;
+        }
 
         this.color = 'rgba(0, 0, 0, 0)';
         this.image = new Image();
