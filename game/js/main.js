@@ -230,19 +230,52 @@ function animate(timeStamp) {
   context.shadowColor = "white"; // Neon effect
   context.shadowBlur = 10;
   player.draw();
-  context.shadowColor = "red"; // Neon effect
-  context.shadowBlur = 40;
-  bulletController.draw(context);
+
+  if(idArmaActual == '1'){
+    context.shadowColor = "rgb(149, 0, 255)"; // Neon effect
+    context.shadowBlur = 5;
+    bulletController.draw(context);
+  } else if (idArmaActual == '2'){
+    context.shadowColor = "blue"; // Neon effect
+    context.shadowBlur = 5;
+    bulletController.draw(context);
+  } else if (idArmaActual == '3'){
+    context.shadowColor = "red"; // Neon effect
+    context.shadowBlur = 40;
+    bulletController.draw(context);
+  }
+  
+  
   context.shadowColor = "blue"; // Neon effect
   context.shadowBlur = 40;
   enemyBulletController.draw(context);
   context.shadowBlur = 0;
   context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
 
-  dibujarOscuridadSiNecesaria(cuartos[currentLevel].id, cuartosOscuros);
+  
+dibujarOscuridadSiNecesaria(cuartos[currentLevel].id, cuartosOscuros);
 
-  player.drawLives();
-  player.drawKeys();
+context.save();
+context.fillStyle = 'rgba(0, 0, 0, 0.9)';
+context.strokeStyle = "white";
+context.lineWidth = 3;
+context.lineJoin = "round";
+
+let width = 340;
+let height = 90;
+
+if (player.extralives > 0) {
+  height = 130;
+}
+if (idArmaActual != '0') {
+  width = 410;
+}
+
+context.fillRect(0, 0, width, height);
+context.strokeRect(0, 0, width, height);
+context.restore();   
+  
+  
 
   // Dibujar pantalla de cambio de nivel
   context.save();
@@ -251,10 +284,17 @@ function animate(timeStamp) {
   context.fillRect(0, 0, canvas.width, canvas.height);
   context.restore();
 
+  
+
+  player.drawLives();
+  player.drawKeys();
+
   if (showMap) {
     drawMap(listaCuartosAleatorios);
   }
+
   dibujarArmaActual();
+  
 }
 
 cuartos[currentLevel].init();

@@ -45,6 +45,9 @@ class Player extends Sprite {
     this.lives = 3; // Inicializar vidas a 3
     this.lifeImage = new Image();
     this.lifeImage.src = "../assets/PNG/Transperent/Icon12.png"; //Imagen de vidas
+    this.extralives = 0;
+    this.exlifeImage = new Image();
+    this.exlifeImage.src = "../assets/PNG/Transperent/Slimeheart.png";
     // Propiedades para el parpadeo
     this.blinking = false;
     this.blinkInterval = 100; // Tiempo entre parpadeos en milisegundos
@@ -57,6 +60,7 @@ class Player extends Sprite {
     this.canDoubleJump = false; // Solo se activa al recoger las botas
     this.jumpCount = 0; // Contador de saltos
     this.visionRadius = 200; // valor por defecto
+    this.monstruos_eliminados = 0; // monstruos eliminados
   }
 
   //draw(){
@@ -77,7 +81,11 @@ class Player extends Sprite {
   // Dibujar vidas
   drawLives() {
     for (let i = 0; i < this.lives; i++) {
-      context.drawImage(this.lifeImage, 90 + i * 65, 10, 60, 60);
+        context.drawImage(this.lifeImage, 15 + i * 65, 15, 60, 60);
+    }
+
+    for (let i = 0; i < this.extralives; i++) {
+        context.drawImage(this.exlifeImage, 25 + i * 65, 75, 40, 40);
     }
   }
 
@@ -87,11 +95,11 @@ class Player extends Sprite {
 
     context.shadowColor = "white";
     context.shadowBlur = 15;
-    context.drawImage(this.keysImage, 300, 10, 30, 60);
+    context.drawImage(this.keysImage, 230, 15, 30, 60);
     context.font = "40px Arcade Gamer"; // Tamaño y fuente del texto
     context.textAlign = "start";
     context.fillStyle = "white"; // Color del texto
-    context.fillText(this.keys, 350, 60); // Texto y posición (x, y)
+    context.fillText(this.keys, 280, 65); // Texto y posición (x, y)
     context.shadowColor = "transparent";
     context.shadowBlur = 0;
   }
@@ -151,8 +159,7 @@ class Player extends Sprite {
 
   shoot() {
     //Disparo
-
-    if (keys.k.pressed) {
+    if (keys.k.pressed && idArmaActual == '1') {
       let bulletSpeed = 10;
       let bulletDelay = 20;
       let damage = 1;
@@ -164,6 +171,56 @@ class Player extends Sprite {
         damage: damage,
         bulletX: bulletX,
         bulletY: bulletY,
+      });
+    } else if(keys.k.pressed && idArmaActual == '2') {
+      let bulletSpeed = 10;
+      let bulletDelay = 10;
+      let damage = 3;
+      let bulletX = this.position.x + this.width / 2;
+      let bulletY = this.position.y + 80;
+      this.bulletController.shoot({
+        bulletSpeed: bulletSpeed,
+        bulletDelay: bulletDelay,
+        damage: damage,
+        bulletX: bulletX,
+        bulletY: bulletY,
+      });
+    } else if (keys.k.pressed && idArmaActual == '3') {
+      let bulletSpeed = 20;
+      let bulletDelay = 20;
+      let damage = 3;
+      let centerX = this.position.x + this.width / 2;
+      let centerY = this.position.y + 80;
+      let diagonal1 = this.lastDirection === "left" ? "arriba-izquierda" : "arriba-derecha";
+      let diagonal2 = this.lastDirection === "left" ? "abajo-izquierda" : "abajo-derecha"; // si decides usarla
+
+      // Disparo central (recto)
+      this.bulletController.shoot({
+        bulletSpeed,
+        bulletDelay,
+        damage,
+        bulletX: centerX,
+        bulletY: centerY,
+      });
+
+      // Disparo diagonal hacia arriba
+      this.bulletController.shoot({
+        bulletSpeed,
+        bulletDelay,
+        damage,
+        bulletX: centerX,
+        bulletY: centerY,
+        direccionForzada: diagonal1
+      });
+
+      // Disparo diagonal hacia abajo (puedes añadir abajo-derecha si quieres más variedad)
+      this.bulletController.shoot({
+        bulletSpeed,
+        bulletDelay,
+        damage,
+        bulletX: centerX,
+        bulletY: centerY,
+        direccionForzada: diagonal2
       });
     }
   }
@@ -284,8 +341,11 @@ class Player extends Sprite {
             enemigo.hitbox.position.y + enemigo.hitbox.height
         ) {
           this.lastEnemyKill(enemigo);
+
+          this.monstruos_eliminados += 1;
+          console.log("player", this.monstruos_eliminados);
           ejecutarFuncionItemAleatoria(enemigo);
-          this.recibirDaño(index);
+          this.recibirDaño(index, enemigo);
         }
 
         //Agregar colisiones con enemigos
@@ -493,13 +553,33 @@ class Player extends Sprite {
       }
     }
   }
-  recibirDaño(index) {
+  recibirDaño(index, enemigo) {
     if (!this.countdown) {
       console.log(this.countdown);
 
+      if (enemigo.health > 1){
+        enemigo.health -= 1;
+        console.log("vida jack", enemigo.health);
+        playSound("hurt"); // Reproduce el sonido de dolor
+        if(this.extralives == 0){
+          this.lives -= 1;
+        } else {
+          this.extralives -= 1;
+        }
+        this.countdown = true;
+        if (this.lives <= 0) {
+          gameOver = true;
+        }
+        return;
+      }
+
       enemigos.splice(index, 1);
       playSound("hurt"); // Reproduce el sonido de dolor
-      this.lives -= 1;
+      if(this.extralives == 0){
+        this.lives -= 1;
+      } else {
+        this.extralives -= 1;
+      }
       this.countdown = true;
       if (this.lives <= 0) {
         gameOver = true;
@@ -513,7 +593,11 @@ class Player extends Sprite {
 
       disparosEnemigos.splice(index, 1);
       playSound("hurt"); // Reproduce el sonido de dolor
-      this.lives -= 1;
+      if(this.extralives == 0){
+        this.lives -= 1;
+      } else {
+        this.extralives -= 1;
+      }
       this.countdown = true;
       if (this.lives <= 0) {
         gameOver = true;

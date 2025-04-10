@@ -145,7 +145,7 @@ class Asistente extends Item {
        }
 
        efect(player){
-            player.lives += 2;
+            player.extralives += 3;
        }
 
     
@@ -290,8 +290,7 @@ function dibujarArmaActual() {
     
 
     // Dibujo del arma
-    context.drawImage(img, 400, 20, img.width * 2, img.height * 2);
-
+    context.drawImage(img, 340, 30, img.width * 2, img.height * 2);
 }
 
 class Llave extends Item {

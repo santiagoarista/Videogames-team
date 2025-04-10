@@ -13,9 +13,9 @@ class Bullet {
         } else if (direccion === "arriba") {
             this.width = 5;
             this.height = 15;
-        }
+        } else 
 
-        this.color = "red";
+        this.color = 'rgba(0, 0, 0, 0)';
         this.image = new Image();
         this.image.src = imageSrc
         this.imageLoaded = false;
@@ -44,7 +44,20 @@ class Bullet {
             this.y -= this.speed;
         } else if (this.direccion === "derecha") {
             this.x += this.speed;
-        }
+        } else if (this.direccion === "arriba-izquierda") {
+            this.x -= this.speed * 0.9;
+            this.y -= this.speed * 0.4;
+        } else if (this.direccion === "arriba-derecha") {
+            this.x += this.speed * 0.9;
+            this.y -= this.speed * 0.4;
+        } else if (this.direccion === "abajo-izquierda") {
+            this.x -= this.speed * 0.9;
+            this.y += this.speed * 0.4;
+        } else if (this.direccion === "abajo-derecha") {
+            this.x += this.speed * 0.9;
+            this.y += this.speed * 0.4;
+        } 
+        
     }
 
     collideWith(object) {
