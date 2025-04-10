@@ -198,7 +198,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
             
              //Si recibe un disparo se ejecuta el método
              console.log("colision con enemigos")
-             this.recibirGolpe(index);
+             this.recibirGolpe(disparo, index);
 
     }
     
