@@ -289,7 +289,7 @@ window.addEventListener("click", (event) => {
             console.log("Lives: ", player.lives)
             createPartida( // id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, listaCuartosAleatorios
                 30,
-                10,
+                player.monstruos_eliminados,
                 150,
                 player.lives,
                 llaves,
