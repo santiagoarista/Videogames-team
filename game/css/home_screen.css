@@ -29,6 +29,11 @@ body {
     border-radius: 8px;
     color: rgba(255, 255, 255, 0.79);
 }
+img {
+    width: 400px;
+    height: auto;
+    margin-right: 10px;
+}
 input {
     width: 60%;
     padding: 10px;
@@ -43,7 +48,7 @@ input {
 }
 button {
     font-family: 'Arcade Gamer', sans-serif;
-    width: 30%;
+    width: 50%;
     padding: 10px;
     font-size: 12px;
     background: rgb(255, 255, 255);

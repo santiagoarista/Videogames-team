@@ -35,34 +35,56 @@ app.get('/', (req, res) => {
 })
 
 
+//Auth system - get users
+app.get('/api/Usuario', async (req, res) => {
+    let connection = null;
+    const { email } = req.query;
 
-app.get('/api/Usuario', async (request, response)=>{
-    let connection = null
-
-    try
-    {
-        connection = await connectToDB()
-        const [results, fields] = await connection.execute('select * from Usuario')
-
-        console.log(`${results.length} rows returned`)
-        console.log(results)
-        response.json(results)
+    if (!email) {
+        return res.status(400).json({ error: 'Porfavor ingrese un correo' });
     }
-    catch(error)
-    {
-        response.status(500)
-        response.json(error)
-        console.log(error)
-    }
-    finally
-    {
-        if(connection!==null) 
-        {
-            connection.end()
-            console.log("Connection closed succesfully!")
+
+    try {
+        connection = await connectToDB();
+        const [rows] = await connection.query('SELECT * FROM Usuario WHERE correo = ?', [email]);
+
+        if (rows.length > 0) {
+            res.status(200).json(rows[0]);
+        } else {
+            res.status(404).json({ message: 'No existe un usuario con este correo' });
         }
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error DB', details: error });
+    } finally {
+        if (connection) connection.end();
     }
-})
+});
+
+//Create new user API
+app.post('/api/Usuario', async (req, res) => {
+    let connection = null;
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ error: 'Se necesita un correo y una contraseña' });
+    }
+
+    try {
+        connection = await connectToDB();
+
+        const [result] = await connection.query('INSERT INTO Usuario (correo, contrasena) VALUES (?, ?)', [email, password]);
+
+        res.status(201).json({ message: 'Usuario registrado!', id: result.insertId });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error DB', details: error });
+    } finally {
+        if (connection) connection.end();
+    }
+});
 
 
 //User create account
