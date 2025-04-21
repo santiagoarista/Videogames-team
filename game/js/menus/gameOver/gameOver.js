@@ -216,6 +216,19 @@ canvas.addEventListener("click", (event) => {
       gameOver
     ) {
       console.log("Salir al Menú...");
+      console.log("Lives: ", player.lives)
+      const id_usuario = localStorage.getItem('id_usuario');
+      console.log("ID_USUARIO: ", id_usuario);
+      createPartida( // id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, listaCuartosAleatorios
+          id_usuario,
+          player.monstruos_eliminados,
+          player.monstruos_eliminados * 10,
+          player.lives,
+          llaves,
+          itemsActivos,
+          listaCuartosAleatorios,
+          true
+      );
       window.location.href = "/html/principal_menu.html"; // Redirige a la página del menú
     }
   }
