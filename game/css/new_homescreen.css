@@ -1,0 +1,71 @@
+body {
+    width: 100vw;           /* ✅ usa vw (viewport width) */
+    height: 100vh;
+  
+    background-color: #08090F;
+    color: white;
+    font-family: 'Inter', sans-serif;
+  
+    border: 6px solid white;
+    border-radius: 16px;
+  
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.295), 0 0 20px rgba(255, 255, 255, 0.249);
+    
+    margin: 5;              
+    box-sizing: border-box; 
+    overflow: hidden;       
+  }
+  
+
+  .barraNav {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: center; 
+    padding-left: 5vw;
+    padding-right: 15vw;     
+    
+  }
+  .contenido{
+    padding-right: 15vw;    
+    padding-left: 15vw; 
+    display: flex;
+    flex-direction: row;
+    gap: 15vw;
+  }
+  .texto_jugar{
+    display: flex;
+    flex-direction: column;
+
+  }
+  .boton_jugar {
+    font-weight: bold;
+    font-size: 36px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: min-content;
+    border: 6px solid white;  
+    border-radius: 18px;  
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.295), 0 0 20px rgba(255, 255, 255, 0.249);
+    transition: all 0.3s ease;  /* Suaviza la transición del hover */
+  }
+  
+  .boton_jugar:hover {
+    background-color: white;  /* Cambia el color de fondo cuando se pasa el mouse */
+    color: #08090F;           /* Cambia el color del texto al pasar el mouse */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.6); /* Intensifica el brillo */
+  }
+  nav{
+  
+    display: flex;
+    flex-direction: row;
+    gap: 3vw;
+  }
+h1 {
+    font-size: 20px;
+    color: white;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
+  }

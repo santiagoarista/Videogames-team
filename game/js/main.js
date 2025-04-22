@@ -143,7 +143,7 @@ function animate(timeStamp) {
     }
   });
 
-  //console.log(itemsActivos);
+
 
   if (keys.d.pressed) {
     player.switchSprite("runRight");
@@ -178,40 +178,6 @@ function animate(timeStamp) {
     (c) => c.idCuarto == currentLevel
   );
 
-  context.fillStyle = "rgb(255, 0, 0)";
-  context.fillRect(
-    puertasCueart[0].posicionJugadorSuperior.x,
-    puertasCueart[0].posicionJugadorSuperior.y,
-    5,
-    5
-  );
-
-  context.fillStyle = "rgb(255, 0, 0)";
-  context.fillRect(
-    puertasCueart[0].posicionJugadorInferior.x,
-    puertasCueart[0].posicionJugadorInferior.y,
-    5,
-    5
-  );
-
-  context.fillStyle = "rgb(255, 0, 0)";
-  context.fillRect(
-    puertasCueart[0].posicionJugadorDerecha.x,
-    puertasCueart[0].posicionJugadorDerecha.y,
-    5,
-    5
-  );
-
-  context.fillStyle = "rgb(255, 0, 0)";
-  context.fillRect(
-    puertasCueart[0].posicionJugadorIzquierda.x,
-    puertasCueart[0].posicionJugadorIzquierda.y,
-    5,
-    5
-  );
-
-  context.fillStyle = "rgb(0, 8, 255)";
-  context.fillRect(1220, 674, 5, 5);
 
   //Enemigos
   enemigos.forEach((enemigo, index) => {
