@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video Background Page</title>
+  <link rel="stylesheet" href="../css/play_screen.css">
+  <link href="https://fonts.cdnfonts.com/css/arcade-gamer" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Video Background -->
+  <video autoplay muted loop class="video-bg">
+    <source src="../assets/playScreen/playScreen.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Audio Background -->
+  <audio id="background-music" autoplay loop>
+    <source src="../assets/music/music_play_screen.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <button id="mute-btn">🔊</button>
+  <div class="overlay">
+    <img src="../assets/web/Logo.png" alt="Logo" class="logo">
+    <a href="./in_game_screen.html">
+        <button>
+            Jugar
+        </button>
+    </a>
+    <a>
+        <button>
+        Estadísticas
+        </button>  
+    </a>
+    
+    <a href="/html/home_screen.html">
+        <button>
+        Manual
+        </button>
+    </a>
+  </div>
+
+
+  <script src="../js/playScreen/playScreen.js"></script>
+</body>
+</html>
