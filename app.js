@@ -173,7 +173,8 @@ app.post('/api/Partida', async (req, res) => {
             vidas,
             llaves_encontradas,
             items_encontrados,
-            listaCuartosAleatorios
+            listaCuartosAleatorios, 
+            terminada
         } = req.body;
 
         const partidaData = {
@@ -183,7 +184,8 @@ app.post('/api/Partida', async (req, res) => {
             vidas,
             llaves_encontradas: JSON.stringify(llaves_encontradas),
             items_encontrados: JSON.stringify(items_encontrados),
-            mapa: JSON.stringify(listaCuartosAleatorios)
+            mapa: JSON.stringify(listaCuartosAleatorios),
+            terminada
         };
 
         const [results] = await connection.query('INSERT INTO Partida SET ?', partidaData);
@@ -200,6 +202,32 @@ app.post('/api/Partida', async (req, res) => {
         }
     }
 });
+
+//Obtener partidas sin terminar
+app.get('/api/Partida/active/:id_usuario', async (req, res) => {
+    let connection = null;
+    try {
+        connection = await connectToDB();
+        const { id_usuario } = req.params;
+
+        const [results] = await connection.query(
+            'SELECT * FROM Partida WHERE id_usuario = ? AND terminada = 0 ORDER BY id_partida DESC LIMIT 1',
+            [id_usuario]
+        );
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: "No partida activa encontrada." });
+        }
+
+        res.json(results[0]);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Database error" });
+    } finally {
+        if (connection) connection.end();
+    }
+});
+
 
 app.listen(port, ()=>
 {
