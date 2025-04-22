@@ -113,6 +113,8 @@ function animate(timeStamp) {
 
   // Dibujar puertas
   puertas.forEach((puerta) => {
+
+
     puerta.draw();
   });
   context.shadowBlur = 0;

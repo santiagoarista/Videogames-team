@@ -8,10 +8,11 @@ class Puerta extends Sprite {
     idDestino,
     puertaActiva = false,
     nombreOrigen,
+    puertaJefeFinal = false,
   }) {
     super({ position, imgResource });
     this.nombreOrigen = nombreOrigen;
-
+    this.puertaJefeFinal = puertaJefeFinal
     this.posicionOrigen = posicionOrigen;
     this.posicionDestino = posicionDestino;
     this.idOrigen = idOrigen;
@@ -490,7 +491,8 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
   listaCuartosAleatorios = [...listaNiveles];
 
   listaNiveles.forEach((cuarto) => {
-    console.log(cuarto),
+    console.log("------------------------")
+    console.log(cuarto.cuartoJefeFinal),
       (levels[cuarto.idCuarto] = {
         id: cuarto.idCuarto,
         init: () => {
@@ -525,8 +527,16 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
 
           puertas = [];
           if (cuarto.conexionSuperior) {
+            console.log("______________@@")
+           // console.log(cuarto.conexionDerecha.esConexionJefe)
+          //  if(cuarto.conexionDerecha.esConexionJefe){
+              //context.fillStyle = "red";
+              //context.fillRect (0, 0, 100, 700);
+              
+            //}
             puertas.push(
               new Puerta({
+                puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: 0,
                   y: -120,
@@ -543,7 +553,9 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
             );
           } else {
             player.bloquesDeColision.push(
+              
               new Puerta({
+                puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: 0,
                   y: -40,
@@ -557,8 +569,16 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
             );
           }
           if (cuarto.conexionInferior) {
+            console.log("______________@@")
+           // console.log(cuarto.conexionDerecha.esConexionJefe)
+            //if(cuarto.conexionDerecha.esConexionJefe){
+              //context.fillStyle = "red";
+              //context.fillRect (0, 600, 100, 700);
+              
+            //}
             puertas.push(
               new Puerta({
+                puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: 0,
                   y: 745,
@@ -576,6 +596,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
           } else {
             player.bloquesDeColision.push(
               new Puerta({
+                puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: 0,
                   y: 745,
@@ -589,8 +610,16 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
             );
           }
           if (cuarto.conexionDerecha) {
+            console.log("______________@@")
+            //console.log(cuarto.conexionDerecha.esConexionJefe)
+            //if(cuarto.conexionDerecha.esConexionJefe){
+              //context.fillStyle = "red";
+              //context.fillRect (1230, 0, 100, 700);
+
+            //}
             puertas.push(
               new Puerta({
+                puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: 1330,
                   y: 0,
@@ -608,6 +637,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
           } else {
             player.bloquesDeColision.push(
               new Puerta({
+                puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: 1330,
                   y: 0,
@@ -621,8 +651,16 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
             );
           }
           if (cuarto.conexionIzquierda) {
+            console.log("______________@@")
+            //console.log(cuarto.conexionDerecha.esConexionJefe)
+            //if(cuarto.conexionDerecha.esConexionJefe){
+              //context.fillStyle = "red";
+              //context.fillRect (0, 0, 100, 700);
+              
+            //}
             puertas.push(
               new Puerta({
+                puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: -20,
                   y: 0,
@@ -640,6 +678,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
           } else {
             player.bloquesDeColision.push(
               new Puerta({
+                puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: -20,
                   y: 0,
