@@ -21,7 +21,7 @@ async function connectToDB()
     return await mysql.createConnection({
         host:'localhost',
         user:'root', // Cambiar user y constraseña si quieren usarlo
-        password:'Hopecos@123',
+        password:'',
         database:'nineshions'
     })
 }
@@ -57,6 +57,33 @@ app.get('/api/Usuario', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error DB', details: error });
+    } finally {
+        if (connection) connection.end();
+    }
+});
+
+app.get('/api/estadisticas', async (req, res) => {
+    let connection = null;
+    const { id_usuario } = req.query;
+
+    try {
+        connection = await connectToDB();
+
+        const [rows] = await connection.query(`
+            SELECT 
+                monstruos_eliminados,
+                partidas_jugadas,
+                partidas_ganadas,
+                experiencia
+            FROM Usuario
+            WHERE id_usuario = ?`, 
+            [id_usuario]);
+
+        res.status(200).json(rows[0]);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al obtener estadísticas', details: error });
     } finally {
         if (connection) connection.end();
     }
