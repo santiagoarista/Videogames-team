@@ -1,13 +1,15 @@
-html, body, #app {
+
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden; /* evita desbordamientos horizontales */
 }
-
 #app {
-  margin-top: 0;
-  padding-top: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 body {
   margin-top: 0;
@@ -57,15 +59,18 @@ body {
     justify-content: space-between;
     align-items: center; 
     padding-left: 5vw;
-    padding-right: 15vw;     
+    padding-right: 10vw;     
     
   }
-  .contenido{
-
-    padding-right: 15vw;    
-    padding-left: 5vw; 
+  .contenido {
+    flex: 1;
     display: flex;
-    flex-direction: row;
+    justify-content: center; /* centra horizontalmente */
+    align-items: center;     /* centra verticalmente */
+    padding: 5vh 5vw;
+    flex-wrap: wrap;         /* permite que el contenido se acomode en pantallas pequeñas */
+    gap: 2rem;               /* espacio entre elementos si se apilan */
+    box-sizing: border-box;
   }
 
   .row{
