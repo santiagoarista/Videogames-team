@@ -4,7 +4,7 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden; /* evita desbordamientos horizontales */
+  
 }
 #app {
   min-height: 100vh;
@@ -27,7 +27,7 @@ body {
   color: white;
   font-family: 'Inter', sans-serif;
 
-  overflow: hidden;
+
 }
 #app canvas {
   width: 100vw;
@@ -161,6 +161,18 @@ h1 {
   }
   
   .boton_navegacion:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.879), 0 0 16px rgba(255, 255, 255, 0.871);
+  }
+
+  .logo {
+   
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
+    transition: all 0.3s ease;
+    display: inline-block; 
+  }
+  
+  .logo:hover {
     transform: scale(1.05);
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.879), 0 0 16px rgba(255, 255, 255, 0.871);
   }
