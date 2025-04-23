@@ -65,12 +65,13 @@ body {
   .contenido {
     flex: 1;
     display: flex;
-    justify-content: center; /* centra horizontalmente */
-    align-items: center;     /* centra verticalmente */
-    padding: 5vh 5vw;
-    flex-wrap: wrap;         /* permite que el contenido se acomode en pantallas pequeñas */
-    gap: 2rem;               /* espacio entre elementos si se apilan */
-    box-sizing: border-box;
+     
+     /* centra verticalmente */
+    padding-left: 5vw;
+    padding-right: 2vw;
+    flex-wrap: wrap;         
+    
+    flex-direction: row;
   }
 
   .row{
@@ -86,10 +87,12 @@ body {
     display: flex;
     flex-direction: column;
     padding-right: 5vw;  
+     justify-content:center;
   }
   .texto_jugar{
+    justify-content:center;
     padding-right: 5vw;    
-    width: 55vw;
+    width: 50vw;
     display: flex;
     flex-direction: column;
 
@@ -119,7 +122,7 @@ body {
     color: inherit;
   }
   nav{
-  padding-top: 3vh;
+  padding-top: 2vh;
     display: flex;
     flex-direction: row;
     gap: 3vw;
@@ -127,7 +130,7 @@ body {
 
 h2 {
   padding: 0px;
-    font-size: 50px;
+    font-size: 58px;
     color: white;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
     margin-bottom: 8px;
@@ -154,12 +157,10 @@ h1 {
     color: white;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
     transition: all 0.3s ease;
+    display: inline-block; 
   }
   
   .boton_navegacion:hover {
-    padding: 0px;
-    font-size: 20px;
-    color: white;
+    transform: scale(1.05);
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.879), 0 0 16px rgba(255, 255, 255, 0.871);
   }
-
