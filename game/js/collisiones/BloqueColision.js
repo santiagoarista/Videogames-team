@@ -10,4 +10,7 @@ class BloqueColision {
            context.fillStyle="rgba(255, 0, 0, 0)";
            context.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
+    update(){
+           
+    }
 }

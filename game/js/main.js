@@ -9,7 +9,7 @@ let puertas = [];
 let currentLevel = 8;
 let listaCuartosAleatorios = [];
 let showMap = false;
-let llaves = [false, false, false, false, false, false, false, false, false];
+let llaves = [false, false, false, false, false,false, false, false, false];
 let paused = false;
 let itemsEnJuego = []; //obtenerListaItems()
 let itemsActivos = [false, false, false];
@@ -23,6 +23,12 @@ let lKeyProcessed = false;
 canvas.width = 1344;
 canvas.height = 768;
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
+//TODO: BORRAR  DESPUES DE PRUEBAS JEFEFINAL
+puertaTestJefeFinal = new PuertaJefeFinal({
+  position: { x: 400, y: 600 },
+  width: 100,
+  height: 20,
+});
 
 let armaslista = armasLi; //Están en archivo utils>lista_armas
 
@@ -114,6 +120,9 @@ function animate(timeStamp) {
   requestAnimationFrame(animate);
 
   // Calcular delta time (tiempo transcurrido en segundos)
+
+
+  
   const deltaTime = Math.min((timeStamp - lastTime) / 1000, 0.1);
   lastTime = timeStamp;
 
@@ -127,10 +136,17 @@ function animate(timeStamp) {
   fondoCuarto.draw();
 
   // Dibujar colisiones
-  bloquesColisiones.forEach((bloqueColisiones) => {
-    bloqueColisiones.draw();
+  bloquesColisiones.forEach((bloque) => {
+    bloque.draw();
+  
   });
 
+  player.bloquesDeColision.forEach((bloque) => {
+    if (bloque instanceof PuertaJefeFinal) {
+      bloque.update(); // Solo si es una instancia de PuertaJefeFinal
+    }
+
+  })
   // Dibujar puertas
   puertas.forEach((puerta) => {
 
@@ -215,7 +231,7 @@ function animate(timeStamp) {
 
   // Actualizar y dibujar el jugador
   player.update(deltaTime);
-  context.shadowColor = "er"; // Neon effect
+  context.shadowColor = "white"; // Neon effect
   context.shadowBlur = 10;
   player.draw();
 
@@ -233,6 +249,7 @@ function animate(timeStamp) {
     bulletController.draw(context, deltaTime);
   }
   
+
   
   context.shadowColor = "blue"; // Neon effect
   context.shadowBlur = 40;

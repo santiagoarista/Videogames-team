@@ -106,7 +106,6 @@ class Player extends Sprite {
 
   update(deltaTime) {
 
-    console.log("update player llamado")
     if (this.inTransition) {
       this.velocity.x = 0;
       this.velocity.y = 0;
@@ -250,6 +249,7 @@ class Player extends Sprite {
   }
 
   checkHorizontalCollisions() {
+
     //CHECAR SI HAY COLISIONES EN X
     for (let index = 0; index < this.bloquesDeColision.length; index++) {
       const bloqueDeColsion = this.bloquesDeColision[index];

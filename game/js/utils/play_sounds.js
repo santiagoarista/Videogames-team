@@ -12,6 +12,7 @@ const soundMap = {
 
     no_weapon: "../assets/soundeffects/weapon_box/no_weapon.mp3",
     take_weapon: "../assets/soundeffects/weapon_box/take_weapon.wav",    
+    lock: "../assets/soundeffects/doors/lock.mp3",    
 };
 
 function playSound(action, volume= 1.0) {
@@ -40,6 +41,7 @@ class SoundController {
     }
 
     play() {
+        console.log("sonido", this.audio.src)
         this.audio.play();
  
     }

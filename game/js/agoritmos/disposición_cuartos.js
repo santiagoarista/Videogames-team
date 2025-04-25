@@ -251,24 +251,28 @@ function crear_disposicion_cuartos() {
   function set_conexion_destino({ direccion, indexOrigen, indexDestino }) {
     switch (direccion) {
       case "superior":
+        cuartos[indexOrigen].conexionSuperior.esConexionJefe =cuartos[indexDestino].cuartoJefeFinal;
         cuartos[indexOrigen].conexionSuperior.idDestino =
           cuartos[indexDestino].conexionInferior.idOrigen;
         cuartos[indexOrigen].conexionSuperior.posicionDestino =
           cuartos[indexDestino].posicionJugadorInferior;
         break;
       case "inferior":
+        cuartos[indexOrigen].conexionInferior.esConexionJefe =cuartos[indexDestino].cuartoJefeFinal;
         cuartos[indexOrigen].conexionInferior.idDestino =
           cuartos[indexDestino].conexionSuperior.idOrigen;
         cuartos[indexOrigen].conexionInferior.posicionDestino =
           cuartos[indexDestino].posicionJugadorSuperior;
         break;
       case "derecha":
+        cuartos[indexOrigen].conexionDerecha.esConexionJefe =cuartos[indexDestino].cuartoJefeFinal;
         cuartos[indexOrigen].conexionDerecha.idDestino =
           cuartos[indexDestino].conexionIzquierda.idOrigen;
         cuartos[indexOrigen].conexionDerecha.posicionDestino =
           cuartos[indexDestino].posicionJugadorIzquierda;
         break;
       case "izquierda":
+        cuartos[indexOrigen].conexionIzquierda.esConexionJefe =cuartos[indexDestino].cuartoJefeFinal;
         cuartos[indexOrigen].conexionIzquierda.idDestino =
           cuartos[indexDestino].conexionDerecha.idOrigen;
         cuartos[indexOrigen].conexionIzquierda.posicionDestino =
@@ -493,6 +497,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
 
   listaNiveles.forEach((cuarto) => {
 
+
       (levels[cuarto.idCuarto] = {
         id: cuarto.idCuarto,
         init: () => {
@@ -551,6 +556,16 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                 posicionDestino: cuarto.conexionSuperior.posicionDestino,
               })
             );
+            if (cuarto.conexionSuperior.esConexionJefe ==true) {
+              player.bloquesDeColision.push(
+                new PuertaJefeFinal({
+                  position: {x: 0, y: -90},
+                  width: 1400,
+                  height: 20,
+                })
+              )
+            
+            }
           } else {
             player.bloquesDeColision.push(
               
@@ -589,6 +604,16 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                 posicionDestino: cuarto.conexionInferior.posicionDestino,
               })
             );
+            if (cuarto.conexionInferior.esConexionJefe ==true) {
+              player.bloquesDeColision.push(
+                new PuertaJefeFinal({
+                  position: {x: 0, y: 740},
+                  width: 1400,
+                  height: 20,
+                })
+              )
+            
+            }
           } else {
             player.bloquesDeColision.push(
               new Puerta({
@@ -617,12 +642,12 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
               new Puerta({
                 puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
-                  x: 1330,
+                  x:  1390,
                   y: 0,
                 },
                 nombreOrigen: "derecha",
                 imgResource: "../../assets/sprites/doors/colisionLateral.png",
-                posicionOrigen: { x: 1200, y: 650 },
+                posicionOrigen: { x: 1390, y: 650 },
 
                 idOrigen: cuarto.idCuarto,
                 idDestino: cuarto.conexionDerecha.idDestino[0],
@@ -630,6 +655,16 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                 posicionDestino: cuarto.conexionDerecha.posicionDestino,
               })
             );
+            if (cuarto.conexionDerecha.esConexionJefe ==true) {
+              console.log("conexion jefe derecha")
+              player.bloquesDeColision.push(
+                new PuertaJefeFinal({
+                  position: {x: 1330, y: 0},
+                  width: 20,
+                  height: 800,
+                })
+              )
+            }
           } else {
             player.bloquesDeColision.push(
               new Puerta({
@@ -658,7 +693,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
               new Puerta({
                 puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
-                  x: -20,
+                  x: -40,
                   y: 0,
                 },
                 nombreOrigen: "izquierda",
@@ -671,6 +706,16 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                 posicionDestino: cuarto.conexionIzquierda.posicionDestino,
               })
             );
+            if (cuarto.conexionIzquierda.esConexionJefe ==true) {
+           
+              player.bloquesDeColision.push(
+                new PuertaJefeFinal({
+                  position: {x: 0, y: 0},
+                  width: 20,
+                  height: 800,
+                })
+              )
+            }
           } else {
             player.bloquesDeColision.push(
               new Puerta({
@@ -687,7 +732,13 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
               })
             );
           }
-
+          console.log("conexiones" )
+          console.log("Conexiones del cuarto:", {
+            superior: cuarto.conexionSuperior,
+            inferior: cuarto.conexionInferior,
+            derecha: cuarto.conexionDerecha,
+            izquierda: cuarto.conexionIzquierda
+          });
           player.puertas = puertas;
         },
       });
