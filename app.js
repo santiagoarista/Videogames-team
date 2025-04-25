@@ -89,6 +89,30 @@ app.get('/api/estadisticas', async (req, res) => {
     }
 });
 
+app.get('/api/estadisticas/todos', async (req, res) => {
+    let connection = null;
+
+    try {
+        connection = await connectToDB();
+
+        const [rows] = await connection.query(`
+            SELECT 
+                monstruos_eliminados,
+                partidas_jugadas,
+                partidas_ganadas,
+                experiencia
+            FROM Usuario`);
+
+        res.status(200).json(rows);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al obtener estadísticas de todos los jugadores', details: error });
+    } finally {
+        if (connection) connection.end();
+    }
+});
+
 //Create new user API
 app.post('/api/Usuario', async (req, res) => {
     let connection = null;

@@ -3,8 +3,8 @@ body {
     padding: 20px; 
     color: #fff;
     background: black; 
-    margin-top: 0;
-    padding-top: 0;
+    margin: 0;
+  padding: 0;
 }
 
 .barraNav {
@@ -46,7 +46,7 @@ h1 {
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.879), 0 0 16px rgba(255, 255, 255, 0.871);
   }
 
-  #app canvas {
+  /* #app canvas {
     width: 100vw;
     height: 100vh;
     display: block;
@@ -55,16 +55,40 @@ h1 {
     z-index: -1;
     top: 0;
     left: 0;
-  }
+  } */
 
   h2 {
     padding: 0px;
     font-size: 50px;
     color: white;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
-    margin-bottom: 8px;
-    margin-top: 8px;
     text-align: center;
+  }
+
+  .subtitulo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    padding-left: 24px;
+  }
+
+  .subtitulo h3{
+    color: white;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
+  }
+
+  .contenedor{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+  .flex-individual{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 40%;
   }
 
 div {
@@ -72,10 +96,10 @@ div {
     border-style: solid; /* Define el borde como sólido */
     border-width: 2px; /* Define el grosor del borde */
     border-radius: 10px;
-    padding: 20px;
-    margin: 50px auto;
-    max-width: 500px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 0 20px;
+    /* margin: 50px auto;
+    max-width: 500px; */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.514);
     font-size: 20px;
 }
 
@@ -83,7 +107,7 @@ div {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 15px;
+    padding-bottom: 15px;
     margin: 15px auto;
     /* max-width: 500px; */
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -91,8 +115,6 @@ div {
   
   .estadistica img {
     width: 60px;
-    margin-right: 20px;
-    /* box-shadow: 0 0 10px rgba(218, 8, 8, 0.5); */
   }
   
   .estadistica p {
@@ -100,16 +122,45 @@ div {
     font-size: 30px;
   }
 
+  #puntaje {
+    width: 40px;
+  }
+
   .armas {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   .armas article{
     text-align: center;
   }
 
+  .armas article p, .flex-individual div:first-child p:nth-child(3){
+    font-size: 12px;
+  }
+
   .armas article img{
     width: 40px;
   }
+
+  .chartContainer{
+    max-width: 500px;
+    /* justify-content: center; */
+    justify-items: center;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    /* align-content: center; */
+}
+
+canvas {
+  border-color: #fff;
+  border-style: solid; /* Define el borde como sólido */
+  border-width: 2px; /* Define el grosor del borde */
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.514);
+}
