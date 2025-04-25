@@ -108,7 +108,7 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
        //Pasamos los bloques que harán las colisiones con este objeto
        delayBala: 10,
            velocidadEnemigo: 5,
-           velocidadBala:7,
+           velocidadBala:300,
          
            estatico: false,
            movimiento: "x",

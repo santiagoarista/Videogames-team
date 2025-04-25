@@ -64,12 +64,12 @@ if (idArmaActual == '1'){
         }
         this.timeToNextBullet--;
     }
-    draw(context){
+    draw(context, deltaTime){
         disparosJugador.forEach((element, index) => {
             if (this.isBulletScreen(element)) {
                 disparosJugador.splice(index, 1);
             }
-            element.draw(context);
+            element.draw(context, deltaTime);
         });
     }
 
@@ -135,12 +135,12 @@ if (direccion == "arriba" ||  direccion == "abajo") {
         }
         this.timeToNextBullet--;
     }
-    draw(context){
+    draw(context, deltaTime){
         disparosEnemigos.forEach((element, index) => {
             if (this.isBulletScreen(element)) {
                 disparosEnemigos.splice(index, 1);
             }
-            element.draw(context);
+            element.draw(context,  deltaTime);
         });
     }
 

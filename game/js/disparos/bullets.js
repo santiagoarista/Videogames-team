@@ -30,7 +30,7 @@ class Bullet {
         };
     }
 
-    draw(context) {
+    draw(context, deltaTime) {
         // Dibujar el rectángulo base
         context.fillStyle = this.color;
         context.fillRect(this.x, this.y, this.width, this.height);
@@ -40,26 +40,26 @@ class Bullet {
         
             context.drawImage(this.image, this.x-18, this.y-23, 51, 50);
         }
-
+        const velocidad = this.speed * deltaTime ; 
         // Movimiento
         if (this.direccion === "izquierda") {
-            this.x -= this.speed;
+            this.x -= velocidad;
         } else if (this.direccion === "arriba") {
-            this.y -= this.speed;
+            this.y -= velocidad;
         } else if (this.direccion === "derecha") {
-            this.x += this.speed;
+            this.x += velocidad;
         } else if (this.direccion === "arriba-izquierda") {
-            this.x -= this.speed * 0.9;
-            this.y -= this.speed * 0.4;
+            this.x -= velocidad * 0.9;
+            this.y -= velocidad * 0.4;
         } else if (this.direccion === "arriba-derecha") {
-            this.x += this.speed * 0.9;
-            this.y -= this.speed * 0.4;
+            this.x += velocidad * 0.9;
+            this.y -= velocidad * 0.4;
         } else if (this.direccion === "abajo-izquierda") {
-            this.x -= this.speed * 0.9;
-            this.y += this.speed * 0.4;
+            this.x -= velocidad * 0.9;
+            this.y += velocidad * 0.4;
         } else if (this.direccion === "abajo-derecha") {
-            this.x += this.speed * 0.9;
-            this.y += this.speed * 0.4;
+            this.x += velocidad * 0.9;
+            this.y += velocidad * 0.4;
         } 
         
     }
@@ -105,7 +105,7 @@ class EnemyBullet {
         };
     }
 
-    draw(context) {
+    draw(context, deltaTime) {
         // Si la imagen está cargada, dibujarla
         if (this.imageLoaded) {
             context.drawImage(this.image, this.x - 18, this.y - 23, 51, 50);
@@ -116,22 +116,24 @@ class EnemyBullet {
         }
 
         // Movimiento de la bala según su dirección
-        this.move();
+        this.move(deltaTime);
     }
 
-    move() {
+    move(deltaTime) {
+        const movement = this.speed * deltaTime;
+    
         switch (this.direccion) {
             case "izquierda":
-                this.x -= this.speed;
+                this.x -= movement;
                 break;
             case "derecha":
-                this.x += this.speed;
+                this.x += movement;
                 break;
             case "arriba":
-                this.y -= this.speed;
+                this.y -= movement;
                 break;
             case "abajo":
-                this.y += this.speed;
+                this.y += movement;
                 break;
         }
     }

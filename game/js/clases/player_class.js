@@ -160,8 +160,8 @@ class Player extends Sprite {
   shoot() {
     //Disparo
     if (keys.k.pressed && idArmaActual == '1') {
-      let bulletSpeed = 10;
-      let bulletDelay = 20;
+      let bulletSpeed = 500;
+      let bulletDelay = 80;
       let damage = 1;
       let bulletX = this.position.x + this.width / 2;
       let bulletY = this.position.y + 80;
@@ -173,8 +173,8 @@ class Player extends Sprite {
         bulletY: bulletY,
       });
     } else if(keys.k.pressed && idArmaActual == '2') {
-      let bulletSpeed = 10;
-      let bulletDelay = 10;
+      let bulletSpeed = 500;
+      let bulletDelay = 50;
       let damage = 3;
       let bulletX = this.position.x + this.width / 2;
       let bulletY = this.position.y + 80;
@@ -186,8 +186,8 @@ class Player extends Sprite {
         bulletY: bulletY,
       });
     } else if (keys.k.pressed && idArmaActual == '3') {
-      let bulletSpeed = 20;
-      let bulletDelay = 20;
+      let bulletSpeed = 500;
+      let bulletDelay = 80;
       let damage = 3;
       let centerX = this.position.x + this.width / 2;
       let centerY = this.position.y + 80;

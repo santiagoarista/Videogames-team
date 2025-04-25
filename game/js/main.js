@@ -205,21 +205,21 @@ function animate(timeStamp) {
   if(idArmaActual == '1'){
     context.shadowColor = "rgb(149, 0, 255)"; // Neon effect
     context.shadowBlur = 5;
-    bulletController.draw(context);
+    bulletController.draw(context,  deltaTime);
   } else if (idArmaActual == '2'){
     context.shadowColor = "blue"; // Neon effect
     context.shadowBlur = 5;
-    bulletController.draw(context);
+    bulletController.draw(context, deltaTime);
   } else if (idArmaActual == '3'){
     context.shadowColor = "red"; // Neon effect
     context.shadowBlur = 40;
-    bulletController.draw(context);
+    bulletController.draw(context, deltaTime);
   }
   
   
   context.shadowColor = "blue"; // Neon effect
   context.shadowBlur = 40;
-  enemyBulletController.draw(context);
+  enemyBulletController.draw(context, deltaTime);
   context.shadowBlur = 0;
   context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
 
