@@ -56,33 +56,25 @@ class PuertaJefeFinal {
            }
  
         }else if (
-            player.position.y + player.height > this.position.y &&         // El jugador está debajo de la puerta
-            player.position.y < this.position.y + this.height &&            // El jugador no está sobrepasando la parte superior de la puerta
-            player.position.x > this.position.x &&                          // El jugador está dentro del rango horizontal de la puerta
-            player.position.x < this.position.x + this.width                // El jugador no está fuera de los límites horizontales de la puerta
+            player.position.y + player.height > this.position.y &&         
+            player.position.y < this.position.y + this.height &&    
+            player.position.y < this.position.y + this.height &&           
+           !( player.position.x +player.height < this.position.x +100) &&                        
+            player.position.x < this.position.x + this.width               
         ) {
             this.infoVisible = true;
             this.dibujarInfoPuerta();
-        
+            if (player.position.y>0) {
+                this.posicionInfo = {
+                    x: 10,
+                    y: -20,  // Ajusta la posición para mostrar la información debajo de la puerta
+                };
+            }else{
             this.posicionInfo = {
-                x: -80,
-                y: 100,  // Posición ajustada para mostrar la información encima de la puerta
-            };
-        } else if (
-            player.position.y + player.height > this.position.y + this.height &&  // El jugador está justo debajo de la puerta
-            player.position.y < this.position.y + this.height + 20 &&            // Un margen para verificar si está cerca de la parte inferior
-            player.position.x > this.position.x &&                               // El jugador está dentro del rango horizontal de la puerta
-            player.position.x < this.position.x + this.width &&                  // El jugador no está fuera de los límites horizontales de la puerta
-            player.velocity.y >= 0                                                // Verificar que el jugador está cayendo o se mueve hacia abajo
-        ) {
-            this.infoVisible = true;
-            this.dibujarInfoPuerta();
-        
-            this.posicionInfo = {
-                x: -80,
-                y: 100,  // Ajusta la posición para mostrar la información debajo de la puerta
-            };
-        }
+                x: 10,
+                y: 170,  // Posición ajustada para mostrar la información encima de la puerta
+            };}
+        } 
           else{
             this.infoVisible = false;
             this.infoDibujada = false;

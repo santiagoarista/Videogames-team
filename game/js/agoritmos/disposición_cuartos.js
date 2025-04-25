@@ -559,8 +559,8 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
             if (cuarto.conexionSuperior.esConexionJefe ==true) {
               player.bloquesDeColision.push(
                 new PuertaJefeFinal({
-                  position: {x: 0, y: -90},
-                  width: 1400,
+                  position: {x: -150, y: -90},
+                  width: 1600,
                   height: 20,
                 })
               )
@@ -592,7 +592,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                 puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: 0,
-                  y: 745,
+                  y: 765,
                 },
                 nombreOrigen: "inferior",
                 imgResource: "../../assets/sprites/doors/colisionInferior.png",
@@ -607,8 +607,8 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
             if (cuarto.conexionInferior.esConexionJefe ==true) {
               player.bloquesDeColision.push(
                 new PuertaJefeFinal({
-                  position: {x: 0, y: 740},
-                  width: 1400,
+                  position: {x: -150, y: 760},
+                  width: 1600,
                   height: 20,
                 })
               )
