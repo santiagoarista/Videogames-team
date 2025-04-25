@@ -62,8 +62,8 @@ class Fantasma extends Sprite{
         }
     
         // Aplicar movimiento
-        this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
+        this.position.x += this.velocity.x * deltaTime;
+        this.position.y += this.velocity.y * deltaTime;
     
         // Llamadas existentes en tu método update
         this.updateHitbox();

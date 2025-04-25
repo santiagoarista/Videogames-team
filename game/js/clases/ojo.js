@@ -60,7 +60,7 @@ class Ojo extends Sprite{
         this.health -=damage
     }
     
-    update(player) {
+    update(player, deltaTime) {
 
     const velocidad = this.velocidadEnemigo
     

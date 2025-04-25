@@ -39,7 +39,7 @@ class Player extends Sprite {
       bottom: this.position.y + this.height,
     };
 
-    this.gravity = 0.8;
+    this.gravity = 16;
     this.bloquesDeColision = bloquesDeColision;
     this.puertas = puertas;
     this.lives = 3; // Inicializar vidas a 3
@@ -625,6 +625,6 @@ class Player extends Sprite {
   applyGravity(deltaTime) {
     //Sólo se aplica gravedad en Y porque es para que baje el objeto
     this.velocity.y += this.gravity;
-    this.position.y += this.velocity.y ;
+    this.position.y += this.velocity.y * deltaTime;
   }
 }
