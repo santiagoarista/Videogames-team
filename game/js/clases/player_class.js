@@ -422,25 +422,6 @@ class Player extends Sprite {
         itemsEnJuego.splice(index, 1);
       }
     }
-    //   //Colisiones con los items
-    //   this.items = this.items.filter(item => {
-    //   if (this.hitbox.position.x <= item.hitbox.position.x + item.hitbox.width &&
-    //       this.hitbox.position.x + this.hitbox.width >= item.hitbox.position.x &&
-    //       this.hitbox.position.y + this.hitbox.height >= item.hitbox.position.y &&
-    //       this.hitbox.position.y <= item.hitbox.position.y + item.hitbox.height) {
-    //
-    //                   console.log("Colisión con item ID:", item.idItem);
-    //                   item.visible = false;
-    //                   if (item.type == "Llave") {
-    //                       llaves[currentLevel-1]= true
-    //                   }
-    //
-    //                   return false; // Se elimina del array
-    //               }
-    //               return true; // Se mantiene en el array
-    //           });
-    //
-    //
   } //
 
   checkVerticalCollisions() {
@@ -624,7 +605,7 @@ class Player extends Sprite {
 
   applyGravity(deltaTime) {
     //Sólo se aplica gravedad en Y porque es para que baje el objeto
-    this.velocity.y += this.gravity;
-    this.position.y += this.velocity.y * deltaTime;
+    this.velocity.y += this.gravity * deltaTime;
+    this.position.y += this.velocity.y * deltaTime*100;
   }
 }
