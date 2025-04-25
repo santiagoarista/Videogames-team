@@ -58,9 +58,7 @@ function navegarNuevoCuarto(idDestino, posicionDestino, nombreOrigen) {
     sonidoMusica.setVolume(0.2);
   }
 
-  console.log("Navegando nuevo cuarto...");
-  console.log("Destino:", idDestino);
-  console.log("Posición Final:", posiciónFinal);
+
 
   // Bloquear el movimiento y visibilidad del jugador
   player.position = { x: -300, y: -300 };

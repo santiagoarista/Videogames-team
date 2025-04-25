@@ -93,7 +93,7 @@ class Player extends Sprite {
   drawKeys() {
     this.keys = llaves.filter((element) => element === true).length;
 
-    context.shadowColor = "white";
+    context.shadowColor = "transparent";
     context.shadowBlur = 15;
     context.drawImage(this.keysImage, 230, 15, 30, 60);
     context.font = "40px Arcade Gamer"; // Tamaño y fuente del texto

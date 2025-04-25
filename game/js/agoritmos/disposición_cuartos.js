@@ -491,8 +491,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
   listaCuartosAleatorios = [...listaNiveles];
 
   listaNiveles.forEach((cuarto) => {
-    console.log("------------------------")
-    console.log(cuarto.cuartoJefeFinal),
+
       (levels[cuarto.idCuarto] = {
         id: cuarto.idCuarto,
         init: () => {
@@ -558,10 +557,10 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                 puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: 0,
-                  y: -40,
+                  y: -16,
                 },
                 nombreOrigen: "superior",
-                imgResource: "../../assets/sprites/doors/colisionInferior2.png",
+                imgResource: "../../assets/sprites/doors/colisionInferior3.png",
                 posicionOrigen: { x: 1200, y: 650 },
 
                 puertaActiva: true,
@@ -599,7 +598,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                 puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: 0,
-                  y: 745,
+                  y: 705,
                 },
                 nombreOrigen: "superior",
                 imgResource: "../../assets/sprites/doors/colisionInferior2.png",
@@ -643,7 +642,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                   y: 0,
                 },
                 nombreOrigen: "derecha",
-                imgResource: "../../assets/sprites/doors/colisionLateral2.png",
+                imgResource: "../../assets/sprites/doors/colisionderecha.png",
                 posicionOrigen: { x: 1200, y: 650 },
 
                 puertaActiva: true,

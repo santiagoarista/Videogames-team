@@ -95,7 +95,8 @@ function animate(timeStamp) {
   }
 
   requestAnimationFrame(animate);
-
+  context.shadowBlur = 0;
+  context.shadowColor = "transparent";
   // Calcular delta time (tiempo transcurrido en segundos)
   const deltaTime = (timeStamp - lastTime) / 1000;
   lastTime = timeStamp;
@@ -195,7 +196,7 @@ function animate(timeStamp) {
 
   // Actualizar y dibujar el jugador
   player.update();
-  context.shadowColor = "white"; // Neon effect
+  context.shadowColor = "er"; // Neon effect
   context.shadowBlur = 10;
   player.draw();
 
