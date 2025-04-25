@@ -42,7 +42,7 @@ class Fantasma extends Sprite{
         this.health -=damage
     }
     update(player, deltaTime) {
-        const velocidad = 0.8
+        const velocidad = 0.9
         // Calcular la diferencia de posición entre el enemigo y el jugador
         let dx =(30+ player.position.x) - this.position.x;
         let dy =(50+ player.position.y) - this.position.y;
@@ -53,8 +53,8 @@ class Fantasma extends Sprite{
         // Si la distancia es mayor a 0, mover hacia el jugador
         if (distancia > 0) {
             // Normalizar la dirección y multiplicar por la velocidad
-            this.velocity.x = (dx / distancia) * velocidad * deltaTime;  // 0.8 es la velocidad
-            this.velocity.y = (dy / distancia) * velocidad * deltaTime;
+            this.velocity.x = (dx / distancia) * velocidad ;  // 0.8 es la velocidad
+            this.velocity.y = (dy / distancia) * velocidad ;
         } else {
             // Si el fantasma está muy cerca del jugador, detenerse
             this.velocity.x = 0;
@@ -62,8 +62,8 @@ class Fantasma extends Sprite{
         }
     
         // Aplicar movimiento
-        this.position.x += this.velocity.x * deltaTime;
-        this.position.y += this.velocity.y * deltaTime;
+        this.position.x += this.velocity.x * deltaTime*100;
+        this.position.y += this.velocity.y * deltaTime*100;
     
         // Llamadas existentes en tu método update
         this.updateHitbox();

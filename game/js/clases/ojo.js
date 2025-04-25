@@ -133,7 +133,7 @@ class Ojo extends Sprite{
             }
         
             // Aplicar movimiento en la dirección actual
-            this.position.y += velocidad * this.direccion;
+            this.position.y += velocidad * this.direccion ;
         }
     }
 
