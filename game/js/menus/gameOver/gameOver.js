@@ -265,15 +265,17 @@ function reiniciarJuego() {
   lKeyProcessed = false;
   caminando = false;
   overlay.opacity = 0;
-  lastTime = 0;
+
 
   enemigos = [];
   enemigosPorNivel = obtenerListaEnemigos(
     bulletController,
     enemyBulletController
   );
-
+ 
   cuartos = generarLevels(crear_disposicion_cuartos(), enemigosPorNivel);
+  console.log(enemigosPorNivel);
+  cuartos[currentLevel].init();
 
   cuartosOscuros = new Set();
   while (cuartosOscuros.size < 4) {
@@ -289,12 +291,14 @@ function reiniciarJuego() {
   keys.d.pressed = false;
 
   // Volver a iniciar el cuarto actual
-  cuartos[currentLevel].init();
+ 
 
   // Reiniciar música si quieres que empiece de nuevo
   sonidoMusica.stop();
   musicaIniciada = false;
 
   // Volver a animar
-  requestAnimationFrame(animate);
+
+
+
 }

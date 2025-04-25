@@ -105,12 +105,14 @@ class Player extends Sprite {
   }
 
   update(deltaTime) {
+
+    console.log("update player llamado")
     if (this.inTransition) {
       this.velocity.x = 0;
       this.velocity.y = 0;
       return; // Detener actualización si está en transición
     }
-    console.log(this.visible);
+
     //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
     if (this.countdown) {
       if (this.countdownDelay > 0) {
@@ -126,7 +128,7 @@ class Player extends Sprite {
     context.fillRect(this.position.x, this.position.y, this.width, this.height);
     //EFECTO DE GRAVEDAD, aumenta o disminuye los movimientos de pixeles en x, derecha izquierda
     this.position.x += this.velocity.x * deltaTime;
-    console.log("deltaTime:", deltaTime, "velocity:", this.velocity.x);
+
     //aCTUALIZACIÓN DE HITBOX EN 2 PUNTOS
     this.updateHitbox();
 
@@ -536,7 +538,7 @@ class Player extends Sprite {
   }
   recibirDaño(index, enemigo) {
     if (!this.countdown) {
-      console.log(this.countdown);
+
 
       if (enemigo.health > 1){
         enemigo.health -= 1;

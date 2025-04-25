@@ -82,27 +82,44 @@ const overlay = {
 let lastTime = 0; // Para almacenar el tiempo del último frame
 
 function animate(timeStamp) {
+
+
+
+  //TODO: RESOLVER LÓGICA DE MOSTRAR GAME OVER Y MENU DE PAUSA
   //Game Over Pantalla
   if (gameOver) {
-    drawGameOverScreen(); //Todo lo relacionado a gameOver está en gameOver.js
+    reiniciarJuego(); //Todo lo relacionado a gameOver está en gameOver.js
+
+  }
+//
+ // //Pausar Juegoa
+ // if (paused) {
+ //TODO: ESTA LÓGICA DE DIBUJAR  EL MENU DE PAUSA Y EL GAME OVER ES EL QUE GENERA EL ERROR,
+ //TODO: SE DEBE HACER LA IMPLEMENTACION DE ESTOS MÉTODOS MUY PARECCIDA A LA LÓGICA DE MOSTRAR MAPA, ESTO NO GENERA ERRORES
+ //   drawPauseMenu(); //Todo lo relacionado a pausa y ajustes está en pause.js
+ //   return;
+ // }
+  //TODO: RESOLVER LÓGICA DE MOSTRAR GAME OVER Y MENU DE PAUSA
+
+
+
+
+  if (lastTime === 0) {
+    lastTime = timeStamp;
+    requestAnimationFrame(animate);
     return;
   }
 
-  //Pausar Juego
-  if (paused) {
-    drawPauseMenu(); //Todo lo relacionado a pausa y ajustes está en pause.js
-    return;
-  }
 
   requestAnimationFrame(animate);
+
+  // Calcular delta time (tiempo transcurrido en segundos)
+  const deltaTime = Math.min((timeStamp - lastTime) / 1000, 0.1);
+  lastTime = timeStamp;
 
 
   context.shadowBlur = 0;
   context.shadowColor = "transparent";
-  // Calcular delta time (tiempo transcurrido en segundos)
-  const deltaTime = (timeStamp - lastTime) / 1000;
-  lastTime = timeStamp;
-
   // Limpiar el canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -263,13 +280,15 @@ context.restore();
   if (showMap) {
     drawMap(listaCuartosAleatorios);
   }
+  
 
   dibujarArmaActual();
   
 }
+console.log(player.position.x)
 
 cuartos[currentLevel].init();
-//console.log(listaCuartosAleatorios)
+
 requestAnimationFrame(animate);
 
 //CONTROLADORES DE MÚSICA
@@ -282,6 +301,6 @@ window.addEventListener("keydown", (event) => {
   if (["a", "w", "s", "d", "k"].includes(key) && !musicaIniciada) {
     sonidoMusica.play();
     musicaIniciada = true;
-    console.log("🎵 Música iniciada");
+
   }
 });

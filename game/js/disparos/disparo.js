@@ -63,7 +63,7 @@ if (idArmaActual == '1'){
             this.timeToNextBullet= bulletDelay
         }
         this.timeToNextBullet-=deltaTime*100;
-        console.log(this.timeToNextBullet , "tiempo para")
+  
     }
     draw(context, deltaTime){
         disparosJugador.forEach((element, index) => {
@@ -135,7 +135,7 @@ if (direccion == "arriba" ||  direccion == "abajo") {
             this.timeToNextBullet= bulletDelay
         }
         this.timeToNextBullet-=deltaTime*100;
-        console.log(this.timeToNextBullet , "tiempo para")
+    
     }
     draw(context, deltaTime){
         disparosEnemigos.forEach((element, index) => {

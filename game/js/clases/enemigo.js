@@ -197,7 +197,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
         this.hitbox.position.y <= disparo.y + disparo.height) {
             
              //Si recibe un disparo se ejecuta el método
-             console.log("colision con enemigos")
+     
              this.recibirGolpe(disparo, index);
 
     }
@@ -232,7 +232,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
     if (this.health<=0) {
         enemigos.splice(this.index, 1);
         player.monstruos_eliminados += 1;
-        console.log("player", player.monstruos_eliminados);
+      
     }
   }
 }

@@ -485,6 +485,7 @@ function crear_disposicion_cuartos() {
 }
 
 function generarLevels(listaNiveles, enemigosPorNiveles) {
+
   console.log("generar");
   const levels = {};
   listaCuartosAleatorios = [];
@@ -501,6 +502,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
           bloquesColisiones = colisionesConvertidas.creatObjectsFrom2d();
           //AGREGAR COLISIONES A PERSONAJES
 
+          enemigos = enemigosPorNiveles[cuarto.idCuarto - 1];
           //Enemigos agregar colsiones
           enemigos.forEach((enemigo, index) => {
             enemigo.bloquesDeColision = bloquesColisiones;
@@ -510,7 +512,6 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
             i.bloquesDeColision = bloquesColisiones;
           });
 
-          enemigos = enemigosPorNiveles[cuarto.idCuarto - 1];
 
           player.bloquesDeColision = bloquesColisiones;
           player.puertas = puertas;
@@ -526,7 +527,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
 
           puertas = [];
           if (cuarto.conexionSuperior) {
-            console.log("______________@@")
+   
            // console.log(cuarto.conexionDerecha.esConexionJefe)
           //  if(cuarto.conexionDerecha.esConexionJefe){
               //context.fillStyle = "red";
@@ -568,11 +569,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
             );
           }
           if (cuarto.conexionInferior) {
-            console.log("______________@@")
-           // console.log(cuarto.conexionDerecha.esConexionJefe)
-            //if(cuarto.conexionDerecha.esConexionJefe){
-              //context.fillStyle = "red";
-              //context.fillRect (0, 600, 100, 700);
+
               
             //}
             puertas.push(

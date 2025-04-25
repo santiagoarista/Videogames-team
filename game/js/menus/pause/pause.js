@@ -266,7 +266,8 @@ window.addEventListener("click", (event) => {
             mouseY <= buttonY + buttonHeight
         ) {
             paused = false;
-            animate(); // Play
+      
+            //animate(); // Play
         }
 
         if (
