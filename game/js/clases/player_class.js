@@ -154,14 +154,14 @@ class Player extends Sprite {
     context.shadowColor = "transparent";
 
     this.checkVerticalCollisions();
-    this.shoot();
+    this.shoot(deltaTime);
   }
 
-  shoot() {
+  shoot(deltaTime) {
     //Disparo
     if (keys.k.pressed && idArmaActual == '1') {
       let bulletSpeed = 500;
-      let bulletDelay = 80;
+      let bulletDelay = 50;
       let damage = 1;
       let bulletX = this.position.x + this.width / 2;
       let bulletY = this.position.y + 80;
@@ -171,10 +171,10 @@ class Player extends Sprite {
         damage: damage,
         bulletX: bulletX,
         bulletY: bulletY,
-      });
+      },deltaTime);
     } else if(keys.k.pressed && idArmaActual == '2') {
       let bulletSpeed = 500;
-      let bulletDelay = 50;
+      let bulletDelay = 35;
       let damage = 3;
       let bulletX = this.position.x + this.width / 2;
       let bulletY = this.position.y + 80;
@@ -184,10 +184,10 @@ class Player extends Sprite {
         damage: damage,
         bulletX: bulletX,
         bulletY: bulletY,
-      });
+      }, deltaTime);
     } else if (keys.k.pressed && idArmaActual == '3') {
       let bulletSpeed = 500;
-      let bulletDelay = 80;
+      let bulletDelay = 50;
       let damage = 3;
       let centerX = this.position.x + this.width / 2;
       let centerY = this.position.y + 80;
@@ -201,7 +201,7 @@ class Player extends Sprite {
         damage,
         bulletX: centerX,
         bulletY: centerY,
-      });
+      },deltaTime);
 
       // Disparo diagonal hacia arriba
       this.bulletController.shoot({
@@ -211,7 +211,7 @@ class Player extends Sprite {
         bulletX: centerX,
         bulletY: centerY,
         direccionForzada: diagonal1
-      });
+      },deltaTime);
 
       // Disparo diagonal hacia abajo (puedes añadir abajo-derecha si quieres más variedad)
       this.bulletController.shoot({
@@ -221,7 +221,7 @@ class Player extends Sprite {
         bulletX: centerX,
         bulletY: centerY,
         direccionForzada: diagonal2
-      });
+      },deltaTime);
     }
   }
 

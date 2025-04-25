@@ -5,7 +5,7 @@ class Bulletcontroller {
         this.canvas = canvas;
     }
 
-    shoot({bulletSpeed,bulletDelay, damage, bulletX, bulletY}){
+    shoot({bulletSpeed,bulletDelay, damage, bulletX, bulletY}, deltaTime){
         
 let direccion = ""
 
@@ -62,7 +62,8 @@ if (idArmaActual == '1'){
 
             this.timeToNextBullet= bulletDelay
         }
-        this.timeToNextBullet--;
+        this.timeToNextBullet-=deltaTime*100;
+        console.log(this.timeToNextBullet , "tiempo para")
     }
     draw(context, deltaTime){
         disparosJugador.forEach((element, index) => {
@@ -96,7 +97,7 @@ class EnemyBulletcontroller {
         this.canvas = canvas;
     }
 
-    shoot({bulletSpeed,bulletDelay, damage, bulletX, bulletY, direccionDisparo}){
+    shoot({bulletSpeed,bulletDelay, damage, bulletX, bulletY, direccionDisparo}, deltaTime){
         
 let direccion = ""
 
@@ -133,7 +134,8 @@ if (direccion == "arriba" ||  direccion == "abajo") {
 
             this.timeToNextBullet= bulletDelay
         }
-        this.timeToNextBullet--;
+        this.timeToNextBullet-=deltaTime*100;
+        console.log(this.timeToNextBullet , "tiempo para")
     }
     draw(context, deltaTime){
         disparosEnemigos.forEach((element, index) => {

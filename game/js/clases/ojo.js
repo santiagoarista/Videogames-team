@@ -85,7 +85,7 @@ class Ojo extends Sprite{
             bulletY : bulletY,
        
         
-        })
+        }, deltaTime)
 
     }
     if (!this.estatico) {
@@ -119,7 +119,7 @@ class Ojo extends Sprite{
                 bulletY : bulletY,
            
             
-            })
+            }, deltaTime)
     
         }
         if (!this.estatico) {
