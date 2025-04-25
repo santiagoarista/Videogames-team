@@ -1,23 +1,32 @@
 body { 
-    font-family: "Inter", sans-serif;
-    padding: 20px; 
-    color: #fff;
-    background: black; 
-    margin: 0;
-  padding: 0;
-}
-
-.barraNav {
   margin-top: 0;
+  padding-top: 0;
+  margin: 0;
+  padding: 0px;
+  box-sizing: border-box;
+
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+
+  background-color: #08090F;
+  color: white;
+  font-family: 'Inter', sans-serif;
+
+}
+.barraNav {
+  margin-top: 3vh;
+  
   display: flex;
   flex-direction: row;
   gap: 16px;
   justify-content: space-between;
   align-items: center; 
-  padding-left: 4vw;
-  padding-right: 12vw;    
+  padding-left: 5vw;
+  padding-right: 10vw;     
+  
 }
-
 nav{
   display: flex;
   flex-direction: row;
@@ -33,19 +42,29 @@ h1 {
 
   .boton_navegacion {
     padding: 0px;
-    font-size: 12px;
+    font-size: 20px;
     color: white;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
     transition: all 0.3s ease;
+    display: inline-block; 
   }
   
   .boton_navegacion:hover {
-    padding: 0px;
-    font-size: 15px;
-    color: white;
+    transform: scale(1.05);
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.879), 0 0 16px rgba(255, 255, 255, 0.871);
   }
 
+  .logo {
+   
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
+    transition: all 0.3s ease;
+    display: inline-block; 
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.879), 0 0 16px rgba(255, 255, 255, 0.871);
+  }
   /* #app canvas {
     width: 100vw;
     height: 100vh;

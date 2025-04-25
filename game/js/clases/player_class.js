@@ -104,7 +104,7 @@ class Player extends Sprite {
     context.shadowBlur = 0;
   }
 
-  update() {
+  update(deltaTime) {
     if (this.inTransition) {
       this.velocity.x = 0;
       this.velocity.y = 0;
@@ -125,8 +125,8 @@ class Player extends Sprite {
     context.fillStyle = "rgba(255, 153, 0, 0)";
     context.fillRect(this.position.x, this.position.y, this.width, this.height);
     //EFECTO DE GRAVEDAD, aumenta o disminuye los movimientos de pixeles en x, derecha izquierda
-    this.position.x += this.velocity.x;
-
+    this.position.x += this.velocity.x * deltaTime;
+    console.log("deltaTime:", deltaTime, "velocity:", this.velocity.x);
     //aCTUALIZACIÓN DE HITBOX EN 2 PUNTOS
     this.updateHitbox();
 
@@ -134,7 +134,7 @@ class Player extends Sprite {
     this.checkHorizontalCollisions();
 
     //EFECTO DE GRAVEDAD, aumenta o disminuye los movimientos de pixeles en y, arriba abajo
-    this.applyGravity();
+    this.applyGravity(deltaTime);
 
     context.shadowColor = "cyan"; // Neon effect
     context.shadowBlur = 15;
@@ -622,9 +622,9 @@ class Player extends Sprite {
     }
   }
 
-  applyGravity() {
+  applyGravity(deltaTime) {
     //Sólo se aplica gravedad en Y porque es para que baje el objeto
     this.velocity.y += this.gravity;
-    this.position.y += this.velocity.y;
+    this.position.y += this.velocity.y ;
   }
 }

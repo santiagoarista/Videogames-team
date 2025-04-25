@@ -41,7 +41,7 @@ class Fantasma extends Sprite{
  
         this.health -=damage
     }
-    update(player) {
+    update(player, deltaTime) {
         const velocidad = 0.8
         // Calcular la diferencia de posición entre el enemigo y el jugador
         let dx =(30+ player.position.x) - this.position.x;
@@ -53,8 +53,8 @@ class Fantasma extends Sprite{
         // Si la distancia es mayor a 0, mover hacia el jugador
         if (distancia > 0) {
             // Normalizar la dirección y multiplicar por la velocidad
-            this.velocity.x = (dx / distancia) * velocidad;  // 0.8 es la velocidad
-            this.velocity.y = (dy / distancia) * velocidad;
+            this.velocity.x = (dx / distancia) * velocidad * deltaTime;  // 0.8 es la velocidad
+            this.velocity.y = (dy / distancia) * velocidad * deltaTime;
         } else {
             // Si el fantasma está muy cerca del jugador, detenerse
             this.velocity.x = 0;

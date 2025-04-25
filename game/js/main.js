@@ -95,6 +95,8 @@ function animate(timeStamp) {
   }
 
   requestAnimationFrame(animate);
+
+
   context.shadowBlur = 0;
   context.shadowColor = "transparent";
   // Calcular delta time (tiempo transcurrido en segundos)
@@ -127,7 +129,7 @@ function animate(timeStamp) {
 
   if (cuartos[currentLevel].id == 8) {
     armaslista.forEach((arma) => {
-      arma.update();
+      arma.update(deltaTime);
     });
   }
 
@@ -142,7 +144,7 @@ function animate(timeStamp) {
         context.shadowBlur = 5;
       }
       i.draw();
-      i.update();
+      i.update(deltaTime);
     }
   });
 
@@ -150,7 +152,7 @@ function animate(timeStamp) {
 
   if (keys.d.pressed) {
     player.switchSprite("runRight");
-    player.velocity.x = speed * deltaTime;
+    player.velocity.x = speed ;
     player.lastDirection = "right";
 
     if (!caminando) {
@@ -159,7 +161,7 @@ function animate(timeStamp) {
     }
   } else if (keys.a.pressed) {
     player.switchSprite("runLeft");
-    player.velocity.x = -speed * deltaTime;
+    player.velocity.x = -speed ;
     player.lastDirection = "left";
 
     if (!caminando) {
@@ -186,7 +188,7 @@ function animate(timeStamp) {
   enemigos.forEach((enemigo, index) => {
     enemigo.index = index; // Asigna el índice del array al enemigo
     enemigo.velocity.x = 0;
-    enemigo.update(player);
+    enemigo.update(player, deltaTime);
     context.shadowColor = "cyan"; // Neon effect
     context.shadowBlur = 40;
     enemigo.draw();
@@ -195,7 +197,7 @@ function animate(timeStamp) {
   });
 
   // Actualizar y dibujar el jugador
-  player.update();
+  player.update(deltaTime);
   context.shadowColor = "er"; // Neon effect
   context.shadowBlur = 10;
   player.draw();

@@ -557,7 +557,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                 puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: 0,
-                  y: -16,
+                  y: -12,
                 },
                 nombreOrigen: "superior",
                 imgResource: "../../assets/sprites/doors/colisionInferior3.png",
@@ -598,7 +598,7 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
                 puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
                   x: 0,
-                  y: 705,
+                  y: 704,
                 },
                 nombreOrigen: "superior",
                 imgResource: "../../assets/sprites/doors/colisionInferior2.png",
@@ -638,8 +638,8 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
               new Puerta({
                 puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
-                  x: 1330,
-                  y: 0,
+                  x: 1300,
+                  y: -690,
                 },
                 nombreOrigen: "derecha",
                 imgResource: "../../assets/sprites/doors/colisionderecha.png",
@@ -679,11 +679,11 @@ function generarLevels(listaNiveles, enemigosPorNiveles) {
               new Puerta({
                 puertaJefeFinal: cuarto.cuartoJefeFinal,
                 position: {
-                  x: -20,
-                  y: 0,
+                  x: 0,
+                  y: -695,
                 },
                 nombreOrigen: "izquierda",
-                imgResource: "../../assets/sprites/doors/colisionLateral2.png",
+                imgResource: "../../assets/sprites/doors/colisionIzquierda.png",
                 posicionOrigen: { x: 1200, y: 650 },
 
                 puertaActiva: true,

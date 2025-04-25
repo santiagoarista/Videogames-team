@@ -122,7 +122,7 @@ body {
     color: inherit;
   }
   nav{
-  padding-top: 2vh;
+  padding-top: 2.4vh;
     display: flex;
     flex-direction: row;
     gap: 3vw;

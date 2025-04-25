@@ -6,7 +6,7 @@ class Item extends Sprite{
 
         this.idItem = idItem;
         this.type = type
-        
+        this.floatSpeed =  0.05;
         //Posición en pantalla
         this.position ={
             x :x,
@@ -27,8 +27,8 @@ class Item extends Sprite{
     
     //Dibujar sprite del personaje
 
-    update() {
-        this.time += 0.05; // velocidad de levitación
+    update(deltaTime) {
+        this.time += this.floatSpeed * deltaTime;// velocidad de levitación
         this.position.y = this.baseY + Math.sin(this.time) * 5; // levitación suave
 
         this.shadowPulse = 20 + Math.sin(this.time * 2) * 10; // sombra que pulsa
@@ -208,14 +208,14 @@ class Arma extends Item {
         this.height = 20;
         this.baseY = this.position.y;
         this.floatAmplitude = 10; // Qué tanto sube y baja
-        this.floatSpeed = 0.05;   // Qué tan rápido levita
+        this.floatSpeed = 5;   // Qué tan rápido levita
         this.floatTime = 0;       // Contador de tiempo para el seno
       
     }
 
-    update(){
+    update(deltaTime){
         // Aumentar tiempo para animación
-        this.floatTime += this.floatSpeed;
+        this.floatTime += this.floatSpeed * deltaTime;
     
         // Calcular desplazamiento vertical tipo "levitación"
         const floatOffset = Math.sin(this.floatTime) * this.floatAmplitude;
