@@ -219,7 +219,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
         if (this.health==1) {
             console.log("ultimo enemigo")
             itemsEnJuego.push(new Llave({x:this.position.x,y:this.position.y, bloquesDeColision: bloquesColisiones}))
-            console.log("player", player.monstruos_eliminados);
+            console.log("player", player.experiencia);
         }
     }
 
@@ -232,7 +232,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
     if (this.health<=0) {
         enemigos.splice(this.index, 1);
         player.monstruos_eliminados += 1;
-      
+        player.experiencia += 10;
     }
   }
 }
