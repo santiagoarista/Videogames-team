@@ -48,19 +48,31 @@ class Player extends Sprite {
     this.extralives = 0;
     this.exlifeImage = new Image();
     this.exlifeImage.src = "../assets/PNG/Transperent/Slimeheart.png";
+    this.arma3cooldown = 0;
     // Propiedades para el parpadeo
     this.blinking = false;
     this.blinkInterval = 100; // Tiempo entre parpadeos en milisegundos
     this.blinkDuration = 50; // Duración total del parpadeo en milisegundos
     this.blinkStartTime = null;
+    //Llaves
     this.keys = 0;
     this.keysImage = new Image();
     this.keysImage.src = "../assets/sprites/36.png"; //Imagen de llave
+
     this.items = items;
+    //Propiedad doble salto
     this.canDoubleJump = false; // Solo se activa al recoger las botas
     this.jumpCount = 0; // Contador de saltos
+    //Vision para linterna
     this.visionRadius = 200; // valor por defecto
+    //Datos para estadisticas
     this.monstruos_eliminados = 0; // monstruos eliminados
+    this.experiencia = 0;
+    //Mensaje de falta de EXP
+    this.mensajeBloqueo = "";
+    this.mensajeTiempo = 0;
+    this.mensajePosX = 0;
+    this.mensajePosY = 0;
   }
 
   //draw(){
@@ -157,6 +169,16 @@ class Player extends Sprite {
 
     this.checkVerticalCollisions();
     this.shoot(deltaTime);
+    if (this.arma3cooldown > 0){
+      this.arma3cooldown -= deltaTime;
+    }
+
+    if (this.mensajeTiempo > 0) {
+      context.font = "15px Arcade Gamer";
+      context.fillStyle = "white";
+      context.fillText(this.mensajeBloqueo, this.mensajePosX, this.mensajePosY);
+      this.mensajeTiempo -= deltaTime;
+  }
   }
 
   shoot(deltaTime) {
@@ -188,42 +210,51 @@ class Player extends Sprite {
         bulletY: bulletY,
       }, deltaTime);
     } else if (keys.k.pressed && idArmaActual == '3') {
-      let bulletSpeed = 500;
-      let bulletDelay = 50;
-      let damage = 3;
-      let centerX = this.position.x + this.width / 2;
-      let centerY = this.position.y + 80;
-      let diagonal1 = this.lastDirection === "left" ? "arriba-izquierda" : "arriba-derecha";
-      let diagonal2 = this.lastDirection === "left" ? "abajo-izquierda" : "abajo-derecha"; // si decides usarla
+      if (this.arma3cooldown <= 0) { // Solo dispara si cooldown llegó a 0
+        let bulletSpeed = 300; // velocidad reducida
+        let bulletDelay = 0; // disparo instantáneo
+        let damage = 3;
+        let centerX = this.position.x + this.width / 2;
+        let centerY = this.position.y + 80;
+        let diagonal1 = this.lastDirection === "left" ? "arriba-izquierda" : "arriba-derecha";
+        let diagonal2 = this.lastDirection === "left" ? "abajo-izquierda" : "abajo-derecha";
 
-      // Disparo central (recto)
-      this.bulletController.shoot({
-        bulletSpeed,
-        bulletDelay,
-        damage,
-        bulletX: centerX,
-        bulletY: centerY,
-      },deltaTime);
+        // Tres disparos simultáneos
+        this.bulletController.shoot({
+            bulletSpeed,
+            bulletDelay,
+            damage,
+            bulletX: centerX,
+            bulletY: centerY,
+            distanciaMaxima: 200,
+            ignorarDelay: true
+        }, deltaTime);
 
-      // Disparo diagonal hacia arriba
-      this.bulletController.shoot({
-        bulletSpeed,
-        bulletDelay,
-        damage,
-        bulletX: centerX,
-        bulletY: centerY,
-        direccionForzada: diagonal1
-      },deltaTime);
+        this.bulletController.shoot({
+            bulletSpeed,
+            bulletDelay,
+            damage,
+            bulletX: centerX,
+            bulletY: centerY,
+            distanciaMaxima: 200,
+            ignorarDelay: true,
+            direccionForzada: diagonal1
+        }, deltaTime);
 
-      // Disparo diagonal hacia abajo (puedes añadir abajo-derecha si quieres más variedad)
-      this.bulletController.shoot({
-        bulletSpeed,
-        bulletDelay,
-        damage,
-        bulletX: centerX,
-        bulletY: centerY,
-        direccionForzada: diagonal2
-      },deltaTime);
+        this.bulletController.shoot({
+            bulletSpeed,
+            bulletDelay,
+            damage,
+            bulletX: centerX,
+            bulletY: centerY,
+            distanciaMaxima: 200,
+            ignorarDelay: true,
+            direccionForzada: diagonal2
+        }, deltaTime);
+
+        this.arma3cooldown = 0.8; // tiempo de espera en segundos (ajústalo a gusto)
+    }
+
     }
   }
 
@@ -383,14 +414,24 @@ class Player extends Sprite {
             arma.hitbox.position.y &&
           this.hitbox.position.y <= arma.hitbox.position.y + arma.hitbox.height
         ) {
-          if (idArmaActual !== arma.idArma) {
-            console.log("se recogió arma");
-            playSound("take_weapon", 0.5);
+
+          const armaInfo = armaslista.find(a => a.idArma === arma.idArma);
+
+          if (this.experiencia >= armaInfo.expRequerida) {
+              if (idArmaActual !== arma.idArma) {
+                  console.log("se recogió arma");
+                  playSound("take_weapon", 0.5);
+              } else {
+                  console.log("no recogió arma");
+                  playSound("no_weapon", 0.1);
+              }
+              idArmaActual = arma.idArma;
           } else {
-            console.log("no recogió arma");
-            playSound("no_weapon", 0.1);
+            this.mensajeBloqueo = `Necesitas ${armaInfo.expRequerida} EXP`;
+            this.mensajeTiempo = 2; // Mostrar el mensaje 2 segundos
+            this.mensajePosX = arma.position.x - 120; 
+            this.mensajePosY = arma.position.y - 40;
           }
-          idArmaActual = arma.idArma;
         }
       }
 
