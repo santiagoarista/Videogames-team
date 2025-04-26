@@ -18,6 +18,8 @@ let disparosJugador = [];
 let disparosEnemigos = [];
 let gameOver = false;
 let lKeyProcessed = false;
+let isAnimating = false;
+let gameOverAnimationId = null;
 
 // Tamaño de renderizado 16:9 NO MODIFICAR
 canvas.width = 1344;
@@ -84,12 +86,14 @@ let lastTime = 0; // Para almacenar el tiempo del último frame
 function animate(timeStamp) {
   //Game Over Pantalla
   if (gameOver) {
+    isAnimating = false; // Stop animating when gameOver
     drawGameOverScreen(); //Todo lo relacionado a gameOver está en gameOver.js
     return;
   }
 
   //Pausar Juego
   if (paused) {
+    isAnimating = false; // Stop animating when paused
     drawPauseMenu(); //Todo lo relacionado a pausa y ajustes está en pause.js
     return;
   }

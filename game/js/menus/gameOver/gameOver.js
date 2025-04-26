@@ -52,7 +52,7 @@ function drawGameOverScreen() {
   context.shadowColor = "transparent";
 
   // Hacer que la función se ejecute en cada frame para actualizar el video
-  requestAnimationFrame(drawGameOverScreen);
+  gameOverAnimationId = requestAnimationFrame(drawGameOverScreen);
 }
 
 // Función para dibujar botones reutilizables
@@ -83,11 +83,22 @@ canvas.addEventListener("click", (event) => {
       gameOver
     ) {
       console.log("Play again...");
+      const id_usuario = localStorage.getItem('id_usuario');
+      console.log("ID_USUARIO: ", id_usuario);
+      createPartida( // id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, listaCuartosAleatorios
+          id_usuario,
+          player.monstruos_eliminados,
+          player.monstruos_eliminados * 10,
+          player.lives,
+          llaves,
+          itemsActivos,
+          listaCuartosAleatorios,
+          true
+      );
       context.clearRect(0, 0, canvas.width, canvas.height);
 
       gameOver = false;
       paused = false;
-      // Reset Player
       //Reiniciar el estado del juego
 
       //Generar nueva disposición de cuartos
@@ -203,8 +214,11 @@ canvas.addEventListener("click", (event) => {
       reiniciarJuego();
       //
       // Reset Level
-
-      animate(); // Play
+      // 
+      if (gameOverAnimationId) {
+        cancelAnimationFrame(gameOverAnimationId);
+        gameOverAnimationId = null;
+      }
     }
 
     // Al hacer click en Salir
@@ -216,7 +230,6 @@ canvas.addEventListener("click", (event) => {
       gameOver
     ) {
       console.log("Salir al Menú...");
-      console.log("Lives: ", player.lives)
       const id_usuario = localStorage.getItem('id_usuario');
       console.log("ID_USUARIO: ", id_usuario);
       createPartida( // id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, listaCuartosAleatorios
