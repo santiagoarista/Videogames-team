@@ -18,6 +18,8 @@ let disparosJugador = [];
 let disparosEnemigos = [];
 let gameOver = false;
 let lKeyProcessed = false;
+let isAnimating = false;
+let gameOverAnimationId = null;
 
 // Tamaño de renderizado 16:9 NO MODIFICAR
 canvas.width = 1344;
@@ -90,25 +92,18 @@ let lastTime = 0; // Para almacenar el tiempo del último frame
 function animate(timeStamp) {
 
 
-
-  //TODO: RESOLVER LÓGICA DE MOSTRAR GAME OVER Y MENU DE PAUSA
   //Game Over Pantalla
   if (gameOver) {
-    reiniciarJuego(); //Todo lo relacionado a gameOver está en gameOver.js
-
+    isAnimating = false; // Dejar de animar si está gameOver
+    drawGameOverScreen(); //Todo lo relacionado a gameOver está en gameOver.js
+    return;
   }
 //
  // //Pausar Juegoa
- // if (paused) {
- //TODO: ESTA LÓGICA DE DIBUJAR  EL MENU DE PAUSA Y EL GAME OVER ES EL QUE GENERA EL ERROR,
- //TODO: SE DEBE HACER LA IMPLEMENTACION DE ESTOS MÉTODOS MUY PARECCIDA A LA LÓGICA DE MOSTRAR MAPA, ESTO NO GENERA ERRORES
- //   drawPauseMenu(); //Todo lo relacionado a pausa y ajustes está en pause.js
- //   return;
- // }
-  //TODO: RESOLVER LÓGICA DE MOSTRAR GAME OVER Y MENU DE PAUSA
-
-
-
+  if (paused) {
+    isAnimating = false; // Dejar de animar si está en pausa
+    drawPauseMenu(); //Todo lo relacionado a pausa y ajustes está en pause.js
+  }
 
   if (lastTime === 0) {
     lastTime = timeStamp;
