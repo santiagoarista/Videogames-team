@@ -5,7 +5,7 @@ class Bulletcontroller {
         this.canvas = canvas;
     }
 
-    shoot({bulletSpeed,bulletDelay, damage, bulletX, bulletY}){
+    shoot({bulletSpeed,bulletDelay, damage, bulletX, bulletY, distanciaMaxima = 400, ignorarDelay = false}, deltaTime){
         
 let direccion = ""
 
@@ -47,34 +47,38 @@ if (idArmaActual == '1'){
 }
 
 
-        if (this.timeToNextBullet<=0) {
-            // Ejemplo de uso
-            playSound("shoot"); // Reproduce el sonido de sdisparo
+if (this.timeToNextBullet <= 0 || ignorarDelay) { // <- CAMBIO AQUI
+    playSound("shoot"); // Reproduce sonido de disparo
 
-            disparosJugador.push(new Bullet({
-                x: bulletX,
-                y: bulletY,
-                speed: bulletSpeed,
-                damage : damage,
-                direccion: direccion,
-                imageSrc : imageR
-            })),
+    disparosJugador.push(new Bullet({
+        x: bulletX,
+        y: bulletY,
+        speed: bulletSpeed,
+        damage: damage,
+        direccion: direccion,
+        imageSrc: imageR,
+        distanciaMaxima: distanciaMaxima
+    }));
 
-            this.timeToNextBullet= bulletDelay
-        }
-        this.timeToNextBullet--;
+    this.timeToNextBullet = bulletDelay;
+}
+
+if (!ignorarDelay) { // <- CAMBIO AQUI
+    this.timeToNextBullet -= deltaTime * 100;
+}
+  
     }
-    draw(context){
+    draw(context, deltaTime){
         disparosJugador.forEach((element, index) => {
             if (this.isBulletScreen(element)) {
                 disparosJugador.splice(index, 1);
             }
-            element.draw(context);
+            element.draw(context, deltaTime);
         });
     }
 
     isBulletScreen(bullet){
-        return bullet.y<= -bullet.height
+        return bullet.y<= -bullet.height || bullet.distanciaRecorrida >= bullet.distanciaMaxima;
     }
 
     collideWith(object){
@@ -96,7 +100,7 @@ class EnemyBulletcontroller {
         this.canvas = canvas;
     }
 
-    shoot({bulletSpeed,bulletDelay, damage, bulletX, bulletY, direccionDisparo}){
+    shoot({bulletSpeed,bulletDelay, damage, bulletX, bulletY, direccionDisparo}, deltaTime){
         
 let direccion = ""
 
@@ -133,14 +137,15 @@ if (direccion == "arriba" ||  direccion == "abajo") {
 
             this.timeToNextBullet= bulletDelay
         }
-        this.timeToNextBullet--;
+        this.timeToNextBullet-=deltaTime*100;
+    
     }
-    draw(context){
+    draw(context, deltaTime){
         disparosEnemigos.forEach((element, index) => {
             if (this.isBulletScreen(element)) {
                 disparosEnemigos.splice(index, 1);
             }
-            element.draw(context);
+            element.draw(context,  deltaTime);
         });
     }
 

@@ -41,8 +41,8 @@ class Fantasma extends Sprite{
  
         this.health -=damage
     }
-    update(player) {
-        const velocidad = 0.8
+    update(player, deltaTime) {
+        const velocidad = 0.9
         // Calcular la diferencia de posición entre el enemigo y el jugador
         let dx =(30+ player.position.x) - this.position.x;
         let dy =(50+ player.position.y) - this.position.y;
@@ -53,8 +53,8 @@ class Fantasma extends Sprite{
         // Si la distancia es mayor a 0, mover hacia el jugador
         if (distancia > 0) {
             // Normalizar la dirección y multiplicar por la velocidad
-            this.velocity.x = (dx / distancia) * velocidad;  // 0.8 es la velocidad
-            this.velocity.y = (dy / distancia) * velocidad;
+            this.velocity.x = (dx / distancia) * velocidad ;  // 0.8 es la velocidad
+            this.velocity.y = (dy / distancia) * velocidad ;
         } else {
             // Si el fantasma está muy cerca del jugador, detenerse
             this.velocity.x = 0;
@@ -62,8 +62,8 @@ class Fantasma extends Sprite{
         }
     
         // Aplicar movimiento
-        this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
+        this.position.x += this.velocity.x * deltaTime*100;
+        this.position.y += this.velocity.y * deltaTime*100;
     
         // Llamadas existentes en tu método update
         this.updateHitbox();
@@ -197,7 +197,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
         this.hitbox.position.y <= disparo.y + disparo.height) {
             
              //Si recibe un disparo se ejecuta el método
-             console.log("colision con enemigos")
+     
              this.recibirGolpe(disparo, index);
 
     }
@@ -219,7 +219,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
         if (this.health==1) {
             console.log("ultimo enemigo")
             itemsEnJuego.push(new Llave({x:this.position.x,y:this.position.y, bloquesDeColision: bloquesColisiones}))
-            console.log("player", player.monstruos_eliminados);
+            console.log("player", player.experiencia);
         }
     }
 
@@ -232,7 +232,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
     if (this.health<=0) {
         enemigos.splice(this.index, 1);
         player.monstruos_eliminados += 1;
-        console.log("player", player.monstruos_eliminados);
+        player.experiencia += 10;
     }
   }
 }

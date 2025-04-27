@@ -6,65 +6,95 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.js" integrity="sha512-vCUbejtS+HcWYtDHRF2T5B0BKwVG/CLeuew5uT2AiX4SJ2Wff52+kfgONvtdATqkqQMC9Ye5K+Td0OTaz+P7cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <link rel="stylesheet" href="../css/new_homescreen.css"> -->
     <link rel="stylesheet" href="../css/estadistics.css">
+    <script src="../js/auth/estadistics.js"></script>
     <title>Estadisticas</title>
 </head>
 <header>
 
 </header>
-<body>
-  <h1>Estadísticas del Juego</h1>
+<body id="app">
+  <nav class="barraNav">
+    <a href="play_screen.html"> <img src="../assets/sprites/nine_logo.png" alt="Descripción de la imagen" width="300" class="logo"></a>
+    <nav>
+      <a href="estadistics.html"><h1 class="boton_navegacion">ESTADÍSTICAS</h1></a>
+        <h1 class="boton_navegacion">CÓMO JUGAR</h1>
+        <h1 class="boton_navegacion">HISTORIA</h1>
+    </nav>
 
-  <div>
-    <p><strong>Monstruos Eliminados:</strong></p>
-    <article class="estadistica">
-        <p><span id="monstruos-count">0</span></p>
-        <img src="../assets/web/Ghost_Walk_left.png" alt="Monstruos" />
-    </article>
-  </div>
+</nav>
 
-  <div>
-    <p><strong>Puntuación:</strong></p>
-    <article class="estadistica">
-        <p><span id="puntuacion-count">0</span></p>
-        <img src="../assets/web/flecha.png" alt="puntaje" />
-    </article>
-    <p>Puntaje para conseguir armas</p>
-    <section class="armas">
-        <article>
-            <img src="../assets/sprites/escenario_spawm_dario/8_1.png" alt="Arma1" />
-            <p>Default, 0</p>
+  <h2>Estadísticas del Juego</h2>
+
+  <article class="subtitulo">
+    <h3>Tus Estadisticas</h3>
+    <h3>Estadisticas Globales</h3>
+  </article>
+
+  <section class="contenedor">
+    <section class="flex-individual">
+      <div>
+        <p><strong>Puntuación:</strong></p>
+        <article class="estadistica">
+            <p><span id="puntuacion-count">0</span></p>
+            <img id="puntaje" src="../assets/web/flecha.png" alt="puntaje" />
         </article>
+        <p>Puntaje para conseguir armas</p>
+        <section class="armas">
+            <article>
+                <img src="../assets/sprites/escenario_spawm_dario/8_1.png" alt="Arma1" />
+                <p>Default, 0</p>
+            </article>
+    
+            <article>
+                <img src= "../assets/sprites/escenario_spawm_dario/7_1.png" alt="Arma2" />
+                <p>200</p>
+            </article>
+    
+            <article>
+                <img src= "../assets/sprites/escenario_spawm_dario/9_1.png" alt="Arma3" />
+                <p>500</p>
+            </article>
+        </section>
+      </div>
 
-        <article>
-            <img src= "../assets/sprites/escenario_spawm_dario/7_1.png" alt="Arma2" />
-            <p>200</p>
+      <div>
+        <p><strong>Monstruos Eliminados:</strong></p>
+        <article class="estadistica">
+            <p><span id="monstruos-count">0</span></p>
+            <img src="../assets/web/Ghost_Walk_left.png" alt="Monstruos" />
         </article>
+      </div>
 
-        <article>
-            <img src= "../assets/sprites/escenario_spawm_dario/9_1.png" alt="Arma3" />
-            <p>500</p>
+      <div>
+        <p><strong>Partidas Jugadas:</strong></p>
+        <article class="estadistica">
+            <p><span id="jugadas-count">0</span></p>
+            <img src="../assets/web/Run.png" alt="caminando" />
         </article>
+      </div>
+    
+      <div>
+        <p><strong>Partidas Ganadas:</strong></p>
+        <article class="estadistica">
+            <p><span id="ganadas-count">0</span></p>
+            <img src="../assets/web/Ghost_Walk_left.png" alt="Monstruos" />
+        </article>
+      </div>
+          
     </section>
-  </div>
-
-  <div>
-    <p><strong>Partidas Jugadas:</strong></p>
-    <article class="estadistica">
-        <p><span id="jugadas-count">0</span></p>
-        <img src="../assets/web/Run.png" alt="caminando" />
+  
+    <article class="chartContainer">
+      <canvas id="grafica-estadisticas" width="500" height="400"></canvas>
+      <canvas id="grafica-partidas" width="500" height="400"></canvas>
     </article>
-  </div>
 
-  <div>
-    <p><strong>Partidas Ganadas:</strong></p>
-    <article class="estadistica">
-        <p><span id="ganadas-count">0</span></p>
-        <img src="../assets/web/Ghost_Walk_left.png" alt="Monstruos" />
-    </article>
-  </div>
+  </section>
 
-  <script src="../js/auth/estadistics.js"></script>
+  
+  
 
 </body>
 </html>

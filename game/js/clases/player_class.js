@@ -39,7 +39,7 @@ class Player extends Sprite {
       bottom: this.position.y + this.height,
     };
 
-    this.gravity = 0.8;
+    this.gravity = 16;
     this.bloquesDeColision = bloquesDeColision;
     this.puertas = puertas;
     this.lives = 3; // Inicializar vidas a 3
@@ -48,19 +48,31 @@ class Player extends Sprite {
     this.extralives = 0;
     this.exlifeImage = new Image();
     this.exlifeImage.src = "../assets/PNG/Transperent/Slimeheart.png";
+    this.arma3cooldown = 0;
     // Propiedades para el parpadeo
     this.blinking = false;
     this.blinkInterval = 100; // Tiempo entre parpadeos en milisegundos
     this.blinkDuration = 50; // Duración total del parpadeo en milisegundos
     this.blinkStartTime = null;
+    //Llaves
     this.keys = 0;
     this.keysImage = new Image();
     this.keysImage.src = "../assets/sprites/36.png"; //Imagen de llave
+
     this.items = items;
+    //Propiedad doble salto
     this.canDoubleJump = false; // Solo se activa al recoger las botas
     this.jumpCount = 0; // Contador de saltos
+    //Vision para linterna
     this.visionRadius = 200; // valor por defecto
+    //Datos para estadisticas
     this.monstruos_eliminados = 0; // monstruos eliminados
+    this.experiencia = 0;
+    //Mensaje de falta de EXP
+    this.mensajeBloqueo = "";
+    this.mensajeTiempo = 0;
+    this.mensajePosX = 0;
+    this.mensajePosY = 0;
   }
 
   //draw(){
@@ -93,7 +105,7 @@ class Player extends Sprite {
   drawKeys() {
     this.keys = llaves.filter((element) => element === true).length;
 
-    context.shadowColor = "white";
+    context.shadowColor = "transparent";
     context.shadowBlur = 15;
     context.drawImage(this.keysImage, 230, 15, 30, 60);
     context.font = "40px Arcade Gamer"; // Tamaño y fuente del texto
@@ -104,13 +116,14 @@ class Player extends Sprite {
     context.shadowBlur = 0;
   }
 
-  update() {
+  update(deltaTime) {
+
     if (this.inTransition) {
       this.velocity.x = 0;
       this.velocity.y = 0;
       return; // Detener actualización si está en transición
     }
-    console.log(this.visible);
+
     //Que propiedades o aspectos de la clase se deben redibujar o en cuales se debe agregar una condición
     if (this.countdown) {
       if (this.countdownDelay > 0) {
@@ -125,7 +138,7 @@ class Player extends Sprite {
     context.fillStyle = "rgba(255, 153, 0, 0)";
     context.fillRect(this.position.x, this.position.y, this.width, this.height);
     //EFECTO DE GRAVEDAD, aumenta o disminuye los movimientos de pixeles en x, derecha izquierda
-    this.position.x += this.velocity.x;
+    this.position.x += this.velocity.x * deltaTime;
 
     //aCTUALIZACIÓN DE HITBOX EN 2 PUNTOS
     this.updateHitbox();
@@ -134,7 +147,7 @@ class Player extends Sprite {
     this.checkHorizontalCollisions();
 
     //EFECTO DE GRAVEDAD, aumenta o disminuye los movimientos de pixeles en y, arriba abajo
-    this.applyGravity();
+    this.applyGravity(deltaTime);
 
     context.shadowColor = "cyan"; // Neon effect
     context.shadowBlur = 15;
@@ -154,14 +167,24 @@ class Player extends Sprite {
     context.shadowColor = "transparent";
 
     this.checkVerticalCollisions();
-    this.shoot();
+    this.shoot(deltaTime);
+    if (this.arma3cooldown > 0){
+      this.arma3cooldown -= deltaTime;
+    }
+
+    if (this.mensajeTiempo > 0) {
+      context.font = "15px Arcade Gamer";
+      context.fillStyle = "white";
+      context.fillText(this.mensajeBloqueo, this.mensajePosX, this.mensajePosY);
+      this.mensajeTiempo -= deltaTime;
+  }
   }
 
-  shoot() {
+  shoot(deltaTime) {
     //Disparo
     if (keys.k.pressed && idArmaActual == '1') {
-      let bulletSpeed = 10;
-      let bulletDelay = 20;
+      let bulletSpeed = 500;
+      let bulletDelay = 50;
       let damage = 1;
       let bulletX = this.position.x + this.width / 2;
       let bulletY = this.position.y + 80;
@@ -171,10 +194,10 @@ class Player extends Sprite {
         damage: damage,
         bulletX: bulletX,
         bulletY: bulletY,
-      });
+      },deltaTime);
     } else if(keys.k.pressed && idArmaActual == '2') {
-      let bulletSpeed = 10;
-      let bulletDelay = 10;
+      let bulletSpeed = 500;
+      let bulletDelay = 35;
       let damage = 3;
       let bulletX = this.position.x + this.width / 2;
       let bulletY = this.position.y + 80;
@@ -184,44 +207,53 @@ class Player extends Sprite {
         damage: damage,
         bulletX: bulletX,
         bulletY: bulletY,
-      });
+      }, deltaTime);
     } else if (keys.k.pressed && idArmaActual == '3') {
-      let bulletSpeed = 20;
-      let bulletDelay = 20;
-      let damage = 3;
-      let centerX = this.position.x + this.width / 2;
-      let centerY = this.position.y + 80;
-      let diagonal1 = this.lastDirection === "left" ? "arriba-izquierda" : "arriba-derecha";
-      let diagonal2 = this.lastDirection === "left" ? "abajo-izquierda" : "abajo-derecha"; // si decides usarla
+      if (this.arma3cooldown <= 0) { // Solo dispara si cooldown llegó a 0
+        let bulletSpeed = 300; // velocidad reducida
+        let bulletDelay = 0; // disparo instantáneo
+        let damage = 3;
+        let centerX = this.position.x + this.width / 2;
+        let centerY = this.position.y + 80;
+        let diagonal1 = this.lastDirection === "left" ? "arriba-izquierda" : "arriba-derecha";
+        let diagonal2 = this.lastDirection === "left" ? "abajo-izquierda" : "abajo-derecha";
 
-      // Disparo central (recto)
-      this.bulletController.shoot({
-        bulletSpeed,
-        bulletDelay,
-        damage,
-        bulletX: centerX,
-        bulletY: centerY,
-      });
+        // Tres disparos simultáneos
+        this.bulletController.shoot({
+            bulletSpeed,
+            bulletDelay,
+            damage,
+            bulletX: centerX,
+            bulletY: centerY,
+            distanciaMaxima: 200,
+            ignorarDelay: true
+        }, deltaTime);
 
-      // Disparo diagonal hacia arriba
-      this.bulletController.shoot({
-        bulletSpeed,
-        bulletDelay,
-        damage,
-        bulletX: centerX,
-        bulletY: centerY,
-        direccionForzada: diagonal1
-      });
+        this.bulletController.shoot({
+            bulletSpeed,
+            bulletDelay,
+            damage,
+            bulletX: centerX,
+            bulletY: centerY,
+            distanciaMaxima: 200,
+            ignorarDelay: true,
+            direccionForzada: diagonal1
+        }, deltaTime);
 
-      // Disparo diagonal hacia abajo (puedes añadir abajo-derecha si quieres más variedad)
-      this.bulletController.shoot({
-        bulletSpeed,
-        bulletDelay,
-        damage,
-        bulletX: centerX,
-        bulletY: centerY,
-        direccionForzada: diagonal2
-      });
+        this.bulletController.shoot({
+            bulletSpeed,
+            bulletDelay,
+            damage,
+            bulletX: centerX,
+            bulletY: centerY,
+            distanciaMaxima: 200,
+            ignorarDelay: true,
+            direccionForzada: diagonal2
+        }, deltaTime);
+
+        this.arma3cooldown = 0.8; // tiempo de espera en segundos (ajústalo a gusto)
+    }
+
     }
   }
 
@@ -248,6 +280,7 @@ class Player extends Sprite {
   }
 
   checkHorizontalCollisions() {
+
     //CHECAR SI HAY COLISIONES EN X
     for (let index = 0; index < this.bloquesDeColision.length; index++) {
       const bloqueDeColsion = this.bloquesDeColision[index];
@@ -381,14 +414,24 @@ class Player extends Sprite {
             arma.hitbox.position.y &&
           this.hitbox.position.y <= arma.hitbox.position.y + arma.hitbox.height
         ) {
-          if (idArmaActual !== arma.idArma) {
-            console.log("se recogió arma");
-            playSound("take_weapon", 0.5);
+
+          const armaInfo = armaslista.find(a => a.idArma === arma.idArma);
+
+          if (this.experiencia >= armaInfo.expRequerida) {
+              if (idArmaActual !== arma.idArma) {
+                  console.log("se recogió arma");
+                  playSound("take_weapon", 0.5);
+              } else {
+                  console.log("no recogió arma");
+                  playSound("no_weapon", 0.1);
+              }
+              idArmaActual = arma.idArma;
           } else {
-            console.log("no recogió arma");
-            playSound("no_weapon", 0.1);
+            this.mensajeBloqueo = `Necesitas ${armaInfo.expRequerida} EXP`;
+            this.mensajeTiempo = 2; // Mostrar el mensaje 2 segundos
+            this.mensajePosX = arma.position.x - 120; 
+            this.mensajePosY = arma.position.y - 40;
           }
-          idArmaActual = arma.idArma;
         }
       }
 
@@ -422,25 +465,6 @@ class Player extends Sprite {
         itemsEnJuego.splice(index, 1);
       }
     }
-    //   //Colisiones con los items
-    //   this.items = this.items.filter(item => {
-    //   if (this.hitbox.position.x <= item.hitbox.position.x + item.hitbox.width &&
-    //       this.hitbox.position.x + this.hitbox.width >= item.hitbox.position.x &&
-    //       this.hitbox.position.y + this.hitbox.height >= item.hitbox.position.y &&
-    //       this.hitbox.position.y <= item.hitbox.position.y + item.hitbox.height) {
-    //
-    //                   console.log("Colisión con item ID:", item.idItem);
-    //                   item.visible = false;
-    //                   if (item.type == "Llave") {
-    //                       llaves[currentLevel-1]= true
-    //                   }
-    //
-    //                   return false; // Se elimina del array
-    //               }
-    //               return true; // Se mantiene en el array
-    //           });
-    //
-    //
   } //
 
   checkVerticalCollisions() {
@@ -555,7 +579,7 @@ class Player extends Sprite {
   }
   recibirDaño(index, enemigo) {
     if (!this.countdown) {
-      console.log(this.countdown);
+
 
       if (enemigo.health > 1){
         enemigo.health -= 1;
@@ -622,9 +646,9 @@ class Player extends Sprite {
     }
   }
 
-  applyGravity() {
+  applyGravity(deltaTime) {
     //Sólo se aplica gravedad en Y porque es para que baje el objeto
-    this.velocity.y += this.gravity;
-    this.position.y += this.velocity.y;
+    this.velocity.y += this.gravity * deltaTime;
+    this.position.y += this.velocity.y * deltaTime*100;
   }
 }

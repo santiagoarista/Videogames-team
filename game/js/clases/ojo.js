@@ -60,7 +60,7 @@ class Ojo extends Sprite{
         this.health -=damage
     }
     
-    update(player) {
+    update(player, deltaTime) {
 
     const velocidad = this.velocidadEnemigo
     
@@ -85,7 +85,7 @@ class Ojo extends Sprite{
             bulletY : bulletY,
        
         
-        })
+        }, deltaTime)
 
     }
     if (!this.estatico) {
@@ -99,7 +99,7 @@ class Ojo extends Sprite{
             this.direccion = -1; // Mover a la izquierda
         }
            // Aplicar movimiento en la dirección actual
-           this.position.x += velocidad * this.direccion;
+           this.position.x += velocidad * this.direccion * deltaTime*100;
     }
      
     }else if(this.movimiento == "y"){
@@ -119,7 +119,7 @@ class Ojo extends Sprite{
                 bulletY : bulletY,
            
             
-            })
+            }, deltaTime)
     
         }
         if (!this.estatico) {
@@ -133,7 +133,7 @@ class Ojo extends Sprite{
             }
         
             // Aplicar movimiento en la dirección actual
-            this.position.y += velocidad * this.direccion;
+            this.position.y += velocidad * this.direccion * deltaTime*100;
         }
     }
 
@@ -243,7 +243,8 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
     if (this.health<=0) {
         enemigos.splice(this.index, 1);
         player.monstruos_eliminados += 1;
-        console.log("player", player.monstruos_eliminados);
+        player.experiencia += 20;
+        console.log("player", player.experiencia);
     }
   }
 }

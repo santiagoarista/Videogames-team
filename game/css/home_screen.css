@@ -5,20 +5,39 @@
     font-style: normal;
 }
 
-body {
-   
-    /*
-    cursor: url('../../assets/cursor/Spooky\ Eyes\ 3D--cursor--SweezyCursors.cur'), auto;*/
-    background-color: black;
-    color: white;
-    text-align: center;
-    font-family: 'Arcade Gamer', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+html, body {
+    height: 100%;
     margin: 0;
-}
+    padding: 0;
+    box-sizing: border-box;
+    
+  }
+  canvas {
+    width: auto;
+    height: 80vh;
+    display: block;
+  }
+
+body {
+    margin-top: 0;
+    padding-top: 0;
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+  
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+  
+    background-color: #08090F;
+    color: white;
+    font-family: 'Inter', sans-serif;
+  
+  
+  }
+  
+
 
 .login-container {
     background: transparent;
@@ -29,11 +48,7 @@ body {
     border-radius: 8px;
     color: rgba(255, 255, 255, 0.79);
 }
-img {
-    width: 400px;
-    height: auto;
-    margin-right: 10px;
-}
+
 input {
     width: 60%;
     padding: 10px;
@@ -70,3 +85,51 @@ button:hover {
     align-items: center;
 
   }
+
+  
+.barraNav {
+    margin-top: 3vh;
+    
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: center; 
+    padding-left: 5vw;
+    padding-right: 10vw;     
+    
+  }
+  nav{
+        padding-bottom: 3VH;
+      display: flex;
+      flex-direction: row;
+      gap: 3vw;
+    }
+
+    
+
+    .boton_navegacion {
+        padding: 0px;
+        font-size: 20px;
+        color: white;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
+        transition: all 0.3s ease;
+        display: inline-block; 
+      }
+      
+      .boton_navegacion:hover {
+        transform: scale(1.05);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.879), 0 0 16px rgba(255, 255, 255, 0.871);
+      }
+    
+      .logo {
+       
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
+        transition: all 0.3s ease;
+        display: inline-block; 
+      }
+      
+      .logo:hover {
+        transform: scale(1.05);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.879), 0 0 16px rgba(255, 255, 255, 0.871);
+      }

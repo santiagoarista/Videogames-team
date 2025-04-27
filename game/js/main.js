@@ -9,7 +9,7 @@ let puertas = [];
 let currentLevel = 8;
 let listaCuartosAleatorios = [];
 let showMap = false;
-let llaves = [false, false, false, false, false, false, false, false, false];
+let llaves = [false, false, false, false, false,false, false, false, false];
 let paused = false;
 let itemsEnJuego = []; //obtenerListaItems()
 let itemsActivos = [false, false, false];
@@ -25,6 +25,12 @@ let gameOverAnimationId = null;
 canvas.width = 1344;
 canvas.height = 768;
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
+//TODO: BORRAR  DESPUES DE PRUEBAS JEFEFINAL
+puertaTestJefeFinal = new PuertaJefeFinal({
+  position: { x: 400, y: 600 },
+  width: 100,
+  height: 20,
+});
 
 let armaslista = armasLi; //Están en archivo utils>lista_armas
 
@@ -84,26 +90,40 @@ const overlay = {
 let lastTime = 0; // Para almacenar el tiempo del último frame
 
 function animate(timeStamp) {
+
+
   //Game Over Pantalla
   if (gameOver) {
-    isAnimating = false; // Stop animating when gameOver
+    isAnimating = false; // Dejar de animar si está gameOver
     drawGameOverScreen(); //Todo lo relacionado a gameOver está en gameOver.js
     return;
   }
-
-  //Pausar Juego
+//
+ // //Pausar Juegoa
   if (paused) {
-    isAnimating = false; // Stop animating when paused
+    isAnimating = false; // Dejar de animar si está en pausa
     drawPauseMenu(); //Todo lo relacionado a pausa y ajustes está en pause.js
+  }
+
+  if (lastTime === 0) {
+    lastTime = timeStamp;
+    requestAnimationFrame(animate);
     return;
   }
+
 
   requestAnimationFrame(animate);
 
   // Calcular delta time (tiempo transcurrido en segundos)
-  const deltaTime = (timeStamp - lastTime) / 1000;
+
+
+  
+  const deltaTime = Math.min((timeStamp - lastTime) / 1000, 0.1);
   lastTime = timeStamp;
 
+
+  context.shadowBlur = 0;
+  context.shadowColor = "transparent";
   // Limpiar el canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -111,10 +131,17 @@ function animate(timeStamp) {
   fondoCuarto.draw();
 
   // Dibujar colisiones
-  bloquesColisiones.forEach((bloqueColisiones) => {
-    bloqueColisiones.draw();
+  bloquesColisiones.forEach((bloque) => {
+    bloque.draw();
+  
   });
 
+  player.bloquesDeColision.forEach((bloque) => {
+    if (bloque instanceof PuertaJefeFinal) {
+      bloque.update(); // Solo si es una instancia de PuertaJefeFinal
+    }
+
+  })
   // Dibujar puertas
   puertas.forEach((puerta) => {
 
@@ -130,7 +157,7 @@ function animate(timeStamp) {
 
   if (cuartos[currentLevel].id == 8) {
     armaslista.forEach((arma) => {
-      arma.update();
+      arma.update(deltaTime);
     });
   }
 
@@ -145,7 +172,7 @@ function animate(timeStamp) {
         context.shadowBlur = 5;
       }
       i.draw();
-      i.update();
+      i.update(deltaTime);
     }
   });
 
@@ -153,7 +180,7 @@ function animate(timeStamp) {
 
   if (keys.d.pressed) {
     player.switchSprite("runRight");
-    player.velocity.x = speed * deltaTime;
+    player.velocity.x = speed ;
     player.lastDirection = "right";
 
     if (!caminando) {
@@ -162,7 +189,7 @@ function animate(timeStamp) {
     }
   } else if (keys.a.pressed) {
     player.switchSprite("runLeft");
-    player.velocity.x = -speed * deltaTime;
+    player.velocity.x = -speed ;
     player.lastDirection = "left";
 
     if (!caminando) {
@@ -189,7 +216,7 @@ function animate(timeStamp) {
   enemigos.forEach((enemigo, index) => {
     enemigo.index = index; // Asigna el índice del array al enemigo
     enemigo.velocity.x = 0;
-    enemigo.update(player);
+    enemigo.update(player, deltaTime);
     context.shadowColor = "cyan"; // Neon effect
     context.shadowBlur = 40;
     enemigo.draw();
@@ -198,7 +225,7 @@ function animate(timeStamp) {
   });
 
   // Actualizar y dibujar el jugador
-  player.update();
+  player.update(deltaTime);
   context.shadowColor = "white"; // Neon effect
   context.shadowBlur = 10;
   player.draw();
@@ -206,21 +233,22 @@ function animate(timeStamp) {
   if(idArmaActual == '1'){
     context.shadowColor = "rgb(149, 0, 255)"; // Neon effect
     context.shadowBlur = 5;
-    bulletController.draw(context);
+    bulletController.draw(context,  deltaTime);
   } else if (idArmaActual == '2'){
     context.shadowColor = "blue"; // Neon effect
     context.shadowBlur = 5;
-    bulletController.draw(context);
+    bulletController.draw(context, deltaTime);
   } else if (idArmaActual == '3'){
     context.shadowColor = "red"; // Neon effect
     context.shadowBlur = 40;
-    bulletController.draw(context);
+    bulletController.draw(context, deltaTime);
   }
   
+
   
   context.shadowColor = "blue"; // Neon effect
   context.shadowBlur = 40;
-  enemyBulletController.draw(context);
+  enemyBulletController.draw(context, deltaTime);
   context.shadowBlur = 0;
   context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
 
@@ -264,13 +292,15 @@ context.restore();
   if (showMap) {
     drawMap(listaCuartosAleatorios);
   }
+  
 
   dibujarArmaActual();
   
 }
+console.log(player.position.x)
 
 cuartos[currentLevel].init();
-//console.log(listaCuartosAleatorios)
+
 requestAnimationFrame(animate);
 
 //CONTROLADORES DE MÚSICA
@@ -283,6 +313,6 @@ window.addEventListener("keydown", (event) => {
   if (["a", "w", "s", "d", "k"].includes(key) && !musicaIniciada) {
     sonidoMusica.play();
     musicaIniciada = true;
-    console.log("🎵 Música iniciada");
+
   }
 });
