@@ -193,7 +193,7 @@ class Botas extends Item {
 }
 
 class Arma extends Item {
-    constructor({x, y, idArma, armaImageSrc}) {
+    constructor({x, y, idArma, armaImageSrc, expRequerida}) {
         super({
             idItem: 4,
             type: "Arma",
@@ -210,7 +210,7 @@ class Arma extends Item {
         this.floatAmplitude = 10; // Qué tanto sube y baja
         this.floatSpeed = 5;   // Qué tan rápido levita
         this.floatTime = 0;       // Contador de tiempo para el seno
-      
+        this.expRequerida = expRequerida;
     }
 
     update(deltaTime){

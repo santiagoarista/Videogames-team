@@ -5,7 +5,7 @@ class Bulletcontroller {
         this.canvas = canvas;
     }
 
-    shoot({bulletSpeed,bulletDelay, damage, bulletX, bulletY}, deltaTime){
+    shoot({bulletSpeed,bulletDelay, damage, bulletX, bulletY, distanciaMaxima = 400, ignorarDelay = false}, deltaTime){
         
 let direccion = ""
 
@@ -47,22 +47,25 @@ if (idArmaActual == '1'){
 }
 
 
-        if (this.timeToNextBullet<=0) {
-            // Ejemplo de uso
-            playSound("shoot"); // Reproduce el sonido de sdisparo
+if (this.timeToNextBullet <= 0 || ignorarDelay) { // <- CAMBIO AQUI
+    playSound("shoot"); // Reproduce sonido de disparo
 
-            disparosJugador.push(new Bullet({
-                x: bulletX,
-                y: bulletY,
-                speed: bulletSpeed,
-                damage : damage,
-                direccion: direccion,
-                imageSrc : imageR
-            })),
+    disparosJugador.push(new Bullet({
+        x: bulletX,
+        y: bulletY,
+        speed: bulletSpeed,
+        damage: damage,
+        direccion: direccion,
+        imageSrc: imageR,
+        distanciaMaxima: distanciaMaxima
+    }));
 
-            this.timeToNextBullet= bulletDelay
-        }
-        this.timeToNextBullet-=deltaTime*100;
+    this.timeToNextBullet = bulletDelay;
+}
+
+if (!ignorarDelay) { // <- CAMBIO AQUI
+    this.timeToNextBullet -= deltaTime * 100;
+}
   
     }
     draw(context, deltaTime){
@@ -75,7 +78,7 @@ if (idArmaActual == '1'){
     }
 
     isBulletScreen(bullet){
-        return bullet.y<= -bullet.height
+        return bullet.y<= -bullet.height || bullet.distanciaRecorrida >= bullet.distanciaMaxima;
     }
 
     collideWith(object){

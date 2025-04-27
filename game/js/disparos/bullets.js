@@ -1,10 +1,12 @@
 class Bullet {
-    constructor({ x, y, speed, damage, direccion, imageSrc }) {
+    constructor({ x, y, speed, damage, direccion, imageSrc, distanciaMaxima = 600}) {
         this.x = x;
         this.y = y;
         this.speed = speed;
         this.damage = damage;
         this.direccion = direccion;
+        this.distanciaRecorrida = 0;
+        this.distanciaMaxima = distanciaMaxima;
 
         // Definir tamaño según la dirección
         if (direccion === "izquierda" || direccion === "derecha") {
@@ -44,22 +46,29 @@ class Bullet {
         // Movimiento
         if (this.direccion === "izquierda") {
             this.x -= velocidad;
+            this.distanciaRecorrida += velocidad;
         } else if (this.direccion === "arriba") {
             this.y -= velocidad;
+            this.distanciaRecorrida += velocidad;
         } else if (this.direccion === "derecha") {
             this.x += velocidad;
+            this.distanciaRecorrida += velocidad;
         } else if (this.direccion === "arriba-izquierda") {
             this.x -= velocidad * 0.9;
             this.y -= velocidad * 0.4;
+            this.distanciaRecorrida += Math.sqrt((velocidad * 0.9) ** 2 + (velocidad * 0.4) ** 2);
         } else if (this.direccion === "arriba-derecha") {
             this.x += velocidad * 0.9;
             this.y -= velocidad * 0.4;
+            this.distanciaRecorrida += Math.sqrt((velocidad * 0.9) ** 2 + (velocidad * 0.4) ** 2);
         } else if (this.direccion === "abajo-izquierda") {
             this.x -= velocidad * 0.9;
             this.y += velocidad * 0.4;
+            this.distanciaRecorrida += Math.sqrt((velocidad * 0.9) ** 2 + (velocidad * 0.4) ** 2);
         } else if (this.direccion === "abajo-derecha") {
             this.x += velocidad * 0.9;
             this.y += velocidad * 0.4;
+            this.distanciaRecorrida += Math.sqrt((velocidad * 0.9) ** 2 + (velocidad * 0.4) ** 2);
         } 
         
     }
