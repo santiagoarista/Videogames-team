@@ -1,5 +1,6 @@
 class Sprite {
     constructor({
+        scale = 1,
         position, imgResource, frameRate = 1,frameBuffer = 8,  animations, loop = true, autoplay = true, blinkRate =150, countdown = false
     }) {
         this.position = position;
@@ -9,7 +10,7 @@ class Sprite {
             this.width = this.image.width / this.frameRate;
             this.height = this.image.height;
         }
-
+        this.scale = scale;
         this.image.src = imgResource;
         this.loaded = false;
         this.frameRate = frameRate;
@@ -54,8 +55,8 @@ class Sprite {
             cropBox.height,
             this.position.x,
             this.position.y,
-            this.width,
-            this.height
+            this.width * this.scale,
+            this.height * this.scale
         )
         this.updateFrames();
     }
