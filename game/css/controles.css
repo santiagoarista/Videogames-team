@@ -75,11 +75,19 @@ body {
       .contenedor{
         display: flex;
         justify-content: space-around;
+        
       }
 
-    .flex-column{
+    .flex-column{ transform: scale(1.);
+      transition: all 0.3s ease;
         text-align: center;
     }
+    .flex-column:hover{
+      transition: all 0.3s ease;
+      text-align: center;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgb(255, 255, 255);
+  }
 
     .flex-column img{
         width: 290px;
@@ -101,12 +109,23 @@ body {
           box-sizing: border-box;
       }
 
-    .containerPowerups{
+    .containerPowerups:hover{
+      transform: scale(1.05);
         align-self: center;
         width: 50%;
         margin-top: 30px;
         margin-bottom: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgb(255, 255, 255);
     }
+    .containerPowerups{
+      transform: scale(1.0);
+      transition: all 0.3s ease;
+      align-self: center;
+      width: 50%;
+      margin-top: 30px;
+      margin-bottom: 20px;
+  }
 
     .Powerups {
         display: grid;

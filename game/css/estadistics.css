@@ -129,9 +129,10 @@ div {
     padding-bottom: 15px;
     margin: 15px auto;
     /* max-width: 500px; */
+    transform: scale(1.0);
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
   }
-  
+
   .estadistica img {
     width: 60px;
   }
