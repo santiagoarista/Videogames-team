@@ -69,6 +69,10 @@ function drawButton(x, y, width, height, text, color) {
 
 canvas.addEventListener("click", (event) => {
   const rect = canvas.getBoundingClientRect();
+  const rectwidth = rect.right - rect.left;
+  const rectHeight = rect.bottom - rect.top;
+  const ratioWidth = rectwidth / canvas.width;
+  const ratioHeight = rectHeight / canvas.height;
   const mouseX = event.clientX - rect.left;
   const mouseY = event.clientY - rect.top;
 
@@ -76,10 +80,10 @@ canvas.addEventListener("click", (event) => {
   if (gameOver && !paused && !settingsOpen) {
     paused = false;
     if (
-      mouseX >= playX &&
-      mouseX <= playX + playWidth &&
-      mouseY >= playY &&
-      mouseY <= playY + playHeight &&
+      mouseX >= playX * ratioWidth &&
+      mouseX <= (playX + playWidth) * ratioWidth &&
+      mouseY >= playY * ratioHeight &&
+      mouseY <= (playY + playHeight) * ratioHeight &&
       gameOver
     ) {
       console.log("Play again...");
@@ -223,10 +227,10 @@ canvas.addEventListener("click", (event) => {
 
     // Al hacer click en Salir
     if (
-      mouseX >= exitGameX &&
-      mouseX <= exitGameX + exitGameWidth &&
-      mouseY >= exitGameY &&
-      mouseY <= exitGameY + exitGameHeight &&
+      mouseX >= exitGameX * ratioWidth &&
+      mouseX <= (exitGameX + exitGameWidth) * ratioWidth &&
+      mouseY >= exitGameY * ratioHeight &&
+      mouseY <= (exitGameY + exitGameHeight) * ratioHeight &&
       gameOver
     ) {
       console.log("Salir al Menú...");
@@ -311,7 +315,6 @@ function reiniciarJuego() {
   musicaIniciada = false;
 
   // Volver a animar
-
-
+  requestAnimationFrame(animate);
 
 }

@@ -95,7 +95,11 @@ function animate(timeStamp) {
 
   //Game Over Pantalla
   if (gameOver) {
-    reiniciarJuego(); //Todo lo relacionado a gameOver está en gameOver.js
+    paused = false;
+    gameOver = true;
+    drawGameOverScreen()
+    isAnimating = false;
+    return;
   }
 
   //Pausar Juego
@@ -103,7 +107,6 @@ function animate(timeStamp) {
     paused = true;
     drawPauseMenu(context);
     isAnimating = false; // Stop animating when paused
-    drawGameOverScreen(); //Todo lo relacionado a gameOver está en gameOver.js
     return;
   }
 
