@@ -37,7 +37,7 @@ class Sprite {
 
     draw() {
         if (!this.loaded || !this.visible) return; // No dibujar si no está cargado o no es visible
-
+ 
         const cropBox = {
             position: {
                 x: this.width * this.currentFrame,
@@ -59,6 +59,10 @@ class Sprite {
             this.height * this.scale
         )
         this.updateFrames();
+        if (this.countdown)  {
+            
+            this.visible= true
+        }
     }
 
     play() {
@@ -71,6 +75,10 @@ class Sprite {
         if (this.elapsedFrames % this.frameBuffer === 0) {
             if (this.currentFrame < this.frameRate - 1) this.currentFrame++;
             else if (this.loop) this.currentFrame = 0;
+        }
+        if (this.countdown)  {
+            
+            this.visible= true
         }
     }
 

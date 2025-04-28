@@ -13,6 +13,10 @@ const soundMap = {
     no_weapon: "../assets/soundeffects/weapon_box/no_weapon.mp3",
     take_weapon: "../assets/soundeffects/weapon_box/take_weapon.wav",    
     lock: "../assets/soundeffects/doors/lock.mp3",    
+    hurt3: "../assets/soundeffects/enemies/hurt1.mp3",   
+    laughenemy: "../assets/soundeffects/enemies/monster-laugh.mp3",
+    roarenemy: "../assets/soundeffects/enemies/monster-roar.mp3",  
+    roar2enemy: "../assets/soundeffects/enemies/roar2.mp3"  
 };
 
 function playSound(action, volume= 1.0) {

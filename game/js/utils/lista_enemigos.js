@@ -26,20 +26,20 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
                     frameRate:6,
                     frameBuffer:4,
                     loop :true,
-                    imgResource: "../../assets/characters/main_character/IdleRight.png",
+                    imgResource: "../../assets/characters/enemies/IdleRight.png",
                     
                 },
-                idleLeft:{
-                    frameRate:6,
-                    frameBuffer:4,
+                izquierda:{
+                    frameRate:4,
+                    frameBuffer:16,
                     loop :true,
-                    imgResource: "../../assets/characters/main_character/IdleLeft.png",
+                    imgResource: "../../assets/characters/enemies/final_boss/pumpkin.png",
                 },
-                runRight:{
-                    frameRate:8,
-                    frameBuffer:4,
+                derecha:{
+                    frameRate:4,
+                    frameBuffer:16,
                     loop :true,
-                    imgResource: "../../assets/characters/main_character/Run.png",
+                    imgResource: "../../assets/characters/enemies/final_boss/pumpkind.png",
                 },
                 runLeft:{
                     frameRate:8,
@@ -248,7 +248,7 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
         [],
         [],
         [],
-        enemigosSpawn,
+        [],
         enemigosSpawn,
     ]
     

@@ -23,7 +23,7 @@ class FinalBoss extends Sprite{
         super({imgResource, frameRate, animations, frameBuffer: frameBuffer, scale:2, blinkRate:100})
         //propiedades de la clase
         this.index = index;
-        this.health =90;
+        this.health =500;
         this.invencivilidad = invencivilidad;
     
         this.enemyBulletController = enemyBulletController;
@@ -58,48 +58,57 @@ class FinalBoss extends Sprite{
         this.lifeImage = new Image();
         this.lifeImage.src = '../assets/PNG/Transperent/Icon12.png'; //Imagen de vidas
         this.isOjo = true;
-      
-
+        this.fase =1
+        this.movimiento = TextTrackCueList
+        this.invocaion = false
+        this.invocaionFantasmas = false
+        this.direccion = -1
        
     
     }
 
     takeDamage (damage){
         if ( !this.invencivilidad) {
+        
             this.health -=damage
         }
        
     }
     
     update(player, deltaTime) {
- 
-
-    this.dibujarVida();
-    const velocidad = this.velocidadEnemigo
-    
-        
-  
-
-
-        // Llamadas existentes en tu método update
+        //FASES DE COMPORTAMIENTO
+        if (this.fase==1) {
+            this.fase1(deltaTime)
+        }else if (this.fase==2) {
+            this.fase2(deltaTime)
+        }else if (this.fase==3) {
+            this.fase3(deltaTime)
+        }
+        this.dibujarVida();
         this.updateHitbox();
         this.checkHorizontalCollisions();
         this.updateHitbox();
         this.checkVerticalCollisions();
-        context.fillStyle = "blue";
-        context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height);
-
+        this.generarFantasmas(1, deltaTime)
+  
     }
     //Método para cambiar de animación
-    switchSprite(name){
-        if (this.image=== this.animations[name].image) return
-
+    switchSprite(name) {
+        // Verificar si la animación existe en el mapa
+        if (!this.animations[name]) {
+            console.warn(`La animación "${name}" no existe.`);
+            return;
+        }
+    
+        // Evitar reiniciar la misma animación
+        if (this.image === this.animations[name].image) return;
+    
+        // Cambiar a la nueva animación
         this.currentFrame = 0;
-        this.image =this.animations[name].image
-        this.frameRate = this.animations[name].frameRate
-        this.frameBuffer = this.animations[name].frameBuffer
+        this.image = this.animations[name].image;
+        this.frameRate = this.animations[name].frameRate;
+        this.frameBuffer = this.animations[name].frameBuffer;
     }
-
     //Creación de hitbox y actualiazción
     updateHitbox() {
      
@@ -160,8 +169,8 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
  
   //ACCÍON cuando el enemigo recibe un golpe
   recibirGolpe(disparo,index){
-    this.invencivilidad = true;
-
+ //   this.apagarPrenderOscuro()
+    playSound("hurt3");
     if (enemigos.length==1) {
         if (this.health==1) {
             console.log("ultimo enemigo")
@@ -182,10 +191,76 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
         console.log("player", player.experiencia);
     }
   }
+  fase1(deltaTime) {
+    let velocidad = 1;
 
-  fase1(){
+    // Movimiento del jefe si no es invencible
+    if (!this.invencivilidad) {
+        if (this.position.x <= 350) {
+            this.direccion = 1; // Mover a la derecha
+      
+            this.switchSprite("derecha")
+        } else if (this.position.x >= 800) {
+            this.direccion = -1; // Mover a la izquierda
+            this.switchSprite("izquierda")
+        }
+        // Aplicar movimiento en la dirección actual
+        this.position.x += velocidad * this.direccion * deltaTime * 100;
+    }else{
+        
+    }
 
-  }
+    // Control de invencibilidad
+    if (!this.invencibilidadTimer) {
+        this.invencibilidadTimer = 0; // Inicializar el temporizador
+    }
+
+    if (this.invencivilidad) {
+       
+        // Si está en modo invencible, acumular tiempo
+        this.invencibilidadTimer += deltaTime * 1000; // Convertir deltaTime a milisegundos
+
+        // Duración de la invencibilidad (en milisegundos)
+        const duracionInvencibilidad = 6000; // 3 segundos
+
+        if (this.invencibilidadTimer >= duracionInvencibilidad) {
+            this.invencivilidad = false; // Desactivar invencibilidad
+            this.visible = true; 
+            this.invencibilidadTimer = 0; // Reiniciar el temporizador
+            this.invocaion = false
+            this.invocaionFantasmas = false
+           
+        }
+    } else {
+        // Si no está en modo invencible, acumular tiempo para activarlo
+        this.invencibilidadTimer += deltaTime * 1000;
+
+        // Tiempo entre activaciones de invencibilidad (en milisegundos)
+        const intervaloInvencibilidad = 10000; // 5 segundos
+
+        if (this.invencibilidadTimer >= intervaloInvencibilidad) {
+            
+            if (!this.invocaion) {
+            
+                playSound("roar2enemy")
+                this.apagarPrenderOscuro()
+            }
+          
+          
+            this.invocaion = true
+            this.invocaionFantasmas = true
+            this.invencivilidad = true; // Activar invencibilidad
+            this.invencibilidadTimer = 0; // Reiniciar el temporizador
+        }
+    }
+
+    // Disparar en espiral
+    this.dispararEspiral(deltaTime);
+    if (this.health<400) {
+        this.cambiarFase(2)
+        
+    }
+}
   fase2(){
     
   }
@@ -199,7 +274,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
     }else{
         this.countdown = false; 
     }
-    const vidaMaxima = 100; 
+    const vidaMaxima = 500; 
     const anchoBarraMaximo = 500; 
     const altoBarra = 20; 
     const anchoActual = (this.health / vidaMaxima) * anchoBarraMaximo;
@@ -226,4 +301,110 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
     context.shadowBlur =10;
     context.shadowColor = "transparent"; //Resetear Neon effect para no afectar lo demás
 }
+
+dispararEspiral(deltaTime){
+    this.enemyBulletController.shootEspiral({
+        bulletSpeed:600 ,
+        bulletDelay:40,
+        damage:1,
+         bulletX: this.position.x+100,
+          bulletY: this.position.y+80,
+          direccionDisparo: "izquierda",
+          deltaTime: deltaTime,
+     
+     
+    })
+
+    
+ 
+}
+apagarPrenderOscuro(){
+    playSound("laughenemy");
+    if (cuartosOscuros.has(9)) {
+        cuartosOscuros.delete(9);
+        
+    }else{
+        cuartosOscuros.add(9);
+    }
+    
+
+}
+
+cambiarFase(
+    nuevaFase
+){
+    playSound("roarenemy")
+    this.fase = nuevaFase;
+}
+
+generarFantasmas(numero, deltaTime) {
+    if (this.invocaionFantasmas) {
+        console.log("generando fantasmas")
+        
+    
+    if (!this.fantasmaTimer) {
+        this.fantasmaTimer = 0; // Inicializar el temporizador
+    }
+    if (!this.fantasmasGenerados) {
+        this.fantasmasGenerados = 0; // Contador de fantasmas generados
+    }
+
+    // Intervalo entre la generación de cada fantasma (en milisegundos)
+    const intervaloGeneracion = 2000; // 1 segundo
+
+    // Acumular tiempo transcurrido
+    this.fantasmaTimer += deltaTime * 1000;
+
+    // Verificar si es momento de generar un nuevo fantasma
+    if (this.fantasmaTimer >= intervaloGeneracion && this.fantasmasGenerados < numero) {
+        // Generar un nuevo fantasma
+     
+        enemigos.push(
+            new Fantasma({
+                health: 1,
+                position: { x: 600 + this.fantasmasGenerados * 50, y: 100 }, // Ajustar posición para cada fantasma
+                bulletController: bulletController,
+                frameRate: 4,
+                imgResource: "../../assets/characters/enemies/ghost/Ghost_Walk_left.png",
+                animations: {
+                    idleRight: {
+                        frameRate: 6,
+                        frameBuffer: 4,
+                        loop: true,
+                        imgResource: "../../assets/characters/main_character/IdleRight.png",
+                    },
+                    idleLeft: {
+                        frameRate: 6,
+                        frameBuffer: 4,
+                        loop: true,
+                        imgResource: "../../assets/characters/main_character/IdleLeft.png",
+                    },
+                    runRight: {
+                        frameRate: 8,
+                        frameBuffer: 4,
+                        loop: true,
+                        imgResource: "../../assets/characters/main_character/Run.png",
+                    },
+                    runLeft: {
+                        frameRate: 8,
+                        frameBuffer: 4,
+                        loop: true,
+                        imgResource: "../../assets/characters/main_character/RunLeft.png",
+                    },
+                },
+            })
+        );
+
+        // Reiniciar el temporizador y aumentar el contador
+        this.fantasmaTimer = 0;
+        this.fantasmasGenerados++;
+    }
+
+    // Reiniciar el contador si se han generado todos los fantasmas
+    if (this.fantasmasGenerados >= numero) {
+        this.fantasmasGenerados = 0;
+        this.fantasmaTimer = 0;
+    }
+    console.log(this.fantasmaTimer + " tiempo transcurrido" + this.fantasmasGenerados + " fantasmas generados")
+}}
 }

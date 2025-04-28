@@ -32,7 +32,8 @@ Array.prototype.creatObjectsFrom2d = function () {
 };
 function navegarNuevoCuarto(idDestino, posicionDestino, nombreOrigen) {
   console.log("Nombre origen desde navegarCuarto: " + nombreOrigen);
-
+   disparosJugador = [];
+   disparosEnemigos = [];
   let posiciónFinal = { x: 0, y: 0 };
   let cuartoDestino = cuartosOrdenadosCons.find((c) => c.idCuarto == idDestino);
 

@@ -81,7 +81,7 @@ function ShowLinterna(enemigo){
 }
 
 function dibujarOscuridadSiNecesaria(idCuarto, cuartosOscuros) {
-    if (idCuarto === 8 || idCuarto === 9 || !cuartosOscuros.has(idCuarto)) return;
+    if (idCuarto === 8 ||  !cuartosOscuros.has(idCuarto)) return;
 
     // Crea un gradiente radial que simula una linterna
     const centerX = player.position.x + player.width / 2;
