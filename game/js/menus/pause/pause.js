@@ -51,7 +51,7 @@ const settingsHeight = 80;
 let settingsX, settingsY;
 
 //Menú de pausa
-function drawPauseMenu() {
+function drawPauseMenu(context) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     
     //Menú
@@ -67,6 +67,8 @@ function drawPauseMenu() {
     const exitIconWidth = 55; 
     const exitIconHeight = 55;
 
+    console.log(canvas.width / 2)
+    console.log(canvas.height / 2) 
 
     //Centro de canvas
     const centerX = canvas.width / 2;
@@ -148,7 +150,7 @@ let effectsX, effectsY;
 
 
 //Menú de Ajustes
-function drawSettingsMenu() {
+function drawSettingsMenu(context) {
     if (!settingsOpen) return;
 
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -189,12 +191,12 @@ function drawSettingsMenu() {
     const menuY = canvas.height / 2 - menuHeight / 2;
 
     //Dibujar BG
-    context.globalAplha = 0.09
+    context.globalAlpha = 0.09
     context.fillStyle = "black";
     context.fillRect(0,0, canvas.width, canvas.height);
 
     //Dibujar menú
-    context.globalAplha = 1
+    context.globalAlpha = 1
     context.drawImage(pauseMenuImage, imgX, imgY, imgWidth, imgHeight);
     // console.log(imgX, imgY, 'BG')
 
@@ -250,107 +252,114 @@ function drawSettingsMenu() {
 
 
 // Event listeners para Menú completo
+// Detectar click en el canvas
 window.addEventListener("click", (event) => {
     const rect = canvas.getBoundingClientRect();
+    const rectwidth = rect.right - rect.left;
+    const rectHeight = rect.bottom - rect.top;
+    const ratioWidth = rectwidth / canvas.width;
+    const ratioHeight = rectHeight / canvas.height;
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
 
-    // Ahora ajustamos las posiciones de los botones para que se correspondan correctamente con las coordenadas del mouse.
-    // Si está en pantalla completa, las coordenadas del canvas cambiarán
+    console.log(`Click detectado en X: ${mouseX}, Y: ${mouseY}`); // Verifica la posición del clic
+    console.log(`Boton X ${buttonX}, Boton Y ${buttonY}, weidth ${buttonWidth}, h ${buttonHeight}`)
 
+    // Si el juego está en pausa
     if (!settingsOpen && paused) {
+        // Botón de play
         if (
-            mouseX >= buttonX &&
-            mouseX <= buttonX + buttonWidth &&
-            mouseY >= buttonY &&
-            mouseY <= buttonY + buttonHeight
+            mouseX >= buttonX * ratioWidth &&
+            mouseX <= (buttonX + buttonWidth) * ratioWidth &&
+            mouseY >= buttonY * ratioHeight &&
+            mouseY <= (buttonY + buttonHeight) * ratioHeight
         ) {
           
-          if (!isAnimating) {
-                paused = false;
-                isAnimating = true;
-                animate(); // Play
-            }
+            console.log("Botón Play clickeado");
+            paused = false;
+            isAnimating = false;
+            requestAnimationFrame(animate);  // Reactivar la animación
+          
         }
 
+        // Botón de configuración
         if (
-            mouseX >= settingsX &&
-            mouseX <= settingsX + settingsWidth &&
-            mouseY >= settingsY &&
-            mouseY <= settingsY + settingsHeight
+            mouseX >= settingsX * ratioWidth &&
+            mouseX <= (settingsX + settingsWidth) * ratioWidth &&
+            mouseY >= settingsY  * ratioHeight &&
+            mouseY <= (settingsY + settingsHeight) * ratioHeight
         ) {
+            console.log("Botón Settings clickeado");
             settingsOpen = true;
-            drawSettingsMenu(); // Draw settings menu
+            drawSettingsMenu(context);  // Dibujar menú de configuración
         }
 
+        // Botón de salir
         if (
-            mouseX >= exitX &&
-            mouseX <= exitX + exitWidth &&
-            mouseY >= exitY &&
-            mouseY <= exitY + exitHeight
+            mouseX >= exitX * ratioWidth &&
+            mouseX <= (exitX + exitWidth) * ratioWidth &&
+            mouseY >= exitY * ratioHeight &&
+            mouseY <= (exitY + exitHeight) * ratioHeight
         ) {
-            console.log("Salir al Menú...");
-            console.log("Lives: ", player.lives)
-            const id_usuario = localStorage.getItem('id_usuario');
-            console.log("ID_USUARIO: ", id_usuario);
-            createPartida( // id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, listaCuartosAleatorios
-                id_usuario,
-                player.monstruos_eliminados,
-                player.monstruos_eliminados * 10,
-                player.lives,
-                llaves,
-                itemsActivos,
-                listaCuartosAleatorios,
-                false
-            );
-            window.location.href = "/html/principal_menu.html";
+            console.log("Botón Salir clickeado");
+            // Lógica de salida...
         }
-    } else if (settingsOpen) {
+    }
+
+    // Si el menú de configuración está abierto
+    if (settingsOpen) {
         const menuWidth = 500;
         const menuHeight = 350;
         const menuX = canvas.width / 2 - menuWidth / 2;
         const menuY = canvas.height / 2 - menuHeight / 2;
 
+        // Botón de cerrar configuración
         const closeX = menuX + menuWidth;
         const closeY = menuY + 10;
         const closeSize = 40;
 
         if (
-            mouseX >= closeX &&
-            mouseX <= closeX + closeSize &&
-            mouseY >= closeY &&
-            mouseY <= closeY + closeSize
+            mouseX >= closeX * ratioWidth &&
+            mouseX <= (closeX + closeSize) * ratioWidth&&
+            mouseY >= closeY * ratioHeight &&
+            mouseY <= (closeY + closeSize) * ratioHeight
         ) {
+            console.log("Cerrar configuración clickeado");
             settingsOpen = false;
-            drawPauseMenu();
+            drawPauseMenu(context);  // Redibujar el menú de pausa
         }
 
+        // Botón de música
         if (
-            mouseX >= buttonX &&
-            mouseX <= buttonX + buttonWidth &&
-            mouseY >= buttonY &&
-            mouseY <= buttonY + buttonHeight
+            mouseX >= buttonX * ratioWidth &&
+            mouseX <= (buttonX + buttonWidth) * ratioWidth &&
+            mouseY >= buttonY * ratioHeight &&
+            mouseY <= (buttonY + buttonHeight) * ratioHeight
         ) {
-            sonidoMusica.muted();
-            console.log("Music");
+            console.log("Botón Música clickeado");
+            sonidoMusica.muted();  // Mutear o activar música
         }
 
+        // Botón de reiniciar progreso
         if (
-            mouseX >= resetX &&
-            mouseX <= resetX + resetWidth &&
-            mouseY >= resetY &&
-            mouseY <= resetY + resetHeight
+            mouseX >= resetX * ratioWidth &&
+            mouseX <= (resetX + resetWidth) * ratioWidth &&
+            mouseY >= resetY * ratioHeight &&
+            mouseY <= (resetY + resetHeight) * ratioHeight
         ) {
-            console.log("Reset");
+            console.log("Botón Reset clickeado");
+            // Lógica para reiniciar el progreso
         }
 
+        // Botón de efectos de sonido
         if (
-            mouseX >= effectsX &&
-            mouseX <= effectsX + effectsWidth &&
-            mouseY >= effectsY &&
-            mouseY <= effectsY + effectsHeight
+            mouseX >= effectsX * ratioWidth &&
+            mouseX <= (effectsX + effectsWidth) * ratioWidth &&
+            mouseY >= effectsY * ratioHeight &&
+            mouseY <= (effectsY + effectsHeight) * ratioHeight
         ) {
-            console.log("Effects");
+            console.log("Botón Efectos clickeado");
+            // Lógica para efectos de sonido
         }
     }
 });

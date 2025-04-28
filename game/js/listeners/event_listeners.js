@@ -39,10 +39,17 @@ window.addEventListener("keydown", (event) => {
       if (gameOver) {
         break;
       }
-      paused = !paused;
-      if (!paused) {
-        animate(); //Volver a renderizar las animaciones cuando no esté en pausa
-      }
+      
+      if (paused) {
+        // Si estaba pausado, lo quitamos
+        paused = false;
+        isAnimating = false;
+        requestAnimationFrame(animate); // Continuamos la animación
+      } else {
+        // Si no estaba pausado, pausamos
+        paused = true;
+      }    
+      
       break;
 
     case "g":
