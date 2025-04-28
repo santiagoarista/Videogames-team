@@ -1,5 +1,6 @@
 class Sprite {
     constructor({
+        scale = 1,
         position, imgResource, frameRate = 1,frameBuffer = 8,  animations, loop = true, autoplay = true, blinkRate =150, countdown = false
     }) {
         this.position = position;
@@ -9,7 +10,7 @@ class Sprite {
             this.width = this.image.width / this.frameRate;
             this.height = this.image.height;
         }
-
+        this.scale = scale;
         this.image.src = imgResource;
         this.loaded = false;
         this.frameRate = frameRate;
@@ -36,7 +37,7 @@ class Sprite {
 
     draw() {
         if (!this.loaded || !this.visible) return; // No dibujar si no está cargado o no es visible
-
+ 
         const cropBox = {
             position: {
                 x: this.width * this.currentFrame,
@@ -54,10 +55,14 @@ class Sprite {
             cropBox.height,
             this.position.x,
             this.position.y,
-            this.width,
-            this.height
+            this.width * this.scale,
+            this.height * this.scale
         )
         this.updateFrames();
+        if (this.countdown)  {
+            
+            this.visible= true
+        }
     }
 
     play() {
@@ -70,6 +75,10 @@ class Sprite {
         if (this.elapsedFrames % this.frameBuffer === 0) {
             if (this.currentFrame < this.frameRate - 1) this.currentFrame++;
             else if (this.loop) this.currentFrame = 0;
+        }
+        if (this.countdown)  {
+            
+            this.visible= true
         }
     }
 

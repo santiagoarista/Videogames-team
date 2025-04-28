@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.js" integrity="sha512-vCUbejtS+HcWYtDHRF2T5B0BKwVG/CLeuew5uT2AiX4SJ2Wff52+kfgONvtdATqkqQMC9Ye5K+Td0OTaz+P7cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="../css/controles.css">
+    <title>Controles</title>
+</head>
+<body>
+    <nav class="barraNav">
+        <a href="play_screen.html"> <img src="../assets/sprites/nine_logo.png" alt="Descripción de la imagen" width="300" class="logo"></a>
+        <nav>
+          <a href="estadistics.html"><h1 class="boton_navegacion">ESTADÍSTICAS</h1></a>
+            <h1 class="boton_navegacion">CÓMO JUGAR</h1>
+            <h1 class="boton_navegacion">HISTORIA</h1>
+        </nav>
+    </nav>
+
+    <h2>Controles del Juego</h2>
+    <section class="contenedor">
+        <div class="flex-column">
+            <h3>Movimiento</h3>
+            <img src="../assets/web/movimiento.png" alt="movimiento" />
+            <p>*El doble salto solo funciona al obtener las botas</p>
+        </div>
+
+        <div class="flex-column">
+            <h3>Disparos y Armas</h3>
+            <img src="../assets/web/disparos.png" alt="disparos" />
+            <p>*Solo se puede cambiar de arma si se entra en contacto con ella en el cuarto principal</p>
+        </div>
+
+        <div class="flex-column">
+            <h3>Pantallas</h3>
+            <img src="../assets/web/Pantallas.png" alt="pantallas" />
+            <p>*Para salir del mapa, se presiona la misma tecla. Mientras que en el menu de pausa puedes o volver al juego, salir, o configurarlo rapidamente</p>
+        </div>
+      </section>
+
+      <div class="containerPowerups">
+        <h3>Powerups</h3>
+        <section class="Powerups">
+            <article>
+                <img src="../assets/sprites/escenario_spawm_dario/linternaSprite.png" alt="Linterna" />
+                <p>Al obtener la lampara, aumentara el rango de vision en las habitaciones oscuras</p>
+            </article>
+    
+            <article>
+                <img src= "../assets/web/Slime.png" alt="Slime" />
+                <p>Al obtener el slime, este te ortogará tres vidas extras aparte de las vidas del Mr Fonti</p>
+            </article>
+    
+            <article>
+                <img src= "../assets/sprites/escenario_spawm_dario/botas.png" alt="Arma3" />
+                <p>Al obtener las botas, podras dar doble saltos usando la tecla w</p>
+            </article>
+        </section>
+      </div>
+</body>
+</html>

@@ -3,8 +3,9 @@ class Bulletcontroller {
     timeToNextBullet=0;
     constructor(canvas) {
         this.canvas = canvas;
+      
     }
-
+   
     shoot({bulletSpeed,bulletDelay, damage, bulletX, bulletY, distanciaMaxima = 400, ignorarDelay = false}, deltaTime){
         
 let direccion = ""
@@ -96,8 +97,12 @@ if (!ignorarDelay) { // <- CAMBIO AQUI
 class EnemyBulletcontroller {
  
     timeToNextBullet=0;
+  
     constructor(canvas) {
         this.canvas = canvas;
+        this.angle =0
+        
+        
     }
 
     shoot({bulletSpeed,bulletDelay, damage, bulletX, bulletY, direccionDisparo}, deltaTime){
@@ -132,7 +137,7 @@ if (direccion == "arriba" ||  direccion == "abajo") {
                 speed: bulletSpeed,
                 damage : damage,
                 direccion: direccion,
-                imageSrc : imageR
+                imageSrc : imageR,
             })),
 
             this.timeToNextBullet= bulletDelay
@@ -161,5 +166,47 @@ if (direccion == "arriba" ||  direccion == "abajo") {
             }
             return false
         })
+    }
+    
+    shootEspiral({ bulletSpeed, bulletDelay, damage, bulletX, bulletY, direccionDisparo, cantidadBalas = 15, deltaTime }) {
+ 
+        
+        // Reducir el tiempo restante para el próximo disparo
+        this.timeToNextBullet -= deltaTime * 100;
+    
+        if (this.timeToNextBullet <= 0) {
+            // Reiniciar el tiempo para el próximo disparo
+            this.timeToNextBullet = bulletDelay;
+    
+            // Controlar el ángulo inicial
+            if (!this.currentAngle) {
+                this.currentAngle = 0; // Inicializar el ángulo si no existe
+            }
+            if (this.currentAngle ==0) {
+                this.currentAngle = 1; 
+            }
+            // Disparar una bala en cada iteración del ángulo
+            const anguloActual = this.currentAngle; // Ángulo actual para la bala
+            playSound("shoot");
+            disparosEnemigos.push(
+                new EnemyBullet({
+                    x: bulletX,
+                    y: bulletY,
+                    speed: bulletSpeed,
+                    damage: damage,
+                    direccion: "custom", // Dirección personalizada
+                    imageSrc: "../../assets/bullets/02_shine.png",
+                    angulo: (anguloActual * Math.PI) / 180, // Convertir a radianes
+                })
+            );
+    
+            // Incrementar el ángulo para el siguiente disparo
+            this.currentAngle += this.angle + 10; // Incrementar el ángulo en cada disparo
+    
+            // Reiniciar el ángulo si supera los 360 grados
+            if (this.currentAngle >= 360) {
+                this.currentAngle = 0;
+            }
+        }
     }
 }

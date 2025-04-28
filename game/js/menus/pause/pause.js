@@ -105,7 +105,7 @@ function drawPauseMenu(context) {
     context.shadowColor = "cyan"; //Efecto de letras neon
     context.shadowBlur = 15;
     context.fillText("Menú de Pausa", centerX, centerY - 180);
-    console.log(centerX, centerY)
+    // console.log(centerX, centerY)
 
     // Resetear efecto neon
     context.shadowBlur = 0;
@@ -116,7 +116,7 @@ function drawPauseMenu(context) {
     context.shadowBlur = 15;
     context.drawImage(playButton, buttonX, buttonY, buttonWidth, buttonHeight);
     context.drawImage(playButtonIcon, iconX, iconY, iconWidth, iconHeight);
-    console.log(buttonX, buttonY, 'BOTONES')
+    // console.log(buttonX, buttonY, 'BOTONES')
     
 
     //Dibujar Exit Button
@@ -198,7 +198,7 @@ function drawSettingsMenu(context) {
     //Dibujar menú
     context.globalAlpha = 1
     context.drawImage(pauseMenuImage, imgX, imgY, imgWidth, imgHeight);
-    console.log(imgX, imgY, 'BG')
+    // console.log(imgX, imgY, 'BG')
 
     // Texto
     context.fillStyle = "white";
@@ -207,8 +207,8 @@ function drawSettingsMenu(context) {
     context.shadowColor = "cyan"; //Efecto de letras neon
     context.shadowBlur = 15;
     context.fillText("Configuración", centerX, centerY - 180);
-    console.log(canvas.height)
-    console.log(centerX, centerY, 'POSICIONES')
+    // console.log(canvas.height)
+    // console.log(centerX, centerY, 'POSICIONES')
 
     // Dibujar Music Button
     context.shadowColor = "cyan"; //Efecto neon
@@ -246,7 +246,7 @@ function drawSettingsMenu(context) {
     context.fillRect(closeX + 60, closeY, 40, 40);
     context.fillStyle = "white";
     context.fillText("X", closeX + 81, closeY + 32);
-    console.log(closeX, closeY, 'X')
+    // console.log(closeX, closeY, 'X')
     
 }
 
@@ -274,10 +274,12 @@ window.addEventListener("click", (event) => {
             mouseY >= buttonY * ratioHeight &&
             mouseY <= (buttonY + buttonHeight) * ratioHeight
         ) {
+          
             console.log("Botón Play clickeado");
             paused = false;
             isAnimating = false;
             requestAnimationFrame(animate);  // Reactivar la animación
+          
         }
 
         // Botón de configuración

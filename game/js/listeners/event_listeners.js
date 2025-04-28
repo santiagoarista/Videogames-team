@@ -56,8 +56,10 @@ window.addEventListener("keydown", (event) => {
       pause = false;
       gameOver = !gameOver;
       if (gameOver) {
+        isAnimating = false;
         drawGameOverScreen();
       } else {
+        isAnimating = true;
         animate(); // Resume the game if gameOver is turned off
       }
       break;
