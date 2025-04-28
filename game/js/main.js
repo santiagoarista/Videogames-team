@@ -18,6 +18,7 @@ let disparosJugador = [];
 let disparosEnemigos = [];
 let gameOver = false;
 let lKeyProcessed = false;
+let isAnimating = false;
 
 // Tamaño de renderizado 16:9 NO MODIFICAR
 canvas.width = 1344;
@@ -95,7 +96,13 @@ function animate(timeStamp) {
   //Game Over Pantalla
   if (gameOver) {
     reiniciarJuego(); //Todo lo relacionado a gameOver está en gameOver.js
+  }
 
+  if (paused) {
+    paused = true;
+    drawPauseMenu(context);
+    isAnimating = false; // Stop animating when paused
+    return;
   }
 //
  // //Pausar Juegoa
