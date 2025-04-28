@@ -182,7 +182,8 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
   }
     console.log("golpe recibido por ojo")
     if ( !this.invencivilidad) {
-    this.health-= disparo.damage;}
+    this.health-= disparo.damage;
+}
     this.disparosJugador.splice(index, 1);
     if (this.health<=0) {
         enemigos.splice(this.index, 1);

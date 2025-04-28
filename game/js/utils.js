@@ -32,7 +32,7 @@ Array.prototype.creatObjectsFrom2d = function () {
 };
 function navegarNuevoCuarto(idDestino, posicionDestino, nombreOrigen) {
   console.log("Nombre origen desde navegarCuarto: " + nombreOrigen);
-   disparosJugador = [];
+
    disparosEnemigos = [];
   let posiciónFinal = { x: 0, y: 0 };
   let cuartoDestino = cuartosOrdenadosCons.find((c) => c.idCuarto == idDestino);
@@ -48,7 +48,7 @@ function navegarNuevoCuarto(idDestino, posicionDestino, nombreOrigen) {
       break;
     case "superior":
       posiciónFinal = { ...cuartoDestino.posicionJugadorInferior };
-      posiciónFinal.y = 500; // esta línea ya no modifica el original
+
       break;
     case "inferior":
       posiciónFinal = { ...cuartoDestino.posicionJugadorSuperior };
@@ -65,7 +65,7 @@ function navegarNuevoCuarto(idDestino, posicionDestino, nombreOrigen) {
   player.position = { x: -300, y: -300 };
   player.inTransition = true;
   player.visible = false;
-  player.velocity = { x: 0, y: 0 };
+  player.velocity = { x: 0, y: 3 };
 
   // Poner pantalla negra de inmediato
   overlay.opacity = 1; // Pantalla se pone negra de inmediato
