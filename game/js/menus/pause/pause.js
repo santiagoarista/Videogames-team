@@ -313,6 +313,7 @@ window.addEventListener("click", (event) => {
                 llaves,
                 itemsActivos,
                 listaCuartosAleatorios,
+                false,
                 false
             );
             window.location.href = "play_screen.html"
@@ -372,7 +373,8 @@ window.addEventListener("click", (event) => {
           llaves,
           itemsActivos,
           listaCuartosAleatorios,
-          true
+          true,
+          false
       );
       context.clearRect(0, 0, canvas.width, canvas.height);
 
