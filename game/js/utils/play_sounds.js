@@ -15,8 +15,10 @@ const soundMap = {
     lock: "../assets/soundeffects/doors/lock.mp3",    
     hurt3: "../assets/soundeffects/enemies/hurt1.mp3",   
     laughenemy: "../assets/soundeffects/enemies/monster-laugh.mp3",
+    laugh2: "../assets/soundeffects/enemies/laugh2.wav",
     roarenemy: "../assets/soundeffects/enemies/monster-roar.mp3",  
-    roar2enemy: "../assets/soundeffects/enemies/roar2.mp3"  
+    roar2enemy: "../assets/soundeffects/enemies/roar2.mp3",
+    explosion: "../assets/soundeffects/enemies/explosion.wav"  
 };
 
 function playSound(action, volume= 1.0) {

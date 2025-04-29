@@ -109,7 +109,7 @@ class Ojo extends Sprite{
             let damage =1;
             let bulletX = this.position.x + this.width/2;
             let bulletY = this.position.y+21
-            
+            console.log("disparar")
             this.enemyBulletController.shoot({
                 direccionDisparo: this.direccionDisparo,
                 bulletSpeed:bulletSpeed,

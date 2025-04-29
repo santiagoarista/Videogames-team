@@ -21,8 +21,7 @@ async function connectToDB()
     return await mysql.createConnection({
         host:'localhost',
         user:'root', // Cambiar user y constraseña si quieren usarlo
-        password:'',
-
+        password:'PolloLoco123@',
         database:'nineshions'
     })
 }

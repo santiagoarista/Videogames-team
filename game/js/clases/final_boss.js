@@ -23,8 +23,8 @@ class FinalBoss extends Sprite{
         super({imgResource, frameRate, animations, frameBuffer: frameBuffer, scale:2, blinkRate:100})
         //propiedades de la clase
         this.index = index;
-        this.health =300;
-        this.mxhealth =300;
+        this.health =200;
+        this.mxhealth =200;
         this.invencivilidad = invencivilidad;
     
         this.enemyBulletController = enemyBulletController;
@@ -48,7 +48,7 @@ class FinalBoss extends Sprite{
         this.delayBala=delayBala,
         this.velocidadEnemigo=velocidadEnemigo,
 
-        this.umbralDisparo = umbralDisparo
+        this.umbralDisparo = 100
         this.direccionDisparo = direccionDisparo
         this.movimiento = movimiento
         this.umbralesMovimiento = umbralesMovimiento
@@ -80,8 +80,10 @@ class FinalBoss extends Sprite{
         //FASES DE COMPORTAMIENTO
         if (this.fase==1) {
             this.fase1(deltaTime)
+            this.generarFantasmas(1, deltaTime)
         }else if (this.fase==2) {
             this.fase2(deltaTime)
+            this.generarCalabazas(1, deltaTime)
         }else if (this.fase==3) {
             this.fase3(deltaTime)
         }
@@ -90,7 +92,7 @@ class FinalBoss extends Sprite{
         this.checkHorizontalCollisions();
         this.updateHitbox();
         this.checkVerticalCollisions();
-        this.generarFantasmas(1, deltaTime)
+      
   
     }
     //Método para cambiar de animación
@@ -258,12 +260,62 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
 
     // Disparar en espiral
     this.dispararEspiral(deltaTime);
-    if (this.health<200) {
+    if (this.health<100) {
         this.cambiarFase(2)
+        this.fantasmaTimer=400
+        this.position.x = 200
+        this.position.y = 50
         
     }
 }
-  fase2(){
+  fase2(deltaTime){
+    this.invocaionFantasmas = true
+    this.invencivilidad =false
+    let bulletSpeed = 150;
+    let bulletDelay = 10;
+    let damage =1;
+    let bulletX = this.position.x + 50;
+    let bulletY = this.position.y+100
+    if (this.position.x > player.position.x - 100 && this.position.x < player.position.x ) {
+        this.enemyBulletController.shoot({
+            direccionDisparo: "abajo",
+            bulletSpeed: bulletSpeed,
+            bulletDelay: bulletDelay,
+            damage: damage,
+            bulletX: bulletX,
+            bulletY: bulletY,
+        }, deltaTime);
+    }
+    let velocidad = 2.5;
+
+
+
+    // Movimiento del jefe si no es invencible
+ 
+        if (this.position.x <= 150) {
+            this.direccion = 1; // Mover a la derecha
+      
+            this.switchSprite("derecha")
+        } else if (this.position.x >= 1000) {
+            this.direccion = -1; // Mover a la izquierda
+            this.switchSprite("izquierda")
+        }
+        // Aplicar movimiento en la dirección actual
+        this.position.x += velocidad * this.direccion * deltaTime * 100;
+    
+        
+    
+
+
+ 
+        // Si no está en modo invencible, acumular tiempo para activarlo
+        this.invencibilidadTimer += deltaTime * 1000;
+
+        // Tiempo entre activaciones de invencibilidad (en milisegundos)
+        const intervaloInvencibilidad = 0; // 5 segundos
+
+    
+
     
   }
   fase3(){
@@ -341,7 +393,7 @@ cambiarFase(
 
 generarFantasmas(numero, deltaTime) {
     if (this.invocaionFantasmas) {
-        console.log("generando fantasmas")
+
         
     
     if (!this.fantasmaTimer) {
@@ -362,39 +414,40 @@ generarFantasmas(numero, deltaTime) {
         // Generar un nuevo fantasma
      
         enemigos.push(
-            new Fantasma({
-                health: 1,
-                position: { x: 600 + this.fantasmasGenerados * 50, y: 100 }, // Ajustar posición para cada fantasma
-                bulletController: bulletController,
-                frameRate: 4,
-                imgResource: "../../assets/characters/enemies/ghost/Ghost_Walk_left.png",
-                animations: {
-                    idleRight: {
-                        frameRate: 6,
-                        frameBuffer: 4,
-                        loop: true,
-                        imgResource: "../../assets/characters/main_character/IdleRight.png",
-                    },
-                    idleLeft: {
-                        frameRate: 6,
-                        frameBuffer: 4,
-                        loop: true,
-                        imgResource: "../../assets/characters/main_character/IdleLeft.png",
-                    },
-                    runRight: {
-                        frameRate: 8,
-                        frameBuffer: 4,
-                        loop: true,
-                        imgResource: "../../assets/characters/main_character/Run.png",
-                    },
-                    runLeft: {
-                        frameRate: 8,
-                        frameBuffer: 4,
-                        loop: true,
-                        imgResource: "../../assets/characters/main_character/RunLeft.png",
-                    },
-                },
-            })
+ 
+           new Fantasma({
+               health: 1,
+               position: { x: 600 + this.fantasmasGenerados * 50, y: 100 }, // Ajustar posición para cada fantasma
+               bulletController: bulletController,
+               frameRate: 4,
+               imgResource: "../../assets/characters/enemies/ghost/Ghost_Walk_left.png",
+               animations: {
+                   idleRight: {
+                       frameRate: 6,
+                       frameBuffer: 4,
+                       loop: true,
+                       imgResource: "../../assets/characters/main_character/IdleRight.png",
+                   },
+                   idleLeft: {
+                       frameRate: 6,
+                       frameBuffer: 4,
+                       loop: true,
+                       imgResource: "../../assets/characters/main_character/IdleLeft.png",
+                   },
+                   runRight: {
+                       frameRate: 8,
+                       frameBuffer: 4,
+                       loop: true,
+                       imgResource: "../../assets/characters/main_character/Run.png",
+                   },
+                   runLeft: {
+                       frameRate: 8,
+                       frameBuffer: 4,
+                       loop: true,
+                       imgResource: "../../assets/characters/main_character/RunLeft.png",
+                   },
+               },
+           })
         );
 
         // Reiniciar el temporizador y aumentar el contador
@@ -407,6 +460,120 @@ generarFantasmas(numero, deltaTime) {
         this.fantasmasGenerados = 0;
         this.fantasmaTimer = 0;
     }
-    console.log(this.fantasmaTimer + " tiempo transcurrido" + this.fantasmasGenerados + " fantasmas generados")
+   
+}}
+
+
+
+generarCalabazas(numero, deltaTime) {
+    if (this.invocaionFantasmas) {
+  
+        
+    
+    if (!this.fantasmaTimer) {
+        this.fantasmaTimer = 0; // Inicializar el temporizador
+    }
+    if (!this.fantasmasGenerados) {
+        this.fantasmasGenerados = 0; // Contador de fantasmas generados
+    }
+
+    // Intervalo entre la generación de cada fantasma (en milisegundos)
+    const intervaloGeneracion = 2000; // 1 segundo
+
+    // Acumular tiempo transcurrido
+    this.fantasmaTimer += deltaTime * 1000;
+
+    // Verificar si es momento de generar un nuevo fantasma
+    if (this.fantasmaTimer >= intervaloGeneracion && this.fantasmasGenerados < numero) {
+        // Generar un nuevo fantasma
+     
+        enemigos.push(
+            new CalbazaExplosiva({
+                delayBala: 0.0001,
+            velocidadEnemigo: 10,
+            velocidadBala:20,
+          
+            estatico: false,
+            movimiento: "y",
+            umbralDisparo : 40,
+            direccionDisparo: "izquierda",
+            umbralesMovimiento:[0,700],
+            health:5,
+            position: {x:this.position.x+100, y:this.position.y+100},
+            enemyBulletController: this.enemyBulletController,
+               frameRate: 27,
+               imgResource: "../../assets/characters/enemies/final_boss/babypumk.png",
+               animations: {
+                   idleRight: {
+                       frameRate: 6,
+                       frameBuffer: 4,
+                       loop: true,
+                       imgResource: "../../assets/characters/main_character/IdleRight.png",
+                   },
+                   idleLeft: {
+                       frameRate: 6,
+                       frameBuffer: 4,
+                       loop: true,
+                       imgResource: "../../assets/characters/main_character/IdleLeft.png",
+                   },
+                   runRight: {
+                       frameRate: 8,
+                       frameBuffer: 4,
+                       loop: true,
+                       imgResource: "../../assets/characters/main_character/Run.png",
+                   },
+                   runLeft: {
+                       frameRate: 8,
+                       frameBuffer: 4,
+                       loop: true,
+                       imgResource: "../../assets/characters/main_character/RunLeft.png",
+                   },
+               },
+           })
+         //   new Fantasma({
+         //       health: 1,
+         //       position: { x: 600 + this.fantasmasGenerados * 50, y: 100 }, // Ajustar posición para cada fantasma
+         //       bulletController: bulletController,
+         //       frameRate: 4,
+         //       imgResource: "../../assets/characters/enemies/ghost/Ghost_Walk_left.png",
+         //       animations: {
+         //           idleRight: {
+         //               frameRate: 6,
+         //               frameBuffer: 4,
+         //               loop: true,
+         //               imgResource: "../../assets/characters/main_character/IdleRight.png",
+         //           },
+         //           idleLeft: {
+         //               frameRate: 6,
+         //               frameBuffer: 4,
+         //               loop: true,
+         //               imgResource: "../../assets/characters/main_character/IdleLeft.png",
+         //           },
+         //           runRight: {
+         //               frameRate: 8,
+         //               frameBuffer: 4,
+         //               loop: true,
+         //               imgResource: "../../assets/characters/main_character/Run.png",
+         //           },
+         //           runLeft: {
+         //               frameRate: 8,
+         //               frameBuffer: 4,
+         //               loop: true,
+         //               imgResource: "../../assets/characters/main_character/RunLeft.png",
+         //           },
+         //       },
+         //   })
+        );
+
+        // Reiniciar el temporizador y aumentar el contador
+        this.fantasmaTimer = 0;
+        this.fantasmasGenerados++;
+    }
+
+    // Reiniciar el contador si se han generado todos los fantasmas
+    if (this.fantasmasGenerados >= numero) {
+        this.fantasmasGenerados = 0;
+        this.fantasmaTimer = 0;
+    }
 }}
 }

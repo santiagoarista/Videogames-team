@@ -64,6 +64,7 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
         
             },
         }),
+
         
     ]
     const enemigosNivel3=[
