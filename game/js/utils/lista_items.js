@@ -1,13 +1,13 @@
 function ShowLinterna(enemigo){
     if (enemigo.health==1 && !itemsActivos[0]) {
-        console.log("enemigo golpeado 1")
+        //console.log("enemigo golpeado 1")
         itemsEnJuego.push(new Linterna({x: enemigo.position.x, y: enemigo.position.y}))
     }
   }
 
   function ShowAsistente(enemigo){
     if (enemigo.health==1 && !itemsActivos[1]) {
-        console.log("enemigo golpeado 2")
+        //console.log("enemigo golpeado 2")
         itemsEnJuego.push(
             new Asistente({x: enemigo.position.x, y: enemigo.position.y,
                 frameRate: 6,
@@ -61,7 +61,7 @@ function ShowLinterna(enemigo){
 
  function ShowBotas(enemigo){
     if (enemigo.health==1 && !itemsActivos[2]) {
-        console.log("enemigo golpeado 3")
+        //console.log("enemigo golpeado 3")
         itemsEnJuego.push(new Botas({x: enemigo.position.x, y: enemigo.position.y}))
     }
   }
@@ -70,7 +70,7 @@ function ShowLinterna(enemigo){
     const funciones = [ShowLinterna, ShowAsistente, ShowBotas];
     
     // Probabilidad del 30% (0.3), ajusta este valor como desees
-    const probabilidadDeDrop = 0.1;
+    const probabilidadDeDrop = 0.3;
 
     if (Math.random() < probabilidadDeDrop) {
         const funcionSeleccionada = funciones[Math.floor(Math.random() * funciones.length)];

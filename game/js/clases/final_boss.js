@@ -87,9 +87,8 @@ class FinalBoss extends Sprite{
         }
         this.dibujarVida();
         this.updateHitbox();
-        this.checkHorizontalCollisions();
+        this.checkCollisions();
         this.updateHitbox();
-        this.checkVerticalCollisions();
         this.generarFantasmas(1, deltaTime)
   
     }
@@ -123,50 +122,20 @@ class FinalBoss extends Sprite{
            height: 170,
        }
        }
-    checkHorizontalCollisions(){
-       
-        //Agregar colisiones de disparos
-        for (let index = 0; index < this.disparosJugador.length; index++) {
-           
-            const disparo = this.disparosJugador[index] ;
-
-            //Comprobar si hay colisiones 
-            if (this.hitbox.position.x <= disparo.x +disparo.width &&
-                this.hitbox.position.x + this.hitbox.width>= disparo.x &&
-                this.hitbox.position.y + this.hitbox.height>= disparo.y &&
-                this.hitbox.position.y <= disparo.y + disparo.height) {
-                    
-                    //Si recibe un disparo se ejecuta el método 
-                    this.recibirGolpe(disparo,index);
-            }
-            
-
-
-        }
-
-    }
-    checkVerticalCollisions(){
-  
- //Agregar colisiones de las disparos
-
-for (let index = 0; index < this.disparosJugador.length; index++) {
-    const disparo = this.disparosJugador[index] ;
-
-    //Comprobar si hay colisiones
-    if (this.hitbox.position.x <= disparo.x +disparo.width &&
-        this.hitbox.position.x + this.hitbox.width>= disparo.x &&
-        this.hitbox.position.y + this.hitbox.height>= disparo.y &&
-        this.hitbox.position.y <= disparo.y + disparo.height) {
-            
-             //Si recibe un disparo se ejecuta el método 
-             this.recibirGolpe(index);
-
-    }
     
-
-
-}
-  }
+       checkCollisions() {
+        for (let index = 0; index < this.disparosJugador.length; index++) {
+            const disparo = this.disparosJugador[index];
+    
+            if (this.hitbox.position.x <= disparo.x + disparo.width &&
+                this.hitbox.position.x + this.hitbox.width >= disparo.x &&
+                this.hitbox.position.y <= disparo.y + disparo.height &&
+                this.hitbox.position.y + this.hitbox.height >= disparo.y) {
+    
+                this.recibirGolpe(disparo, index);
+            }
+        }
+    }
  
   //ACCÍON cuando el enemigo recibe un golpe
   recibirGolpe(disparo,index){
