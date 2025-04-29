@@ -185,7 +185,7 @@ class Player extends Sprite {
     if (keys.k.pressed && idArmaActual == '1') {
       let bulletSpeed = 500;
       let bulletDelay = 50;
-      let damage = 1;
+      let damage = 0.5;
       let bulletX = this.position.x + this.width / 2;
       let bulletY = this.position.y + 80;
       this.bulletController.shoot({
