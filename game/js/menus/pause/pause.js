@@ -51,7 +51,7 @@ const settingsHeight = 80;
 let settingsX, settingsY;
 
 //Menú de pausa
-function drawPauseMenu() {
+function drawPauseMenu(context) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     
     //Menú
@@ -67,6 +67,8 @@ function drawPauseMenu() {
     const exitIconWidth = 55; 
     const exitIconHeight = 55;
 
+    console.log(canvas.width / 2)
+    console.log(canvas.height / 2) 
 
     //Centro de canvas
     const centerX = canvas.width / 2;
@@ -148,7 +150,7 @@ let effectsX, effectsY;
 
 
 //Menú de Ajustes
-function drawSettingsMenu() {
+function drawSettingsMenu(context) {
     if (!settingsOpen) return;
 
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -189,12 +191,12 @@ function drawSettingsMenu() {
     const menuY = canvas.height / 2 - menuHeight / 2;
 
     //Dibujar BG
-    context.globalAplha = 0.09
+    context.globalAlpha = 0.09
     context.fillStyle = "black";
     context.fillRect(0,0, canvas.width, canvas.height);
 
     //Dibujar menú
-    context.globalAplha = 1
+    context.globalAlpha = 1
     context.drawImage(pauseMenuImage, imgX, imgY, imgWidth, imgHeight);
     // console.log(imgX, imgY, 'BG')
 
@@ -221,8 +223,8 @@ function drawSettingsMenu() {
     context.textAlign = "center";
     context.shadowColor = "cyan"; //Efecto neon
     context.shadowBlur = 15;
-    context.fillText("Eliminar", centerX, centerY - 35);
-    context.fillText("Progreso", centerX, centerY - 13);
+    context.fillText("Reiniciar", centerX, centerY - 35);
+    context.fillText("Partida", centerX, centerY - 13);
 
     //Effects Button
     context.drawImage(settingsMusicButton, effectsX, effectsY, effectsWidth, effectsHeight);
@@ -250,47 +252,57 @@ function drawSettingsMenu() {
 
 
 // Event listeners para Menú completo
+// Detectar click en el canvas
 window.addEventListener("click", (event) => {
     const rect = canvas.getBoundingClientRect();
+    const rectwidth = rect.right - rect.left;
+    const rectHeight = rect.bottom - rect.top;
+    const ratioWidth = rectwidth / canvas.width;
+    const ratioHeight = rectHeight / canvas.height;
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
 
-    // Ahora ajustamos las posiciones de los botones para que se correspondan correctamente con las coordenadas del mouse.
-    // Si está en pantalla completa, las coordenadas del canvas cambiarán
+    console.log(`Click detectado en X: ${mouseX}, Y: ${mouseY}`); // Verifica la posición del clic
+    console.log(`Boton X ${buttonX}, Boton Y ${buttonY}, weidth ${buttonWidth}, h ${buttonHeight}`)
 
+    // Si el juego está en pausa
     if (!settingsOpen && paused) {
+        // Botón de play
         if (
-            mouseX >= buttonX &&
-            mouseX <= buttonX + buttonWidth &&
-            mouseY >= buttonY &&
-            mouseY <= buttonY + buttonHeight
+            mouseX >= buttonX * ratioWidth &&
+            mouseX <= (buttonX + buttonWidth) * ratioWidth &&
+            mouseY >= buttonY * ratioHeight &&
+            mouseY <= (buttonY + buttonHeight) * ratioHeight
         ) {
           
-          if (!isAnimating) {
-                paused = false;
-                isAnimating = true;
-                animate(); // Play
-            }
+            console.log("Botón Play clickeado");
+            paused = false;
+            isAnimating = false;
+            requestAnimationFrame(animate);  // Reactivar la animación
+          
         }
 
+        // Botón de configuración
         if (
-            mouseX >= settingsX &&
-            mouseX <= settingsX + settingsWidth &&
-            mouseY >= settingsY &&
-            mouseY <= settingsY + settingsHeight
+            mouseX >= settingsX * ratioWidth &&
+            mouseX <= (settingsX + settingsWidth) * ratioWidth &&
+            mouseY >= settingsY  * ratioHeight &&
+            mouseY <= (settingsY + settingsHeight) * ratioHeight
         ) {
+            console.log("Botón Settings clickeado");
             settingsOpen = true;
-            drawSettingsMenu(); // Draw settings menu
+            drawSettingsMenu(context);  // Dibujar menú de configuración
         }
 
+        // Botón de salir
         if (
-            mouseX >= exitX &&
-            mouseX <= exitX + exitWidth &&
-            mouseY >= exitY &&
-            mouseY <= exitY + exitHeight
+            mouseX >= exitX * ratioWidth &&
+            mouseX <= (exitX + exitWidth) * ratioWidth &&
+            mouseY >= exitY * ratioHeight &&
+            mouseY <= (exitY + exitHeight) * ratioHeight
         ) {
-            console.log("Salir al Menú...");
-            console.log("Lives: ", player.lives)
+            console.log("Botón Salir clickeado");
+            // Lógica de salida...
             const id_usuario = localStorage.getItem('id_usuario');
             console.log("ID_USUARIO: ", id_usuario);
             createPartida( // id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, listaCuartosAleatorios
@@ -303,54 +315,200 @@ window.addEventListener("click", (event) => {
                 listaCuartosAleatorios,
                 false
             );
-            window.location.href = "/html/principal_menu.html";
+            window.location.href = "play_screen.html"
         }
-    } else if (settingsOpen) {
+    }
+
+    // Si el menú de configuración está abierto
+    if (settingsOpen) {
         const menuWidth = 500;
         const menuHeight = 350;
         const menuX = canvas.width / 2 - menuWidth / 2;
         const menuY = canvas.height / 2 - menuHeight / 2;
 
+        // Botón de cerrar configuración
         const closeX = menuX + menuWidth;
         const closeY = menuY + 10;
         const closeSize = 40;
 
         if (
-            mouseX >= closeX &&
-            mouseX <= closeX + closeSize &&
-            mouseY >= closeY &&
-            mouseY <= closeY + closeSize
+            mouseX >= closeX * ratioWidth &&
+            mouseX <= (closeX + closeSize) * ratioWidth&&
+            mouseY >= closeY * ratioHeight &&
+            mouseY <= (closeY + closeSize) * ratioHeight
         ) {
+            console.log("Cerrar configuración clickeado");
             settingsOpen = false;
-            drawPauseMenu();
+            drawPauseMenu(context);  // Redibujar el menú de pausa
         }
 
+        // Botón de música
         if (
-            mouseX >= buttonX &&
-            mouseX <= buttonX + buttonWidth &&
-            mouseY >= buttonY &&
-            mouseY <= buttonY + buttonHeight
+            mouseX >= buttonX * ratioWidth &&
+            mouseX <= (buttonX + buttonWidth) * ratioWidth &&
+            mouseY >= buttonY * ratioHeight &&
+            mouseY <= (buttonY + buttonHeight) * ratioHeight
         ) {
-            sonidoMusica.muted();
-            console.log("Music");
+            console.log("Botón Música clickeado");
+            sonidoMusica.muted();  // Mutear o activar música
         }
 
+        // Botón de reiniciar progreso
         if (
-            mouseX >= resetX &&
-            mouseX <= resetX + resetWidth &&
-            mouseY >= resetY &&
-            mouseY <= resetY + resetHeight
+            mouseX >= resetX * ratioWidth &&
+            mouseX <= (resetX + resetWidth) * ratioWidth &&
+            mouseY >= resetY * ratioHeight &&
+            mouseY <= (resetY + resetHeight) * ratioHeight
         ) {
-            console.log("Reset");
+            console.log("Botón Reset clickeado");
+            // Lógica para reiniciar partida
+            const id_usuario = localStorage.getItem('id_usuario');
+      console.log("ID_USUARIO: ", id_usuario);
+      createPartida( // id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, listaCuartosAleatorios
+          id_usuario,
+          player.monstruos_eliminados,
+          player.monstruos_eliminados * 10,
+          player.lives,
+          llaves,
+          itemsActivos,
+          listaCuartosAleatorios,
+          true
+      );
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      gameOver = false;
+      paused = false;
+      //Reiniciar el estado del juego
+
+      //Generar nueva disposición de cuartos
+      console.log("...........");
+
+      cuartoJefeFinal = new Cuarto({
+        idCuarto: 9,
+        cuartoSpawn: false,
+        cuartoJefeFinal: true,
+        posicionJugadorSuperior: { x: 562, y: 30 },
+        posicionJugadorInferior: { x: 641, y: 720 },
+        posicionJugadorIzquierda: { x: 97, y: 670 },
+        posicionJugadorDerecha: { x: 1220, y: 235 },
+        colisiones: level_cuarto_final_boss,
+        imgBackground: "../../assets/niveles_fondo/mapa_jefe_final.png",
+      });
+
+      cuartoSpawn = new Cuarto({
+        idCuarto: 8,
+        cuartoSpawn: true,
+        cuartoJefeFinal: false,
+        posicionJugadorSuperior: { x: 514, y: 56 },
+        posicionJugadorInferior: { x: 641, y: 720 },
+        posicionJugadorIzquierda: { x: 97, y: 670 },
+        posicionJugadorDerecha: { x: 1220, y: 235 },
+        colisiones: level_cuarto_spawn,
+        imgBackground: "../../assets/niveles_fondo/cuarto_spawn.png",
+      });
+      cuarto1 = new Cuarto({
+        idCuarto: 1,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+        posicionJugadorSuperior: { x: 106, y: 82 },
+        posicionJugadorInferior: { x: 520, y: 665 },
+        posicionJugadorIzquierda: { x: 90, y: 691 },
+        posicionJugadorDerecha: { x: 1220, y: 691 },
+        colisiones: level_cuarto1,
+        imgBackground: "../../assets/niveles_fondo/Scene1.png",
+      });
+
+      cuarto2 = new Cuarto({
+        idCuarto: 2,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+
+        posicionJugadorSuperior: { x: 687, y: 150 },
+        posicionJugadorInferior: { x: 449, y: 680 },
+        posicionJugadorIzquierda: { x: 140, y: 242 },
+        posicionJugadorDerecha: { x: 1120, y: 247 },
+
+        colisiones: level_cuarto2,
+        imgBackground: "../../assets/niveles_fondo/Scene2.png",
+      });
+
+      cuarto3 = new Cuarto({
+        idCuarto: 3,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+
+        posicionJugadorSuperior: { x: 672, y: 182 },
+        posicionJugadorInferior: { x: 927, y: 670 },
+        posicionJugadorIzquierda: { x: 191, y: 270 },
+        posicionJugadorDerecha: { x: 1220, y: 691 },
+
+        colisiones: level_cuarto3,
+        imgBackground: "../../assets/niveles_fondo/Scene3.png",
+      });
+
+      cuarto4 = new Cuarto({
+        idCuarto: 4,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+        posicionJugadorSuperior: { x: 544, y: 30 },
+        posicionJugadorInferior: { x: 496, y: 670 },
+        posicionJugadorIzquierda: { x: 97, y: 670 },
+        posicionJugadorDerecha: { x: 1120, y: 235 },
+        colisiones: colisionesNivel4,
+        imgBackground: "../../assets/niveles_fondo/cuarto_giff.gif",
+      });
+      cuarto5 = new Cuarto({
+        idCuarto: 5,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+        posicionJugadorSuperior: { x: 608, y: 171 },
+        posicionJugadorInferior: { x: 286, y: 690 },
+        posicionJugadorIzquierda: { x: 90, y: 371 },
+        posicionJugadorDerecha: { x: 1220, y: 691 },
+        colisiones: level_cuarto5,
+        imgBackground: "../../assets/niveles_fondo/Scene4.png",
+      });
+      cuarto6 = new Cuarto({
+        idCuarto: 6,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+        posicionJugadorSuperior: { x: 673, y: 110 },
+        posicionJugadorInferior: { x: 560, y: 670 },
+        posicionJugadorIzquierda: { x: 89, y: 674 },
+        posicionJugadorDerecha: { x: 1220, y: 674 },
+        colisiones: level_cuarto6,
+        imgBackground: "../../assets/niveles_fondo/Scene5.png",
+      });
+      cuarto7 = new Cuarto({
+        idCuarto: 7,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+        posicionJugadorSuperior: { x: 674, y: 175 },
+        posicionJugadorInferior: { x: 560, y: 670 },
+        posicionJugadorIzquierda: { x: 90, y: 674 },
+        posicionJugadorDerecha: { x: 1250, y: 674 },
+        colisiones: level_cuarto7,
+        imgBackground: "../../assets/niveles_fondo/Scene6.png",
+      });
+      reiniciarJuego();
+      //
+      // Reset Level
+      // 
+      if (gameOverAnimationId) {
+        cancelAnimationFrame(gameOverAnimationId);
+        gameOverAnimationId = null;
+      }
         }
 
+        // Botón de efectos de sonido
         if (
-            mouseX >= effectsX &&
-            mouseX <= effectsX + effectsWidth &&
-            mouseY >= effectsY &&
-            mouseY <= effectsY + effectsHeight
+            mouseX >= effectsX * ratioWidth &&
+            mouseX <= (effectsX + effectsWidth) * ratioWidth &&
+            mouseY >= effectsY * ratioHeight &&
+            mouseY <= (effectsY + effectsHeight) * ratioHeight
         ) {
-            console.log("Effects");
+            console.log("Botón Efectos clickeado");
+            // Lógica para efectos de sonido
         }
     }
 });

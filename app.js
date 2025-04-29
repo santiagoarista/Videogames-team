@@ -22,6 +22,7 @@ async function connectToDB()
         host:'localhost',
         user:'root', // Cambiar user y constraseña si quieren usarlo
         password:'',
+
         database:'nineshions'
     })
 }

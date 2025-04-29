@@ -21,6 +21,7 @@ let lKeyProcessed = false;
 let isAnimating = false;
 let gameOverAnimationId = null;
 
+
 // Tamaño de renderizado 16:9 NO MODIFICAR
 canvas.width = 1344;
 canvas.height = 768;
@@ -94,15 +95,19 @@ function animate(timeStamp) {
 
   //Game Over Pantalla
   if (gameOver) {
-    isAnimating = false; // Dejar de animar si está gameOver
-    drawGameOverScreen(); //Todo lo relacionado a gameOver está en gameOver.js
+    paused = false;
+    gameOver = true;
+    drawGameOverScreen()
+    isAnimating = false;
     return;
   }
-//
- // //Pausar Juegoa
+
+  //Pausar Juego
   if (paused) {
-    isAnimating = false; // Dejar de animar si está en pausa
-    drawPauseMenu(); //Todo lo relacionado a pausa y ajustes está en pause.js
+    paused = true;
+    drawPauseMenu(context);
+    isAnimating = false; // Stop animating when paused
+    return;
   }
 
   if (lastTime === 0) {
