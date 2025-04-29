@@ -34,6 +34,11 @@ window.addEventListener("keydown", (event) => {
       showMap = !showMap; // cambiar el showmap a verdadero o falso
       break;
 
+    case "r":
+      showCredits = true; // cambiar el showmap a verdadero o falso
+      break;
+
+
     //PAUSAR JUEGO
     case "p":
       if (gameOver) {

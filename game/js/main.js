@@ -13,7 +13,7 @@ let llaves = [true, true, true, true, true,true, true, true, true];
 let paused = false;
 let itemsEnJuego = []; //obtenerListaItems()
 let itemsActivos = [false, false, false];
-let idArmaActual = "2";
+let idArmaActual = "3";
 let disparosJugador = [];
 let disparosEnemigos = [];
 let gameOver = false;
@@ -25,6 +25,14 @@ let gameOverAnimationId = null;
 // Tamaño de renderizado 16:9 NO MODIFICAR
 canvas.width = 1344;
 canvas.height = 768;
+
+//Variables para pantalla de creditos
+let showCredits = false;
+let creditsY = canvas.height; // Empiezan fuera de la pantalla, abajo
+let creditsSpeed = 50; // Velocidad en píxeles por segundo
+let creditsFinished = false;
+let restartButton = null;
+
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
 //TODO: BORRAR  DESPUES DE PRUEBAS JEFEFINAL
 puertaTestJefeFinal = new PuertaJefeFinal({
@@ -116,16 +124,18 @@ function animate(timeStamp) {
     return;
   }
 
-
-  requestAnimationFrame(animate);
-
   // Calcular delta time (tiempo transcurrido en segundos)
-
-
-  
   const deltaTime = Math.min((timeStamp - lastTime) / 1000, 0.1);
   lastTime = timeStamp;
 
+  if (showCredits) {
+    drawCreditsScreen(deltaTime);
+    requestAnimationFrame(animate);
+    return;
+  }
+
+
+  requestAnimationFrame(animate);
 
   context.shadowBlur = 0;
   context.shadowColor = "transparent";
@@ -298,6 +308,10 @@ context.restore();
     drawMap(listaCuartosAleatorios);
   }
   
+  //Creditos despues de matar al jefe
+  if (currentLevel === 9 && enemigos.length > 0 && enemigos.every(enemigo => enemigo.health <= 0)) {
+    showCredits = true;
+  }
 
   dibujarArmaActual();
   
