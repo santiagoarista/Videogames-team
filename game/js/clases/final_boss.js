@@ -91,8 +91,6 @@ class FinalBoss extends Sprite{
         this.updateHitbox();
         this.checkCollisions();
         this.updateHitbox();
-        this.checkVerticalCollisions();
-    
   
     }
     //Método para cambiar de animación
