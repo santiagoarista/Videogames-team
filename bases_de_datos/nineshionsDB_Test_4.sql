@@ -51,50 +51,50 @@ INSERT INTO Usuario (correo, contrasena, monstruos_eliminados, partidas_jugadas,
 
 
 -- Insert 30+ dummy game sessions with varied data
-INSERT INTO Partida (id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, mapa, terminada) VALUES
+INSERT INTO Partida (id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, mapa, terminada, ganada) VALUES
 -- Player 1 games
-(1, 15, 1200, 3, JSON_ARRAY(true, false, true, false, false, false, true, false, false), JSON_ARRAY(true, false, true), JSON_OBJECT(), FALSE),
-(1, 8, 800, 2, JSON_ARRAY(false, false, true, false, false, false, false, false, false), JSON_ARRAY(false, true, false), JSON_OBJECT(), FALSE),
-(1, 20, 1500, 3, JSON_ARRAY(true, true, true, false, false, false, true, false, false), JSON_ARRAY(true, true, false), JSON_OBJECT(), FALSE),
-(1, 12, 950, 3, JSON_ARRAY(false, false, false, true, false, false, false, true, false), JSON_ARRAY(false, false, true), JSON_OBJECT(), FALSE),
+(1, 15, 1200, 3, JSON_ARRAY(true, false, true, false, false, false, true, false, false), JSON_ARRAY(true, false, true), JSON_OBJECT(), FALSE, FALSE),
+(1, 8, 800, 2, JSON_ARRAY(false, false, true, false, false, false, false, false, false), JSON_ARRAY(false, true, false), JSON_OBJECT(), FALSE, FALSE),
+(1, 20, 1500, 3, JSON_ARRAY(true, true, true, false, false, false, true, false, false), JSON_ARRAY(true, true, false), JSON_OBJECT(), FALSE, FALSE),
+(1, 12, 950, 3, JSON_ARRAY(false, false, false, true, false, false, false, true, false), JSON_ARRAY(false, false, true), JSON_OBJECT(), FALSE, FALSE),
 
 -- Player 2 games
-(2, 5, 500, 3, JSON_ARRAY(false, false, false, false, false, false, false, false, false), JSON_ARRAY(false, false, false), JSON_OBJECT(),FALSE),
-(2, 10, 750, 2, JSON_ARRAY(true, false, false, false, false, false, false, false, false), JSON_ARRAY(true, false, false), JSON_OBJECT(), FALSE),
-(2, 7, 600, 2, JSON_ARRAY(false, true, false, false, false, false, false, false, false), JSON_ARRAY(false, true, false), JSON_OBJECT(), FALSE),
+(2, 5, 500, 3, JSON_ARRAY(false, false, false, false, false, false, false, false, false), JSON_ARRAY(false, false, false), JSON_OBJECT(),FALSE, FALSE),
+(2, 10, 750, 2, JSON_ARRAY(true, false, false, false, false, false, false, false, false), JSON_ARRAY(true, false, false), JSON_OBJECT(), FALSE, FALSE),
+(2, 7, 600, 2, JSON_ARRAY(false, true, false, false, false, false, false, false, false), JSON_ARRAY(false, true, false), JSON_OBJECT(), FALSE, FALSE),
 
 -- Pro gamer games
-(3, 25, 2500, 2, JSON_ARRAY(true, true, true, true, true, false, false, false, false), JSON_ARRAY(true, true, true), JSON_OBJECT(), FALSE),
-(3, 30, 3000, 2, JSON_ARRAY(true, true, true, true, true, true, false, false, false), JSON_ARRAY(true, true, true), JSON_OBJECT(), FALSE),
-(3, 18, 2000, 2, JSON_ARRAY(true, true, false, true, false, false, true, false, false), JSON_ARRAY(true, false, true), JSON_OBJECT(), FALSE),
-(3, 22, 2300, 2, JSON_ARRAY(true, true, true, false, true, false, false, true, false), JSON_ARRAY(false, true, true), JSON_OBJECT(), FALSE),
+(3, 25, 2500, 2, JSON_ARRAY(true, true, true, true, true, false, false, false, false), JSON_ARRAY(true, true, true), JSON_OBJECT(), FALSE, FALSE),
+(3, 30, 3000, 2, JSON_ARRAY(true, true, true, true, true, true, false, false, false), JSON_ARRAY(true, true, true), JSON_OBJECT(), FALSE, FALSE),
+(3, 18, 2000, 2, JSON_ARRAY(true, true, false, true, false, false, true, false, false), JSON_ARRAY(true, false, true), JSON_OBJECT(), FALSE, FALSE),
+(3, 22, 2300, 2, JSON_ARRAY(true, true, true, false, true, false, false, true, false), JSON_ARRAY(false, true, true), JSON_OBJECT(), FALSE, FALSE),
 
 -- Newbie games
-(4, 3, 300, 1, JSON_ARRAY(false, false, false, false, false, false, false, false, false), JSON_ARRAY(false, false, false), JSON_OBJECT(), FALSE),
-(4, 5, 400, 1, JSON_ARRAY(false, false, true, false, false, false, false, false, false), JSON_ARRAY(true, false, false), JSON_OBJECT(), FALSE),
+(4, 3, 300, 1, JSON_ARRAY(false, false, false, false, false, false, false, false, false), JSON_ARRAY(false, false, false), JSON_OBJECT(), FALSE, FALSE),
+(4, 5, 400, 1, JSON_ARRAY(false, false, true, false, false, false, false, false, false), JSON_ARRAY(true, false, false), JSON_OBJECT(), FALSE, FALSE),
 
 -- Tester games
-(5, 3, 300, 1, JSON_ARRAY(false, false, false, false, false, false, false, false, false), JSON_ARRAY(false, false, false), JSON_OBJECT(), FALSE),
-(5, 6, 500, 3, JSON_ARRAY(false, false, false, false, true, false, false, false, false), JSON_ARRAY(false, true, false), JSON_OBJECT(), FALSE),
+(5, 3, 300, 1, JSON_ARRAY(false, false, false, false, false, false, false, false, false), JSON_ARRAY(false, false, false), JSON_OBJECT(), FALSE, FALSE),
+(5, 6, 500, 3, JSON_ARRAY(false, false, false, false, true, false, false, false, false), JSON_ARRAY(false, true, false), JSON_OBJECT(), FALSE, FALSE),
 
 -- Additional games for other players
-(6, 40, 3500, 3, JSON_ARRAY(true, true, true, true, true, true, true, true, true), JSON_ARRAY(true, true, true), JSON_OBJECT(), FALSE),
-(7, 8, 650, 3, JSON_ARRAY(false, false, false, false, false, true, false, false, false), JSON_ARRAY(false, false, true), JSON_OBJECT(), FALSE),
-(8, 15, 1200, 2, JSON_ARRAY(true, false, true, false, true, false, true, false, true), JSON_ARRAY(true, true, false), JSON_OBJECT(), FALSE),
-(9, 10, 850, 1, JSON_ARRAY(false, true, false, true, false, true, false, true, false), JSON_ARRAY(false, true, true), JSON_OBJECT(), FALSE),
-(10, 28, 2700, 1, JSON_ARRAY(true, true, true, true, false, false, true, true, true), JSON_ARRAY(true, false, true), JSON_OBJECT(), FALSE),
-(11, 12, 950, 1, JSON_ARRAY(false, false, true, true, false, false, true, false, false), JSON_ARRAY(true, false, false), JSON_OBJECT(), FALSE),
-(12, 9, 700, 1, JSON_ARRAY(true, false, false, false, true, false, false, false, true), JSON_ARRAY(false, true, false), JSON_OBJECT(), FALSE),
-(13, 20, 1800, 1, JSON_ARRAY(true, true, false, true, false, true, false, true, false), JSON_ARRAY(true, true, true), JSON_OBJECT(), FALSE),
-(14, 14, 1100, 1, JSON_ARRAY(false, true, true, false, true, true, false, true, true), JSON_ARRAY(false, false, true), JSON_OBJECT(), FALSE),
-(15, 25, 2400, 1, JSON_ARRAY(true, true, true, false, false, true, true, true, false), JSON_ARRAY(true, true, false), JSON_OBJECT(), FALSE),
-(16, 18, 1600, 3, JSON_ARRAY(false, true, true, true, false, false, true, true, true), JSON_ARRAY(false, true, true), JSON_OBJECT(), FALSE),
-(17, 22, 2100, 3, JSON_ARRAY(true, false, true, true, true, false, true, false, true), JSON_ARRAY(true, false, false), JSON_OBJECT(), FALSE),
-(18, 16, 1400, 3, JSON_ARRAY(true, true, false, false, true, true, false, false, true), JSON_ARRAY(false, true, true), JSON_OBJECT(), FALSE),
-(19, 11, 900, 3, JSON_ARRAY(false, false, true, true, true, false, false, true, true), JSON_ARRAY(true, false, true), JSON_OBJECT(), FALSE),
-(20, 35, 3200, 2, JSON_ARRAY(true, true, true, true, true, true, true, true, false), JSON_ARRAY(true, true, true), JSON_OBJECT(), FALSE),
-(21, 50, 4500, 2, JSON_ARRAY(true, true, true, true, true, true, true, true, true), JSON_ARRAY(true, true, true), JSON_OBJECT(), FALSE),
-(22, 6, 550, 2, JSON_ARRAY(false, false, false, true, false, false, false, false, true), JSON_ARRAY(false, false, true), JSON_OBJECT(), FALSE);
+(6, 40, 3500, 3, JSON_ARRAY(true, true, true, true, true, true, true, true, true), JSON_ARRAY(true, true, true), JSON_OBJECT(), FALSE, FALSE),
+(7, 8, 650, 3, JSON_ARRAY(false, false, false, false, false, true, false, false, false), JSON_ARRAY(false, false, true), JSON_OBJECT(), FALSE, FALSE),
+(8, 15, 1200, 2, JSON_ARRAY(true, false, true, false, true, false, true, false, true), JSON_ARRAY(true, true, false), JSON_OBJECT(), FALSE, FALSE),
+(9, 10, 850, 1, JSON_ARRAY(false, true, false, true, false, true, false, true, false), JSON_ARRAY(false, true, true), JSON_OBJECT(), FALSE, FALSE),
+(10, 28, 2700, 1, JSON_ARRAY(true, true, true, true, false, false, true, true, true), JSON_ARRAY(true, false, true), JSON_OBJECT(), FALSE, FALSE),
+(11, 12, 950, 1, JSON_ARRAY(false, false, true, true, false, false, true, false, false), JSON_ARRAY(true, false, false), JSON_OBJECT(), FALSE, FALSE),
+(12, 9, 700, 1, JSON_ARRAY(true, false, false, false, true, false, false, false, true), JSON_ARRAY(false, true, false), JSON_OBJECT(), FALSE, FALSE),
+(13, 20, 1800, 1, JSON_ARRAY(true, true, false, true, false, true, false, true, false), JSON_ARRAY(true, true, true), JSON_OBJECT(), FALSE, FALSE),
+(14, 14, 1100, 1, JSON_ARRAY(false, true, true, false, true, true, false, true, true), JSON_ARRAY(false, false, true), JSON_OBJECT(), FALSE, FALSE),
+(15, 25, 2400, 1, JSON_ARRAY(true, true, true, false, false, true, true, true, false), JSON_ARRAY(true, true, false), JSON_OBJECT(), FALSE, FALSE),
+(16, 18, 1600, 3, JSON_ARRAY(false, true, true, true, false, false, true, true, true), JSON_ARRAY(false, true, true), JSON_OBJECT(), FALSE, FALSE),
+(17, 22, 2100, 3, JSON_ARRAY(true, false, true, true, true, false, true, false, true), JSON_ARRAY(true, false, false), JSON_OBJECT(), FALSE, FALSE),
+(18, 16, 1400, 3, JSON_ARRAY(true, true, false, false, true, true, false, false, true), JSON_ARRAY(false, true, true), JSON_OBJECT(), FALSE, FALSE),
+(19, 11, 900, 3, JSON_ARRAY(false, false, true, true, true, false, false, true, true), JSON_ARRAY(true, false, true), JSON_OBJECT(), FALSE, FALSE),
+(20, 35, 3200, 2, JSON_ARRAY(true, true, true, true, true, true, true, true, false), JSON_ARRAY(true, true, true), JSON_OBJECT(), FALSE, FALSE),
+(21, 50, 4500, 2, JSON_ARRAY(true, true, true, true, true, true, true, true, true), JSON_ARRAY(true, true, true), JSON_OBJECT(), FALSE, FALSE),
+(22, 6, 550, 2, JSON_ARRAY(false, false, false, true, false, false, false, false, true), JSON_ARRAY(false, false, true), JSON_OBJECT(), FALSE, FALSE);
 
 -- TEST QUERIES --
 
@@ -161,20 +161,6 @@ WHERE
   
 -- Triggers --
 
--- 1. Calculate experience for players when monstruos_eliminados changes
-
-DELIMITER $$
-
-CREATE TRIGGER trigger_actualizar_experiencia_partida
-AFTER INSERT ON Partida
-FOR EACH ROW
-BEGIN
-  UPDATE Usuario
-  SET experiencia = experiencia + (NEW.monstruos_eliminados * 10)
-  WHERE id_usuario = NEW.id_usuario;
-END;
-
-DELIMITER ;
 
 DROP TRIGGER IF EXISTS before_update_partida;
 
@@ -199,6 +185,7 @@ BEGIN
       SELECT COUNT(*)
       FROM Partida
       WHERE id_usuario = NEW.id_usuario
+        AND terminada = TRUE
     ),
     
     -- Update the total number of games won by counting only the finished Partida records
@@ -206,7 +193,13 @@ BEGIN
       SELECT COUNT(*)
       FROM Partida
       WHERE id_usuario = NEW.id_usuario
-        AND terminada = TRUE
+        AND ganada = TRUE
+    ),
+    
+    experiencia = (
+		SELECT COALESCE(SUM(monstruos_eliminados), 0) * 10
+      FROM Partida
+      WHERE id_usuario = NEW.id_usuario
     )
   
   -- Make sure we only update the Usuario related to the updated Partida

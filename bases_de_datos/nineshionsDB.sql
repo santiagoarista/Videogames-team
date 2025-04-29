@@ -41,6 +41,7 @@ CREATE TABLE Partida (
   items_encontrados JSON NOT NULL DEFAULT (JSON_ARRAY(false, false, false)),
   mapa JSON NOT NULL DEFAULT (JSON_ARRAY()),
   terminada BOOLEAN NOT NULL DEFAULT FALSE,
+  ganada BOOLEAN NOT NULL DEFAULT FALSE,
   PRIMARY KEY (id_partida),
   CONSTRAINT fk_partida_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
