@@ -9,9 +9,13 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="app">
     <div>
-        <p id="loginMessage" style="color: red; display: none; margin-bottom: 20px;"></p>
-        <img src="../assets/web/Logo.png" alt="">
+
+        <p id="loginMessage" style="
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
+            color: rgb(255, 255, 255); display: none; margin-bottom: 20px;"></p>
+        <img src="../assets/sprites/nine_logo.png" alt="Descripción de la imagen" width="300" class="logo">
 
         <div class="login-container">
             <label for="email">Correo Electrónico</label>
@@ -20,11 +24,35 @@
             <label for="password">Contraseña</label>
             <input type="password" id="password" name="password" required>
 
-            <button id="registerButton">Iniciar Sesion</button>
-            <button id="goToHomeButton" style="display: none;">Crear cuenta</button>
+            <button id="registerButton" class="boton_jugar">Iniciar Sesion</button>
+            <button id="goToHomeButton" style="display: none;" class="boton_jugar">Crear cuenta</button>
         </div>  
     </div>
-
+</div>
     <script src="../js/auth/iniciarSesion/login.js"></script>
+    <script type="module">
+        import { neonCursor } from 'https://unpkg.com/threejs-toys@0.0.8/build/threejs-toys.module.cdn.min.js';
+    
+        neonCursor({
+    el: document.getElementById('app'),
+    
+    shaderPoints: 16,
+    curvePoints: 10,
+    curveLerp: 0.5,
+    radius1: 5,
+    radius2: 2,
+    velocityTreshold: 30,
+    
+    
+    sleepRadiusX: 0,
+    sleepRadiusY: 0,
+    sleepTimeCoefX: 0,
+    sleepTimeCoefY: 0,
+    
+    
+    
+    });
+    
+    </script>
 </body>
 </html>

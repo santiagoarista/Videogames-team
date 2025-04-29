@@ -104,18 +104,25 @@ body {
     padding-right: 30px;
     padding-top: 10px;
     padding-bottom: 10px;
-    width: min-content;
-    border: 6px solid white;  
+    width: max-content;
+    border: 6px solid rgba(255, 255, 255, 0.959);  
     border-radius: 18px;  
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.295), 0 0 20px rgba(255, 255, 255, 0.249);
-    transition: all 0.3s ease;  /* Suaviza la transición del hover */
+    transition: all 0.3s ease; 
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.386), 0 0 16px rgba(255, 255, 255, 0.444);
   }
   
   .boton_jugar:hover {
-    
+    transition: all 0.3s ease; 
     background-color: white;  
     color: #08090F;           
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.6); /* Intensifica el brillo */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+  }
+  
+  .boton_jugar button:active {
+    transition: all 0.3s ease;
+    transform: scale(0.95);
   }
   a{
     text-decoration: none;
