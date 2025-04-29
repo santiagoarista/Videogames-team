@@ -33,7 +33,7 @@ const settingsResetButton = new Image();
 settingsResetButton.src = "../assets/menu/6 Buttons/2/2_06.png";
 
 const settingsEffectsButtonIcon = new Image();
-settingsEffectsButtonIcon.src = "../assets/menu/3 Icons/Icons/Icon_06.png";
+settingsEffectsButtonIcon.src = "../assets/menu/3 Icons/Icons/Icon_31.png";
 
 // Play Button. Globales para reusarlas en el eventListener
 const buttonWidth = 80;
