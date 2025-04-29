@@ -259,7 +259,23 @@ if (gameOver) {
 }
 
 function reiniciarJuego() {
-  // Limpiar el canvas
+
+  // Cancelar game over screen animation
+  if (gameOverAnimationId) {
+    cancelAnimationFrame(gameOverAnimationId);
+    gameOverAnimationId = null;
+  }
+
+  // Reset gameOver video
+  gameOverVideo.pause();
+  gameOverVideo.currentTime = 0;
+
+  // Reset flags
+  gameOver = false;
+  paused = false;
+  settingsOpen = false;
+
+  // Limpiar canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   // Reiniciar variables de estado

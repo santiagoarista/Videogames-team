@@ -223,8 +223,8 @@ function drawSettingsMenu(context) {
     context.textAlign = "center";
     context.shadowColor = "cyan"; //Efecto neon
     context.shadowBlur = 15;
-    context.fillText("Eliminar", centerX, centerY - 35);
-    context.fillText("Progreso", centerX, centerY - 13);
+    context.fillText("Reiniciar", centerX, centerY - 35);
+    context.fillText("Partida", centerX, centerY - 13);
 
     //Effects Button
     context.drawImage(settingsMusicButton, effectsX, effectsY, effectsWidth, effectsHeight);
@@ -303,6 +303,19 @@ window.addEventListener("click", (event) => {
         ) {
             console.log("Botón Salir clickeado");
             // Lógica de salida...
+            const id_usuario = localStorage.getItem('id_usuario');
+            console.log("ID_USUARIO: ", id_usuario);
+            createPartida( // id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, listaCuartosAleatorios
+                id_usuario,
+                player.monstruos_eliminados,
+                player.monstruos_eliminados * 10,
+                player.lives,
+                llaves,
+                itemsActivos,
+                listaCuartosAleatorios,
+                false
+            );
+            window.location.href = "play_screen.html"
         }
     }
 
@@ -348,7 +361,143 @@ window.addEventListener("click", (event) => {
             mouseY <= (resetY + resetHeight) * ratioHeight
         ) {
             console.log("Botón Reset clickeado");
-            // Lógica para reiniciar el progreso
+            // Lógica para reiniciar partida
+            const id_usuario = localStorage.getItem('id_usuario');
+      console.log("ID_USUARIO: ", id_usuario);
+      createPartida( // id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, listaCuartosAleatorios
+          id_usuario,
+          player.monstruos_eliminados,
+          player.monstruos_eliminados * 10,
+          player.lives,
+          llaves,
+          itemsActivos,
+          listaCuartosAleatorios,
+          true
+      );
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      gameOver = false;
+      paused = false;
+      //Reiniciar el estado del juego
+
+      //Generar nueva disposición de cuartos
+      console.log("...........");
+
+      cuartoJefeFinal = new Cuarto({
+        idCuarto: 9,
+        cuartoSpawn: false,
+        cuartoJefeFinal: true,
+        posicionJugadorSuperior: { x: 562, y: 30 },
+        posicionJugadorInferior: { x: 641, y: 720 },
+        posicionJugadorIzquierda: { x: 97, y: 670 },
+        posicionJugadorDerecha: { x: 1220, y: 235 },
+        colisiones: level_cuarto_final_boss,
+        imgBackground: "../../assets/niveles_fondo/mapa_jefe_final.png",
+      });
+
+      cuartoSpawn = new Cuarto({
+        idCuarto: 8,
+        cuartoSpawn: true,
+        cuartoJefeFinal: false,
+        posicionJugadorSuperior: { x: 514, y: 56 },
+        posicionJugadorInferior: { x: 641, y: 720 },
+        posicionJugadorIzquierda: { x: 97, y: 670 },
+        posicionJugadorDerecha: { x: 1220, y: 235 },
+        colisiones: level_cuarto_spawn,
+        imgBackground: "../../assets/niveles_fondo/cuarto_spawn.png",
+      });
+      cuarto1 = new Cuarto({
+        idCuarto: 1,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+        posicionJugadorSuperior: { x: 106, y: 82 },
+        posicionJugadorInferior: { x: 520, y: 665 },
+        posicionJugadorIzquierda: { x: 90, y: 691 },
+        posicionJugadorDerecha: { x: 1220, y: 691 },
+        colisiones: level_cuarto1,
+        imgBackground: "../../assets/niveles_fondo/Scene1.png",
+      });
+
+      cuarto2 = new Cuarto({
+        idCuarto: 2,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+
+        posicionJugadorSuperior: { x: 687, y: 150 },
+        posicionJugadorInferior: { x: 449, y: 680 },
+        posicionJugadorIzquierda: { x: 140, y: 242 },
+        posicionJugadorDerecha: { x: 1120, y: 247 },
+
+        colisiones: level_cuarto2,
+        imgBackground: "../../assets/niveles_fondo/Scene2.png",
+      });
+
+      cuarto3 = new Cuarto({
+        idCuarto: 3,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+
+        posicionJugadorSuperior: { x: 672, y: 182 },
+        posicionJugadorInferior: { x: 927, y: 670 },
+        posicionJugadorIzquierda: { x: 191, y: 270 },
+        posicionJugadorDerecha: { x: 1220, y: 691 },
+
+        colisiones: level_cuarto3,
+        imgBackground: "../../assets/niveles_fondo/Scene3.png",
+      });
+
+      cuarto4 = new Cuarto({
+        idCuarto: 4,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+        posicionJugadorSuperior: { x: 544, y: 30 },
+        posicionJugadorInferior: { x: 496, y: 670 },
+        posicionJugadorIzquierda: { x: 97, y: 670 },
+        posicionJugadorDerecha: { x: 1120, y: 235 },
+        colisiones: colisionesNivel4,
+        imgBackground: "../../assets/niveles_fondo/cuarto_giff.gif",
+      });
+      cuarto5 = new Cuarto({
+        idCuarto: 5,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+        posicionJugadorSuperior: { x: 608, y: 171 },
+        posicionJugadorInferior: { x: 286, y: 690 },
+        posicionJugadorIzquierda: { x: 90, y: 371 },
+        posicionJugadorDerecha: { x: 1220, y: 691 },
+        colisiones: level_cuarto5,
+        imgBackground: "../../assets/niveles_fondo/Scene4.png",
+      });
+      cuarto6 = new Cuarto({
+        idCuarto: 6,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+        posicionJugadorSuperior: { x: 673, y: 110 },
+        posicionJugadorInferior: { x: 560, y: 670 },
+        posicionJugadorIzquierda: { x: 89, y: 674 },
+        posicionJugadorDerecha: { x: 1220, y: 674 },
+        colisiones: level_cuarto6,
+        imgBackground: "../../assets/niveles_fondo/Scene5.png",
+      });
+      cuarto7 = new Cuarto({
+        idCuarto: 7,
+        cuartoSpawn: false,
+        cuartoJefeFinal: false,
+        posicionJugadorSuperior: { x: 674, y: 175 },
+        posicionJugadorInferior: { x: 560, y: 670 },
+        posicionJugadorIzquierda: { x: 90, y: 674 },
+        posicionJugadorDerecha: { x: 1250, y: 674 },
+        colisiones: level_cuarto7,
+        imgBackground: "../../assets/niveles_fondo/Scene6.png",
+      });
+      reiniciarJuego();
+      //
+      // Reset Level
+      // 
+      if (gameOverAnimationId) {
+        cancelAnimationFrame(gameOverAnimationId);
+        gameOverAnimationId = null;
+      }
         }
 
         // Botón de efectos de sonido
