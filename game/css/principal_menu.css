@@ -1,63 +1,138 @@
-@font-face {
-    font-family: 'Arcade Gamer';
-    src: url('../../fonts/PressStart2P-vaV7.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
 
-body{
-    background-image: url("../assets/web/fondoWeb.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: 'Arcade Gamer', sans-serif;
-    margin: 0 auto;
-}
 
-.menu{
-    padding: 40px 0px 50px;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+  }
+  #app {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+
+  }
+
+  body {
+    margin-top: 0;
+    padding-top: 0;
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+  
+    min-height: 100vh;
+    min-width: 100vw;
     display: flex;
     flex-direction: column;
-    width: 40%;
-    align-items: center;
-    margin-left: 10px;
-}
+  
+    background-color: #08090f00;
+    color: white;
+    font-family: 'Inter', sans-serif;
+  
+  
+  }
+  
 
-.btn {
-    width: 42%;
+  #app canvas {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+  }
+
+  .contenido {
+    display: flex;
+    height: 100vh; 
+    width: 100vw;
+  }
+  
+  .menu {
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;        
+    justify-content: center;   
+    padding: 40px 0 50px;
+    width: 50%;
+    background-color: #08090f00;
+    box-sizing: border-box;
+  }
+  
+  
+  .btn {
+    width: 60%;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
-}
-
-.btn a{
-    width: 100%;
-}
-
-.btn a button{
-    padding: 12px 19px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    background-color: black;
-    color: #fff;
-    font-family: 'Arcade Gamer', sans-serif;
-    font-size: 14px;
-    word-wrap: break-word; /* Permite dividir palabras largas */
-    overflow: hidden;      /* Oculta el desbordamiento */
-}
-
-.btn button:hover{
-    background-color: rgb(194, 61, 17);
-    transition: all 0.3s ease;
-}
-
-.btn button:active {
-    background-color: rgb(255, 64, 0); /* Color más oscuro al presionar */
-    transform: scale(0.95); /* Reduce el tamaño */
   }
-
-img{
-    width: 80%;
-}
+ 
+  
+  
+  .imagen {
+    width: 50%; 
+    height: 100vh;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    transform: scale(.95);
+  }
+  
+  .imagen:hover {
+    transform: scale(1.0);
+    width: 50%; 
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .logo {
+   width: 40vw;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
+    transition: all 0.3s ease;
+    display: inline-block; 
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.879), 0 0 16px rgb(255, 255, 255);
+  }
+  .boton_jugar {
+    font-weight: bold;
+    font-size: 28px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: max-content;
+    border: 6px solid rgba(255, 255, 255, 0.959);  
+    border-radius: 18px;  
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.295), 0 0 20px rgba(255, 255, 255, 0.249);
+    transition: all 0.3s ease; 
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.386), 0 0 16px rgba(255, 255, 255, 0.444);
+  }
+  
+  .boton_jugar:hover {
+    transition: all 0.3s ease; 
+    background-color: white;  
+    color: #08090F;           
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+  }
+  
+  .boton_jugar button:active {
+    transition: all 0.3s ease;
+    transform: scale(0.95);
+  }
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
