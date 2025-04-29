@@ -6,10 +6,10 @@ let colisionesConvertidas = level_cuarto_final_boss.parse2D();
 //Convertimos la matriz de listas a una lista de clases de BloqueColision
 let bloquesColisiones = colisionesConvertidas.creatObjectsFrom2d();
 let puertas = [];
-let currentLevel = 9;
+let currentLevel = 8;
 let listaCuartosAleatorios = [];
 let showMap = false;
-let llaves = [true, true, true, true, true,true, true, true, true];
+let llaves = [true, true, true, true, true,true, true, true, false];
 let paused = false;
 let itemsEnJuego = []; //obtenerListaItems()
 let itemsActivos = [false, false, false];

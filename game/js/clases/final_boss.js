@@ -23,7 +23,8 @@ class FinalBoss extends Sprite{
         super({imgResource, frameRate, animations, frameBuffer: frameBuffer, scale:2, blinkRate:100})
         //propiedades de la clase
         this.index = index;
-        this.health =500;
+        this.health =300;
+        this.mxhealth =300;
         this.invencivilidad = invencivilidad;
     
         this.enemyBulletController = enemyBulletController;
@@ -257,7 +258,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
 
     // Disparar en espiral
     this.dispararEspiral(deltaTime);
-    if (this.health<400) {
+    if (this.health<200) {
         this.cambiarFase(2)
         
     }
@@ -275,8 +276,8 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
     }else{
         this.countdown = false; 
     }
-    const vidaMaxima = 500; 
-    const anchoBarraMaximo = 500; 
+    const vidaMaxima = this.mxhealth; 
+    const anchoBarraMaximo = 500 ;
     const altoBarra = 20; 
     const anchoActual = (this.health / vidaMaxima) * anchoBarraMaximo;
 
@@ -306,7 +307,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
 dispararEspiral(deltaTime){
     this.enemyBulletController.shootEspiral({
         bulletSpeed:600 ,
-        bulletDelay:40,
+        bulletDelay:50,
         damage:1,
          bulletX: this.position.x+100,
           bulletY: this.position.y+80,
