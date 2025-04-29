@@ -45,7 +45,9 @@ INSERT INTO Usuario (correo, contrasena, monstruos_eliminados, partidas_jugadas,
 ('legend@nineshions.com', 'password34', 750, 100, 90, 30000),
 ('rookie@nineshions.com', 'password35', 20, 5, 1, 300),
 ('mage@nineshions.com', 'password36', 200, 30, 25, 8000),
-('healer@nineshions.com', 'password37', 220, 35, 28, 8500);
+('healer@nineshions.com', 'password37', 220, 35, 28, 8500),
+('santiagoaristav@outlook.com', '1234', 0, 0, 0, 0),
+('a01029805@tec.mx', '1234', 0, 0, 0, 0);
 
 
 -- Insert 30+ dummy game sessions with varied data
@@ -179,7 +181,7 @@ DROP TRIGGER IF EXISTS before_update_partida;
 DELIMITER $$
 
 CREATE TRIGGER before_update_partida
-BEFORE UPDATE ON Partida
+AFTER INSERT ON Partida
 FOR EACH ROW
 BEGIN
   -- Update the Usuario table when a Partida is updated
