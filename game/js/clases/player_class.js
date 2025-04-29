@@ -130,7 +130,7 @@ class Player extends Sprite {
         this.countdownDelay -= 1;
       } else {
         this.countdown = false;
-        this.countdownDelay = 50;
+        this.countdownDelay = 75;
         this.visible = true;
       }
     }
@@ -423,7 +423,7 @@ class Player extends Sprite {
                   playSound("take_weapon", 0.5);
               } else {
                   console.log("no recogió arma");
-                  playSound("no_weapon", 0.1);
+                  playSound("no_weapon", 0.4);
               }
               idArmaActual = arma.idArma;
           } else {
@@ -431,6 +431,7 @@ class Player extends Sprite {
             this.mensajeTiempo = 2; // Mostrar el mensaje 2 segundos
             this.mensajePosX = arma.position.x - 120; 
             this.mensajePosY = arma.position.y - 40;
+            playSound("no_weapon", 0.4);
           }
         }
       }
@@ -463,6 +464,7 @@ class Player extends Sprite {
           item.efect(this); // Llama al efecto de las botas
         }
         itemsEnJuego.splice(index, 1);
+        playSound("bonus", 0.5)
       }
     }
   } //

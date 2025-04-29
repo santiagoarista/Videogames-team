@@ -64,7 +64,8 @@ class FinalBoss extends Sprite{
         this.invocaion = false
         this.invocaionFantasmas = false
         this.direccion = -1
-       
+        this.controladorAudio = new SoundController("roars", true, 0.5);
+        this.reproducirSonido = false;
     
     }
 
@@ -77,6 +78,10 @@ class FinalBoss extends Sprite{
     }
     
     update(player, deltaTime) {
+        if (!this.reproducirSonido) {
+            this.controladorAudio.play()
+        }
+        this.reproducirSonido = true;
         //FASES DE COMPORTAMIENTO
         if (this.fase==1) {
             this.fase1(deltaTime)

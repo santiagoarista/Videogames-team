@@ -18,7 +18,11 @@ const soundMap = {
     laugh2: "../assets/soundeffects/enemies/laugh2.wav",
     roarenemy: "../assets/soundeffects/enemies/monster-roar.mp3",  
     roar2enemy: "../assets/soundeffects/enemies/roar2.mp3",
-    explosion: "../assets/soundeffects/enemies/explosion.wav"  
+    explosion: "../assets/soundeffects/enemies/explosion.wav",
+    roars: "../assets/soundeffects/enemies/monster-roars.mp3",  
+    bonus: "../assets/soundeffects/effects/bonus-points.mp3",  
+    hurt4: "../assets/soundeffects/effects/hurt1.wav",  
+    jump: "../assets/soundeffects/effects/jump.mp3",  
 };
 
 function playSound(action, volume= 1.0) {

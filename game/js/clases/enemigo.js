@@ -227,7 +227,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
 
     console.log("golpe recibido por fantasma")
     this.health-= disparo.damage;
-    playSound("hurt"); // Reproduce el sonido de dolor
+    playSound("hurt4"); // Reproduce el sonido de dolor
     this.disparosJugador.splice(index, 1);
     if (this.health<=0) {
         enemigos.splice(this.index, 1);
@@ -484,7 +484,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
 
     console.log("golpe recibido por fantasma")
     this.health-= disparo.damage;
-    playSound("hurt"); // Reproduce el sonido de dolor
+    playSound("hurt4"); // Reproduce el sonido de dolor
     this.disparosJugador.splice(index, 1);
     if (this.health<=0) {
         enemigos.splice(this.index, 1);

@@ -10,8 +10,10 @@ window.addEventListener("keydown", (event) => {
         //cantidad de salto
         player.velocity.y = -8;
         player.jumpCount = 1;
+        playSound("jump")
       } else if (player.canDoubleJump && player.jumpCount < 2) {
         // Segundo salto
+        playSound("jump")
         player.velocity.y = -8;
         player.jumpCount++;
       }
