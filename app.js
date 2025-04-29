@@ -21,7 +21,7 @@ async function connectToDB()
     return await mysql.createConnection({
         host:'localhost',
         user:'root', // Cambiar user y constraseña si quieren usarlo
-        password:'PolloLoco123@',
+        password:'Hopecos@123',
         database:'nineshions'
     })
 }
@@ -225,7 +225,8 @@ app.post('/api/Partida', async (req, res) => {
             llaves_encontradas,
             items_encontrados,
             listaCuartosAleatorios, 
-            terminada
+            terminada,
+            ganada
         } = req.body;
 
         const partidaData = {
@@ -236,7 +237,8 @@ app.post('/api/Partida', async (req, res) => {
             llaves_encontradas: JSON.stringify(llaves_encontradas),
             items_encontrados: JSON.stringify(items_encontrados),
             mapa: JSON.stringify(listaCuartosAleatorios),
-            terminada
+            terminada, 
+            ganada
         };
 
         const [results] = await connection.query('INSERT INTO Partida SET ?', partidaData);

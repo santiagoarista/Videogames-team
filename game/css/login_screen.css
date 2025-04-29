@@ -1,14 +1,21 @@
-@font-face {
-    font-family: 'Arcade Gamer';
-    src: url('../../fonts/PressStart2P-vaV7.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #app {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center; /* Centra en el eje X */
+    align-items: center;     /* Centra en el eje Y */
+    background-color: #08090f00; /* O el color de fondo que uses */
+  }
 
 body {
-   
-    /*
-    cursor: url('../../assets/cursor/Spooky\ Eyes\ 3D--cursor--SweezyCursors.cur'), auto;*/
+
     background-color: black;
     color: white;
     text-align: center;
@@ -18,8 +25,18 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    font-family: 'Inter', sans-serif;
 }
 
+#app canvas {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+  }
 .login-container {
     background: transparent;
     display: flex;
@@ -28,7 +45,20 @@ body {
     padding: 20px;
     border-radius: 8px;
     color: rgba(255, 255, 255, 0.79);
+    
 }
+
+.logo {
+    width: 30vw;
+     text-shadow: 0 0 8px rgba(255, 255, 255, 0.388), 0 0 16px rgba(255, 255, 255, 0.128);
+     transition: all 0.3s ease;
+     display: inline-block; 
+   }
+   
+   .logo:hover {
+     transform: scale(1.05);
+     text-shadow: 0 0 8px rgba(255, 255, 255, 0.879), 0 0 16px rgb(255, 255, 255);
+   }
 img {
     width: 400px;
     height: auto;
@@ -46,23 +76,28 @@ input {
     font-size: 16px;
     text-align: center;
 }
-button {
-    font-family: 'Arcade Gamer', sans-serif;
-    width: 60%;
-    padding: 10px;
-    font-size: 12px;
-    background: rgb(255, 255, 255);
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-button:hover {
-    background: rgb(111, 111, 113);
+.boton_jugar {
+    margin-top: 2vh;
+    background-color: transparent; /* <== Añade esta línea */
+    font-weight: bold;
+    font-size: 28px;
+    padding: 10px 30px;
+    width: max-content;
+    border: 6px solid rgba(255, 255, 255, 0.959);  
+    border-radius: 18px;  
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.295), 0 0 20px rgba(255, 255, 255, 0.249);
+    transition: all 0.3s ease; 
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.386), 0 0 16px rgba(255, 255, 255, 0.444);
     color: white;
-}
-
+  }
+  
+  .boton_jugar:hover {
+    transition: all 0.3s ease; 
+    background-color: white;  
+    color: #08090F;           
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.6);
+    transform: scale(1.02);
+  }
 
   .gamePage{
     display: flex;
