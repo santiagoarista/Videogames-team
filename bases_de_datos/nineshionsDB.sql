@@ -36,7 +36,6 @@ CREATE TABLE Partida (
   id_usuario SMALLINT UNSIGNED NOT NULL,
   monstruos_eliminados INT UNSIGNED NOT NULL DEFAULT 0,
   puntuacion INT UNSIGNED NOT NULL DEFAULT 0,
-  tiempo TIME NOT NULL DEFAULT '00:00:00',
   vidas SMALLINT UNSIGNED NOT NULL DEFAULT 3,
   llaves_encontradas JSON NOT NULL DEFAULT (JSON_ARRAY(false, false, false, false, false, false, false, false, false)),
   items_encontrados JSON NOT NULL DEFAULT (JSON_ARRAY(false, false, false)),
