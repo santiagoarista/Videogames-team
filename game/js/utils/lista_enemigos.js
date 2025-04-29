@@ -241,6 +241,61 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
         })
 
     ]
+    const enemigosNivel1=[
+        new  Reaper({
+            //Pasamos los bloques que harán las colisiones con este objeto
+    
+            health: 8,
+            position: {x:500, y:100},
+            bulletController: bulletController,
+            frameRate: 6,
+            imgResource: "../../assets/characters/enemies/ghost/anim-nme-ghost.png",
+            animations:{
+                idleRight:{
+                    frameRate:6,
+                    frameBuffer:4,
+                    loop :true,
+                    imgResource: "../../assets/characters/main_character/IdleRight.png",
+                    
+                },
+                idleLeft:{
+                    frameRate:6,
+                    frameBuffer:4,
+                    loop :true,
+                    imgResource: "../../assets/characters/main_character/IdleLeft.png",
+                },
+                runRight:{
+                    frameRate:8,
+                    frameBuffer:4,
+                    loop :true,
+                    imgResource: "../../assets/characters/main_character/Run.png",
+                },
+                runLeft:{
+                    frameRate:8,
+                    frameBuffer:4,
+                    loop :true,
+                    imgResource: "../../assets/characters/main_character/RunLeft.png",
+                },
+                jumpRight:{
+                    frameRate:9,
+                    frameBuffer:4,
+                    loop :true,
+                    imgResource: "../../assets/characters/main_character/Jump.png",
+                    
+                },
+                jumpLeft:{
+                    frameRate:9,
+                    frameBuffer:4,
+                    loop :true,
+                    imgResource: "../../assets/characters/main_character/JumpLeft.png",
+                    
+                },
+        
+            },
+            scale: 2
+        })
+    ]
+
     ene = [
         [],
         [],
@@ -249,7 +304,7 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
         [],
         [],
         [],
-        [],
+        enemigosNivel1, //[],
         enemigosSpawn,
     ]
     
