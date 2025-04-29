@@ -161,20 +161,6 @@ WHERE
   
 -- Triggers --
 
--- 1. Calculate experience for players when monstruos_eliminados changes
-
-DELIMITER $$
-
-CREATE TRIGGER trigger_actualizar_experiencia_partida
-BEFORE UPDATE ON Usuario
-FOR EACH ROW
-BEGIN
-  UPDATE Usuario
-  SET experiencia = experiencia + (NEW.monstruos_eliminados * 10)
-  WHERE id_usuario = NEW.id_usuario;
-END;
-
-DELIMITER ;
 
 DROP TRIGGER IF EXISTS before_update_partida;
 
@@ -208,6 +194,12 @@ BEGIN
       FROM Partida
       WHERE id_usuario = NEW.id_usuario
         AND ganada = TRUE
+    ),
+    
+    experiencia = (
+		SELECT COALESCE(SUM(monstruos_eliminados), 0) * 10
+      FROM Partida
+      WHERE id_usuario = NEW.id_usuario
     )
   
   -- Make sure we only update the Usuario related to the updated Partida
