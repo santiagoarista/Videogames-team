@@ -215,24 +215,21 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
   //ACCÍON cuando el enemigo recibe un golpe
   recibirGolpe(disparo,index){
 
-    if (enemigos.length==1) {
-        if (this.health==1) {
-            console.log("ultimo enemigo")
-            itemsEnJuego.push(new Llave({x:this.position.x,y:this.position.y, bloquesDeColision: bloquesColisiones}))
-            console.log("player", player.experiencia);
-        }
-    }
-
-    ejecutarFuncionItemAleatoria(this);
-
-    console.log("golpe recibido por fantasma")
     this.health-= disparo.damage;
-    playSound("hurt4"); // Reproduce el sonido de dolor
     this.disparosJugador.splice(index, 1);
+    console.log("golpe recibido por fantasma")
+
     if (this.health<=0) {
+        if (enemigos.length==1) {
+            console.log("ultimo enemigo", this.health)
+            itemsEnJuego.push(new Llave({x:this.position.x,y:this.position.y, bloquesDeColision: bloquesColisiones}))
+        }
+        ejecutarFuncionItemAleatoria(this);
+        playSound("hurt4"); // Reproduce el sonido de dolor
         enemigos.splice(this.index, 1);
         player.monstruos_eliminados += 1;
         player.experiencia += 10;
+        console.log("player", player.experiencia);
     }
   }
 }
@@ -608,25 +605,23 @@ class Reaper extends Sprite{
 
   //ACCÍON cuando el enemigo recibe un golpe
   recibirGolpe(disparo,index){
-
-    if (enemigos.length==1) {
-        if (this.health==1) {
-            console.log("ultimo enemigo")
-            itemsEnJuego.push(new Llave({x:this.position.x,y:this.position.y, bloquesDeColision: bloquesColisiones}))
-            console.log("player", player.experiencia);
-        }
-    }
-
-    ejecutarFuncionItemAleatoria(this);
-
-    console.log("golpe recibido por fantasma")
     this.health-= disparo.damage;
-    playSound("hurt"); // Reproduce el sonido de dolor
     this.disparosJugador.splice(index, 1);
+    console.log("golpe recibido por Reaper")
+
     if (this.health<=0) {
+        if (enemigos.length==1) {
+            console.log("ultimo enemigo", this.health)
+            itemsEnJuego.push(new Llave({x:this.position.x,y:this.position.y, bloquesDeColision: bloquesColisiones}))
+        }
+        ejecutarFuncionItemAleatoria(this);
+        playSound("hurt"); // Reproduce el sonido de dolor
         enemigos.splice(this.index, 1);
         player.monstruos_eliminados += 1;
         player.experiencia += 10;
+        console.log("player", player.experiencia);
     }
+
+    
   }
 }

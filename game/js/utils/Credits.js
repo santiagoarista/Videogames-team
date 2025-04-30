@@ -42,7 +42,7 @@ function drawCreditsScreen(deltaTime) {
     y += 120;
     context.fillText("Sprites", canvas.width / 2, y);
     
-    context.font = "20px Arcade Gamer";
+    context.font = "17px Arcade Gamer";
     y += 60;
     context.fillText("Sprites gratuitos de escenarios, disparos y personajes por Craftpix.net", canvas.width / 2, y);
     y += 60;
@@ -50,9 +50,7 @@ function drawCreditsScreen(deltaTime) {
   
     y += 60;
     context.fillText("Efectos de sonidos obtenidos de https://pixabay.com/es/sound-effects/search/asset%20pack/", canvas.width / 2, y);
-  
-    y += 60;
-    context.fillText("Agradecimientos especiales a...", canvas.width / 2, y);
+
   
     if (!creditsFinished) {
         creditsY -= creditsSpeed * deltaTime;
@@ -239,6 +237,8 @@ function drawCreditsScreen(deltaTime) {
       document.body.removeChild(restartButton);
       restartButton = null;
     }
+
+    lastTime = document.timeline.currentTime;
 
     // Cancelar game over screen animation
     if (gameOverAnimationId) {
