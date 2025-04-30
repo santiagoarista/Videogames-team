@@ -33,7 +33,7 @@ const settingsResetButton = new Image();
 settingsResetButton.src = "../assets/menu/6 Buttons/2/2_06.png";
 
 const settingsEffectsButtonIcon = new Image();
-settingsEffectsButtonIcon.src = "../assets/menu/3 Icons/Icons/Icon_31.png";
+settingsEffectsButtonIcon.src = "../assets/menu/3 Icons/Icons/Icon_37.png";
 
 // Play Button. Globales para reusarlas en el eventListener
 const buttonWidth = 80;
@@ -289,7 +289,6 @@ window.addEventListener("click", (event) => {
             mouseY >= settingsY  * ratioHeight &&
             mouseY <= (settingsY + settingsHeight) * ratioHeight
         ) {
-
             console.log("Botón Settings clickeado");
             settingsOpen = true;
             drawSettingsMenu(context);  // Dibujar menú de configuración
@@ -362,9 +361,6 @@ window.addEventListener("click", (event) => {
             mouseY >= resetY * ratioHeight &&
             mouseY <= (resetY + resetHeight) * ratioHeight
         ) {
-
-  
- 
             console.log("Botón Reset clickeado");
             // Lógica para reiniciar partida
             const id_usuario = localStorage.getItem('id_usuario');
@@ -513,16 +509,8 @@ window.addEventListener("click", (event) => {
             mouseY >= effectsY * ratioHeight &&
             mouseY <= (effectsY + effectsHeight) * ratioHeight
         ) {
-            console.log("Botón Efectos clickeado");
-            //pantalla completa
-           // if (canvas.requestFullscreen) {
-           //   canvas.requestFullscreen();
-           // } else if (canvas.webkitRequestFullscreen) {
-           //   canvas.webkitRequestFullscreen();
-           // } else if (canvas.msRequestFullscreen) {
-           //   canvas.msRequestFullscreen();
-           // }
-            // Lógica para efectos de sonido
+          console.log("Botón Música clickeado");
+          sonidoMusica.muted();  // Mutear o activar música
         }
     }
 });
