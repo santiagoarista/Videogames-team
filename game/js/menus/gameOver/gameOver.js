@@ -86,9 +86,12 @@ canvas.addEventListener("click", (event) => {
       mouseY <= (playY + playHeight) * ratioHeight &&
       gameOver
     ) {
+      //Borrar info de partida sin terminar
+      localStorage.removeItem('partidaActiva');
       console.log("Play again...");
       const id_usuario = localStorage.getItem('id_usuario');
       console.log("ID_USUARIO: ", id_usuario);
+      //Guardar partida
       createPartida( // id_usuario, monstruos_eliminados, puntuacion, vidas, llaves_encontradas, items_encontrados, listaCuartosAleatorios
           id_usuario,
           player.monstruos_eliminados,
@@ -234,6 +237,8 @@ canvas.addEventListener("click", (event) => {
       mouseY <= (exitGameY + exitGameHeight) * ratioHeight &&
       gameOver
     ) {
+      //Borrar info de partida sin terminar
+      localStorage.removeItem('partidaActiva');
       console.log("Salir al Menú...");
       const id_usuario = localStorage.getItem('id_usuario');
       console.log("ID_USUARIO: ", id_usuario);

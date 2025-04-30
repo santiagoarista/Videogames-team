@@ -301,6 +301,8 @@ window.addEventListener("click", (event) => {
             mouseY >= exitY * ratioHeight &&
             mouseY <= (exitY + exitHeight) * ratioHeight
         ) {
+            //Borrar info de partida sin terminar
+            localStorage.removeItem('partidaActiva');
             console.log("Botón Salir clickeado");
             // Lógica de salida...
             const id_usuario = localStorage.getItem('id_usuario');
