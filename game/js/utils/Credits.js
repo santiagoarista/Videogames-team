@@ -1,4 +1,8 @@
 function drawCreditsScreen(deltaTime) {
+
+  
+  context.shadowBlur = 10;
+  context.shadowColor = "white"; 
     context.clearRect(0, 0, canvas.width, canvas.height);
     
     context.fillStyle = "black";
@@ -43,6 +47,9 @@ function drawCreditsScreen(deltaTime) {
     context.fillText("Sprites gratuitos de escenarios, disparos y personajes por Craftpix.net", canvas.width / 2, y);
     y += 60;
     context.fillText("Ghost monster por OpenGameArt.org (Dominio Público)", canvas.width / 2, y);
+  
+    y += 60;
+    context.fillText("Efectos de sonidos obtenidos de https://pixabay.com/es/sound-effects/search/asset%20pack/", canvas.width / 2, y);
   
     y += 60;
     context.fillText("Agradecimientos especiales a...", canvas.width / 2, y);

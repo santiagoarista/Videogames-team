@@ -6,7 +6,7 @@ const soundMap = {
     enemyhurt1: " ../../assets/soundeffects/protagonist/hurt2.wav",
     hit: "../assets/sounds/hit.mp3",
     walk: "../assets/soundeffects/protagonist/run.mp3",
-    regularLevelsMusic: "../assets/music/musica_menu_principal.mp3",
+    regularLevelsMusic: "../assets/music/musical_cuartos_regulares.mp3",
     menuPrincipalMusic: "../assets/music/musical_cuartos_regulares.mp3",
     musica_jefe: "../assets/music/cuerto_jefe_final_musica.mp3",
 

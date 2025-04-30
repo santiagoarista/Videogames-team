@@ -289,6 +289,7 @@ window.addEventListener("click", (event) => {
             mouseY >= settingsY  * ratioHeight &&
             mouseY <= (settingsY + settingsHeight) * ratioHeight
         ) {
+
             console.log("Botón Settings clickeado");
             settingsOpen = true;
             drawSettingsMenu(context);  // Dibujar menú de configuración
@@ -361,6 +362,9 @@ window.addEventListener("click", (event) => {
             mouseY >= resetY * ratioHeight &&
             mouseY <= (resetY + resetHeight) * ratioHeight
         ) {
+
+  
+ 
             console.log("Botón Reset clickeado");
             // Lógica para reiniciar partida
             const id_usuario = localStorage.getItem('id_usuario');
@@ -510,6 +514,13 @@ window.addEventListener("click", (event) => {
             mouseY <= (effectsY + effectsHeight) * ratioHeight
         ) {
             console.log("Botón Efectos clickeado");
+            if (canvas.requestFullscreen) {
+              canvas.requestFullscreen();
+            } else if (canvas.webkitRequestFullscreen) {
+              canvas.webkitRequestFullscreen();
+            } else if (canvas.msRequestFullscreen) {
+              canvas.msRequestFullscreen();
+            }
             // Lógica para efectos de sonido
         }
     }

@@ -849,7 +849,7 @@ let cuarto7Cons = new Cuarto({
   cuartoSpawn: false,
   cuartoJefeFinal: false,
   posicionJugadorSuperior: { x: 674, y: 30 },
-  posicionJugadorInferior: { x: 520, y: 580 },
+  posicionJugadorInferior: { x: 490, y: 570 },
   posicionJugadorIzquierda: { x: 90, y: 600 },
   posicionJugadorDerecha: { x: 1250, y: 600 },
   colisiones: level_cuarto7,
