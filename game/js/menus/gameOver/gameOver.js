@@ -288,7 +288,7 @@ function reiniciarJuego() {
   currentLevel = 8;
   listaCuartosAleatorios = [];
   showMap = false;
-  llaves = [false, false, false, false, false, false, false, false, false];
+
   paused = false;
   itemsEnJuego = []; // o llama a obtenerListaItems() si quieres regenerarlos
   itemsActivos = [false, false, false];
