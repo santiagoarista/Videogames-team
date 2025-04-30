@@ -304,7 +304,7 @@ function obtenerListaEnemigos(bulletController, enemyBulletController) {
         [],
         [],
         [],
-        enemigosNivel1, //[],
+        [],//enemigosNivel1, //[],
         enemigosSpawn,
     ]
     

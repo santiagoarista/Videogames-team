@@ -8,8 +8,8 @@ window.addEventListener("keydown", (event) => {
       //Comporbación para hacer un solo salt,p sólo cuando no tenga velocidad en y, se puede hacer el salto
       if (player.velocity.y === 0) {
         //cantidad de salto
-        player.velocity.y = -8;
-        player.jumpCount = 1;
+      player.velocity.y = -8;
+      player.jumpCount = 1;
         playSound("jump")
       } else if (player.canDoubleJump && player.jumpCount < 2) {
         // Segundo salto
@@ -20,6 +20,24 @@ window.addEventListener("keydown", (event) => {
 
       keys.w.pressed = true;
       break;
+    //MOVIMIETNO A LA IZQUIERDA
+    //case " ":
+    //  console.log("salto space")
+    //  //Comporbación para hacer un solo salt,p sólo cuando no tenga velocidad en y, se puede hacer el salto
+    //  if (player.velocity.y === 0) {
+    //    //cantidad de salto
+    //    player.velocity.y = -8;
+    //    player.jumpCount = 1;
+    //    playSound("jump")
+    //  } else if (player.canDoubleJump && player.jumpCount < 2) {
+    //    // Segundo salto
+    //    playSound("jump")
+    //    player.velocity.y = -8;
+    //    player.jumpCount++;
+    //  }
+//
+    //  keys.space.pressed = true;
+    //  break;
     //MOVIMIETNO A LA IZQUIERDA
     case "a":
       keys.a.pressed = true;
@@ -109,6 +127,9 @@ window.addEventListener("keyup", (event) => {
     case "w":
       keys.w.pressed = false;
       break;
+    //case " ":
+    //    keys.space.pressed = false;
+    //    break;
     case "a":
       keys.a.pressed = false;
 

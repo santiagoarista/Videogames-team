@@ -76,6 +76,9 @@ const keys = {
   k: {
     pressed: false,
   },
+  space: {
+    pressed: false,
+  },
   l: {
     pressed: false,
   },

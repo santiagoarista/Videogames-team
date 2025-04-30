@@ -23,8 +23,8 @@ class FinalBoss extends Sprite{
         super({imgResource, frameRate, animations, frameBuffer: frameBuffer, scale:2, blinkRate:100})
         //propiedades de la clase
         this.index = index;
-        this.health =200;
-        this.mxhealth =200;
+        this.health =100;
+        this.mxhealth =100;
         this.invencivilidad = invencivilidad;
     
         this.enemyBulletController = enemyBulletController;
@@ -234,7 +234,7 @@ class FinalBoss extends Sprite{
 
     // Disparar en espiral
     this.dispararEspiral(deltaTime);
-    if (this.health<100) {
+    if (this.health<40) {
         this.cambiarFase(2)
         this.fantasmaTimer=400
         this.position.x = 200
