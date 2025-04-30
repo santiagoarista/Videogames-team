@@ -514,13 +514,14 @@ window.addEventListener("click", (event) => {
             mouseY <= (effectsY + effectsHeight) * ratioHeight
         ) {
             console.log("Botón Efectos clickeado");
-            if (canvas.requestFullscreen) {
-              canvas.requestFullscreen();
-            } else if (canvas.webkitRequestFullscreen) {
-              canvas.webkitRequestFullscreen();
-            } else if (canvas.msRequestFullscreen) {
-              canvas.msRequestFullscreen();
-            }
+            //pantalla completa
+           // if (canvas.requestFullscreen) {
+           //   canvas.requestFullscreen();
+           // } else if (canvas.webkitRequestFullscreen) {
+           //   canvas.webkitRequestFullscreen();
+           // } else if (canvas.msRequestFullscreen) {
+           //   canvas.msRequestFullscreen();
+           // }
             // Lógica para efectos de sonido
         }
     }

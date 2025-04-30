@@ -163,6 +163,7 @@ class FinalBoss extends Sprite{
 }
     this.disparosJugador.splice(index, 1);
     if (this.health<=0) {
+        showCredits= true
         enemigos.splice(this.index, 1);
         player.monstruos_eliminados += 1;
         player.experiencia += 20;
