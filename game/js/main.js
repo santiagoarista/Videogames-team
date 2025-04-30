@@ -29,7 +29,7 @@ canvas.height = 768;
 //Variables para pantalla de creditos
 let showCredits = false;
 let creditsY = canvas.height; // Empiezan fuera de la pantalla, abajo
-let creditsSpeed = 50; // Velocidad en píxeles por segundo
+let creditsSpeed = 100; // Velocidad en píxeles por segundo
 let creditsFinished = false;
 let restartButton = null;
 
