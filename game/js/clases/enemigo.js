@@ -520,7 +520,7 @@ class Reaper extends Sprite{
         this.position.y += this.velocity.y * deltaTime * 100;
         const time = Date.now() / 1000; // segundos
         const centerX = canvas.width / 2; // centro del canvas
-        const amplitude = (canvas.width - this.width) / 2; // amplitud máxima
+        const amplitude = (canvas.width - this.width) / 2 *0.7; // amplitud máxima
         const frequency = 1.2; // frecuencia lenta para que no sea loco
 
     // Oscilación de lado a lado
