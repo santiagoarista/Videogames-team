@@ -104,11 +104,18 @@ class Player extends Sprite {
   // Dibujar conteo de llaves
   drawKeys() {
     this.keys = llaves.filter((element) => element === true).length;
+    context.font = "30px Arcade Gamer"; // Tamaño y fuente del texto
+  
+    context.shadowColor = "white"; // Neon effect
+    context.shadowBlur = 30;
 
+    context.fillStyle = "white";
+    context.fillText("Exp:"+player.experiencia, 1050, 40);
+  
     context.shadowColor = "transparent";
     context.shadowBlur = 15;
     context.drawImage(this.keysImage, 230, 15, 30, 60);
-    context.font = "40px Arcade Gamer"; // Tamaño y fuente del texto
+
     context.textAlign = "start";
     context.fillStyle = "white"; // Color del texto
     context.fillText(this.keys, 280, 65); // Texto y posición (x, y)
@@ -185,7 +192,7 @@ class Player extends Sprite {
     if (keys.k.pressed && idArmaActual == '1') {
       let bulletSpeed = 500;
       let bulletDelay = 50;
-      let damage = 0.5;
+      let damage = 1;
       let bulletX = this.position.x + this.width / 2;
       let bulletY = this.position.y + 80;
       this.bulletController.shoot({
@@ -198,7 +205,7 @@ class Player extends Sprite {
     } else if(keys.k.pressed && idArmaActual == '2') {
       let bulletSpeed = 500;
       let bulletDelay = 35;
-      let damage = 3;
+      let damage = 2;
       let bulletX = this.position.x + this.width / 2;
       let bulletY = this.position.y + 80;
       this.bulletController.shoot({

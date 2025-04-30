@@ -29,11 +29,15 @@ canvas.height = 768;
 //Variables para pantalla de creditos
 let showCredits = false;
 let creditsY = canvas.height; // Empiezan fuera de la pantalla, abajo
-let creditsSpeed = 50; // Velocidad en píxeles por segundo
+let creditsSpeed = 100; // Velocidad en píxeles por segundo
 let creditsFinished = false;
 let restartButton = null;
 
+//Recuperar info de la partida no guardada
+const partidaGuardada = localStorage.getItem('partidaActiva');
 //-----------------------------------INSTANCIAS DE CLASES----------------------------
+
+
 //TODO: BORRAR  DESPUES DE PRUEBAS JEFEFINAL
 puertaTestJefeFinal = new PuertaJefeFinal({
   position: { x: 400, y: 600 },
@@ -100,6 +104,28 @@ const overlay = {
   opacity: 0,
 };
 let lastTime = 0; // Para almacenar el tiempo del último frame
+
+
+console.log('1')
+console.log(itemsActivos)
+console.log(player.lives)
+console.log(llaves)
+
+//Si hay una partida no terminada iniciar los datos de la partida con esa info.
+if (partidaGuardada) {
+  const partida = JSON.parse(partidaGuardada);
+  console.log("Cargando partida activa:", partida);
+
+  // Asignar valores
+  const itemsActivos = partida.items_encontrados;
+  const llaves = partida.llaves_encontradas;
+  player.lives = partida.vidas;
+
+  // Verifica en consola
+  console.log("Items activos:", itemsActivos);
+  console.log("Vidas:", player.lives);
+  console.log("Llaves encontradas:", llaves);
+}
 
 function animate(timeStamp) {
 
@@ -263,7 +289,6 @@ function animate(timeStamp) {
   }
   
 
-  
   context.shadowColor = "blue"; // Neon effect
   context.shadowBlur = 40;
   enemyBulletController.draw(context, deltaTime);

@@ -42,7 +42,7 @@
                     <h3> Encarna a Mr Fonti y defiende esta festividad de los terrible mounstros </h3>
     
                 </div>
-                <a href="./in_game_screen.html" class="boton_jugar">JUGAR</a>
+                <button class="boton_jugar">JUGAR</button>
             </div>
 
 
@@ -51,7 +51,7 @@
 
         </div>
     </div>
-    <script  src="../js/playScreen/playScreen.js"></script>
+    <script type="module" src="../js/playScreen/playScreen.js"></script>
     <script type="module">
         import { neonCursor } from 'https://unpkg.com/threejs-toys@0.0.8/build/threejs-toys.module.cdn.min.js';
 
@@ -73,6 +73,43 @@
 
 
 
+});
+
+// Play button logic
+const playButton = document.querySelector('.boton_jugar');
+console.log("✅ playButton:", playButton);
+
+playButton?.addEventListener('click', async (e) => {
+  e.preventDefault();
+
+  const userId = localStorage.getItem('id_usuario');
+  console.log(userId)
+
+  if (!userId) {
+    alert('ID de usuario no encontrado');
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://localhost:3001/api/Partida/active/${userId}`);
+    
+    if (response.ok) {
+      const partida = await response.json();
+      localStorage.setItem('partidaActiva', JSON.stringify(partida));
+      console.log('Partida success', partida)
+      window.location.href = './in_game_screen.html';
+    } else if (response.status === 404) {
+      localStorage.removeItem('partidaActiva');
+      console.log('No Partida')
+      window.location.href = './in_game_screen.html';
+    } else {
+      throw new Error('Respuesta inesperada del servidor');
+    }
+
+  } catch (error) {
+    console.error('Error al obtener partida activa:', error);
+    alert('Hubo un problema al comunicarse con el servidor.');
+  }
 });
 
     </script>

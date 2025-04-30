@@ -163,6 +163,7 @@ class FinalBoss extends Sprite{
 }
     this.disparosJugador.splice(index, 1);
     if (this.health<=0) {
+        showCredits= true
         enemigos.splice(this.index, 1);
         player.monstruos_eliminados += 1;
         player.experiencia += 20;
@@ -333,7 +334,7 @@ class FinalBoss extends Sprite{
 dispararEspiral(deltaTime){
     this.enemyBulletController.shootEspiral({
         bulletSpeed:600 ,
-        bulletDelay:50,
+        bulletDelay:55,
         damage:1,
          bulletX: this.position.x+100,
           bulletY: this.position.y+80,
@@ -452,7 +453,7 @@ generarCalabazas(numero, deltaTime) {
     }
 
     // Intervalo entre la generación de cada fantasma (en milisegundos)
-    const intervaloGeneracion = 2000; // 1 segundo
+    const intervaloGeneracion = 3000; // 1 segundo
 
     // Acumular tiempo transcurrido
     this.fantasmaTimer += deltaTime * 1000;

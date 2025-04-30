@@ -11,13 +11,13 @@ const armasLi = [
     y: 650,
     idArma: "2",
     armaImageSrc: "../assets/sprites/escenario_spawm_dario/7_1.png",
-    expRequerida: 10
+    expRequerida: 100
   }),
   new Arma({
     x: 1025,
     y: 195,
     idArma: "3",
     armaImageSrc: "../assets/sprites/escenario_spawm_dario/9_1.png",
-    expRequerida: 100
+    expRequerida: 250
   }),
 ];

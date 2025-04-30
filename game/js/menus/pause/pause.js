@@ -33,7 +33,7 @@ const settingsResetButton = new Image();
 settingsResetButton.src = "../assets/menu/6 Buttons/2/2_06.png";
 
 const settingsEffectsButtonIcon = new Image();
-settingsEffectsButtonIcon.src = "../assets/menu/3 Icons/Icons/Icon_31.png";
+settingsEffectsButtonIcon.src = "../assets/menu/3 Icons/Icons/Icon_37.png";
 
 // Play Button. Globales para reusarlas en el eventListener
 const buttonWidth = 80;
@@ -301,6 +301,8 @@ window.addEventListener("click", (event) => {
             mouseY >= exitY * ratioHeight &&
             mouseY <= (exitY + exitHeight) * ratioHeight
         ) {
+            //Borrar info de partida sin terminar
+            localStorage.removeItem('partidaActiva');
             console.log("Botón Salir clickeado");
             // Lógica de salida...
             const id_usuario = localStorage.getItem('id_usuario');
@@ -509,8 +511,8 @@ window.addEventListener("click", (event) => {
             mouseY >= effectsY * ratioHeight &&
             mouseY <= (effectsY + effectsHeight) * ratioHeight
         ) {
-            console.log("Botón Efectos clickeado");
-            // Lógica para efectos de sonido
+          console.log("Botón Música clickeado");
+          sonidoMusica.muted();  // Mutear o activar música
         }
     }
 });
