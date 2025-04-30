@@ -35,6 +35,8 @@ window.addEventListener("keydown", (event) => {
       break;
 
     case "r":
+      // pause = false;
+      // gameOver = false; 
       showCredits = true; // cambiar el showmap a verdadero o falso
       break;
 

@@ -548,10 +548,11 @@ class Reaper extends Sprite{
     
         // Llamadas existentes en tu método update
         this.updateHitbox();
-        this.checkHorizontalCollisions();
+        context.fillStyle= "rgba(30, 255, 0, 0.5)";
+        context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
+        this.checkCollisions();
         this.applyGravity();
         this.updateHitbox();
-        this.checkVerticalCollisions();
        //dibujar tamaño imagen
         //context.fillStyle = "red";
         //context.fillRect(this.position.x, this.position.y, this.width, this.height);
@@ -575,114 +576,30 @@ class Reaper extends Sprite{
   
         this.hitbox ={
            position:{
-               x: this.position.x + 20,
-               y: this.position.y +22
+               x: this.position.x + 10,
+               y: this.position.y 
                
            },
            width: 50,
-           height: 150,
+           height: 70,
        }
        }
-    checkHorizontalCollisions(){
-          //CHECAR SI HAY COLISIONES EN X
-          for (let index = 0; index < this.bloquesDeColision.length; index++) {
-            const bloqueDeColsion = this.bloquesDeColision[index] ;
-
-            //Comprobar si hay colisiones
-            if (this.hitbox.position.x <= bloqueDeColsion.position.x +bloqueDeColsion.width &&
-                this.hitbox.position.x + this.hitbox.width>= bloqueDeColsion.position.x &&
-                this.hitbox.position.y + this.hitbox.height>= bloqueDeColsion.position.y &&
-                this.hitbox.position.y <= bloqueDeColsion.position.y + bloqueDeColsion.height) {
-                    
-                   ////Si detecta colisión a la derecha regresa el objeto, para que no lo pueda atravesar
-                   //if (this.velocity.x< 0) {
-                   //    const offset = this.hitbox.position.x - this.position.x
-                   //    this.position.x = bloqueDeColsion.position.x +bloqueDeColsion.width-offset
-                   //    break;
-                   //}
-                   ////Si detecta colisión a la izquierda, regresa el objeto, para que no lo pueda atravesar
-                   //if (this.velocity.x> 0) {
-                   //    const offset = this.hitbox.position.x - this.position.x+this.hitbox.width
-                   //    this.position.x = bloqueDeColsion.position.x-offset;
-                   //    break;
-                   //}
-            }
-            
-
-
-        }
-        
+       checkCollisions(){
         //Agregar colisiones de disparos
         for (let index = 0; index < this.disparosJugador.length; index++) {
-           
-            const disparo = this.disparosJugador[index] ;
-
-            //Comprobar si hay colisiones 
-            if (this.hitbox.position.x <= disparo.x +disparo.width &&
-                this.hitbox.position.x + this.hitbox.width>= disparo.x &&
-                this.hitbox.position.y + this.hitbox.height>= disparo.y &&
-                this.hitbox.position.y <= disparo.y + disparo.height) {
-                    
-                //Si recibe un disparo se ejecuta el método 
-                this.recibirGolpe(disparo,index);
+            const disparo = this.disparosJugador[index];
+    
+            if (this.hitbox.position.x <= disparo.x + disparo.width &&
+                this.hitbox.position.x + this.hitbox.width >= disparo.x &&
+                this.hitbox.position.y <= disparo.y + disparo.height &&
+                this.hitbox.position.y + this.hitbox.height >= disparo.y) {
+    
+                this.recibirGolpe(disparo, index);
             }
-            
-
-
         }
 
     }
-    checkVerticalCollisions(){
-   //CHECAR SI HAY COLISIONES EN Y
-   for (let index = 0; index < this.bloquesDeColision.length; index++) {
-    const bloqueDeColsion = this.bloquesDeColision[index] ;
-
-    //Comprobar si hay colisiones
-    if (this.hitbox.position.x <= bloqueDeColsion.position.x +bloqueDeColsion.width &&
-        this.hitbox.position.x + this.hitbox.width>= bloqueDeColsion.position.x &&
-        this.hitbox.position.y + this.hitbox.height>= bloqueDeColsion.position.y &&
-        this.hitbox.position.y <= bloqueDeColsion.position.y + bloqueDeColsion.height) {
-            
-          // //Si detecta colisión aarriba regresa el objeto, para que no lo pueda atravesar
-          // if (this.velocity.y< 0) {
-          //     this.velocity.y=0;
-          //     const offset = this.hitbox.position.y - this.position.y
-          //     this.position.y = bloqueDeColsion.position.y +bloqueDeColsion.height-offset 
-          //     break;
-          // }
-          // //Si detecta colisión abajo, regresa el objeto, para que no lo pueda atravesar
-          // if (this.velocity.y> 0) {
-          //     this.velocity.y=0;
-          //     const offset = this.hitbox.position.y - this.position.y+this.hitbox.height
-          //     this.position.y = bloqueDeColsion.position.y-offset;
-          //     break;
-          // }
-    }
-    
-
-
-}
- //Agregar colisiones de las disparos
-
-for (let index = 0; index < this.disparosJugador.length; index++) {
-    const disparo = this.disparosJugador[index] ;
-
-    //Comprobar si hay colisiones
-    if (this.hitbox.position.x <= disparo.x +disparo.width &&
-        this.hitbox.position.x + this.hitbox.width>= disparo.x &&
-        this.hitbox.position.y + this.hitbox.height>= disparo.y &&
-        this.hitbox.position.y <= disparo.y + disparo.height) {
-            
-             //Si recibe un disparo se ejecuta el método
-     
-             this.recibirGolpe(disparo, index);
-
-    }
-    
-
-
-}
-  }
+   
   applyGravity(){
 //Sólo se aplica gravedad en Y porque es para que baje el objeto
     //this.velocity.y +=this.gravity;
