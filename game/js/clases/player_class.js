@@ -104,11 +104,18 @@ class Player extends Sprite {
   // Dibujar conteo de llaves
   drawKeys() {
     this.keys = llaves.filter((element) => element === true).length;
+    context.font = "30px Arcade Gamer"; // Tamaño y fuente del texto
+  
+    context.shadowColor = "white"; // Neon effect
+    context.shadowBlur = 30;
 
+    context.fillStyle = "white";
+    context.fillText("Exp:"+player.experiencia, 1050, 40);
+  
     context.shadowColor = "transparent";
     context.shadowBlur = 15;
     context.drawImage(this.keysImage, 230, 15, 30, 60);
-    context.font = "40px Arcade Gamer"; // Tamaño y fuente del texto
+
     context.textAlign = "start";
     context.fillStyle = "white"; // Color del texto
     context.fillText(this.keys, 280, 65); // Texto y posición (x, y)

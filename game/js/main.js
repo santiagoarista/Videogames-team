@@ -260,7 +260,6 @@ function animate(timeStamp) {
   }
   
 
-  
   context.shadowColor = "blue"; // Neon effect
   context.shadowBlur = 40;
   enemyBulletController.draw(context, deltaTime);

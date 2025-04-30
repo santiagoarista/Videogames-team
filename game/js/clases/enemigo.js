@@ -281,7 +281,7 @@ class CalbazaExplosiva extends Sprite{
         let velocidad = 1.5;
         this.controladorAudio.play();
         let bulletSpeed = 300;
-        let bulletDelay = 6;
+        let bulletDelay = 10;
         let damage =1;
         let bulletX = this.position.x ;
         let bulletY = this.position.y
