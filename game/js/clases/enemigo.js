@@ -545,8 +545,7 @@ class Reaper extends Sprite{
     
         // Llamadas existentes en tu método update
         this.updateHitbox();
-        context.fillStyle= "rgba(30, 255, 0, 0.5)";
-        context.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
+
         this.checkCollisions();
         this.applyGravity();
         this.updateHitbox();

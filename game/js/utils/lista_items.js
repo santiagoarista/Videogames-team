@@ -70,7 +70,7 @@ function ShowLinterna(enemigo){
     const funciones = [ShowLinterna, ShowAsistente, ShowBotas];
     
     // Probabilidad del 30% (0.3)
-    const probabilidadDeDrop = 0.3;
+    const probabilidadDeDrop = 1;
 
     if (Math.random() < probabilidadDeDrop) {
         const funcionSeleccionada = funciones[Math.floor(Math.random() * funciones.length)];

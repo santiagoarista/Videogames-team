@@ -43,6 +43,21 @@ window.addEventListener("keydown", (event) => {
       keys.a.pressed = true;
 
       break;
+    case "1":
+      itemsActivos = [true, true, true];
+      break;
+    case "2":
+      llaves = [true, true, true, true, true,true, true, false, false];
+      break;
+    case "3":
+      idArmaActual = "3";
+      
+      break;
+    case "4":
+      showCredits = false;
+      break;
+    case "5":
+      break;         
     //MOVIMIENTO A LA DERECHA
     case "d":
       keys.d.pressed = true;

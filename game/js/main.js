@@ -9,11 +9,11 @@ let puertas = [];
 let currentLevel = 8;
 let listaCuartosAleatorios = [];
 let showMap = false;
-let llaves = [true, true, true, true, true,true, true, true, false];
+let llaves = [true, false, false, false, false,false, false, false, false];
 let paused = false;
 let itemsEnJuego = []; //obtenerListaItems()
 let itemsActivos = [false, false, false];
-let idArmaActual = "3";
+let idArmaActual = "0";
 let disparosJugador = [];
 let disparosEnemigos = [];
 let gameOver = false;
@@ -120,11 +120,13 @@ if (partidaGuardada) {
   const itemsActivos = partida.items_encontrados;
   const llaves = partida.llaves_encontradas;
   player.lives = partida.vidas;
+  player.experiencia += partida.puntuacion;
 
   // Verifica en consola
   console.log("Items activos:", itemsActivos);
   console.log("Vidas:", player.lives);
   console.log("Llaves encontradas:", llaves);
+  console.log("Experiencia: ", player.experiencia)
 }
 
 function animate(timeStamp) {

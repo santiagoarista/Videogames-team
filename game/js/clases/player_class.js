@@ -21,7 +21,7 @@ class Player extends Sprite {
     this.inTransition = false;
     this.visible = true;
     this.countodown = countdown;
-    this.countdownDelay = 50;
+    this.countdownDelay = 150;
     this.bulletController = bulletController;
     //Posición en pantallaad
     this.position = {
@@ -137,7 +137,7 @@ class Player extends Sprite {
         this.countdownDelay -= 1;
       } else {
         this.countdown = false;
-        this.countdownDelay = 75;
+        this.countdownDelay = 150;
         this.visible = true;
       }
     }
