@@ -243,7 +243,7 @@ for (let index = 0; index < this.disparosJugador.length; index++) {
     if (this.health<=0) {
         enemigos.splice(this.index, 1);
         player.monstruos_eliminados += 1;
-        player.experiencia += 20;
+        player.experiencia += 10;
         console.log("player", player.experiencia);
     }
   }
