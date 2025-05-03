@@ -44,20 +44,26 @@ window.addEventListener("keydown", (event) => {
 
       break;
     case "1":
-      itemsActivos = [true, true, true];
+      player.items = [true, true, true];
       break;
     case "2":
       llaves = [true, true, true, true, true,true, true, false, false];
       break;
     case "3":
-      idArmaActual = "3";
+      idArmaActual = "2";
       
       break;
     case "4":
-      showCredits = false;
+      idArmaActual = "3";
+
+   
       break;
     case "5":
-      break;         
+      showCredits = true;
+      break;  
+      case "6":
+        enemigos = [];
+        break;              
     //MOVIMIENTO A LA DERECHA
     case "d":
       keys.d.pressed = true;
